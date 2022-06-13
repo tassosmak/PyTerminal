@@ -1,5 +1,6 @@
 import os
 import datetime
+import sys
 from pathlib import Path
 
 
@@ -11,6 +12,7 @@ CML =[
 "about",
 "ABOUT",
 "time",
+"exit"
 
 ]
 
@@ -23,7 +25,8 @@ CMLAD =[
 "CML",
 "time",
 "delete",
-"del"
+"del",
+"exit"
 
 ]
 MD = 0
@@ -77,7 +80,7 @@ def CommandList():
         else:
             print("This Function isn't available within this mode")
 
-    # if Command == "Kill":
-    #     return
+    if Command == "Exit":
+        sys.exit()
 
         
