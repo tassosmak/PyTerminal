@@ -29,6 +29,7 @@ CMLAD =[
 
 ]
 MD = 0
+Version = 1.0
 
 
 def CommandList():
@@ -48,7 +49,7 @@ def CommandList():
     
     if Command == "about" or Command == "ABOUT":
         LCommand = Command
-        print("PyTerminal By Tassos Mak")
+        print(f"PyTerminal {Version} by Tassos Mak")
     
     if Command == "CML":
         if MD == "2":
@@ -98,6 +99,20 @@ def CommandList():
                     print("DONE")
         else:
             print("This Function isn't available within this mode")
+
+    if Command == "Version":
+        if MD == "1":
+            print(Version)
+        elif MD == "2":
+            print(Version)
+            ask_version = input("Do you Wish to Change The Version? if yes prees Y:")
+            if ask_version == "Y":
+                VersionCH = input("Enter the Version:")
+                #Version = VersionCH
+                print("DONE")             
+
+
+
 
 
 
