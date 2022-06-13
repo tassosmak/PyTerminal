@@ -1,8 +1,13 @@
 
+from asyncore import read
 import os
 import datetime
+from pickletools import read_string1
 import sys
+import clipboard
 from pathlib import Path
+
+from numpy import clip
 
 dir = Path(__file__).parent.resolve()
 
@@ -11,7 +16,8 @@ CML =[
 "about",
 "ABOUT",
 "time",
-"exit"
+"exit",
+"Version"
 
 ]
 
@@ -25,14 +31,16 @@ CMLAD =[
 "time",
 "delete",
 "del",
-"exit"
+"exit",
+"Vesion",
+"create",
 
 ]
 MD = 0
 Version = 1
 
 
-def CommandList():
+def CommandList(Admin=False):
     global LCommand
     Command = input()
     LCommand = 0
@@ -66,7 +74,7 @@ def CommandList():
         print (now.strftime("%Y-%m-%d %H:%M:%S"))
 
     if Command == "del" or Command == "delete":
-        if MD == "2":
+        if MD == "2" or MD == "999":
             print(os.listdir(dir))
             ask_del = input("what file you want to delete:")
             try:
@@ -87,7 +95,7 @@ def CommandList():
                 print("DONE")
             except FileExistsError:
                 ask_del_create = input("This file already exist")
-        elif MD == "2":
+        elif MD == "2" or MD == "999":
                 ask_name = input("What the name of the file you want to create?")
                 try:
                     open(ask_name, "x")
@@ -105,13 +113,29 @@ def CommandList():
         VersionCH = 0
         if MD == "1":
             print("PyTerminal:", Version)
-        elif MD == "2":
+        elif MD == "2" or MD == "999":
             print(Version)
             ask_version = input("Do you Wish to Change The Version? if yes prees Y:")
             if ask_version == "Y":
                 VersionCH = input("Enter the Version:")
                 Version = VersionCH
                 print("DONE")             
+
+
+    if Command == "latest":
+        clipboard.copy(open("history.log", mode= "r"))
+        print("DONE")
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -123,7 +147,7 @@ def CommandList():
             ask_exit = input("Are you sure. if yes press 'Y' and hit return")
             if ask_exit == "Y":
                 sys.exit()
-        elif MD == "2":
+        elif MD == "2" or MD == "999":
             sys.exit()
 
         
