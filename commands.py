@@ -1,4 +1,4 @@
-import imp
+
 import os
 import datetime
 import sys
@@ -29,7 +29,7 @@ CMLAD =[
 
 ]
 MD = 0
-Version = 1.0
+Version = 1
 
 
 def CommandList():
@@ -101,14 +101,16 @@ def CommandList():
             print("This Function isn't available within this mode")
 
     if Command == "Version":
+        Version = 1
+        VersionCH = 0
         if MD == "1":
-            print(Version)
+            print("PyTerminal:", Version)
         elif MD == "2":
             print(Version)
             ask_version = input("Do you Wish to Change The Version? if yes prees Y:")
             if ask_version == "Y":
                 VersionCH = input("Enter the Version:")
-                #Version = VersionCH
+                Version = VersionCH
                 print("DONE")             
 
 
