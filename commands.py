@@ -69,8 +69,9 @@ def CommandList():
             print(os.listdir(dir))
             ask_del = input("what file you want to delete:")
             try:
+                print(ask_del)
                 os.remove(ask_del)
-                print("OK")
+                print("DONE")
             except FileNotFoundError:
                 print("This file doesn't exist")
         else:
