@@ -1,9 +1,8 @@
+import imp
 import os
 import datetime
 import sys
 from pathlib import Path
-
-
 
 dir = Path(__file__).parent.resolve()
 
@@ -39,7 +38,6 @@ def CommandList():
 
     if Command == "LS":
         if MD == "2":
-            LCommand = Command
             print(os.listdir(dir))
         else:
             print("This Function isn't available within this mode")
@@ -54,7 +52,6 @@ def CommandList():
     
     if Command == "CML":
         if MD == "2":
-            LCommand = Command
             print(CMLAD)
         elif MD == "1":
             LCommand = Command
@@ -80,7 +77,36 @@ def CommandList():
         else:
             print("This Function isn't available within this mode")
 
+    if Command == "create":
+        if MD == "1":
+            LCommand = Command
+            ask_name = input("What the name of the file you want to create?")
+            try:
+                open(ask_name, "x")
+                print("DONE")
+            except FileExistsError:
+                ask_del_create = input("This file already exist")
+        elif MD == "2":
+                ask_name = input("What the name of the file you want to create?")
+                try:
+                    open(ask_name, "x")
+                    print("DONE")
+                except FileExistsError:
+                    ask_del_create = input("This file already exist do you want to delete it. if yes type 'Y'")
+                if ask_del_create == "Y" or ask_del_create == "y":
+                    os.remove(ask_name)
+                    print("DONE")
+        else:
+            print("This Function isn't available within this mode")
+
+
+
     if Command == "Exit":
-        sys.exit()
+        if MD == "1":
+            ask_exit = input("Are you sure. if yes press 'Y' and hit return")
+            if ask_exit == "Y":
+                sys.exit()
+        elif MD == "2":
+            sys.exit()
 
         
