@@ -1,6 +1,7 @@
 
 import os
 import commands
+import sys
 
 cmd = commands
 
@@ -12,7 +13,9 @@ def core(MODE="0"):
     if MODE == "1":
         cmd.CommandList()
         history()
-    else:
+    elif MODE == "2":
         print("History isn't enabled")
         cmd.CommandList()
-        
+    else:
+        print("This Mode Doesn't exist")
+        sys.exit()

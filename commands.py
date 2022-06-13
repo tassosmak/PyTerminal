@@ -7,6 +7,15 @@ from pathlib import Path
 dir = Path(__file__).parent.resolve()
 
 CML =[
+"test",
+"about",
+"ABOUT",
+"time",
+
+]
+
+
+CMLAD =[
 "LS",
 "test",
 "about",
@@ -42,6 +51,9 @@ def CommandList():
     
     if Command == "CML":
         if MD == "2":
+            LCommand = Command
+            print(CMLAD)
+        elif MD == "1":
             LCommand = Command
             print(CML)
         else:
