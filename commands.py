@@ -1,13 +1,9 @@
-
-from asyncore import read
 import os
 import datetime
-from pickletools import read_string1
 import sys
 import clipboard
 from pathlib import Path
-
-from numpy import clip
+import Password_Gen as pswd_gen
 
 dir = Path(__file__).parent.resolve()
 
@@ -55,9 +51,9 @@ def CommandList(Admin=False):
         LCommand = Command
         print("tested")
     
-    if Command == "about" or Command == "ABOUT":
-        LCommand = Command
-        print(f"PyTerminal {Version} by Tassos Mak")
+    # if Command == "about" or Command == "ABOUT":
+    #     LCommand = Command
+    #     print(f"PyTerminal {Version} by Tassos Mak")
     
     if Command == "CML":
         if MD == "2":
@@ -126,19 +122,8 @@ def CommandList(Admin=False):
         clipboard.copy(open("history.log", mode= "r"))
         print("DONE")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if Command == "gen password":
+        pswd_gen.gen()
 
 
 
