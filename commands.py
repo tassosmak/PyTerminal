@@ -123,7 +123,7 @@ def CommandList(Admin=False):
         print("DONE")
 
     if Command == "gen password":
-        pswd_gen.gen()
+        pswd_gen.gen(MODE = MD)
 
 
 
