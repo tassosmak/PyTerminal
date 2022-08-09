@@ -1,4 +1,3 @@
-
 import os
 import commands
 import sys
@@ -14,7 +13,6 @@ def history():
 def core(MODE="0"):
     if MODE == "1":
         cmd.CommandAsk()
-        print("2")
         history()
     elif MODE == "2":
         print("History isn't enabled")

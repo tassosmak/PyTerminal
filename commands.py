@@ -33,10 +33,14 @@ CMLAD =[
 
 ]
 MD = 0
-Version = 1
+Version = 2
 jump = False
 
-
+def init():
+    global jump
+    jump = False
+def CommandAsk(Admin=False):
+    CommandList(Command=input()) 
 
 def CommandList(Command=0):
     global jump
@@ -94,7 +98,7 @@ def CommandList(Command=0):
             except FileExistsError:
                 ask_del_create = input("This file already exist")
             except UnboundLocalError:
-                pass
+                print("There was a Problem try again")
         elif MD == "2" or MD == "999":
                 ask_name = input("What the name of the file you want to create?")
                 try:
@@ -130,7 +134,6 @@ def CommandList(Command=0):
         pswd_gen.gen(MODE = MD)
 
 
-
     if Command == "Exit":
         if MD == "1":
             ask_exit = input("Are you sure. if yes press 'Y' and hit return")
@@ -141,5 +144,5 @@ def CommandList(Command=0):
 
         
     if Command == "jump":
-        print("1")
+        LCommand = Command
         jump = True
