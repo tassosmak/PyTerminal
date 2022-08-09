@@ -12,15 +12,6 @@ ask()
 cmd.MD = ask_core
 print("Go Ahead")
 while True:
-    
-    Kernel.CommandAsk()
-    if jump == True:
-        print('3')
-        ask()
-        kernel.core(MODE=ask_core)
-        
-    # else:
-    #     ask()
-    #     cmd.MD=ask_core
-    #     cmd.CommandAsk()
+    #kernel.core(MODE=ask_core)
+    cmd.CommandAsk()
     
