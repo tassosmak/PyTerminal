@@ -16,6 +16,7 @@ while True:
     #cmd.CommandAsk()
     if cmd.jump:
         ask()
+        cmd.MD = ask_core
         kernel.core(MODE=ask_core)
         cmd.jump = False
         pass
