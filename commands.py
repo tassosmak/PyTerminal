@@ -1,6 +1,7 @@
 import os
 import datetime
 import sys
+from click import command
 import clipboard
 from pathlib import Path
 import Password_Gen as pswd_gen
@@ -57,9 +58,9 @@ def CommandList(Command=0):
         LCommand = Command
         print("tested")
     
-    # if Command == "about" or Command == "ABOUT":
-    #     LCommand = Command
-    #     print(f"PyTerminal {Version} by Tassos Mak")
+    if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
+        LCommand = Command
+        print(f"PyTerminal V.Alpha by Tassos Mak")
     
     if Command == "CML":
         if MD == "2":
@@ -111,20 +112,6 @@ def CommandList(Command=0):
                     print("DONE")
         else:
             print("This Function isn't available within this mode")
-
-    if Command == "Version":
-        Version = 1
-        VersionCH = 0
-        if MD == "1":
-            print("PyTerminal:", Version)
-        elif MD == "2" or MD == "999":
-            print(Version)
-            ask_version = input("Do you Wish to Change The Version? if yes prees Y:")
-            if ask_version == "Y":
-                VersionCH = input("Enter the Version:")
-                Version = VersionCH
-                print("DONE")             
-
 
     if Command == "latest":
         clipboard.copy(open("history.log", mode= "r"))
