@@ -13,7 +13,7 @@ cmd.MD = ask_core
 print("Go Ahead")
 while True:
     kernel.core(MODE=ask_core)
-    cmd.CommandAsk()
+    #cmd.CommandAsk()
     if cmd.jump:
         ask()
         kernel.core(MODE=ask_core)
