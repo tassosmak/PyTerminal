@@ -1,7 +1,6 @@
 import os
 import datetime
 import sys
-from click import command
 import clipboard
 from pathlib import Path
 import Password_Gen as pswd_gen
