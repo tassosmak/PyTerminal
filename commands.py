@@ -34,11 +34,13 @@ CMLAD =[
 ]
 MD = 0
 Version = 1
+jump = False
 
 
-def CommandList(Admin=False):
+
+def CommandList(Command=0):
+    global jump
     global LCommand
-    Command = input()
     LCommand = 0
 
     if Command == "LS":
@@ -91,6 +93,8 @@ def CommandList(Admin=False):
                 print("DONE")
             except FileExistsError:
                 ask_del_create = input("This file already exist")
+            except UnboundLocalError:
+                pass
         elif MD == "2" or MD == "999":
                 ask_name = input("What the name of the file you want to create?")
                 try:
@@ -136,3 +140,6 @@ def CommandList(Admin=False):
             sys.exit()
 
         
+    if Command == "jump":
+        print("1")
+        jump = True
