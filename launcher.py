@@ -19,7 +19,6 @@ while True:
         cmd.MD = ask_core
         kernel.core(MODE=ask_core)
         cmd.jump = False
-        pass
     #print(cmd.jump)
 
     
