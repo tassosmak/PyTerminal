@@ -3,8 +3,6 @@ import sys
 
 cmd = commands
 
-
-
 def history():
     with open('history.log', 'w+') as f:    
         f.write(str(cmd.LCommand))
