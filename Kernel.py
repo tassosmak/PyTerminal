@@ -4,8 +4,8 @@ import sys
 cmd = commands
 
 def history():
-    with open('history.log', 'w+') as f:    
-        f.write(str(cmd.LCommand))
+    with open('history.log', 'a') as f:    
+        f.write(str(f"{cmd.LCommand}\n"))
                 
 def core(MODE="0"):
     if MODE == "1":
