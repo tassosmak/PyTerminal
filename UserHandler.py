@@ -7,7 +7,7 @@ kernel = Kernel
 
 
 base_folder = Path(__file__).parent.resolve()
-data_file = base_folder/"UserList.csv"
+data_file = base_folder/"serList.csv"
 
 UserMD = 0
 
@@ -36,7 +36,7 @@ def find_index(input):
 def ask():
     global username_ask, UserMD
     username_ask = input("Enter Usename")
-    UserSearch = open("UserList.csv", "r")
+    UserSearch = open(data_file, "r")
     if(username_ask in UserSearch.read()):
         find_index(username_ask)
         for i in row:
