@@ -36,9 +36,7 @@ MD = 0
 Version = 2
 jump = False
 
-def init():
-    global jump
-    jump = False
+
 def CommandAsk(Admin=False):
     CommandList(Command=input()) 
 
@@ -96,7 +94,7 @@ def CommandList(Command=0):
                 open(ask_name, "x")
                 print("DONE")
             except FileExistsError:
-                ask_del_create = input("This file already exist")
+                ask_del_create = input("This file already exist try again")
             except UnboundLocalError:
                 print("There was a Problem try again")
         elif MD == "2" or MD == "999":
