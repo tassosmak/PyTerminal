@@ -27,7 +27,7 @@ def find_index(input):
     global UserMD, row
     fl = open('UserList.csv', 'r').readlines()
     for row in fl:
-        if row.startswith(input):
+        if row.find(input):
                 #print(row)
                 UserMD = row
 
