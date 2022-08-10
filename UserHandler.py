@@ -8,8 +8,8 @@ kernel = Kernel
 
 base_folder = Path(__file__).parent.resolve()
 data_file = base_folder/"UserList.csv"
-UserMD = 0
 
+UserMD = 0
 
 
 def create_csv_file(data_file):
@@ -28,23 +28,22 @@ def find_index(input):
     fl = open('UserList.csv', 'r').readlines()
     for row in fl:
         if row.startswith(input):
-                print(row)
+                #print(row)
                 UserMD = row
 
 
 
 def ask():
-    global username_ask
+    global username_ask, UserMD
     username_ask = input("Enter Usename")
     UserSearch = open("UserList.csv", "r")
     if(username_ask in UserSearch.read()):
         find_index(username_ask)
         for i in row:
             if int(i.isnumeric()):
-                UserMD = i
-                print(UserMD)
-                while True:
-                    kernel.core(MODE=UserMD)
+                UserMD = i 
+                #print(i)
+        
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")
         if NewUser == "Y" or NewUser == "y":
@@ -58,3 +57,7 @@ def ask():
             '''       
             data = (username_ask, ask_UserMD)
             add_csv_data(data_file, data)
+            UserMD = ask_UserMD
+
+def Change_Listed_MODE(NEW_MODE):
+    pass
