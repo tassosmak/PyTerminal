@@ -130,3 +130,9 @@ def CommandList(Command=0):
     if Command == "jump":
         LCommand = Command
         jump = True
+    
+    if Command == "print md":
+        if MD == "2" or MD == "999":
+            print(MD)
+        else:
+            print("This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command")

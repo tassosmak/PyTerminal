@@ -13,13 +13,15 @@ def ask():
 
 
 UserH.ask()
+print("Go Ahead")
 while True:
-    print("Go Ahead")
     kernel.core(MODE=UserH.UserMD)
     if cmd.jump:
         ask()
-        UserH.Change_Listed_MODE(ask_core)
+        print("this is only for the current sension\nthe next time it will be restored\nto the previous state")
+        # UserH.Change_Listed_MODE(ask_core)
         cmd.MD = ask_core
+        UserH.UserMD = ask_core
         kernel.core(MODE=ask_core)
         cmd.jump = False
     

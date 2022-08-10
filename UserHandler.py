@@ -59,5 +59,7 @@ def ask():
             add_csv_data(data_file, data)
             UserMD = ask_UserMD
 
-def Change_Listed_MODE(NEW_MODE):
-    pass
+# def Change_Listed_MODE(NEW_MODE):
+#     ask_sure = input("Are you sure that you want to change the listed mode\nif yes press Y or y")
+#     if ask_sure == "Y" or ask_sure == "y":
+        
