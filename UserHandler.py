@@ -4,12 +4,8 @@ from pathlib import Path
 cmd = commands
 
 
-
 base_folder = Path(__file__).parent.resolve()
-
-
-
-
+data_file = base_folder/"UserList.csv"
 
 
 def create_csv_file(data_file):
@@ -23,8 +19,10 @@ def add_csv_data(data_file, data):
         writer = csv.writer(f)
         writer.writerow(data)
 
-data_file = base_folder/"UserList.csv"
-create_csv_file(data_file)
+def search_csv_data(input=0):
+    global UserSearch
+    UserSearch = open("UserList.csv", "r")
+
 
 
 # data = ()
@@ -36,9 +34,9 @@ create_csv_file(data_file)
 def ask():
     global username_ask
     username_ask = input("Enter Usename")
+    search_csv_data("username_ask")
     #print("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
     #ask_core = input("select Mode")
-    UserSearch = open("UserList.log", "r")
     if(username_ask in UserSearch.read()):
         print("ok")
     
@@ -47,8 +45,7 @@ def ask():
 
     
 
-    
-    
+
 
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")
