@@ -7,11 +7,11 @@ cmd = commands
 
 
 while True:
-    kernel.core(MODE=UserH.ask_core)
-    #cmd.CommandAsk()
+    print("Go Ahead")
+    UserH.ask()
     if cmd.jump:
         UserH.ask()
-        cmd.MD = UserH.ask_core
-        kernel.core(MODE=UserH.ask_core)
+        cmd.MD = UserH.UserMD
+        kernel.core(MODE=UserH.UserMD)
         cmd.jump = False
-    #print(cmd.jump)
+    

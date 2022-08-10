@@ -1,14 +1,14 @@
 import commands
 import csv
 from pathlib import Path
+import Kernel
 cmd = commands
-
+kernel = Kernel 
 
 
 base_folder = Path(__file__).parent.resolve()
-
-
-
+data_file = base_folder/"UserList.csv"
+UserMD = 0
 
 
 
@@ -23,38 +23,28 @@ def add_csv_data(data_file, data):
         writer = csv.writer(f)
         writer.writerow(data)
 
-data_file = base_folder/"UserList.csv"
-
-
-
-# data = ()
-# add_csv_data(data_file, data)
-
+def find_index(input):
+    global UserMD, row
+    fl = open('UserList.csv', 'r').readlines()
+    for row in fl:
+        if row.startswith(input):
+                print(row)
+                UserMD = row
 
 
 
 def ask():
     global username_ask
-    # try:
-    #     create_csv_file(data_file)
-    # except FileExistsError
     username_ask = input("Enter Usename")
-    #print("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
-    #ask_core = input("select Mode")
-    
-    
     UserSearch = open("UserList.csv", "r")
     if(username_ask in UserSearch.read()):
-        print("ok")
-    
-    
-
-
-    
-
-    
-    
-
+        find_index(username_ask)
+        for i in row:
+            if int(i.isnumeric()):
+                UserMD = i
+                print(UserMD)
+                while True:
+                    kernel.core(MODE=UserMD)
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")
         if NewUser == "Y" or NewUser == "y":
@@ -63,46 +53,8 @@ def ask():
             '''
             ask_UserMD = input("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode\nChoose One!")
             
-
             '''
             append phase
             '''       
             data = (username_ask, ask_UserMD)
             add_csv_data(data_file, data)
-ask()
-
-
-
-
-
-
-# #cmd.MD = ask_core
-# print("Go Ahead")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
