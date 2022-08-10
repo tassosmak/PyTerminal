@@ -10,6 +10,18 @@ def ask():
     UserSearch = open("UserList.log", "r")
     if(username_ask in UserSearch.read()):
         print("ok")
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")
         if NewUser == "Y" or NewUser == "y":
@@ -17,7 +29,7 @@ def ask():
             init phase
             '''
             UserSearch = open("UserList.log", "a")
-            ask_UserMD = open("UserListMD.log", "a")
+            UserMD = open("UserListMD.log", "a")
             
             '''
             ask phase
@@ -31,7 +43,7 @@ def ask():
             '''
             UserSearch.write(str(f"{username_ask}{ask_UserMD}\n"))
             
-            ask_UserMD.write(str(f"{ask_UserMD}\n"))
+            UserMD.write(str(f"{ask_UserMD}\n"))
 ask()
 
 
