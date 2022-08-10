@@ -20,5 +20,3 @@ while True:
         kernel.core(MODE=ask_core)
         cmd.jump = False
     #print(cmd.jump)
-
-    
