@@ -4,6 +4,7 @@ import sys
 import clipboard
 from pathlib import Path
 import Password_Gen as pswd_gen
+import COM
 
 dir = Path(__file__).parent.resolve()
 
@@ -136,3 +137,10 @@ def CommandList(Command=0):
             print(MD)
         else:
             print("This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command")
+
+
+
+    # if Command == "COM":
+    #     ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
+    #     if ask_type == "1":
+    #         COM/C
