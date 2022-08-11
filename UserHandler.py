@@ -38,7 +38,7 @@ def find_index(input):
     fl = open('UserList.csv', 'r').readlines()
     for row in fl:
         if row.find(input):
-                print(row)
+                #print(row)
                 UserMD = row
 
 
@@ -52,7 +52,7 @@ def ask():
         for i in row:
             if int(i.isnumeric()):
                 UserMD = i 
-                print(i)
+                #print(i)
         
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")

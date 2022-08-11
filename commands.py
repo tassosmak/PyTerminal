@@ -82,7 +82,7 @@ def CommandList(Command=0):
     if Command == "time":
         LCommand = Command
         now = datetime.datetime.now()
-        print (now.strftime("%Y-%m-%d %H:%M:%S"))
+        print(now.strftime("%Y-%m-%d %H:%M:%S"))
 
     if Command == "del" or Command == "delete":
         if MD == "2" or MD == "999":
