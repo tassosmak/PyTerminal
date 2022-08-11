@@ -26,3 +26,5 @@ while True:
         cmd.jump = False
     if cmd.jump_user:
         UserH.ask()
+        cmd.jump_user = False
+        kernel.core(MODE=UserH.UserMD)
