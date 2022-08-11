@@ -3,14 +3,15 @@ import datetime
 import sys
 import clipboard
 from pathlib import Path
-import Password_Gen as pswd_gen
-
 
 '''
 Adding Modules From Different Folders
 '''
-sys.path.insert(0,'PyTerminal/COM')
-from COM import Server, client
+sys.path.insert(0,'PyTerminal/src')
+from src import Server
+from src import client
+from src import Password_Gen as pswd_gen
+
 
 
 

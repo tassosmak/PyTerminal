@@ -1,8 +1,6 @@
 import socket
 
 
-
-
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 SERVER_IP = "192.168.1.61"
 PORT = 5050
@@ -22,8 +20,9 @@ def client_handler(conn, addr):
 
 def chat():
     while True:
+            if answer == "Exit":
+                break
             print('waiting')
             conn, addr = server.accept()
             client_handler(conn, addr)
-            if answer == "Exit":
-                break
+            
