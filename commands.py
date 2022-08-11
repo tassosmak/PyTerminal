@@ -46,13 +46,14 @@ CMLAD =[
 MD = 0
 Version = 2
 jump = False
+jump_user = False
 
 
 def CommandAsk(Admin=False):
     CommandList(Command=input()) 
 
 def CommandList(Command=0):
-    global jump
+    global jump, jump_user
     global LCommand
     LCommand = 0
 
@@ -141,7 +142,12 @@ def CommandList(Command=0):
     if Command == "jump":
         LCommand = Command
         jump = True
-    
+
+    if Command == "jump user":
+        LCommand = Command
+        jump_user = True
+
+
     if Command == "print md":
         if MD == "2" or MD == "999":
             print(MD)

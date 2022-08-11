@@ -24,4 +24,5 @@ while True:
         UserH.UserMD = ask_core
         kernel.core(MODE=ask_core)
         cmd.jump = False
-    
+    if cmd.jump_user:
+        UserH.ask()
