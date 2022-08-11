@@ -9,6 +9,16 @@ kernel = Kernel
 base_folder = Path(__file__).parent.resolve()
 data_file = base_folder/"UserList.csv"
 
+
+
+
+'''
+UserLogin Handler
+
+'''
+
+
+
 UserMD = 0
 
 
@@ -63,3 +73,27 @@ def ask():
 #     ask_sure = input("Are you sure that you want to change the listed mode\nif yes press Y or y")
 #     if ask_sure == "Y" or ask_sure == "y":
         
+
+
+
+
+
+
+
+
+
+
+
+'''
+
+file_user append
+
+
+Still in dev
+'''
+
+
+
+
+
+
