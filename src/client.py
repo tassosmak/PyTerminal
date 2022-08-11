@@ -1,13 +1,13 @@
 import socket
 
 
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-SERVER_IP = "192.168.1.61"
-PORT = 5050
-ADDR = (SERVER_IP, PORT)
-client.connect(ADDR)
+def Chat(IP=0):
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    SERVER_IP = IP
+    PORT = 5050
+    ADDR = (SERVER_IP, PORT)
+    client.connect(ADDR)
 
-def Chat():
     while True:
         message = 0
         if message == "Exit":

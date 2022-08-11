@@ -14,7 +14,11 @@ from pathlib import Path
 Adding Modules From Different Folders
 '''
 sys.path.insert(0,'PyTerminal/src')
-from src import Server
+try:
+    from src import Server
+except OSError:
+    print("There are Multiple instances Running at the same time\ni sugguest that you only keep one up")
+    sys.exit()
 from src import client
 from src import Password_Gen as pswd_gen
 
@@ -53,13 +57,14 @@ MD = 0
 Version = 2
 jump = False
 jump_user = False
+ask_recv = 0
 
 
 def CommandAsk(Admin=False):
     CommandList(Command=input()) 
 
 def CommandList(Command=0):
-    global jump, jump_user
+    global jump, jump_user, ask_recv
     global LCommand
     LCommand = 0
 
@@ -171,4 +176,9 @@ def CommandList(Command=0):
         if ask_type == "1":
             Server.chat()
         else:
-            client.Chat()
+            ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
+            print(ask_recv)
+            try: 
+                client.Chat(IP=ask_recv)
+            except ConnectionRefusedError:
+                print("This User is Unavilable at the moment\ntry again later")
