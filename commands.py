@@ -7,6 +7,7 @@ try:
    import clipboard
 except ModuleNotFoundError:
    DNT_IMP_clipboard = True
+   pass
 from pathlib import Path
 
 '''
