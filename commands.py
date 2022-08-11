@@ -1,7 +1,12 @@
+DNT_IMP_clipboard = False
+
 import os
 import datetime
 import sys
-import clipboard
+try:
+   import clipboard
+except ModuleNotFoundError:
+   DNT_IMP_clipboard = True
 from pathlib import Path
 
 '''
@@ -123,8 +128,12 @@ def CommandList(Command=0):
             print("This Function isn't available within this mode")
 
     if Command == "latest":
-        clipboard.copy(open("history.log", mode= "r"))
-        print("DONE")
+        if DNT_IMP_clipboard:
+            print("To use this command you have to install the clipboard module")
+            
+        else:
+            clipboard.copy(open("history.log", mode= "r"))
+            print("DONE")
 
     if Command == "gen password":
         pswd_gen.gen(MODE = MD)
