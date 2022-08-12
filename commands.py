@@ -13,11 +13,10 @@ from pathlib import Path
 '''
 Adding Modules From Different Folders
 '''
-sys.path.insert(0,'PyTerminal/src')
 try:
     from src import Server
 except OSError:
-    print("There are Multiple instances Running at the same time\ni sugguest that you only keep one up")
+    print("There are Multiple instances Running at the same time")
     sys.exit()
 from src import client
 from src import Password_Gen as pswd_gen
