@@ -3,12 +3,12 @@ DNT_IMP_clipboard = False
 import os
 import datetime
 import sys
+from pathlib import Path
 try:
    import clipboard
 except ModuleNotFoundError:
    DNT_IMP_clipboard = True
    pass
-from pathlib import Path
 
 '''
 Adding Modules From Different Folders
