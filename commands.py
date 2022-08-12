@@ -33,7 +33,9 @@ CML =[
 "ABOUT",
 "time",
 "exit",
-"Version"
+"Version",
+"jump",
+"jump_user"
 
 ]
 
@@ -170,7 +172,7 @@ def CommandList(Command=0):
 
 
 
-    if Command == "COM":
+    if Command == "talk":
         ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
         if ask_type == "1":
             Server.chat()
