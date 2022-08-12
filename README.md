@@ -14,4 +14,9 @@ i have also a added a 999 mode but it doesn't serve any purpose it's just for te
 
 ## How it Works:
 essentially its just an input that then calls a function that procces the input and deliever an 
-output based on the mode you are and the parameters that have been set 
+output based on the mode you are and the parameters that have been set
+
+
+
+## VersionAlpha:
+This is First beta version for more info see the dev branch where everything is explained
