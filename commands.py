@@ -59,56 +59,55 @@ Version = 2
 jump = False
 jump_user = False
 ask_recv = 0
-
+asnwer = 0
 
 def CommandAsk(Admin=False):
     CommandList(Command=input()) 
 
 def CommandList(Command=0):
-    global jump, jump_user, ask_recv
-    global LCommand
+    global jump, jump_user, ask_recv, LCommand, asnwer
     LCommand = 0
 
     if Command == "LS":
         if MD == "2":
-            print(os.listdir(dir))
+            CommandSay(asnwer=os.listdir(dir))
         else:
-            print("This Function isn't available within this mode")
+            CommandSay(asnwer="This Function isn't available within this mode")
 
     if Command == "test":
         LCommand = Command
-        print("tested")
+        CommandSay(asnwer="tested")
     
     if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
         LCommand = Command
-        print(f"PyTerminal V.Alpha by Tassos Mak")
+        CommandSay(answer="PyTerminal V.Alpha by Tassos Mak")
     
     if Command == "CML":
         if MD == "2":
-            print(CMLAD)
+            CommandSay(answer=CMLAD)
         elif MD == "1":
             LCommand = Command
-            print(CML)
+            CommandSay(answer=CML)
         else:
-            print("This Function isn't available within this mode")
+            CommandSay(answer="This Function isn't available within this mode")
     
     if Command == "time":
         LCommand = Command
         now = datetime.datetime.now()
-        print(now.strftime("%Y-%m-%d %H:%M:%S"))
+        CommandSay(answer=now.strftime("%Y-%m-%d %H:%M:%S"))
 
     if Command == "del" or Command == "delete":
         if MD == "2" or MD == "999":
-            print(os.listdir(dir))
+            CommandSay(answer=os.listdir(dir))
             ask_del = input("what file you want to delete:")
             try:
-                print(ask_del)
+                CommandSay(answer=ask_del)
                 os.remove(ask_del)
                 print("DONE")
             except FileNotFoundError:
-                print("This file doesn't exist")
+                CommandSay(answer="This file doesn't exist")
         else:
-            print("This Function isn't available within this mode")
+            CommandSay(answer="This Function isn't available within this mode")
 
     if Command == "create":
         if MD == "1":
@@ -120,7 +119,7 @@ def CommandList(Command=0):
             except FileExistsError:
                 ask_del_create = input("This file already exist try again")
             except UnboundLocalError:
-                print("There was a Problem try again")
+                CommandSay(answer="There was a Problem try again")
         elif MD == "2" or MD == "999":
                 ask_name = input("What the name of the file you want to create?")
                 try:
@@ -132,11 +131,11 @@ def CommandList(Command=0):
                     os.remove(ask_name)
                     print("DONE")
         else:
-            print("This Function isn't available within this mode")
+            CommandSay(answer="This Function isn't available within this mode")
 
     if Command == "latest":
         if DNT_IMP_clipboard:
-            print("To use this command you have to install the clipboard module")
+            CommandSay(answer="To use this command you have to install the clipboard module")
             
         else:
             clipboard.copy(open("history.log", mode= "r"))
@@ -166,9 +165,9 @@ def CommandList(Command=0):
 
     if Command == "print md":
         if MD == "2" or MD == "999":
-            print(MD)
+            CommandSay(answer=MD)
         else:
-            print("This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command")
+            CommandSay(answer="This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command") 
 
 
 
@@ -178,8 +177,16 @@ def CommandList(Command=0):
             Server.chat()
         else:
             ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
-            print(ask_recv)
+            CommandSay(answer=ask_recv)
             try: 
                 client.Chat(IP=ask_recv)
             except ConnectionRefusedError:
-                print("This User is Unavilable at the moment\ntry again later")
+                CommandSay(answer="This User is Unavilable at the moment\ntry again later")
+
+
+
+
+def CommandSay(ssh=False, answer=0):
+    if ssh:
+        pass
+    print(answer)
