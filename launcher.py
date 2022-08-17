@@ -12,6 +12,9 @@ def ask():
     ask_core = input("select Mode")
 
 
+
+
+UserH.init()
 UserH.ask()
 print("Go Ahead")
 while True:

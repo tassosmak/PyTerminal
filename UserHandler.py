@@ -22,10 +22,11 @@ UserLogin Handler
 UserMD = 0
 
 
-def create_csv_file(data_file):
+
+def create_csv_file(data_file, add_header):
     with open(data_file, 'w') as f:
         writer = csv.writer(f)
-        header = ("Name", "Mode")
+        header = (add_header)
         writer.writerow(header)
 
 def add_csv_data(data_file, data):
@@ -75,25 +76,37 @@ def ask():
         
 
 
-
-
-
-
-
-
-
-
-
 '''
 
-file_user append
+WorkSpaceHandler
 
+still in dev
 
-Still in dev
 '''
+FTS = False
+FirstTimeUse = 0
+ask_type = 0
 
 
 
 
+def init():
+    try:
+        FirstTimeUse = open("FTU.csv", "r")
+    except FileNotFoundError:
+            FirstTimeUse = open("FTU.csv", "a+")
+            FTS = True
+
+    if FTS:
+        ask_type = input("How Do You want to use this instanche?\nPersonal Or Server")
+        if ask_type == "Personal" or ask_type == "PERSONAL" or ask_type == "pesonal":
+            ask_type = 1
+            create_csv_file("FTU.csv")
+        
+    #     elif ask_type == "Server" or ask_type == "SERVER" or ask_type == "server":
+    
+    
+    # else:
+    #     ask_type = input("")
 
 
