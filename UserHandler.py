@@ -23,10 +23,10 @@ UserMD = 0
 
 
 
-def create_csv_file(data_file, add_header):
+def create_csv_file(data_file):
     with open(data_file, 'w') as f:
         writer = csv.writer(f)
-        header = (add_header)
+        header = ("Name/Mode")
         writer.writerow(header)
 
 def add_csv_data(data_file, data):
@@ -86,27 +86,28 @@ still in dev
 FTS = False
 FirstTimeUse = 0
 ask_type = 0
-
+init_file = base_folder/"FTU.csv"
 
 
 
 def init():
+    global FTS
     try:
         FirstTimeUse = open("FTU.csv", "r")
     except FileNotFoundError:
-            FirstTimeUse = open("FTU.csv", "a+")
+            FirstTimeUse = open("FTU.csv", "a")
             FTS = True
 
     if FTS:
         ask_type = input("How Do You want to use this instanche?\nPersonal Or Server")
         if ask_type == "Personal" or ask_type == "PERSONAL" or ask_type == "pesonal":
             ask_type = 1
-            create_csv_file("FTU.csv")
+            data = (ask_type)
+            add_csv_data(data_file, data)
         
     #     elif ask_type == "Server" or ask_type == "SERVER" or ask_type == "server":
     
     
     # else:
     #     ask_type = input("")
-
 
