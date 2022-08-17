@@ -59,24 +59,24 @@ Version = 2
 jump = False
 jump_user = False
 ask_recv = 0
-asnwer = 0
+answer = 0
 
 def CommandAsk(Admin=False):
     CommandList(Command=input()) 
 
 def CommandList(Command=0):
-    global jump, jump_user, ask_recv, LCommand, asnwer
+    global jump, jump_user, ask_recv, LCommand, answer
     LCommand = 0
 
     if Command == "LS":
         if MD == "2":
-            CommandSay(asnwer=os.listdir(dir))
+            CommandSay(answer=os.listdir(dir))
         else:
-            CommandSay(asnwer="This Function isn't available within this mode")
+            CommandSay(answer="This Function isn't available within this mode")
 
     if Command == "test":
         LCommand = Command
-        CommandSay(asnwer="tested")
+        CommandSay(answer="tested")
     
     if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
         LCommand = Command
