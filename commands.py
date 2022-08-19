@@ -1,14 +1,11 @@
-DNT_IMP_clipboard = False
+from datetime import datetime
+import importer as imp
 
-import os
-import datetime
-import sys
-from pathlib import Path
-try:
-   import clipboard
-except ModuleNotFoundError:
-   DNT_IMP_clipboard = True
-   pass
+os = imp.os
+sys = imp.sys
+datetime = imp.datetime
+Path = imp.Path
+clipboard = imp.clipboard
 
 '''
 Adding Modules From Different Folders

@@ -1,9 +1,9 @@
-import commands
-import csv
-from pathlib import Path
-import Kernel
-cmd = commands
-kernel = Kernel 
+import importer as imp
+
+cmd = imp.commands
+csv = imp.csv
+Path = imp.Path
+kernel = imp.Kernel
 
 
 base_folder = Path(__file__).parent.resolve()

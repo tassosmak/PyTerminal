@@ -1,10 +1,8 @@
-import Kernel
-import commands
-import UserHandler
-UserH = UserHandler
-kernel = Kernel
-cmd = commands
+import importer as imp
 
+kernel = imp.Kernel
+cmd = imp.commands
+UserH = imp.UserHandler
 
 def ask():
     global ask_core

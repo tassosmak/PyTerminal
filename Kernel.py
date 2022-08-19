@@ -1,7 +1,8 @@
-import commands
-import sys
+import importer as imp
 
-cmd = commands
+cmd = imp.commands
+sys = imp.sys
+
 
 def history():
     with open('history.log', 'a') as f:    
