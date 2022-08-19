@@ -83,31 +83,45 @@ WorkSpaceHandler
 still in dev
 
 '''
-FTS = False
-FirstTimeUse = 0
-ask_type = 0
-init_file = base_folder/"FTU.csv"
+class WorkSpaceHandler(): 
+    FirstTimeUse = 0
+    ask_type = 0
+    init_file = base_folder/"FTU.csv"
+    row = 0
+    Use = 0
+
+    def init():
+        check_0 = open(WorkSpaceHandler.init_file, "r")
+        if("0" in check_0.read()):
+            WorkSpaceHandler.FTS()
+            check_0.close()
+        check = open(WorkSpaceHandler.init_file, "r").readline()
+        # print("before for")
+        for i in check:
+            # print("in for")
+            if check.isnumeric():
+                WorkSpaceHandler.Use = check
+                cmd.ssh = True
+                # print(WorkSpaceHandler.Use)
+                # print("5")
+                
+                        
 
 
 
-def init():
-    global FTS
-    try:
-        FirstTimeUse = open("FTU.csv", "r")
-    except FileNotFoundError:
-            FirstTimeUse = open("FTU.csv", "a")
-            FTS = True
-
-    if FTS:
+    def FTS():
+        FirstTimeUse = open("FTU.csv", "a")       
         ask_type = input("How Do You want to use this instanche?\nPersonal Or Server")
-        if ask_type == "Personal" or ask_type == "PERSONAL" or ask_type == "pesonal":
-            ask_type = 1
-            data = (ask_type)
-            add_csv_data(data_file, data)
-        
+        if ask_type == "1":
+            ask_type = "1"
+            print(ask_type)
+            data = ask_type
+            add_csv_data(WorkSpaceHandler.init_file, data)
+        elif ask_type == "2":
+            ask_type = "2"
+            print(ask_type)
+            data = ask_type
+            add_csv_data(WorkSpaceHandler.init_file, data)
+        else:
+            print("Fail FTS")
     #     elif ask_type == "Server" or ask_type == "SERVER" or ask_type == "server":
-    
-    
-    # else:
-    #     ask_type = input("")
-

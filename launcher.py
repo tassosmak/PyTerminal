@@ -14,7 +14,8 @@ def ask():
 
 
 
-UserH.init()
+UserH.WorkSpaceHandler.init()
+print("In launcher.py")
 UserH.ask()
 print("Go Ahead")
 while True:

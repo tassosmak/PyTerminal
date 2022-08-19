@@ -60,6 +60,7 @@ jump = False
 jump_user = False
 ask_recv = 0
 answer = 0
+ssh = False
 
 def CommandAsk(Admin=False):
     CommandList(Command=input()) 
@@ -186,7 +187,7 @@ def CommandList(Command=0):
 
 
 
-def CommandSay(ssh=False, answer=0):
+def CommandSay(answer=0):
     if ssh:
-        pass
+        Server.chat(say=answer)
     print(answer)
