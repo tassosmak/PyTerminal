@@ -189,5 +189,5 @@ def CommandList(Command=0):
 
 def CommandSay(answer=0):
     if ssh:
-        Server.chat(say=answer)
+        Server.chat(SendOnly=True, Say=answer)
     print(answer)

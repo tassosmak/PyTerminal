@@ -1,6 +1,5 @@
 import socket
 
-from ..commands import CommandSay
 
 
 
@@ -11,13 +10,14 @@ PORT = 5050
 ADDR = (SERVER_IP, PORT)
 server.bind(ADDR)
 SendOnly = False
+Say = 0
 
 server.listen()
 
-def client_handler(conn, addr, SendOnly=False):
-    global answer, CommandSaySSH
+def client_handler(conn, addr, Say):
+    global answer
     if SendOnly:
-        answer = CommandSaySSH
+        answer = Say
         conn.send(answer)
     else:
         message = conn.recv(2048).decode("utf-8")
@@ -27,11 +27,11 @@ def client_handler(conn, addr, SendOnly=False):
 
 
 
-def chat(say):
+def chat(SendOnly, Say):
     while True:        
             print('waiting')
             conn, addr = server.accept()
-            client_handler(conn, addr, say)
+            client_handler(conn, addr, SendOnly, Say)
             if client_handler.answer == "Exit":
                 break
             
