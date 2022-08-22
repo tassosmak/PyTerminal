@@ -1,7 +1,7 @@
-import importer as imp
+import commands
+import sys
 
-cmd = imp.commands
-sys = imp.sys
+cmd = commands
 
 
 def history():

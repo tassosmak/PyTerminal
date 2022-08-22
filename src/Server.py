@@ -14,7 +14,7 @@ Say = 0
 
 server.listen()
 
-def client_handler(conn, addr, Say):
+def client_handler(conn, addr, Say, SendOnly=False):
     global answer
     if SendOnly:
         answer = Say

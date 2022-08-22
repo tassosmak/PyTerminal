@@ -1,12 +1,13 @@
-from datetime import datetime
-import importer as imp
-
-os = imp.os
-sys = imp.sys
-datetime = imp.datetime
-Path = imp.Path
-clipboard = imp.clipboard
-
+DNT_IMP_clipboard = False
+import os
+import datetime
+import sys
+from pathlib import Path
+try:
+   import clipboard
+except ModuleNotFoundError:
+   DNT_IMP_clipboard = True
+   pass
 '''
 Adding Modules From Different Folders
 '''
@@ -60,6 +61,7 @@ answer = 0
 ssh = False
 
 def CommandAsk(Admin=False):
+    print("564")
     CommandList(Command=input()) 
 
 def CommandList(Command=0):
@@ -185,6 +187,6 @@ def CommandList(Command=0):
 
 
 def CommandSay(answer=0):
-    if ssh:
+    if ssh == True:
         Server.chat(SendOnly=True, Say=answer)
     print(answer)
