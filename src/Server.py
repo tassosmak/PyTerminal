@@ -35,3 +35,5 @@ def chat(SendOnly, Say):
             if client_handler.answer == "Exit":
                 break
             
+def SendOnly(Say):
+    client_handler()
