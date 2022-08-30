@@ -5,6 +5,7 @@ import UserHandler
 kernel = Kernel
 cmd = commands
 UserH = UserHandler
+UserH_WSH = UserH.WorkSpaceHandler
 
 def ask():
     global ask_core
@@ -14,8 +15,8 @@ def ask():
 
 
 
-UserH.WorkSpaceHandler.init()
-print("In launcher.py")
+UserH_WSH.init()
+#print("In launcher.py")
 UserH.ask()
 print("Go Ahead")
 while True:

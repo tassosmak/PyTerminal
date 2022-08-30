@@ -102,9 +102,10 @@ class WorkSpaceHandler():
         for i in check:
             # print("in for")
             if check.isnumeric():
+                if check == "2":
+                    cmd.ssh = True
                 WorkSpaceHandler.Use = check
-                cmd.ssh = True
-                # print(WorkSpaceHandler.Use)
+                #print(WorkSpaceHandler.Use)
                 # print("5")
                 
                         

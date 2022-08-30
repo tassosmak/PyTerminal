@@ -9,16 +9,15 @@ SERVER_IP = socket.gethostbyname(hostname)
 PORT = 5050
 ADDR = (SERVER_IP, PORT)
 server.bind(ADDR)
-SendOnly = False
-Say = 0
+
 
 server.listen()
 
-def client_handler(conn, addr, Say, SendOnly=False):
+def client_handler(conn, addr, No_recv, Send):
     global answer
-    if SendOnly:
-        answer = Say
-        conn.send(answer)
+    if No_recv:
+        conn.send("Server")
+        conn.send(Send)
     else:
         message = conn.recv(2048).decode("utf-8")
         print(message)
@@ -27,13 +26,15 @@ def client_handler(conn, addr, Say, SendOnly=False):
 
 
 
-def chat(SendOnly, Say):
+def chat(Say):
     while True:        
             print('waiting')
             conn, addr = server.accept()
-            client_handler(conn, addr, SendOnly, Say)
+            client_handler(conn, addr)
             if client_handler.answer == "Exit":
                 break
             
 def SendOnly(Say):
-    client_handler()
+    while True:
+        conn, addr = server.accept()
+        client_handler(conn, addr, No_recv=True, Send=Say)
