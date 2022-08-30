@@ -189,4 +189,5 @@ def CommandList(Command=0):
 def CommandSay(answer=0):
     if ssh == True:
         Server.SendOnly(Say=answer) and print(answer)
-    print(answer)
+    else:
+        print(answer)
