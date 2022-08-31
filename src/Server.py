@@ -26,7 +26,7 @@ def client_handler(conn, addr, No_recv, Send):
 
 
 
-def chat(Say):
+def chat():
     while True:        
             print('waiting')
             conn, addr = server.accept()
