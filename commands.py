@@ -61,7 +61,6 @@ answer = 0
 ssh = False
 
 def CommandAsk(Admin=False):
-    print("564")
     CommandList(Command=input()) 
 
 def CommandList(Command=0):

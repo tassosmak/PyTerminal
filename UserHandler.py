@@ -36,6 +36,14 @@ def add_csv_data(data_file, data):
         writer = csv.writer(f)
         writer.writerow(data)
 
+def add_csv_data_ov(data_file, data):
+    with open(data_file, 'w') as f:
+        header = ("Name/Mode")
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerow(data)
+
+
 def find_index(input):
     global UserMD, row
     fl = open('UserList.csv', 'r').readlines()
@@ -47,8 +55,9 @@ def find_index(input):
 
 
 def ask():
-    global username_ask, UserMD
+    global username_ask, UserMD, username
     username_ask = input("Enter Usename")
+    username = username_ask
     UserSearch = open(data_file, "r")
     if(username_ask in UserSearch.read()):
         find_index(username_ask)
@@ -56,6 +65,7 @@ def ask():
             if int(i.isnumeric()):
                 UserMD = i 
                 #print(i)
+                UserSearch.close()
         
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")
@@ -72,9 +82,15 @@ def ask():
             add_csv_data(data_file, data)
             UserMD = ask_UserMD
 
-# def Change_Listed_MODE(NEW_MODE):
-#     ask_sure = input("Are you sure that you want to change the listed mode\nif yes press Y or y")
-#     if ask_sure == "Y" or ask_sure == "y":
+
+
+
+def Change_Listed_MODE(NEW_MODE):
+    data = (username, NEW_MODE)
+    #create_csv_file(data_file=data_file)
+    add_csv_data_ov(data_file=data_file, data=data)
+
+    
         
 
 

@@ -24,5 +24,4 @@ def core(MODE="0"):
             cmd.MD = MODE
             cmd.CommandAsk(Admin=True)
     else:
-        print("This Mode Doesn't exist")
-        sys.exit()
+        raise IndexError
