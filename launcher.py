@@ -1,10 +1,11 @@
 import Kernel
 import commands
 import UserHandler
-UserH = UserHandler
+
 kernel = Kernel
 cmd = commands
-
+UserH = UserHandler
+UserH_WSH = UserH.WorkSpaceHandler
 
 def ask():
     global ask_core
@@ -12,10 +13,18 @@ def ask():
     ask_core = input("select Mode")
 
 
+
+
+UserH_WSH.init()
 UserH.ask()
 print("Go Ahead")
 while True:
-    kernel.core(MODE=UserH.UserMD)
+    try:
+        kernel.core(MODE=UserH.UserMD)
+    except IndexError:
+        ask_new_md = input("it seems that the registered mode of user is corrupted\nwhat mode did you used\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n")
+        UserH.Change_Listed_MODE(ask_new_md)
+        kernel.core(MODE=ask_new_md)
     if cmd.jump:
         ask()
         print("this is only for the current sension\nthe next time it will be restored\nto the previous state")

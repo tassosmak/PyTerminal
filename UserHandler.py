@@ -1,9 +1,11 @@
 import commands
 import csv
-from pathlib import Path
 import Kernel
+from pathlib import Path
+
 cmd = commands
-kernel = Kernel 
+csv = csv
+kernel = Kernel
 
 
 base_folder = Path(__file__).parent.resolve()
@@ -22,16 +24,25 @@ UserLogin Handler
 UserMD = 0
 
 
+
 def create_csv_file(data_file):
     with open(data_file, 'w') as f:
         writer = csv.writer(f)
-        header = ("Name", "Mode")
+        header = ("Name/Mode")
         writer.writerow(header)
 
 def add_csv_data(data_file, data):
     with open(data_file, 'a') as f:
         writer = csv.writer(f)
         writer.writerow(data)
+
+def add_csv_data_ov(data_file, data):
+    with open(data_file, 'w') as f:
+        header = ("Name/Mode")
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerow(data)
+
 
 def find_index(input):
     global UserMD, row
@@ -44,8 +55,9 @@ def find_index(input):
 
 
 def ask():
-    global username_ask, UserMD
+    global username_ask, UserMD, username
     username_ask = input("Enter Usename")
+    username = username_ask
     UserSearch = open(data_file, "r")
     if(username_ask in UserSearch.read()):
         find_index(username_ask)
@@ -53,6 +65,7 @@ def ask():
             if int(i.isnumeric()):
                 UserMD = i 
                 #print(i)
+                UserSearch.close()
         
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")
@@ -69,31 +82,65 @@ def ask():
             add_csv_data(data_file, data)
             UserMD = ask_UserMD
 
-# def Change_Listed_MODE(NEW_MODE):
-#     ask_sure = input("Are you sure that you want to change the listed mode\nif yes press Y or y")
-#     if ask_sure == "Y" or ask_sure == "y":
+
+
+
+def Change_Listed_MODE(NEW_MODE):
+    data = (username, NEW_MODE)
+    #create_csv_file(data_file=data_file)
+    add_csv_data_ov(data_file=data_file, data=data)
+
+    
         
 
 
-
-
-
-
-
-
-
-
-
 '''
 
-file_user append
+WorkSpaceHandler
 
+still in dev
 
-Still in dev
 '''
+class WorkSpaceHandler(): 
+    FirstTimeUse = 0
+    ask_type = 0
+    init_file = base_folder/"FTU.csv"
+    row = 0
+    Use = 0
+
+    def init():
+        check_0 = open(WorkSpaceHandler.init_file, "r")
+        if("0" in check_0.read()):
+            WorkSpaceHandler.FTS()
+            check_0.close()
+        check = open(WorkSpaceHandler.init_file, "r").readline()
+        # print("before for")
+        for i in check:
+            # print("in for")
+            if check.isnumeric():
+                if check == "2":
+                    cmd.ssh = True
+                WorkSpaceHandler.Use = check
+                #print(WorkSpaceHandler.Use)
+                # print("5")
+                
+                        
 
 
 
-
-
-
+    def FTS():
+        FirstTimeUse = open("FTU.csv", "a")       
+        ask_type = input("How Do You want to use this instanche?\nPersonal Or Server")
+        if ask_type == "1":
+            ask_type = "1"
+            print(ask_type)
+            data = ask_type
+            add_csv_data(WorkSpaceHandler.init_file, data)
+        elif ask_type == "2":
+            ask_type = "2"
+            print(ask_type)
+            data = ask_type
+            add_csv_data(WorkSpaceHandler.init_file, data)
+        else:
+            print("Fail FTS")
+    #     elif ask_type == "Server" or ask_type == "SERVER" or ask_type == "server":
