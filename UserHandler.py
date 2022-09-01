@@ -142,5 +142,5 @@ class WorkSpaceHandler():
             data = ask_type
             add_csv_data(WorkSpaceHandler.init_file, data)
         else:
-            print("Fail FTS")
+            cmd.CommandSay(answer="Fail FTS", color="FAIL")
     #     elif ask_type == "Server" or ask_type == "SERVER" or ask_type == "server":

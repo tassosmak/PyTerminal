@@ -20,3 +20,5 @@ history.log
 UserList.csv
 .DS_Store
 src/__pycache__
+FTU.csv
+UserList.csv

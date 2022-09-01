@@ -18,10 +18,7 @@ def core(MODE="0"):
         cmd.MD = MODE
         cmd.CommandAsk()
     elif MODE == "999":
-        passwd = input("pswd:")
-        if passwd == "8596":
-            print("Acces Granted")
-            cmd.MD = MODE
-            cmd.CommandAsk(Admin=True)
+        cmd.MD = MODE
+        cmd.CommandAsk(Admin=True)
     else:
         raise IndexError

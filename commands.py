@@ -3,6 +3,7 @@ import os
 import datetime
 import sys
 from pathlib import Path
+
 try:
    import clipboard
 except ModuleNotFoundError:
@@ -18,19 +19,6 @@ except OSError:
     sys.exit()
 from src import client
 from src import Password_Gen as pswd_gen
-
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-    WHITE  = '\33[37m'
-
 
 
 dir = Path(__file__).parent.resolve()
@@ -81,7 +69,7 @@ def CommandList(Command=0):
         if MD == "2":
             CommandSay(answer=os.listdir(dir))
         else:
-            CommandSay(answer="This Function isn't available within this mode")
+            CommandSay(answer="This Function isn't available within this mode", color="WARNING")
 
     if Command == "test":
         LCommand = Command
@@ -98,7 +86,7 @@ def CommandList(Command=0):
             LCommand = Command
             CommandSay(answer=CML)
         else:
-            CommandSay(answer="This Function isn't available within this mode")
+            CommandSay(answer="This Function isn't available within this mode", color="WARNING")
     
     if Command == "time":
         LCommand = Command
@@ -106,17 +94,17 @@ def CommandList(Command=0):
         CommandSay(answer=now.strftime("%Y-%m-%d %H:%M:%S"))
 
     if Command == "del" or Command == "delete":
-        if MD == "2" or MD == "999":
+        if MD == "2":
             CommandSay(answer=os.listdir(dir))
             ask_del = input("what file you want to delete:")
             try:
                 CommandSay(answer=ask_del)
                 os.remove(ask_del)
-                print("DONE")
+                CommandSay(answer="DONE", color="OKGREEN")
             except FileNotFoundError:
-                CommandSay(answer="This file doesn't exist")
+                CommandSay(answer="This file doesn't exist", color="FAIL")
         else:
-            CommandSay(answer="This Function isn't available within this mode")
+            CommandSay(answer="This Function isn't available within this mode", color="FAIL")
 
     if Command == "create":
         if MD == "1":
@@ -124,27 +112,27 @@ def CommandList(Command=0):
             ask_name = input("What the name of the file you want to create?")
             try:
                 open(ask_name, "x")
-                print("DONE")
+                CommandSay(answer="DONE", color="OKGREEN")
             except FileExistsError:
-                ask_del_create = input("This file already exist try again")
+                ask_del_create = input("This file already exist try again", color="WARNING")
             except UnboundLocalError:
-                CommandSay(answer="There was a Problem try again")
+                CommandSay(answer="There was a Problem try again", color="FAIL")
         elif MD == "2" or MD == "999":
                 ask_name = input("What the name of the file you want to create?")
                 try:
                     open(ask_name, "x")
-                    print("DONE")
+                    CommandSay(answer="DONE", color="OKGREEN")
                 except FileExistsError:
                     ask_del_create = input("This file already exist do you want to delete it. if yes type 'Y'")
                 if ask_del_create == "Y" or ask_del_create == "y":
                     os.remove(ask_name)
-                    print("DONE")
+                    CommandSay(answer="DONE", color="OKGREEN")
         else:
-            CommandSay(answer="This Function isn't available within this mode")
+            CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
     if Command == "latest":
         if DNT_IMP_clipboard:
-            CommandSay(answer="To use this command you have to install the clipboard module")
+            CommandSay(answer="To use this command you have to install the clipboard module", color="FAIL")
             
         else:
             clipboard.copy(open("history.log", mode= "r"))
@@ -159,7 +147,7 @@ def CommandList(Command=0):
             ask_exit = input("Are you sure. if yes press 'Y' and hit return")
             if ask_exit == "Y":
                 sys.exit()
-        elif MD == "2" or MD == "999":
+        elif MD == "2":
             sys.exit()
 
         
@@ -173,10 +161,10 @@ def CommandList(Command=0):
 
 
     if Command == "print md":
-        if MD == "2" or MD == "999":
-            CommandSay(answer=MD, color="WARNING")
+        if MD == "2":
+            CommandSay(answer=MD)
         else:
-            CommandSay(answer="This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command") 
+            CommandSay(answer="This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command", color="WARNING") 
 
 
 
@@ -190,16 +178,37 @@ def CommandList(Command=0):
             try: 
                 client.Chat(IP=ask_recv)
             except ConnectionRefusedError:
-                CommandSay(answer="This User is Unavilable at the moment\ntry again later")
+                CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
 
-
-
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    WHITE  = '\33[37m'
 
 def CommandSay(answer=0, color=0):
     if ssh == True:
-        if color == "Warning":
-            print(bcolors.WARNING, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
-        if color == "FAIL":
-            print(bcolors.FAIL, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
+        if color == "WARNING":
+            print("\n",bcolors.WARNING, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
+        elif color == "FAIL":
+            print("\n",bcolors.FAIL, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
+        elif color == "OKGREEN":
+            print("\n",bcolors.OKGREEN, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
+        else:
+            print("\n",answer) and Server.SendOnly(Say=answer)
     else:
-        print(answer)
+        if color == "WARNING":
+            print("\n",bcolors.WARNING, answer, f"{bcolors.WHITE} ")
+        elif color == "FAIL":
+            print("\n",bcolors.FAIL, answer, f"{bcolors.WHITE} ")
+        elif color == "OKGREEN":
+            print("\n",bcolors.OKGREEN, answer, f"{bcolors.WHITE} ")        
+        else:
+            print("\n",answer)
+        #print(answer)
