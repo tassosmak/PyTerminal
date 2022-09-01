@@ -19,7 +19,17 @@ except OSError:
 from src import client
 from src import Password_Gen as pswd_gen
 
-
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    WHITE  = '\33[37m'
 
 
 
@@ -164,7 +174,7 @@ def CommandList(Command=0):
 
     if Command == "print md":
         if MD == "2" or MD == "999":
-            CommandSay(answer=MD)
+            CommandSay(answer=MD, color="FAIL")
         else:
             CommandSay(answer="This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command") 
 
@@ -185,8 +195,11 @@ def CommandList(Command=0):
 
 
 
-def CommandSay(answer=0):
+def CommandSay(answer=0, color=0):
     if ssh == True:
-        Server.SendOnly(Say=answer) and print(answer)
+        if color == "Warning":
+            print(bcolors.WARNING, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
+        if color == "FAIL":
+            print(bcolors.FAIL, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
     else:
         print(answer)
