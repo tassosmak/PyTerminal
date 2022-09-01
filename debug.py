@@ -1,5 +1,5 @@
 from pathlib import Path
-from re import T
+
 
 base_folder = Path(__file__).parent.resolve()
 data_file = base_folder/"UserList.csv"
@@ -19,11 +19,7 @@ def find_index(input):
 
 def check_num(num=0, match=0):
     if num == match:
-        print("Everything is Fine")
         mode_found = True
-    else:
-        print("We couldn't find a match with what you typed")
-
 
 
 class UserList():
