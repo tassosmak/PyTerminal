@@ -174,7 +174,7 @@ def CommandList(Command=0):
 
     if Command == "print md":
         if MD == "2" or MD == "999":
-            CommandSay(answer=MD, color="FAIL")
+            CommandSay(answer=MD, color="WARNING")
         else:
             CommandSay(answer="This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command") 
 
