@@ -3,11 +3,12 @@ from pathlib import Path
 
 base_folder = Path(__file__).parent.resolve()
 data_file = base_folder/"UserList.csv"
+data_use_file = base_folder/"FTU.csv"
 
 
 username_found = False
 mode_found = False
-
+check_use = False
 
 
 def find_index(input):
@@ -17,12 +18,8 @@ def find_index(input):
         if row.find(input):
                 UserMD = row
 
-def check_num(num=0, match=0):
-    if num == match:
-        mode_found = True
 
-
-class UserList():
+def UserList():
 
     check_username_ask = input("Enter Usename")
     check_mode_ask = input("Enter Mode")
@@ -38,7 +35,9 @@ class UserList():
         find_index(username)
         for i in row:
             if int(i.isnumeric()):
-                check_num(num=i, match=mode)
+                if i == check_mode_ask:
+                    mode_found = True    
+                #check_num(num=i, match=mode)
         UserSearch.close()
     if username_found == True and mode_found == True:
         print("UserList.csv is okay")
@@ -51,4 +50,17 @@ class UserList():
     else:
         print("UserList class FAIL")
 
-        
+def FTU():
+    check_use = input("What Was the intended purpose of this installation")
+    use = check_use
+    UseSearch = open(data_file, "r")
+    if(use in UseSearch.read()):
+        for i in row:
+            if int(i.isnumeric()):
+                if i == use:
+                    use_found = True
+    UseSearch.close()
+    if use_found:
+        print("FTU.csv is okay")
+    else:
+        print("We couldn't find the Use You asked")
