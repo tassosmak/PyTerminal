@@ -180,6 +180,11 @@ def CommandList(Command=0):
             except ConnectionRefusedError:
                 CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
 
+
+
+    if Command == "clear":
+        os.system('clear')
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
