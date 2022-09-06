@@ -4,6 +4,7 @@ import datetime
 import sys
 from pathlib import Path
 
+net = False
 try:
    import clipboard
 except ModuleNotFoundError:
@@ -14,10 +15,11 @@ Adding Modules From Different Folders
 '''
 try:
     from src import Server
+    from src import client
+    net = True
 except OSError:
-    print("There are Multiple instances Running at the same time")
-    sys.exit()
-from src import client
+    print("unfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable")
+    net = False
 from src import Password_Gen as pswd_gen
 
 
@@ -50,6 +52,7 @@ CMLAD =[
 "create",
 
 ]
+plt = 0
 MD = 0
 Version = 2
 jump = False
@@ -58,10 +61,10 @@ ask_recv = 0
 answer = 0
 ssh = False
 
-def CommandAsk(Admin=False):
-    CommandList(Command=input()) 
+def CommandAsk(Admin=False, plt=0):
+    CommandList(Command=input(), cmd_pl=plt) 
 
-def CommandList(Command=0):
+def CommandList(Command=0, cmd_pl=0):
     global jump, jump_user, ask_recv, LCommand, answer
     LCommand = 0
 
@@ -167,23 +170,30 @@ def CommandList(Command=0):
             CommandSay(answer="This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command", color="WARNING") 
 
 
-
-    if Command == "talk":
-        ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
-        if ask_type == "1":
-            Server.chat()
-        else:
-            ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
-            CommandSay(answer=ask_recv)
-            try: 
-                client.Chat(IP=ask_recv)
-            except ConnectionRefusedError:
-                CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
+    
+        if Command == "talk":
+            if net:
+                ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
+                if ask_type == "1":
+                    Server.chat()
+                else:
+                    ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
+                    CommandSay(answer=ask_recv)
+                    try: 
+                        client.Chat(IP=ask_recv)
+                    except ConnectionRefusedError:
+                        CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
+            else:
+                CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
 
 
 
     if Command == "clear":
-        os.system('clear')
+        if cmd_pl == "1":
+            os.system('clear')
+        else:
+            CommandSay(answer="Your Computer Doesn't support this function", color="FAIL")
+
 
 class bcolors:
     HEADER = '\033[95m'

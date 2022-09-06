@@ -1,7 +1,9 @@
-import commands
-import csv
-import Kernel
 from pathlib import Path
+import datetime
+import commands
+import platform
+import Kernel
+import csv
 
 cmd = commands
 csv = csv
@@ -14,13 +16,14 @@ data_file = base_folder/"UserList.csv"
 
 
 
+
 '''
 UserLogin Handler
 
 '''
 
 
-
+pl = 0
 UserMD = 0
 
 
@@ -101,46 +104,66 @@ WorkSpaceHandler
 still in dev
 
 '''
-class WorkSpaceHandler(): 
-    FirstTimeUse = 0
-    ask_type = 0
-    init_file = base_folder/"FTU.csv"
-    row = 0
-    Use = 0
 
-    def init():
-        check_0 = open(WorkSpaceHandler.init_file, "r")
-        if("0" in check_0.read()):
-            WorkSpaceHandler.FTS()
-            check_0.close()
-        check = open(WorkSpaceHandler.init_file, "r").readline()
-        # print("before for")
-        for i in check:
-            # print("in for")
-            if check.isnumeric():
-                if check == "2":
-                    cmd.ssh = True
-                WorkSpaceHandler.Use = check
-                #print(WorkSpaceHandler.Use)
-                # print("5")
+FirstTimeUse = 0
+ask_type = 0
+init_file = base_folder/"FTU.csv"
+row = 0
+Use = 0
+
+def init():
+    check_0 = open(init_file, "r")
+    if("0" in check_0.read()):
+        FTS()
+        check_0.close()
+    check = open(init_file, "r").readline()
+    # print("before for")
+    for i in check:
+        # print("in for")
+        if check.isnumeric():
+            if check == "2":
+                cmd.ssh = True
+            Use = check
+    with open('history.log', 'a') as f:    
+        now = datetime.datetime.now()
+        f.write(now.strftime("%Y-%m-%d %H:%M\n"))
                 
-                        
+            #print(WorkSpaceHandler.Use)
+            # print("5")
+            
+                    
 
 
 
-    def FTS():
-        FirstTimeUse = open("FTU.csv", "a")       
-        ask_type = input("How Do You want to use this instanche?\nPersonal Or Server")
-        if ask_type == "1":
-            ask_type = "1"
-            print(ask_type)
-            data = ask_type
-            add_csv_data(WorkSpaceHandler.init_file, data)
-        elif ask_type == "2":
-            ask_type = "2"
-            print(ask_type)
-            data = ask_type
-            add_csv_data(WorkSpaceHandler.init_file, data)
-        else:
-            cmd.CommandSay(answer="Fail FTS", color="FAIL")
-    #     elif ask_type == "Server" or ask_type == "SERVER" or ask_type == "server":
+def FTS():
+    FirstTimeUse = open("FTU.csv", "a")       
+    ask_type = input("How Do You want to use this instanche?\nPersonal Or Server")
+    if ask_type == "1":
+        ask_type = "1"
+        print(ask_type)
+        data = ask_type
+        add_csv_data(init_file, data)
+    elif ask_type == "2":
+        ask_type = "2"
+        print(ask_type)
+        data = ask_type
+        add_csv_data(init_file, data)
+    else:
+        cmd.CommandSay(answer="Fail FTS", color="FAIL")
+
+def pl_finder():
+    global pl
+    pl = platform.platform()
+    pl_mac = False
+    pl_win = False
+
+    for i in pl: 
+        if pl.startswith("macOS"):
+            pl_mac = True
+        elif pl.startswith("Windows"):
+            pl_win = True
+
+    if pl_mac:
+        pl = "1"
+    elif pl_win:
+        pl = "2"

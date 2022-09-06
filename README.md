@@ -20,3 +20,12 @@ output based on the mode you are and the parameters that have been set
 
 ## VersionAlpha:
 This is First beta version for more info see the dev branch where everything is explained
+
+## Full Details on Commit No.85:
+1) every time you launch the program history.log adds the date and hour of the current sension it runs
+2) added platform identifier to optimixe the sys commands to improve reliability(for the time it only support the already only supported platforms although it should work to every linux distro to NOT SURE YET)
+3) changed from mode 999 to mode 9 to avoid bugs
+4) deleted class WorkSpaceHandler to minimize bugs
+5) deleted some comments
+6) improved the check of multiple instanches at the same time from now it will just not respond to commands that require internet
+# 0.3 Alpha coming soon
