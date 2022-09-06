@@ -16,11 +16,6 @@ i have also a added a 999 mode but it doesn't serve any purpose it's just for te
 essentially its just an input that then calls a function that procces the input and deliever an 
 output based on the mode you are and the parameters that have been set
 
-
-
-## VersionAlpha:
-This is First beta version for more info see the dev branch where everything is explained
-
 ## Full Details on Commit No.85:
 1) every time you launch the program history.log adds the date and hour of the current sension it runs
 2) added platform identifier to optimixe the sys commands to improve reliability(for the time it only support the already only supported platforms although it should work to every linux distro to NOT SURE YET)
