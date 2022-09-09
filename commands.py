@@ -68,7 +68,7 @@ def CommandList(Command=0, cmd_pl=0):
     global jump, jump_user, ask_recv, LCommand, answer
     LCommand = 0
 
-    if Command == "LS":
+    if Command == "ls":
         if MD == "2":
             CommandSay(answer=os.listdir(dir))
         else:
@@ -127,6 +127,8 @@ def CommandList(Command=0, cmd_pl=0):
                     CommandSay(answer="DONE", color="OKGREEN")
                 except FileExistsError:
                     ask_del_create = input("This file already exist do you want to delete it. if yes type 'Y'")
+                except UnboundLocalError:
+                        pass
                 if ask_del_create == "Y" or ask_del_create == "y":
                     os.remove(ask_name)
                     CommandSay(answer="DONE", color="OKGREEN")
@@ -193,6 +195,24 @@ def CommandList(Command=0, cmd_pl=0):
             os.system('clear')
         else:
             CommandSay(answer="Your Computer Doesn't support this function", color="FAIL")
+
+    if Command == "view file":
+        ask_file = input("type the name of the file you want to view\n:")
+        if cmd_pl == "1":
+            os.system(f"open {ask_file}")
+        elif cmd_pl == "2":
+            os.system(f"more {ask_file}")
+    
+    if Command == "edit file":
+        if cmd_pl == "1":
+            ask_file = input("type the name of the file you want to edit\n:")
+            if ask_file.endswith(".py"):
+                os.system(f"vim {ask_file}")
+            os.system(f"nano {ask_file}")
+        elif cmd_pl == "2":
+            CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
+
+
 
 
 class bcolors:
