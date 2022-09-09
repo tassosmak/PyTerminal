@@ -10,7 +10,7 @@ it limits the function to the absoloute basic
 ### The Advanced Mode 
 that offers a bit more features than the basic 
 
-i have also a added a 999 mode but it doesn't serve any purpose it's just for testing purposes :)
+i have also a added a 9 mode but it doesn't serve any purpose it's just for testing purposes :)
 
 ## How it Works:
 essentially its just an input that then calls a function that procces the input and deliever an 
@@ -23,4 +23,17 @@ output based on the mode you are and the parameters that have been set
 4) deleted class WorkSpaceHandler to minimize bugs
 5) deleted some comments
 6) improved the check of multiple instanches at the same time from now it will just not respond to commands that require internet
+
+## Full Details on Commit No.88:
+1) added view and edit functions((1)you can only edit files on macOS and possibly to all the other linux distros, (2)when you are editing a .py file it will vim if it installed)
+2) added Weather commands that views the 7-Day forecast 
+3) added activity monitor(only available to macOS)
+4) on the debug we added a menu so you can deal only with the problems you have
+5) Bug Fixes
+
+
+
+
+
+
 # 0.3 Alpha coming soon

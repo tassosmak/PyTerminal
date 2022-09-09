@@ -110,6 +110,8 @@ def CommandList(Command=0, cmd_pl=0):
             CommandSay(answer="This Function isn't available within this mode", color="FAIL")
 
     if Command == "create":
+        
+        
         if MD == "1":
             LCommand = Command
             ask_name = input("What the name of the file you want to create?")
@@ -120,6 +122,8 @@ def CommandList(Command=0, cmd_pl=0):
                 ask_del_create = input("This file already exist try again", color="WARNING")
             except UnboundLocalError:
                 CommandSay(answer="There was a Problem try again", color="FAIL")
+
+
         elif MD == "2" or MD == "999":
                 ask_name = input("What the name of the file you want to create?")
                 try:
@@ -127,11 +131,11 @@ def CommandList(Command=0, cmd_pl=0):
                     CommandSay(answer="DONE", color="OKGREEN")
                 except FileExistsError:
                     ask_del_create = input("This file already exist do you want to delete it. if yes type 'Y'")
+                    if ask_del_create == "Y" or ask_del_create == "y":
+                        os.remove(ask_name)
+                        CommandSay(answer="DONE", color="OKGREEN")
                 except UnboundLocalError:
                         pass
-                if ask_del_create == "Y" or ask_del_create == "y":
-                    os.remove(ask_name)
-                    CommandSay(answer="DONE", color="OKGREEN")
         else:
             CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
@@ -211,7 +215,17 @@ def CommandList(Command=0, cmd_pl=0):
             os.system(f"nano {ask_file}")
         elif cmd_pl == "2":
             CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
+    
+    if Command == "weather forecast":
+        if net:
+            weather = os.system("curl http://wttr.in/")
+            CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
+        else:
+            CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
 
+    if Command == "activity monitor":
+        if cmd_pl == "1":
+            os.system('top')
 
 
 
@@ -243,7 +257,7 @@ def CommandSay(answer=0, color=0):
         elif color == "FAIL":
             print("\n",bcolors.FAIL, answer, f"{bcolors.WHITE} ")
         elif color == "OKGREEN":
-            print("\n",bcolors.OKGREEN, answer, f"{bcolors.WHITE} ")        
+            print("\n",bcolors.OKGREEN, answer, f"{bcolors.WHITE} ")       
         else:
             print("\n",answer)
         #print(answer)

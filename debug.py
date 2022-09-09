@@ -64,3 +64,13 @@ def FTU():
         print("FTU.csv is okay")
     else:
         print("We couldn't find the Use You asked")
+
+def run():
+    ask = input("do you want to check for the FTU.csv or UserList.csv file?\n:")
+    if ask == "1":
+        FTU()
+    if ask == "2":
+        UserList()
+
+
+run()
