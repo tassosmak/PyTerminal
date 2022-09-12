@@ -15,25 +15,3 @@ i have also a added a 9 mode but it doesn't serve any purpose it's just for test
 ## How it Works:
 essentially its just an input that then calls a function that procces the input and deliever an 
 output based on the mode you are and the parameters that have been set
-
-## Full Details on Commit No.85:
-1) every time you launch the program history.log adds the date and hour of the current sension it runs
-2) added platform identifier to optimixe the sys commands to improve reliability(for the time it only support the already only supported platforms although it should work to every linux distro to NOT SURE YET)
-3) changed from mode 999 to mode 9 to avoid bugs
-4) deleted class WorkSpaceHandler to minimize bugs
-5) deleted some comments
-6) improved the check of multiple instanches at the same time from now it will just not respond to commands that require internet
-
-## Full Details on Commit No.88:
-1) added view and edit functions((1)you can only edit files on macOS and possibly to all the other linux distros, (2)when you are editing a .py file it will vim if it installed)
-2) added Weather commands that views the 7-Day forecast 
-3) added activity monitor(only available to macOS)
-4) on the debug we added a menu so you can deal only with the problems you have
-5) Bug Fixes
-
-
-
-
-
-
-
