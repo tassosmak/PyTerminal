@@ -177,20 +177,20 @@ def CommandList(Command=0, cmd_pl=0):
 
 
     
-        if Command == "talk":
-            if net:
-                ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
-                if ask_type == "1":
-                    Server.chat()
-                else:
-                    ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
-                    CommandSay(answer=ask_recv)
-                    try: 
-                        client.Chat(IP=ask_recv)
-                    except ConnectionRefusedError:
-                        CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
+    if Command == "talk":
+        if net:
+            ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
+            if ask_type == "1":
+                Server.chat()
             else:
-                CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
+                ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
+                CommandSay(answer=ask_recv)
+                try: 
+                    client.Chat(IP=ask_recv)
+                except ConnectionRefusedError:
+                    CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
+        else:
+            CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
 
 
 
@@ -212,7 +212,8 @@ def CommandList(Command=0, cmd_pl=0):
             ask_file = input("type the name of the file you want to edit\n:")
             if ask_file.endswith(".py"):
                 os.system(f"vim {ask_file}")
-            os.system(f"nano {ask_file}")
+            else:
+                os.system(f"nano {ask_file}")
         elif cmd_pl == "2":
             CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
     
@@ -240,6 +241,8 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
     WHITE  = '\33[37m'
+    
+
 
 def CommandSay(answer=0, color=0):
     if ssh == True:

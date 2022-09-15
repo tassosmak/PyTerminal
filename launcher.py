@@ -32,14 +32,19 @@ def run():
                 cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
                 cmd.MD = ask_core
                 UserH.UserMD = ask_core
-                kernel.core(MODE=ask_core)
+                kernel.core(MODE=ask_core, pl=UserH.pl)
                 cmd.jump = False
             if cmd.jump_user:
                 UserH.pl_finder()
                 UserH.ask()
                 cmd.jump_user = False
-                kernel.core(MODE=UserH.UserMD)
+                kernel.core(MODE=UserH.UserMD, pl=UserH.pl)
+counter = 0
 while True:
+    if counter > 0:
+        UserH.pl_finder()
+        UserH.init()
+        UserH.ask()
     try:
         run()
     except KeyboardInterrupt:
