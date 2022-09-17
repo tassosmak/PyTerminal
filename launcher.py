@@ -13,11 +13,6 @@ def ask():
     ask_core = input("select Mode")
 
 
-
-UserH.pl_finder()
-UserH.init()
-UserH.ask()
-cmd.CommandSay(answer="Go Ahead")
 def run():
     while True:
             try:
@@ -39,12 +34,13 @@ def run():
                 UserH.ask()
                 cmd.jump_user = False
                 kernel.core(MODE=UserH.UserMD, pl=UserH.pl)
-counter = 0
+
+
+UserH.pl_finder()
+UserH.init()
+UserH.ask()
+cmd.CommandSay(answer="Go Ahead")
 while True:
-    if counter > 0:
-        UserH.pl_finder()
-        UserH.init()
-        UserH.ask()
     try:
         run()
     except KeyboardInterrupt:
