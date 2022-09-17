@@ -195,20 +195,20 @@ def CommandList(Command=0, cmd_pl=0):
 
 
     if Command == "clear":
-        if cmd_pl == "1":
+        if cmd_pl == "1" or cmd_pl == "3":
             os.system('clear')
         else:
             CommandSay(answer="Your Computer Doesn't support this function", color="FAIL")
 
     if Command == "view file":
         ask_file = input("type the name of the file you want to view\n:")
-        if cmd_pl == "1":
+        if cmd_pl == "1" or cmd_pl == "3":
             os.system(f"open {ask_file}")
         elif cmd_pl == "2":
             os.system(f"more {ask_file}")
     
     if Command == "edit file":
-        if cmd_pl == "1":
+        if cmd_pl == "1" or cmd_pl == "3":
             ask_file = input("type the name of the file you want to edit\n:")
             if ask_file.endswith(".py"):
                 os.system(f"vim {ask_file}")
@@ -225,7 +225,7 @@ def CommandList(Command=0, cmd_pl=0):
             CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
 
     if Command == "activity monitor":
-        if cmd_pl == "1":
+        if cmd_pl == "1" or cmd_pl == "3":
             os.system('top')
 
 

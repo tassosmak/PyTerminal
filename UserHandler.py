@@ -151,14 +151,19 @@ def pl_finder():
     pl = platform.platform()
     pl_mac = False
     pl_win = False
+    pl_linux = False
 
     for i in pl: 
         if pl.startswith("macOS"):
             pl_mac = True
         elif pl.startswith("Windows"):
             pl_win = True
+        elif pl.startswith("Linux"):
+            pl_linux = True
 
     if pl_mac:
         pl = "1"
     elif pl_win:
         pl = "2"
+    elif pl_win:
+        pl = "3"
