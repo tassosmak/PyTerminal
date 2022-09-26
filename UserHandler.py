@@ -165,5 +165,5 @@ def pl_finder():
         pl = "1"
     elif pl_win:
         pl = "2"
-    elif pl_win:
+    elif pl_linux:
         pl = "3"
