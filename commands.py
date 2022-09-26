@@ -240,7 +240,7 @@ def CommandList(Command=0, cmd_pl=0):
             print(timer, end="\r")
             time.sleep(1)
             t -= 1
-        CommandPush("PyTerminal", "Alarm Finished")
+        CommandPush("Alarm Finished")
     
     if Command == "check site status":
         site = input("type the site you want to check:\n")
