@@ -2,6 +2,7 @@ DNT_IMP_clipboard = False
 import os
 import datetime
 import sys
+import time
 from pathlib import Path
 
 net = False
@@ -77,6 +78,9 @@ def CommandList(Command=0, cmd_pl=0):
     if Command == "test":
         LCommand = Command
         CommandSay(answer="tested")
+        if cmd_pl == "1":
+            now = datetime.datetime.now()
+            CommandPush(title="PyTerminal", message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
     
     if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
         LCommand = Command
@@ -219,7 +223,7 @@ def CommandList(Command=0, cmd_pl=0):
     
     if Command == "weather forecast":
         if net:
-            weather = os.system("curl http://wttr.in/")
+            weather = os.system("curl wttr.in/")
             CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
         else:
             CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
@@ -228,6 +232,16 @@ def CommandList(Command=0, cmd_pl=0):
         if cmd_pl == "1" or cmd_pl == "3":
             os.system('top')
 
+    if Command == "countdown":
+        t = int(input("Enter the time in seconds: "))
+        while t:
+            mins, secs = divmod(t, 60)
+            timer = '{:02d}:{:02d}'.format(mins, secs)
+            print(timer, end="\r")
+            time.sleep(1)
+            t -= 1
+        CommandPush("PyTerminal", "Alarm Finished")
+        
 
 
 class bcolors:
@@ -241,7 +255,13 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
     WHITE  = '\33[37m'
-    
+
+def CommandPush(title, message): 
+    command = f'''
+    osascript -e 'display notification "{message}" with title "{title}"'
+    '''
+    os.system(command)
+
 
 
 def CommandSay(answer=0, color=0):
