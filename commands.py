@@ -80,7 +80,7 @@ def CommandList(Command=0, cmd_pl=0):
         CommandSay(answer="tested")
         if cmd_pl == "1":
             now = datetime.datetime.now()
-            CommandPush(title="PyTerminal", message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+            CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
     
     if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
         LCommand = Command
@@ -241,6 +241,10 @@ def CommandList(Command=0, cmd_pl=0):
             time.sleep(1)
             t -= 1
         CommandPush("PyTerminal", "Alarm Finished")
+    
+    if Command == "check site status":
+        site = input("type the site you want to check:\n")
+        os.system(f"ping {site}")
         
 
 
@@ -256,31 +260,31 @@ class bcolors:
     UNDERLINE = '\033[4m'
     WHITE  = '\33[37m'
 
-def CommandPush(title, message): 
+def CommandPush(message):
     command = f'''
-    osascript -e 'display notification "{message}" with title "{title}"'
+    osascript -e 'display notification "{message}" with title "PyTerminal"'
     '''
     os.system(command)
 
 
 
 def CommandSay(answer=0, color=0):
-    if ssh == True:
-        if color == "WARNING":
-            print("\n",bcolors.WARNING, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
-        elif color == "FAIL":
-            print("\n",bcolors.FAIL, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
-        elif color == "OKGREEN":
-            print("\n",bcolors.OKGREEN, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
-        else:
-            print("\n",answer) and Server.SendOnly(Say=answer)
+    # if ssh == True:
+    #     if color == "WARNING":
+    #         print("\n",bcolors.WARNING, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
+    #     elif color == "FAIL":
+    #         print("\n",bcolors.FAIL, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
+    #     elif color == "OKGREEN":
+    #         print("\n",bcolors.OKGREEN, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
+    #     else:
+    #         print("\n",answer) and Server.SendOnly(Say=answer)
+    # else:
+    if color == "WARNING":
+        print("\n",bcolors.WARNING, answer, f"{bcolors.WHITE} ")
+    elif color == "FAIL":
+        print("\n",bcolors.FAIL, answer, f"{bcolors.WHITE} ")
+    elif color == "OKGREEN":
+        print("\n",bcolors.OKGREEN, answer, f"{bcolors.WHITE} ")       
     else:
-        if color == "WARNING":
-            print("\n",bcolors.WARNING, answer, f"{bcolors.WHITE} ")
-        elif color == "FAIL":
-            print("\n",bcolors.FAIL, answer, f"{bcolors.WHITE} ")
-        elif color == "OKGREEN":
-            print("\n",bcolors.OKGREEN, answer, f"{bcolors.WHITE} ")       
-        else:
-            print("\n",answer)
+        print("\n",answer)
         #print(answer)
