@@ -101,6 +101,7 @@ def CommandList(Command=0, cmd_pl=0):
         CommandSay(answer=now.strftime("%Y-%m-%d %H:%M:%S"))
 
     if Command == "del" or Command == "delete":
+        
         if MD == "2":
             CommandSay(answer=os.listdir(dir))
             ask_del = input("what file you want to delete:")
@@ -111,11 +112,10 @@ def CommandList(Command=0, cmd_pl=0):
             except FileNotFoundError:
                 CommandSay(answer="This file doesn't exist", color="FAIL")
         else:
+            LCommand = Command
             CommandSay(answer="This Function isn't available within this mode", color="FAIL")
 
     if Command == "create":
-        
-        
         if MD == "1":
             LCommand = Command
             ask_name = input("What the name of the file you want to create?")
@@ -126,8 +126,6 @@ def CommandList(Command=0, cmd_pl=0):
                 ask_del_create = input("This file already exist try again", color="WARNING")
             except UnboundLocalError:
                 CommandSay(answer="There was a Problem try again", color="FAIL")
-
-
         elif MD == "2" or MD == "999":
                 ask_name = input("What the name of the file you want to create?")
                 try:
@@ -144,6 +142,7 @@ def CommandList(Command=0, cmd_pl=0):
             CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
     if Command == "latest":
+        LCommand = Command
         if DNT_IMP_clipboard:
             CommandSay(answer="To use this command you have to install the clipboard module", color="FAIL")
             
@@ -177,11 +176,13 @@ def CommandList(Command=0, cmd_pl=0):
         if MD == "2":
             CommandSay(answer=MD)
         else:
+            LCommand = Command
             CommandSay(answer="This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command", color="WARNING") 
 
 
     
     if Command == "talk":
+        LCommand = Command
         if net:
             ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
             if ask_type == "1":
@@ -205,6 +206,7 @@ def CommandList(Command=0, cmd_pl=0):
             CommandSay(answer="Your Computer Doesn't support this function", color="FAIL")
 
     if Command == "view file":
+        LCommand = Command
         ask_file = input("type the name of the file you want to view\n:")
         if cmd_pl == "1" or cmd_pl == "3":
             os.system(f"open {ask_file}")
@@ -212,6 +214,7 @@ def CommandList(Command=0, cmd_pl=0):
             os.system(f"more {ask_file}")
     
     if Command == "edit file":
+        LCommand = Command
         if cmd_pl == "1" or cmd_pl == "3":
             ask_file = input("type the name of the file you want to edit\n:")
             if ask_file.endswith(".py"):
@@ -222,6 +225,7 @@ def CommandList(Command=0, cmd_pl=0):
             CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
     
     if Command == "weather forecast":
+        LCommand = Command
         if net:
             weather = os.system("curl wttr.in/")
             CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
@@ -230,9 +234,11 @@ def CommandList(Command=0, cmd_pl=0):
 
     if Command == "activity monitor":
         if cmd_pl == "1" or cmd_pl == "3":
+            LCommand = Command
             os.system('top')
 
     if Command == "countdown":
+        LCommand = Command
         t = int(input("Enter the time in seconds: "))
         while t:
             mins, secs = divmod(t, 60)
@@ -243,6 +249,7 @@ def CommandList(Command=0, cmd_pl=0):
         CommandPush("Alarm Finished")
     
     if Command == "check site status":
+        LCommand = Command
         site = input("type the site you want to check:\n")
         os.system(f"ping {site}")
         

@@ -32,6 +32,7 @@ def run():
             if cmd.jump_user:
                 UserH.pl_finder()
                 UserH.ask()
+                cmd.MD = UserH.UserMD
                 cmd.jump_user = False
                 kernel.core(MODE=UserH.UserMD, pl=UserH.pl)
 
