@@ -1,6 +1,7 @@
 DNT_IMP_clipboard = False
 import os
 import datetime
+import platform
 import sys
 import time
 from pathlib import Path
@@ -54,6 +55,8 @@ CMLAD =[
 
 ]
 plt = 0
+USNAME_PRINT = 0
+sys_detect = platform.uname()
 MD = 0
 Version = 2
 jump = False
@@ -62,8 +65,14 @@ ask_recv = 0
 answer = 0
 ssh = False
 
-def CommandAsk(Admin=False, plt=0):
-    CommandList(Command=input(), cmd_pl=plt) 
+def CommandAsk(Admin=False, plt=0, USNAME_PRINT=0):
+    if MD == "2":
+        CommandList(Command=input(f"!History isn't enabled! PyTerminal Alpha {USNAME_PRINT} % "), cmd_pl=plt)
+    elif MD == "9": 
+        CommandList(Command=input(f"{sys_detect.processor} {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+    else:
+        CommandList(Command=input(f"PyTerminal Alpha {USNAME_PRINT} $ "), cmd_pl=plt) 
+
 
 def CommandList(Command=0, cmd_pl=0):
     global jump, jump_user, ask_recv, LCommand, answer
@@ -78,6 +87,9 @@ def CommandList(Command=0, cmd_pl=0):
     if Command == "test":
         LCommand = Command
         CommandSay(answer="tested")
+        CommandSay(answer="tested", color="WARNING")
+        CommandSay(answer="tested", color="FALI")
+        CommandSay(answer="tested", color="OKGREEN")
         if cmd_pl == "1":
             now = datetime.datetime.now()
             CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
@@ -157,7 +169,7 @@ def CommandList(Command=0, cmd_pl=0):
     if Command == "Exit":
         if MD == "1":
             ask_exit = input("Are you sure. if yes press 'Y' and hit return")
-            if ask_exit == "Y":
+            if ask_exit == "Y" or ask_exit == "y":
                 sys.exit()
         elif MD == "2":
             sys.exit()
@@ -214,15 +226,18 @@ def CommandList(Command=0, cmd_pl=0):
             os.system(f"more {ask_file}")
     
     if Command == "edit file":
-        LCommand = Command
-        if cmd_pl == "1" or cmd_pl == "3":
-            ask_file = input("type the name of the file you want to edit\n:")
-            if ask_file.endswith(".py"):
-                os.system(f"vim {ask_file}")
-            else:
-                os.system(f"nano {ask_file}")
-        elif cmd_pl == "2":
-            CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
+        if MD == "2":
+            LCommand = Command
+            if cmd_pl == "1" or cmd_pl == "3":
+                ask_file = input("type the name of the file you want to edit\n:")
+                if ask_file.endswith(".py"):
+                    os.system(f"vim {ask_file}")
+                else:
+                    os.system(f"nano {ask_file}")
+            elif cmd_pl == "2":
+                CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
+        else:
+            CommandSay(answer="This Function isn't available within this mode", color="FALI")
     
     if Command == "weather forecast":
         LCommand = Command
@@ -233,9 +248,12 @@ def CommandList(Command=0, cmd_pl=0):
             CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
 
     if Command == "activity monitor":
-        if cmd_pl == "1" or cmd_pl == "3":
-            LCommand = Command
-            os.system('top')
+        if MD == "2":
+            if cmd_pl == "1" or cmd_pl == "3":
+                LCommand = Command
+                os.system('top')
+        else:
+            CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
     if Command == "countdown":
         LCommand = Command
@@ -249,10 +267,13 @@ def CommandList(Command=0, cmd_pl=0):
         CommandPush("Alarm Finished")
     
     if Command == "check site status":
-        LCommand = Command
-        site = input("type the site you want to check:\n")
-        os.system(f"ping {site}")
-        
+        if MD == "2":
+            LCommand = Command
+            site = input("type the site you want to check:\n")
+            os.system(f"ping {site}")
+            
+        else:
+            CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
 
 class bcolors:

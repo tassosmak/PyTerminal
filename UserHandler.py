@@ -72,31 +72,19 @@ def ask():
             if int(i.isnumeric()):
                 UserMD = i 
                 UserSearch.close()
-        
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")
         if NewUser == "Y" or NewUser == "y":
-            '''
-            ask phase 
-            '''
             ask_UserMD = input("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode\nChoose One!")
-            
-            '''
-            append phase
-            '''       
             data = (username_ask, ask_UserMD)
             add_csv_data(data_file, data)
             UserMD = ask_UserMD
-
-
 
 
 def Change_Listed_MODE(NEW_MODE):
     data = (username, NEW_MODE)
     add_csv_data_ov(data_file=data_file, data=data)
 
-    
-        
 
 
 '''
@@ -145,6 +133,15 @@ def FTS():
         add_csv_data_headless(init_file, data)
     else:
         cmd.CommandSay(answer="Fail FTS", color="FAIL")
+
+
+
+
+
+'''
+Platform Identifier
+'''
+
 
 def pl_finder():
     global pl
