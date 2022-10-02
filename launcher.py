@@ -45,6 +45,5 @@ while True:
     try:
         run()
     except KeyboardInterrupt:
-        if UserH.pl == "2" or UserH.pl == "3":
-            print("\n")
+        print("\n")
         continue
