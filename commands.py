@@ -215,7 +215,7 @@ def CommandList(Command=0, cmd_pl=0):
         if cmd_pl == "1" or cmd_pl == "3":
             os.system('clear')
         else:
-            CommandSay(answer="Your Computer Doesn't support this function", color="FAIL")
+            os.system('cls')
 
     if Command == "view file":
         LCommand = Command
