@@ -20,7 +20,7 @@ def run():
             except IndexError:
                 ask_new_md = input("it seems that the registered mode of user is corrupted\nwhat mode did you used\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n")
                 UserH.Change_Listed_MODE(ask_new_md)
-                kernel.core(MODE=ask_new_md)
+                kernel.core(MODE=ask_new_md, pl=UserH.pl, username=UserH.username)
             if cmd.jump:
                 UserH.pl_finder()
                 ask()
@@ -45,6 +45,6 @@ while True:
     try:
         run()
     except KeyboardInterrupt:
-        if UserHandler.pl == "2":
+        if UserH.pl == "2" or UserH.pl == "3":
             print("\n")
         continue
