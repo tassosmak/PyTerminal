@@ -45,4 +45,6 @@ while True:
     try:
         run()
     except KeyboardInterrupt:
+        if UserHandler.pl == "2":
+            print("\n")
         continue
