@@ -69,7 +69,7 @@ def CommandAsk(Admin=False, plt=0, USNAME_PRINT=0):
     if MD == "2":
         CommandList(Command=input(f"!History isn't enabled! PyTerminal Alpha {USNAME_PRINT} % "), cmd_pl=plt)
     elif MD == "9": 
-        CommandList(Command=input(f"PyTerminal{sys_detect.processor} {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+        CommandList(Command=input(f"PyTerminal {sys_detect.processor} {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
     else:
         CommandList(Command=input(f"PyTerminal Alpha {USNAME_PRINT} $ "), cmd_pl=plt) 
 
@@ -85,14 +85,17 @@ def CommandList(Command=0, cmd_pl=0):
             CommandSay(answer="This Function isn't available within this mode", color="WARNING")
 
     if Command == "test":
-        LCommand = Command
-        CommandSay(answer="tested")
-        CommandSay(answer="tested", color="WARNING")
-        CommandSay(answer="tested", color="FALI")
-        CommandSay(answer="tested", color="OKGREEN")
-        if cmd_pl == "1":
-            now = datetime.datetime.now()
-            CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+        if MD == "9":
+            LCommand = Command
+            CommandSay(answer="tested")
+            CommandSay(answer="tested", color="WARNING")
+            CommandSay(answer="tested", color="FALI")
+            CommandSay(answer="tested", color="OKGREEN")
+            if cmd_pl == "1":
+                now = datetime.datetime.now()
+                CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+        else:
+            CommandSay(answer="tested")
     
     if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
         LCommand = Command
