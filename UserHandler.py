@@ -146,21 +146,11 @@ Platform Identifier
 def pl_finder():
     global pl
     pl = platform.platform()
-    pl_mac = False
-    pl_win = False
-    pl_linux = False
-
+    
     for i in pl: 
         if pl.startswith("macOS"):
-            pl_mac = True
+            pl = "1"
         elif pl.startswith("Windows"):
-            pl_win = True
+            pl = "2"
         elif pl.startswith("Linux"):
-            pl_linux = True
-
-    if pl_mac:
-        pl = "1"
-    elif pl_win:
-        pl = "2"
-    elif pl_linux:
-        pl = "3"
+            pl = "3"
