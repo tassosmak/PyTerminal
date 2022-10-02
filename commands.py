@@ -264,7 +264,10 @@ def CommandList(Command=0, cmd_pl=0):
             print(timer, end="\r")
             time.sleep(1)
             t -= 1
-        CommandPush("Alarm Finished")
+        if plt == "1":
+            CommandPush("Alarm Finished")
+        else:
+            CommandSay("Done", "OKGREEN")
     
     if Command == "check site status":
         if MD == "2":
