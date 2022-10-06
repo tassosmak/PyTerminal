@@ -31,7 +31,19 @@ output based on the mode you are and the parameters that have been set
 4) on the debug we added a menu so you can deal only with the problems you have
 5) Bug Fixes
 
-
+## Full Details On Commit No.105:
+ Error_Manager Folder added What it Contains
+      logger.py
+      errors.log
+ logger.py:
+  when an error occurs logger.py get's called to record the error and export it to errors.log
+  the text that will be added will include the error itself the time of the error and a message if included by the developer 
+  
+  
+  
+  Example:
+  <img src="GitHub screenshots/snap.jpg">
+ 
 
 
 
