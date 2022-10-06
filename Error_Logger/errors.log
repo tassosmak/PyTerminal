@@ -1,0 +1,6 @@
+2022-10-06 17:25:48 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 3, in <module>
+    import os0
+ModuleNotFoundError: No module named 'os0'

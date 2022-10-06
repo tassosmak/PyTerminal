@@ -1,11 +1,7 @@
-import Kernel
-import commands
-import UserHandler
-
-kernel = Kernel
-cmd = commands
-UserH = UserHandler
-
+import Error_Logger.Logger as logger
+import Kernel as kernel
+import commands as cmd
+import UserHandler as UserH
 
 def ask():
     global ask_core
@@ -43,7 +39,17 @@ UserH.ask()
 cmd.CommandSay(answer="Go Ahead")
 while True:
     try:
+        print(UserH.UserMD)
         run()
     except KeyboardInterrupt:
         print("\n")
         continue
+    except BaseException:
+        if UserH.UserMD == "9":
+            cmd.CommandSay("There Wan Error see 'errors.log' in the Error_Manager Folder for more info", "FAIL")
+            logger.log_error()
+            import sys
+            sys.exit()
+        else:
+            cmd.CommandSay("There Wan Error", "FAIL")
+            break
