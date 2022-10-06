@@ -42,7 +42,7 @@ output based on the mode you are and the parameters that have been set
   
   
   Example:
-  <img src="GitHub_screenshots/Snap.png" align="center" height="800" width="400">
+  <img src="GitHub_screenshots/Snap.png" align="center" height="800" width="600">
  
 
 
