@@ -42,7 +42,7 @@ output based on the mode you are and the parameters that have been set
   
   
   Example:
-  <img src="GitHub screenshots/snap.png">
+  <img src="GitHub_screenshots/Snap.png">
  
 
 
