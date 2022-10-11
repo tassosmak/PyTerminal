@@ -23,8 +23,7 @@ try:
     except OSError:
         print("unfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable")
         net = False
-    from src import Password_Gen as pswd_gen
-    #from src import countdown
+
 
 
     dir = Path(__file__).parent.resolve()
@@ -172,7 +171,8 @@ try:
                 print("DONE")
 
         if Command == "gen password":
-            Boot.SecondaryTask(type="Password_Gen")
+            Boot.Run = True
+            Boot.SecondaryTask(file_name="Password_Gen", stay_end=True)
 
 
         if Command == "Exit":
@@ -267,7 +267,7 @@ try:
         if Command == "countdown":
             LCommand = Command
             Boot.Run = True
-            Boot.SecondaryTask(type="countdown", stay_end=False)
+            Boot.SecondaryTask(file_name="countdown", stay_end=False)
             
             
         
@@ -280,7 +280,7 @@ try:
             else:
                 CommandSay(answer="This Function isn't available within this mode", color="FALI")
         
-        
+
     class bcolors:
         HEADER = '\033[95m'
         OKBLUE = '\033[94m'

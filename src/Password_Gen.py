@@ -1,22 +1,22 @@
+import sys
+ 
+# setting path
+sys.path.append('../PyTerminal')
+ 
 import string
 from random import random, shuffle, choice
 import settings
 
 MODE = settings.MODE
-#characters = list(string.ascii_lowercase, string.ascii_uppercase, string.digits, + "!@#$%^&*()")
-characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")
 def gen():
-
+    
+    characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")
     length = int(input("How long do you want your password to be:"))
-
     shuffle(characters)
-
     password = []
     for i in range(length):
         password.append(choice(characters))
-
     password_str = ''.join(str(e) for e in password)
-
     print("".join(password))
     #print("\033[1;32m \n".join(password))
     if MODE == "2" or MODE == "9":
@@ -28,3 +28,7 @@ def gen():
         else:
             print("DONE")
             pass
+
+
+gen()
+sys.exit()
