@@ -5,7 +5,6 @@ try:
     import datetime
     import platform
     import sys
-    import time
     import Boot
     from pathlib import Path
 
@@ -26,6 +25,7 @@ try:
         print("unfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable")
         net = False
     from src import Password_Gen as pswd_gen
+    from src import countdown
 
 
     dir = Path(__file__).parent.resolve()
@@ -263,7 +263,10 @@ try:
 
         if Command == "countdown":
             LCommand = Command
-            Boot.Secondary(type="countdown")
+            if plt == "1":
+                Boot.SecondaryTask(type="countdown")
+            else:
+                countdown.countdown_time()
             
         
         if Command == "check site status":
