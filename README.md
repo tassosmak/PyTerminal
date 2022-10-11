@@ -46,10 +46,11 @@ output based on the mode you are and the parameters that have been set
  
 
 ## Full Details From Commit No.119 to Commit No.123:
-	now every command that requires waiting will be handled as a external thead so it will be launched into an another Window
-	So To give a bit more info
-	Now The ClI is seperated to two proceses The Main process Which Will only be the Input Handler
-      and the SecondProcess Will be loaded with all the other stuff creating files and all other commands that require user input
+ 1)now every command that requires waiting will be handled as a external thead so it will be launched into an another Window
+  So To give a bit more info
+  Now The ClI is seperated to two proceses The Main process Which Will only be the Input Handler
+  and the SecondProcess Will be loaded with all the other stuff creating files and all other commands that require user input
+2)so all the processes will be moved from the commands.py to the src folder to a standalone file for every process
 ## Beta 0.4 Comming Soon!
 
 
