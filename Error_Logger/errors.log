@@ -4,3 +4,188 @@ Traceback (most recent call last):
   File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 3, in <module>
     import os0
 ModuleNotFoundError: No module named 'os0'
+
+2022-10-11 16:36:14 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 8, in <module>
+    import ToDo
+  File "/Users/tassosmakro/PyProjects/PyTerminal/ToDo.py", line 9, in <module>
+    class handle(type=0):
+TypeError: handle.__init_subclass__() takes no keyword arguments
+
+2022-10-11 16:36:39 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 8, in <module>
+    import ToDo
+  File "/Users/tassosmakro/PyProjects/PyTerminal/ToDo.py", line 9, in <module>
+    class handle(type=0):
+TypeError: handle.__init_subclass__() takes no keyword arguments
+
+2022-10-11 16:37:32 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 8, in <module>
+    import ToDo
+  File "/Users/tassosmakro/PyProjects/PyTerminal/ToDo.py", line 9, in <module>
+    class handle(type=0):
+TypeError: handle.__init_subclass__() takes no keyword arguments
+
+2022-10-11 16:37:37 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 8, in <module>
+    import ToDo
+  File "/Users/tassosmakro/PyProjects/PyTerminal/ToDo.py", line 9, in <module>
+    class handle(type=0):
+TypeError: handle.__init_subclass__() takes no keyword arguments
+
+2022-10-11 16:37:52 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 8, in <module>
+    import ToDo
+  File "/Users/tassosmakro/PyProjects/PyTerminal/ToDo.py", line 9, in <module>
+    class handle(type=0):
+TypeError: handle.__init_subclass__() takes no keyword arguments
+
+2022-10-11 16:39:13 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 8, in <module>
+    import ToDo
+  File "/Users/tassosmakro/PyProjects/PyTerminal/ToDo.py", line 4, in <module>
+    class handle(type=0):
+TypeError: handle.__init_subclass__() takes no keyword arguments
+
+2022-10-11 16:40:20 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 8, in <module>
+    import ToDo
+  File "/Users/tassosmakro/PyProjects/PyTerminal/ToDo.py", line 4, in <module>
+    class handle(type=0):
+TypeError: handle.__init_subclass__() takes no keyword arguments
+
+2022-10-11 16:41:17 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 8, in <module>
+    import testing
+  File "/Users/tassosmakro/PyProjects/PyTerminal/testing.py", line 4, in <module>
+    class handle(type=0):
+TypeError: handle.__init_subclass__() takes no keyword arguments
+
+2022-10-11 16:41:30 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 8, in <module>
+    import testing
+  File "/Users/tassosmakro/PyProjects/PyTerminal/testing.py", line 4, in <module>
+    class handle(type=0):
+TypeError: handle.__init_subclass__() takes no keyword arguments
+
+2022-10-11 16:41:43 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 3, in <module>
+    import testing
+  File "/Users/tassosmakro/PyProjects/PyTerminal/testing.py", line 4, in <module>
+    class handle(type=0):
+TypeError: handle.__init_subclass__() takes no keyword arguments
+
+2022-10-11 16:58:31 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 3, in <module>
+    import ProccesHandler
+ModuleNotFoundError: No module named 'ProccesHandler'
+
+2022-10-11 16:59:50 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 42, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 14, in run
+    kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel.py", line 22, in core
+    cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 75, in CommandAsk
+    CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+EOFError: EOF when reading a line
+
+2022-10-11 17:01:16 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 42, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 14, in run
+    kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel.py", line 22, in core
+    cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 75, in CommandAsk
+    CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+EOFError: EOF when reading a line
+
+2022-10-11 17:07:04 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 44, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 15, in run
+    kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username)
+AttributeError: module 'UserHandler' has no attribute 'username'
+
+2022-10-11 17:08:06 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 44, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 15, in run
+    kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel.py", line 22, in core
+    cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 75, in CommandAsk
+    CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+EOFError: EOF when reading a line
+
+2022-10-11 17:10:05 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 45, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 15, in run
+    kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username)
+AttributeError: module 'UserHandler' has no attribute 'username'
+
+2022-10-11 17:10:17 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 45, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 15, in run
+    kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username)
+AttributeError: module 'UserHandler' has no attribute 'username'
+
+2022-10-11 17:11:22 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 40, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 15, in run
+    kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username)
+AttributeError: module 'UserHandler' has no attribute 'username'
+
+2022-10-11 17:13:58 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 42, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 14, in run
+    kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel.py", line 22, in core
+    cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 75, in CommandAsk
+    CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+EOFError: EOF when reading a line

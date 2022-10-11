@@ -1,10 +1,12 @@
 try:
     DNT_IMP_clipboard = False
+    #import ProccesHandler
     import os
     import datetime
     import platform
     import sys
     import time
+    import Boot
     from pathlib import Path
 
     net = False
@@ -68,11 +70,11 @@ try:
 
     def CommandAsk(Admin=False, plt=0, USNAME_PRINT=0):
         if MD == "2":
-            CommandList(Command=input(f"!History isn't enabled! PyTerminal Alpha | {USNAME_PRINT} % "), cmd_pl=plt)
+            CommandList(Command=input(f"!History isn't enabled! PyTerminal Alpha | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt)
         elif MD == "9": 
             CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
         else:
-            CommandList(Command=input(f"PyTerminal Alpha | {USNAME_PRINT} $ "), cmd_pl=plt) 
+            CommandList(Command=input(f"PyTerminal Alpha | {USNAME_PRINT.capitalize()} $ "), cmd_pl=plt) 
 
 
     def CommandList(Command=0, cmd_pl=0):
@@ -261,17 +263,8 @@ try:
 
         if Command == "countdown":
             LCommand = Command
-            t = int(input("Enter the time in seconds: "))
-            while t:
-                mins, secs = divmod(t, 60)
-                timer = '{:02d}:{:02d}'.format(mins, secs)
-                print(timer, end="\r")
-                time.sleep(1)
-                t -= 1
-            if plt == "1":
-                CommandPush("Alarm Finished")
-            else:
-                CommandSay("Done", "OKGREEN")
+            Boot.Secondary(type="countdown")
+            
         
         if Command == "check site status":
             if MD == "2":
@@ -325,4 +318,4 @@ try:
             #print(answer)
 except BaseException:
     import Error_Logger.Logger as logger
-    logger.log_error()
+    logger.log_error("Command.py")
