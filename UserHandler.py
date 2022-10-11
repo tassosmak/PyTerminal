@@ -1,3 +1,4 @@
+import settings
 from pathlib import Path
 import datetime
 import commands
@@ -70,7 +71,8 @@ def ask():
         find_index(username_ask)
         for i in row:
             if int(i.isnumeric()):
-                UserMD = i 
+                UserMD = i
+                settings.MODE = UserMD 
                 UserSearch.close()
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")
@@ -153,3 +155,4 @@ def pl_finder():
         pl = "2"
     elif pl.startswith("Linux"):
         pl = "3"
+    settings.pl = pl

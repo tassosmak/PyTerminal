@@ -1,6 +1,5 @@
 try:
     DNT_IMP_clipboard = False
-    #import ProccesHandler
     import os
     import datetime
     import platform
@@ -25,7 +24,7 @@ try:
         print("unfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable")
         net = False
     from src import Password_Gen as pswd_gen
-    from src import countdown
+    #from src import countdown
 
 
     dir = Path(__file__).parent.resolve()
@@ -97,8 +96,12 @@ try:
                 if cmd_pl == "1":
                     now = datetime.datetime.now()
                     CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                Boot.Run = True
+                Boot.SecondaryTask("test", stay_end=True)
             else:
                 CommandSay(answer="tested")
+                Boot.Run = True
+                Boot.SecondaryTask("test", stay_end=True)
         
         if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
             LCommand = Command
@@ -169,7 +172,7 @@ try:
                 print("DONE")
 
         if Command == "gen password":
-            pswd_gen.gen(MODE = MD)
+            Boot.SecondaryTask(type="Password_Gen")
 
 
         if Command == "Exit":
@@ -177,7 +180,7 @@ try:
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
                     sys.exit()
-            elif MD == "2":
+            elif MD == "2" or MD == "9":
                 sys.exit()
 
             
@@ -263,22 +266,21 @@ try:
 
         if Command == "countdown":
             LCommand = Command
-            if plt == "1":
-                Boot.SecondaryTask(type="countdown")
-            else:
-                countdown.countdown_time()
+            Boot.Run = True
+            Boot.SecondaryTask(type="countdown", stay_end=False)
+            
             
         
         if Command == "check site status":
-            if MD == "2":
+            if MD == "2" or MD == "9":
                 LCommand = Command
                 site = input("type the site you want to check:\n")
                 os.system(f"ping {site}")
                 
             else:
                 CommandSay(answer="This Function isn't available within this mode", color="FALI")
-
-
+        
+        
     class bcolors:
         HEADER = '\033[95m'
         OKBLUE = '\033[94m'
