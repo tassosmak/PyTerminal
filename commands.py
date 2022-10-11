@@ -321,4 +321,4 @@ try:
             #print(answer)
 except BaseException:
     import Error_Logger.Logger as logger
-    logger.log_error("Command.py")
+    logger.log_error(message="Command.py")
