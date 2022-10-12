@@ -72,8 +72,8 @@ def ask():
         for i in row:
             if int(i.isnumeric()):
                 UserMD = i
-                settings.MODE = UserMD
-                print(f"Settings MODE{settings.MODE}") 
+                settings.MODE == UserMD
+                 
                 UserSearch.close()
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")

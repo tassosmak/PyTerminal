@@ -21,7 +21,7 @@ try:
         from src import client
         net = True
     except OSError:
-        print("unfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable")
+        print("\nunfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable\n")
         net = False
 
 
@@ -95,12 +95,11 @@ try:
                 if cmd_pl == "1":
                     now = datetime.datetime.now()
                     CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
-                Boot.Run = True
-                Boot.SecondaryTask("test", stay_end=True)
+                if not cmd_pl == "3":
+                    Boot.Run = True
+                    Boot.SecondaryTask("test", stay_end=True)
             else:
                 CommandSay(answer="tested")
-                Boot.Run = True
-                Boot.SecondaryTask("test", stay_end=True)
         
         if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
             LCommand = Command

@@ -18,9 +18,9 @@ def SecondaryTask(file_name="0", stay_end=False):
         import os
         if settings.pl == "1":
             if stay_end:
-                os.system(f"""osascript -e 'tell application "Terminal" to do script "python3 {base_folder}/{file_name}.py"'""")
+                os.system(f"""osascript -e 'tell application "Terminal" to do script "python3 {base_folder}/src/{file_name}.py"'""")
             else:
-                os.system(f"""osascript -e 'tell application "Terminal" to do script "python3 {base_folder}/{file_name}.py"'""")
+                os.system(f"""osascript -e 'tell application "Terminal" to do script "python3 {base_folder}/src/{file_name}.py"'""")
                 os.system("""osascript -e 'tell application "Terminal" to quit"'""")
         if settings.pl == "2":
             #print(type)
