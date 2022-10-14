@@ -18,7 +18,6 @@ def find_index(input):
         if row.find(input):
                 UserMD = row
 
-
 def UserList():
 
     check_username_ask = input("Enter Usename")
@@ -36,7 +35,7 @@ def UserList():
         for i in row:
             if int(i.isnumeric()):
                 if i == check_mode_ask:
-                    mode_found = True    
+                    mode_found = True
                 #check_num(num=i, match=mode)
         UserSearch.close()
     if username_found == True and mode_found == True:

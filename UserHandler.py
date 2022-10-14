@@ -1,3 +1,4 @@
+import settings
 from pathlib import Path
 import datetime
 import commands
@@ -46,13 +47,17 @@ def add_csv_data_ov(data_file, data):
         writer.writerow(header)
         writer.writerow(data)
 
+def add_csv_data_headless(data_file, data):
+    with open(data_file, 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(data)
+
 
 def find_index(input):
     global UserMD, row
     fl = open('UserList.csv', 'r').readlines()
     for row in fl:
         if row.find(input):
-                #print(row)
                 UserMD = row
 
 
@@ -66,35 +71,23 @@ def ask():
         find_index(username_ask)
         for i in row:
             if int(i.isnumeric()):
-                UserMD = i 
-                #print(i)
+                UserMD = i
+                settings.MODE == UserMD
+                 
                 UserSearch.close()
-        
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")
         if NewUser == "Y" or NewUser == "y":
-            '''
-            ask phase 
-            '''
             ask_UserMD = input("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode\nChoose One!")
-            
-            '''
-            append phase
-            '''       
             data = (username_ask, ask_UserMD)
             add_csv_data(data_file, data)
             UserMD = ask_UserMD
 
 
-
-
 def Change_Listed_MODE(NEW_MODE):
     data = (username, NEW_MODE)
-    #create_csv_file(data_file=data_file)
     add_csv_data_ov(data_file=data_file, data=data)
 
-    
-        
 
 
 '''
@@ -114,12 +107,11 @@ Use = 0
 def init():
     check_0 = open(init_file, "r")
     if("0" in check_0.read()):
+        cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
         FTS()
         check_0.close()
     check = open(init_file, "r").readline()
-    # print("before for")
     for i in check:
-        # print("in for")
         if check.isnumeric():
             if check == "2":
                 cmd.ssh = True
@@ -127,43 +119,41 @@ def init():
     with open('history.log', 'a') as f:    
         now = datetime.datetime.now()
         f.write(now.strftime("%Y-%m-%d %H:%M\n"))
-                
-            #print(WorkSpaceHandler.Use)
-            # print("5")
             
-                    
-
-
 
 def FTS():
     FirstTimeUse = open("FTU.csv", "a")       
     ask_type = input("How Do You want to use this instanche?\nPersonal Or Server")
     if ask_type == "1":
         ask_type = "1"
-        print(ask_type)
+        cmd.CommandSay(answer=ask_type)
         data = ask_type
-        add_csv_data(init_file, data)
+        add_csv_data_headless(init_file, data)
     elif ask_type == "2":
         ask_type = "2"
-        print(ask_type)
+        cmd.CommandSay(answer=ask_type)
         data = ask_type
-        add_csv_data(init_file, data)
+        add_csv_data_headless(init_file, data)
     else:
         cmd.CommandSay(answer="Fail FTS", color="FAIL")
+
+
+
+
+
+'''
+Platform Identifier
+'''
+
 
 def pl_finder():
     global pl
     pl = platform.platform()
-    pl_mac = False
-    pl_win = False
 
-    for i in pl: 
-        if pl.startswith("macOS"):
-            pl_mac = True
-        elif pl.startswith("Windows"):
-            pl_win = True
-
-    if pl_mac:
+    if pl.startswith("macOS"):
         pl = "1"
-    elif pl_win:
+    elif pl.startswith("Windows"):
         pl = "2"
+    elif pl.startswith("Linux"):
+        pl = "3"
+    settings.pl = pl
