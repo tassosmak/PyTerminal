@@ -86,8 +86,8 @@ try:
                 CommandSay(answer="This Function isn't available within this mode", color="WARNING")
 
         if Command == "test":
+            LCommand = Command
             if MD == "9":
-                LCommand = Command
                 CommandSay(answer="tested")
                 CommandSay(answer="tested", color="WARNING")
                 CommandSay(answer="tested", color="FALI")
