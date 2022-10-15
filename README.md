@@ -51,7 +51,3 @@ output based on the mode you are and the parameters that have been set
   Now The ClI is seperated to two proceses The Main process Which Will only be the Input Handler
   and the SecondProcess Will be loaded with all the other stuff creating files and all other commands that require user input
 2)so all the processes will be moved from the commands.py to the src folder to a standalone file for every process
-## Beta 0.4 Comming Soon!
-
-
-
