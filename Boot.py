@@ -32,7 +32,6 @@ def SecondaryTask(file_name="0", stay_end=False):
             else:
                 os.system(f"start cmd /c py  src/{file_name}.py")
 
-
 if __name__ == "__main__":
     while True:
         try:
@@ -45,7 +44,8 @@ if __name__ == "__main__":
             t1.join()
             t2.join()
         except KeyboardInterrupt:
-            key_presser.press_and_release("Enter")
+            #t1.join()
+            key_presser.VenvKey(KeyToPress=key_presser.Key.enter)
         except (BaseException):
             Logger.log_error("Testing")
             sys.exit()

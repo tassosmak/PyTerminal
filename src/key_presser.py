@@ -1,4 +1,7 @@
-import keyboard
-def press(name="Enter"):
-    keyboard.press_and_release(name)
-press()
+from pynput.keyboard import Key, Controller
+
+keyboard = Controller()
+
+def VenvKey(KeyToPress=0):
+    keyboard.press(key = KeyToPress)
+    keyboard.release(key = KeyToPress)

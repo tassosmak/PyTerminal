@@ -16,9 +16,11 @@ try:
     '''
     Adding Modules From Different Folders
     '''
+    from src import key_presser
     try:
         from src import Server
         from src import client
+        
         net = True
     except OSError:
         print("\nunfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable\n")
@@ -68,11 +70,11 @@ try:
 
     def CommandAsk(Admin=False, plt=0, USNAME_PRINT=0):
         if MD == "2":
-            CommandList(Command=input(f"!History isn't enabled! PyTerminal Alpha | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt)
+            CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt)
         elif MD == "9": 
             CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
         else:
-            CommandList(Command=input(f"PyTerminal Alpha | {USNAME_PRINT.capitalize()} $ "), cmd_pl=plt) 
+            CommandList(Command=input(f"PyTerminal Beta | {USNAME_PRINT.capitalize()} $ "), cmd_pl=plt) 
 
 
     def CommandList(Command=0, cmd_pl=0):
@@ -221,9 +223,12 @@ try:
 
         if Command == "clear":
             if cmd_pl == "1" or cmd_pl == "3":
+                
                 os.system('clear')
+                #key_presser.VenvKey(key_presser.Key.enter)
             else:
                 os.system('cls')
+                key_presser.VenvKey(key_presser.Key.enter)
 
         if Command == "view file":
             LCommand = Command
