@@ -1,8 +1,5 @@
 try:
-    import commands
-    import sys
-
-    cmd = commands
+    import commands as cmd
 
 
     def history():

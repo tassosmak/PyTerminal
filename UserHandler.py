@@ -1,3 +1,4 @@
+from unicodedata import name
 import settings
 from pathlib import Path
 import datetime
@@ -5,7 +6,7 @@ import commands
 import platform
 import Kernel
 import csv
-
+from src import FTU_Installer as ftu_install
 cmd = commands
 csv = csv
 kernel = Kernel
@@ -122,6 +123,7 @@ def init():
             
 
 def FTS():
+    ftu_install.install(name="keyboard")
     FirstTimeUse = open("FTU.csv", "a")       
     ask_type = input("How Do You want to use this instanche?\nPersonal Or Server")
     if ask_type == "1":
@@ -136,6 +138,7 @@ def FTS():
         add_csv_data_headless(init_file, data)
     else:
         cmd.CommandSay(answer="Fail FTS", color="FAIL")
+    
 
 
 

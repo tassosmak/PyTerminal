@@ -1,7 +1,10 @@
+import sys
 import threading
 import launcher
 from pathlib import Path
 import settings
+from Error_Logger import Logger
+from src import key_presser
  
 def MainTask():
     #print("1 Main Threading")
@@ -31,13 +34,18 @@ def SecondaryTask(file_name="0", stay_end=False):
 
 
 if __name__ == "__main__":
+    while True:
+        try:
+            t1 = threading.Thread(target=MainTask, name='t1')
+            t2 = threading.Thread(target=SecondaryTask, name='t2')  
 
-    t1 = threading.Thread(target=MainTask, name='t1')
-    t2 = threading.Thread(target=SecondaryTask, name='t2')  
+            t1.start()
+            t2.start()
 
-    t1.start()
-    t2.start()
-
-    t1.join()
-    t2.join()
-    
+            t1.join()
+            t2.join()
+        except KeyboardInterrupt:
+            key_presser.press_and_release("Enter")
+        except (BaseException):
+            Logger.log_error("Testing")
+            sys.exit()
