@@ -1,24 +1,26 @@
-try:
-    import commands as cmd
 
+import os
+import commands
+import sys
 
-    def history():
-        with open('history.log', 'a') as f:    
-            f.write(str(f"{cmd.LCommand}\n"))
-                    
-    def core(MODE="0", pl=0, username=0):
-        if MODE == "1":
-            cmd.MD = MODE
-            cmd.CommandAsk(plt=pl, USNAME_PRINT=username)
-            history()
-        elif MODE == "2":
-            cmd.MD = MODE
-            cmd.CommandAsk(plt=pl, USNAME_PRINT=username)
-        elif MODE == "9":
-            cmd.MD = MODE
-            cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
-        else:
-            raise IndexError
-except BaseException:
-    import Error_Logger.Logger as logger
-    logger.log_error()
+cmd = commands
+
+def history():
+    with open('history.log', 'w+') as f:    
+        f.write(str(cmd.LCommand))
+                
+def core(MODE="0"):
+    if MODE == "1":
+        cmd.CommandList()
+        history()
+    elif MODE == "2":
+        print("History isn't enabled")
+        cmd.CommandList()
+    elif MODE == "999":
+        passwd = input("pswd:")
+        if passwd == "8596":
+            print("Acces Granted")
+            cmd.CommandList(Admin=True)
+    else:
+        print("This Mode Doesn't exist")
+        sys.exit()
