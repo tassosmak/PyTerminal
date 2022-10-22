@@ -170,12 +170,14 @@ try:
                 print("DONE")
 
         if Command == "gen password":
+            LCommand = Command
             Boot.Run = True
             Boot.SecondaryTask(file_name="Password_Gen", stay_end=True)
 
 
         if Command == "Exit":
             if MD == "1":
+                LCommand = Command
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
                     sys.exit()
@@ -193,7 +195,7 @@ try:
 
 
         if Command == "print md":
-            if MD == "2":
+            if MD == "2" or MD == "9":
                 CommandSay(answer=MD)
             else:
                 LCommand = Command
@@ -234,8 +236,7 @@ try:
                 os.system(f"more {ask_file}")
         
         if Command == "edit file":
-            if MD == "2":
-                LCommand = Command
+            if MD == "2":           
                 if cmd_pl == "1" or cmd_pl == "3":
                     ask_file = input("type the name of the file you want to edit\n:")
                     if ask_file.endswith(".py"):
@@ -245,6 +246,7 @@ try:
                 elif cmd_pl == "2":
                     CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
             else:
+                LCommand = Command
                 CommandSay(answer="This Function isn't available within this mode", color="FALI")
         
         if Command == "weather forecast":
@@ -256,11 +258,11 @@ try:
                 CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
 
         if Command == "activity monitor":
-            if MD == "2":
+            if MD == "2" or MD == "9":
                 if cmd_pl == "1" or cmd_pl == "3":
-                    LCommand = Command
                     os.system('top')
             else:
+                LCommand = Command
                 CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
         if Command == "countdown":
@@ -272,11 +274,11 @@ try:
         
         if Command == "check site status":
             if MD == "2" or MD == "9":
-                LCommand = Command
                 site = input("type the site you want to check:\n")
                 os.system(f"ping {site}")
                 
             else:
+                LCommand = Command
                 CommandSay(answer="This Function isn't available within this mode", color="FALI")
         
 
