@@ -1,0 +1,89 @@
+
+2022-10-22 12:40:56 boot.py
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Boot.py", line 40, in <module>
+    t3 = threading.Thread(target=Scanner, name='t3')
+NameError: name 'Scanner' is not defined
+
+2022-10-22 12:41:42 boot.py
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Boot.py", line 40, in <module>
+    t3 = threading.Thread(target=Scanner, name='t3')
+NameError: name 'Scanner' is not defined
+
+2022-10-22 12:45:26 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 42, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 25, in run
+    kernel.core(MODE=ask_core, pl=UserH.pl, username=UserH.username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel.py", line 19, in core
+    cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 74, in CommandAsk
+    CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 289, in CommandList
+    SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
+NameError: name 'SecondaryTask' is not defined
+
+2022-10-22 12:46:14 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 42, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 25, in run
+    kernel.core(MODE=ask_core, pl=UserH.pl, username=UserH.username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel.py", line 19, in core
+    cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 74, in CommandAsk
+    CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 289, in CommandList
+    SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
+NameError: name 'SecondaryTask' is not defined
+
+2022-10-22 12:46:41 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 42, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 25, in run
+    kernel.core(MODE=ask_core, pl=UserH.pl, username=UserH.username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel.py", line 19, in core
+    cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 74, in CommandAsk
+    CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 289, in CommandList
+    SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
+NameError: name 'SecondaryTask' is not defined
+
+2022-10-22 12:49:34 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 42, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 25, in run
+    kernel.core(MODE=ask_core, pl=UserH.pl, username=UserH.username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel.py", line 19, in core
+    cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 74, in CommandAsk
+    CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 289, in CommandList
+    SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
+NameError: name 'SecondaryTask' is not defined
+
+2022-10-22 12:50:11 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 42, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 25, in run
+    kernel.core(MODE=ask_core, pl=UserH.pl, username=UserH.username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel.py", line 19, in core
+    cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 74, in CommandAsk
+    CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 289, in CommandList
+    SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
+NameError: name 'SecondaryTask' is not defined

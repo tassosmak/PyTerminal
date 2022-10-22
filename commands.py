@@ -6,6 +6,7 @@ try:
     import sys
     import Boot
     from pathlib import Path
+    import pyradLocal.auth
 
     net = False
     try:
@@ -280,7 +281,13 @@ try:
             else:
                 LCommand = Command
                 CommandSay(answer="This Function isn't available within this mode", color="FALI")
-        
+
+
+        if Command == "devices":
+            Boot.Run = True
+            if pyradLocal.auth.DONE:
+                Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
+
 
     class bcolors:
         HEADER = '\033[95m'

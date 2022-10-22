@@ -3,7 +3,9 @@ import launcher
 from pathlib import Path
 import settings
 from Error_Logger import Logger
- 
+
+
+
 def MainTask():
     #print("1 Main Threading")
     while True:
@@ -30,6 +32,7 @@ def SecondaryTask(file_name="0", stay_end=False):
             else:
                 os.system(f"start cmd /c py  src/{file_name}.py")
 
+
 try:
     if __name__ == "__main__":
         t1 = threading.Thread(target=MainTask, name='t1')
@@ -40,5 +43,6 @@ try:
 
         t1.join()
         t2.join()
+
 except BaseException:
     Logger.log_error("boot.py")
