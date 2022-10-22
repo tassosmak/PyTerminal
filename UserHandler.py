@@ -1,4 +1,4 @@
-from unicodedata import name
+import os
 import settings
 from pathlib import Path
 import datetime
@@ -108,7 +108,6 @@ Use = 0
 def init():
     check_0 = open(init_file, "r")
     if("0" in check_0.read()):
-        cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
         FTS()
         check_0.close()
     check = open(init_file, "r").readline()
@@ -123,9 +122,9 @@ def init():
             
 
 def FTS():
-    ftu_install.install(name="keyboard")
+    cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
     FirstTimeUse = open("FTU.csv", "a")       
-    ask_type = input("How Do You want to use this instanche?\nPersonal Or Server")
+    ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
     if ask_type == "1":
         ask_type = "1"
         cmd.CommandSay(answer=ask_type)
@@ -138,6 +137,11 @@ def FTS():
         add_csv_data_headless(init_file, data)
     else:
         cmd.CommandSay(answer="Fail FTS", color="FAIL")
+    ftu_install.install(name="keyboard")
+    if settings.pl == "1" or settings.pl == "3":
+        os.system("clear")
+    elif settings.pl == "2":
+        os.system("cls")
     
 
 

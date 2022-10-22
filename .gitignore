@@ -22,3 +22,5 @@ UserList.csv
 src/__pycache__
 FTU.csv
 UserList.csv
+src/__pycache__/client.cpython-39.pyc
+.gitignore
