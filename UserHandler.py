@@ -116,7 +116,7 @@ def init():
     for i in check:
         if check.isnumeric():
             if check == "2":
-                cmd.ssh = True
+                settings.server_use = True
             Use = check
     with open('history.log', 'a') as f:    
         now = datetime.datetime.now()
@@ -139,7 +139,7 @@ def FTS():
         cmd.CommandSay(answer="Fail FTS", color="FAIL")
     ftu_install.install(name="pyrad")
     try:
-        import keyboard
+        import pyrad
     except ModuleNotFoundError:
         cmd.CommandSay("PIP is missing\ncritical features will not work", "FAIL")
     if not settings.MODE == "9":

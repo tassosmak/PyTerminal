@@ -1,0 +1,34 @@
+2022-10-22 13:18:20,300 [ERROR   ] 
+2022-10-22 13:18:20 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 42, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 25, in run
+    kernel.core(MODE=ask_core, pl=UserH.pl, username=UserH.username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel.py", line 19, in core
+    cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 76, in CommandAsk
+    CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 291, in CommandList
+    LocalNetworking.server()
+TypeError: 'module' object is not callable
+2022-10-22 13:19:40,505 [ERROR   ] 
+2022-10-22 13:19:40 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 42, in boot
+    run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/launcher.py", line 25, in run
+    kernel.core(MODE=ask_core, pl=UserH.pl, username=UserH.username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel.py", line 19, in core
+    cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 75, in CommandAsk
+    CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 290, in CommandList
+    import LocalNetworking.server
+  File "/Users/tassosmakro/PyProjects/PyTerminal/LocalNetworking/server.py", line 66, in <module>
+    srv.BindToAddress("0.0.0.0")
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.9/site-packages/pyrad/server.py", line 139, in BindToAddress
+    authfd.bind((address, self.authport))
+OSError: [Errno 48] Address already in use

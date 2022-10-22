@@ -6,7 +6,7 @@ try:
     import sys
     import Boot
     from pathlib import Path
-    import pyradLocal.auth
+    import settings
 
     net = False
     try:
@@ -285,8 +285,12 @@ try:
 
         if Command == "devices":
             Boot.Run = True
-            if pyradLocal.auth.DONE:
-                Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
+            if settings.server_use:
+                import LocalNetworking.server
+            else:
+                import LocalNetworking.auth
+                if LocalNetworking.auth.DONE:
+                    Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
 
 
     class bcolors:

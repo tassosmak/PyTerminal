@@ -56,14 +56,14 @@ class FakeServer(server.Server):
         reply.code = 45
         self.SendReplyPacket(pkt.fd, reply)
 
-if __name__ == '__main__':
 
-    # create server and read dictionary
-    srv = FakeServer(dict=dictionary.Dictionary("dictionary"), coa_enabled=True)
 
-    # add clients (address, secret, name)
-    srv.hosts["127.0.0.1"] = server.RemoteHost("127.0.0.1", b"Kah3choteereethiejeimaeziecumi", "localhost")
-    srv.BindToAddress("0.0.0.0")
+# create server and read dictionary
+srv = FakeServer(dict=dictionary.Dictionary("dictionary"), coa_enabled=True)
 
-    # start server
-    srv.Run()
+# add clients (address, secret, name)
+srv.hosts["127.0.0.1"] = server.RemoteHost("127.0.0.1", b"Kah3choteereethiejeimaeziecumi", "localhost")
+srv.BindToAddress("0.0.0.0")
+
+# start server
+srv.Run()
