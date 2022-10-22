@@ -1,4 +1,3 @@
-import os
 import settings
 from pathlib import Path
 import datetime
@@ -6,7 +5,9 @@ import commands
 import platform
 import Kernel
 import csv
+import os
 from src import FTU_Installer as ftu_install
+
 cmd = commands
 csv = csv
 kernel = Kernel
@@ -108,6 +109,7 @@ Use = 0
 def init():
     check_0 = open(init_file, "r")
     if("0" in check_0.read()):
+        #cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
         FTS()
         check_0.close()
     check = open(init_file, "r").readline()
@@ -127,23 +129,25 @@ def FTS():
     ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
     if ask_type == "1":
         ask_type = "1"
-        cmd.CommandSay(answer=ask_type)
         data = ask_type
         add_csv_data_headless(init_file, data)
     elif ask_type == "2":
         ask_type = "2"
-        cmd.CommandSay(answer=ask_type)
         data = ask_type
         add_csv_data_headless(init_file, data)
     else:
         cmd.CommandSay(answer="Fail FTS", color="FAIL")
     ftu_install.install(name="keyboard")
-    if settings.pl == "1" or settings.pl == "3":
-        os.system("clear")
-    elif settings.pl == "2":
-        os.system("cls")
-    
-
+    try:
+        import keyboard
+    except ModuleNotFoundError:
+        cmd.CommandSay("PIP is missing\ncritical features will not work", "FAIL")
+    if not settings.MODE == "9":
+        if settings.pl == "1" or settings.pl == "3":
+            os.system("clear")
+        elif settings.pl == "2":
+            os.system("cls")
+        
 
 
 

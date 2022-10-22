@@ -1,10 +1,8 @@
-import sys
 import threading
 import launcher
 from pathlib import Path
 import settings
 from Error_Logger import Logger
-from src import key_presser
  
 def MainTask():
     #print("1 Main Threading")
@@ -32,20 +30,15 @@ def SecondaryTask(file_name="0", stay_end=False):
             else:
                 os.system(f"start cmd /c py  src/{file_name}.py")
 
-if __name__ == "__main__":
-    while True:
-        try:
-            t1 = threading.Thread(target=MainTask, name='t1')
-            t2 = threading.Thread(target=SecondaryTask, name='t2')  
+try:
+    if __name__ == "__main__":
+        t1 = threading.Thread(target=MainTask, name='t1')
+        t2 = threading.Thread(target=SecondaryTask, name='t2')  
 
-            t1.start()
-            t2.start()
+        t1.start()
+        t2.start()
 
-            t1.join()
-            t2.join()
-        except KeyboardInterrupt:
-            #t1.join()
-            key_presser.VenvKey(KeyToPress=key_presser.Key.enter)
-        except (BaseException):
-            Logger.log_error("Testing")
-            sys.exit()
+        t1.join()
+        t2.join()
+except BaseException:
+    Logger.log_error("boot.py")

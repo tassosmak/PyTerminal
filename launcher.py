@@ -47,9 +47,9 @@ def boot():
         if UserH.UserMD == "9":
             cmd.CommandSay("There Wan Error see 'errors.log' in the Error_Manager Folder for more info", "FAIL")
             logger.log_error()
-            import sys
-            sys.exit()
+            from sys import exit
+            exit()
         else:
             cmd.CommandSay("There Wan Error", "FAIL")
-            import sys
-            sys.exit()
+            from sys import exit
+            exit()

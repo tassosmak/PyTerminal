@@ -16,11 +16,9 @@ try:
     '''
     Adding Modules From Different Folders
     '''
-    from src import key_presser
     try:
         from src import Server
         from src import client
-        
         net = True
     except OSError:
         print("\nunfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable\n")
@@ -147,7 +145,7 @@ try:
                     ask_del_create = input("This file already exist try again", color="WARNING")
                 except UnboundLocalError:
                     CommandSay(answer="There was a Problem try again", color="FAIL")
-            elif MD == "2" or MD == "999":
+            elif MD == "2" or MD == "9":
                     ask_name = input("What the name of the file you want to create?")
                     try:
                         open(ask_name, "x")
@@ -223,12 +221,9 @@ try:
 
         if Command == "clear":
             if cmd_pl == "1" or cmd_pl == "3":
-                
                 os.system('clear')
-                #key_presser.VenvKey(key_presser.Key.enter)
             else:
                 os.system('cls')
-                key_presser.VenvKey(key_presser.Key.enter)
 
         if Command == "view file":
             LCommand = Command
