@@ -137,7 +137,7 @@ def FTS():
         add_csv_data_headless(init_file, data)
     else:
         cmd.CommandSay(answer="Fail FTS", color="FAIL")
-    ftu_install.install(name="keyboard")
+    ftu_install.install(name="pyrad")
     try:
         import keyboard
     except ModuleNotFoundError:
