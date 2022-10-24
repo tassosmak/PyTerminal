@@ -31,31 +31,31 @@ UserMD = 0
 
 
 
-def create_csv_file(data_file):
+def _create_csv_file(data_file):
     with open(data_file, 'w') as f:
         writer = csv.writer(f)
         header = ("Name/Mode")
         writer.writerow(header)
 
-def add_csv_data(data_file, data):
+def _add_csv_data(data_file, data):
     with open(data_file, 'a') as f:
         writer = csv.writer(f)
         writer.writerow(data)
 
-def add_csv_data_ov(data_file, data):
+def _add_csv_data_ov(data_file, data):
     with open(data_file, 'w') as f:
         header = ("Name/Mode")
         writer = csv.writer(f)
         writer.writerow(header)
         writer.writerow(data)
 
-def add_csv_data_headless(data_file, data):
+def _add_csv_data_headless(data_file, data):
     with open(data_file, 'w') as f:
         writer = csv.writer(f)
         writer.writerow(data)
 
 
-def find_index(input):
+def _find_index(input):
     global UserMD, row
     fl = open('UserList.csv', 'r').readlines()
     for row in fl:
@@ -70,7 +70,7 @@ def ask():
     username = username_ask
     UserSearch = open(data_file, "r")
     if(username_ask in UserSearch.read()):
-        find_index(username_ask)
+        _find_index(username_ask)
         for i in row:
             if int(i.isnumeric()):
                 UserMD = i
@@ -82,13 +82,13 @@ def ask():
         if NewUser == "Y" or NewUser == "y":
             ask_UserMD = input("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode\nChoose One!")
             data = (username_ask, ask_UserMD)
-            add_csv_data(data_file, data)
+            _add_csv_data(data_file, data)
             UserMD = ask_UserMD
 
 
 def Change_Listed_MODE(NEW_MODE):
     data = (username, NEW_MODE)
-    add_csv_data_ov(data_file=data_file, data=data)
+    _add_csv_data_ov(data_file=data_file, data=data)
 
 
 
@@ -110,7 +110,7 @@ def init():
     check_0 = open(init_file, "r")
     if("0" in check_0.read()):
         #cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
-        FTS()
+        _FTS()
         check_0.close()
     check = open(init_file, "r").readline()
     for i in check:
@@ -123,18 +123,18 @@ def init():
         f.write(now.strftime("%Y-%m-%d %H:%M\n"))
             
 
-def FTS():
+def _FTS():
     cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Worry it's an one time only message ;)\n")
     FirstTimeUse = open("FTU.csv", "a")       
     ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
     if ask_type == "1":
         ask_type = "1"
         data = ask_type
-        add_csv_data_headless(init_file, data)
+        _add_csv_data_headless(init_file, data)
     elif ask_type == "2":
         ask_type = "2"
         data = ask_type
-        add_csv_data_headless(init_file, data)
+        _add_csv_data_headless(init_file, data)
     else:
         cmd.CommandSay(answer="Fail FTS", color="FAIL")
     ftu_install.install(name="pyrad")
