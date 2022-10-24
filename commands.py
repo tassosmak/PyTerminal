@@ -284,14 +284,16 @@ try:
 
 
         if Command == "devices":
-            Boot.Run = True
-            if settings.server_use:
-                import LocalNetworking.server
+            if not settings.pl == "2":
+                Boot.Run = True
+                if settings.server_use:
+                    import LocalNetworking.server
+                else:
+                    import LocalNetworking.auth
+                    if LocalNetworking.auth.DONE:
+                        Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
             else:
-                import LocalNetworking.auth
-                if LocalNetworking.auth.DONE:
-                    Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
-
+                CommandSay("LocalNetworking Isn't Supported On Windown Yet\nIt's Under Development :)")
 
     class bcolors:
         HEADER = '\033[95m'
@@ -325,13 +327,13 @@ try:
         #         print("\n",answer) and Server.SendOnly(Say=answer)
         # else:
         if color == "WARNING":
-            print("\n",bcolors.WARNING, answer, f"{bcolors.WHITE} ")
+            print(f"\n{bcolors.WARNING} {answer} {bcolors.WHITE}")
         elif color == "FAIL":
-            print("\n",bcolors.FAIL, answer, f"{bcolors.WHITE} ")
+            print(f"\n{bcolors.FAIL} {answer} {bcolors.WHITE}")
         elif color == "OKGREEN":
-            print("\n",bcolors.OKGREEN, answer, f"{bcolors.WHITE} ")       
+            print(f"\n{bcolors.OKGREEN} {answer} {bcolors.WHITE}")       
         else:
-            print("\n",answer)
+            print(f"\n{answer}")
             #print(answer)
 except BaseException:
     import Error_Logger.Logger as logger
