@@ -105,7 +105,7 @@ try:
         
         if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
             LCommand = Command
-            CommandSay(answer="PyTerminal V.Alpha by Tassos Mak")
+            CommandSay(answer="PyTerminal V.Beta by Tassos Makrostergios")
         
         if Command == "CML":
             if MD == "2":
