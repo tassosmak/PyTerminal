@@ -4,7 +4,7 @@ try:
     import datetime
     import platform
     import sys
-    #import Boot
+    import Boot
     from pathlib import Path
     import settings
 
