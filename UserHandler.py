@@ -124,7 +124,7 @@ def init():
             
 
 def FTS():
-    cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
+    cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Worry it's an one time only message ;)\n")
     FirstTimeUse = open("FTU.csv", "a")       
     ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
     if ask_type == "1":
