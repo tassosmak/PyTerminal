@@ -16,7 +16,7 @@ try:
             cmd.CommandAsk(plt=pl, USNAME_PRINT=username)
         elif MODE == "9":
             cmd.MD = MODE         
-            cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+            cmd.CommandAsk(plt=pl, USNAME_PRINT=username)
         else:
             raise IndexError
 except BaseException:

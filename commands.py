@@ -67,7 +67,7 @@ try:
     answer = 0
     ssh = False
 
-    def CommandAsk(Admin=False, plt=0, USNAME_PRINT=0):
+    def CommandAsk(plt=0, USNAME_PRINT=0):
         if MD == "2":
             CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt)
         elif MD == "9": 
