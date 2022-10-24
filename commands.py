@@ -91,8 +91,9 @@ try:
             if MD == "9":
                 CommandSay(answer="tested")
                 CommandSay(answer="tested", color="WARNING")
-                CommandSay(answer="tested", color="FALI")
+                CommandSay(answer="tested", color="FAIL")
                 CommandSay(answer="tested", color="OKGREEN")
+                CommandSay(answer="tested", color="PURPLE")
                 if cmd_pl == "1":
                     now = datetime.datetime.now()
                     CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
@@ -306,6 +307,8 @@ try:
         BOLD = '\033[1m'
         UNDERLINE = '\033[4m'
         WHITE  = '\33[37m'
+        PURPLE = '\033[95m'
+        DARKCYAN = '\033[36m'
 
     def CommandPush(message):
         command = f'''
@@ -327,13 +330,15 @@ try:
         #         print("\n",answer) and Server.SendOnly(Say=answer)
         # else:
         if color == "WARNING":
-            print(f"\n{bcolors.WARNING} {answer} {bcolors.WHITE}")
+            print(f"\n{bcolors.WARNING}{answer}{bcolors.WHITE}\n")
         elif color == "FAIL":
-            print(f"\n{bcolors.FAIL} {answer} {bcolors.WHITE}")
+            print(f"\n{bcolors.FAIL}{answer}{bcolors.WHITE}\n")
         elif color == "OKGREEN":
-            print(f"\n{bcolors.OKGREEN} {answer} {bcolors.WHITE}")       
+            print(f"\n{bcolors.OKGREEN}{answer}{bcolors.WHITE}\n")  
+        elif color == "PURPLE":
+            print(f"\n{bcolors.PURPLE}{answer}{bcolors.WHITE}\n") 
         else:
-            print(f"\n{answer}")
+            print(f"\n{answer}\n")
             #print(answer)
 except BaseException:
     import Error_Logger.Logger as logger
