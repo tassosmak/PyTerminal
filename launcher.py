@@ -11,30 +11,48 @@ def ask():
 
 def run():    
         try:
-            kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username)
+            kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username_ask)
         except IndexError:
             ask_new_md = input("it seems that the registered mode of user is corrupted\nwhat mode did you used\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n")
             UserH.Change_Listed_MODE(ask_new_md)
-            kernel.core(MODE=ask_new_md, pl=UserH.pl, username=UserH.username)
+            kernel.core(MODE=ask_new_md, pl=UserH.pl, username=UserH.username_ask)
         if cmd.jump:
-            UserH.pl_finder()
-            ask()
-            cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
-            cmd.MD = ask_core
-            UserH.UserMD = ask_core
-            kernel.core(MODE=ask_core, pl=UserH.pl, username=UserH.username)
-            cmd.jump = False
+            try:
+                if not restrict_jump:
+                    UserH.pl_finder()
+                    ask()
+                    cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
+                    cmd.MD = ask_core
+                    UserH.UserMD = ask_core
+                    kernel.core(MODE=ask_core, pl=UserH.pl, username=UserH.username_ask)
+                    cmd.jump = False
+            except NameError:
+                    UserH.pl_finder()
+                    ask()
+                    cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
+                    cmd.MD = ask_core
+                    UserH.UserMD = ask_core
+                    kernel.core(MODE=ask_core, pl=UserH.pl, username=UserH.username_ask)
+                    cmd.jump = False
+     
         if cmd.jump_user:
             UserH.pl_finder()
             UserH.ask()
             cmd.MD = UserH.UserMD
             cmd.jump_user = False
-            kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username)
+            kernel.core(MODE=UserH.UserMD, pl=UserH.pl, username=UserH.username_ask)
 
 
 UserH.pl_finder()
 UserH.init()
-UserH.ask()
+counter = 0
+try:
+    UserH.ask()
+except BaseException:
+    UserH.username_ask = "Safe-Mode"
+    UserH.UserMD = "1"
+    restrict_jump = True
+
 cmd.CommandSay(answer="Go Ahead")
 def boot():
     try:

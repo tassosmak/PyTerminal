@@ -65,11 +65,13 @@ def _find_index(input):
 
 
 def ask():
-    global username_ask, UserMD, username
+    global username_ask, UserMD
     username_ask = input("Enter Usename")
-    username = username_ask
     UserSearch = open(data_file, "r")
     if(username_ask in UserSearch.read()):
+        if username_ask == "":
+            cmd.CommandSay("Not Typing A Name isn't allowed\nThus You Have Entered Safe-Mode", "FAIL")
+            raise Exception()
         _find_index(username_ask)
         for i in row:
             if int(i.isnumeric()):
@@ -87,7 +89,7 @@ def ask():
 
 
 def Change_Listed_MODE(NEW_MODE):
-    data = (username, NEW_MODE)
+    data = (username_ask, NEW_MODE)
     _add_csv_data_ov(data_file=data_file, data=data)
 
 

@@ -197,14 +197,10 @@ try:
 
 
         if Command == "print md":
-            if MD == "2" or MD == "9":
-                CommandSay(answer=MD)
-            else:
-                LCommand = Command
-                CommandSay(answer="This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command", color="WARNING") 
+            CommandSay(answer=MD)
 
 
-        
+
         if Command == "talk":
             LCommand = Command
             if net:
