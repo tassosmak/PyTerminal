@@ -17,6 +17,9 @@ try:
         elif MODE == "9":
             cmd.MD = MODE         
             cmd.CommandAsk(plt=pl, USNAME_PRINT=username)
+        elif MODE == "3":
+            cmd.MD = MODE
+            cmd.CommandAsk(plt=pl, USNAME_PRINT=username, safe_mode=True)
         else:
             raise IndexError
 except BaseException:
