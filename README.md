@@ -1,4 +1,4 @@
-# PyTerminal
+# PyTerminal Legacy
 
 PyTerminal is a somewhat terminal interface that still bases on the terminal of your computer(Unix/Windows)
 
