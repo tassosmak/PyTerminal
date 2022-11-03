@@ -6,7 +6,7 @@ try:
     import sys
     import Boot
     from pathlib import Path
-    import settings
+    from src import settings
 
     net = False
     try:

@@ -1,4 +1,4 @@
-import settings
+from src import settings
 from pathlib import Path
 import datetime
 import commands

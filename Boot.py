@@ -1,7 +1,7 @@
 import threading
 import launcher
 from pathlib import Path
-import settings
+from src import settings
 from Error_Logger import Logger
 
 
