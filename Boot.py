@@ -32,7 +32,7 @@ def SecondaryTask(file_name="0", stay_end=False):
             else:
                 os.system(f"start cmd /c py  src/{file_name}.py")
         else:
-            os.system(f"python3 {file_name}.py")
+            os.system(f"python3 {base_folder}/src/{file_name}.py")
 
 try:
     if __name__ == "__main__":
