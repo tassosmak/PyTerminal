@@ -23,16 +23,14 @@ def run():
                     UserH.pl_finder()
                     ask()
                     cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
-                    cmd.MD = ask_core
-                    UserH.UserMD = ask_core
+                    settings.MODE = ask_core
                     kernel.core(MODE=ask_core, pl=settings.pl, username=UserH.username_ask)
                     cmd.jump = False
             except NameError:
                     UserH.pl_finder()
                     ask()
                     cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
-                    cmd.MD = ask_core
-                    UserH.UserMD = ask_core
+                    settings.MODE = ask_core
                     kernel.core(MODE=ask_core, pl=settings.pl, username=UserH.username_ask)
                     cmd.jump = False
         if cmd.jump_user:
