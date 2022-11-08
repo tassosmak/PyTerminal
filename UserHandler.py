@@ -68,16 +68,16 @@ def ask():
     username_ask = input("Enter Usename")
     UserSearch = open(data_file, "r")
     if(username_ask in UserSearch.read()):
-        if username_ask == "":
-            cmd.CommandSay("Not Typing A Name isn't allowed\nThus You Have Entered Safe-Mode", "FAIL")
-            raise Exception()
         _find_index(username_ask)
         for i in row:
             if int(i.isnumeric()):
                 UserMD = i
                 settings.MODE = i
-                 
                 UserSearch.close()
+        if username_ask == "":
+            cmd.CommandSay("Not Typing A Name isn't allowed\nThus You Have Entered Safe-Mode", "FAIL")
+            settings.MODE = "3"
+            
     else:
         NewUser = input("This Username Doesn't exist do you want to create a user with this name")
         if NewUser == "Y" or NewUser == "y":
