@@ -139,8 +139,10 @@ def _FTS():
     else:
         cmd.CommandSay(answer="Fail FTS", color="FAIL")
     ftu_install.install(name="pyrad")
+    ftu_install.install(name="clipboard")
     try:
         import pyrad
+        import clipboard
     except ModuleNotFoundError:
         cmd.CommandSay("PIP is missing\ncritical features will not work", "FAIL")
     if not settings.MODE == "9":

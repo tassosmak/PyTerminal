@@ -7,13 +7,8 @@ try:
     import Boot
     from pathlib import Path
     from src import settings
-
     net = False
-    try:
-        import clipboard
-    except ModuleNotFoundError:
-        DNT_IMP_clipboard = True
-        pass
+
     '''
     Adding Modules From Different Folders
     '''
@@ -167,12 +162,9 @@ try:
 
         if Command == "latest":
             LCommand = Command
-            if DNT_IMP_clipboard:
-                CommandSay(answer="To use this command you have to install the clipboard module", color="FAIL")
-                
-            else:
-                clipboard.copy(open("history.log", mode= "r"))
-                print("DONE")
+            Boot.Run = True
+            Boot.SecondaryTask(file_name="LineRetriver")
+
 
         if Command == "gen password":
             if not safe_md:
@@ -181,7 +173,7 @@ try:
                 Boot.SecondaryTask(file_name="Password_Gen", stay_end=True)
 
 
-        if Command == "Exit":
+        if Command == "Exit" or Command == "exit":
             if MD == "1":
                 LCommand = Command
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
