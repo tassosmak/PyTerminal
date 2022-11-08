@@ -25,13 +25,14 @@ def SecondaryTask(file_name="0", stay_end=False):
             else:
                 os.system(f"""osascript -e 'tell application "Terminal" to do script "python3 {base_folder}/src/{file_name}.py"'""")
                 os.system("""osascript -e 'tell application "Terminal" to quit"'""")
-        if settings.pl == "2":
+        elif settings.pl == "2":
             #print(type)
             if stay_end:
                 os.system(f"start cmd /k py  src/{file_name}.py")
             else:
                 os.system(f"start cmd /c py  src/{file_name}.py")
-
+        else:
+            os.system(f"python3 {file_name}.py")
 
 try:
     if __name__ == "__main__":
