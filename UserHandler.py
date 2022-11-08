@@ -1,4 +1,3 @@
-from src import settings
 from pathlib import Path
 import datetime
 import commands
@@ -6,7 +5,7 @@ import platform
 import Kernel
 import csv
 import os
-from src import FTU_Installer as ftu_install
+from src import FTU_Installer as ftu_install, settings
 
 cmd = commands
 csv = csv
@@ -76,7 +75,7 @@ def ask():
         for i in row:
             if int(i.isnumeric()):
                 UserMD = i
-                settings.MODE == UserMD
+                settings.MODE = i
                  
                 UserSearch.close()
     else:
