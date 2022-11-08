@@ -22,15 +22,15 @@ def run():
                 if not restrict_jump:
                     UserH.pl_finder()
                     ask()
-                    cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
                     settings.MODE = ask_core
+                    cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
                     kernel.core(MODE=ask_core, pl=settings.pl, username=UserH.username_ask)
                     cmd.jump = False
             except NameError:
                     UserH.pl_finder()
                     ask()
-                    cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
                     settings.MODE = ask_core
+                    cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
                     kernel.core(MODE=ask_core, pl=settings.pl, username=UserH.username_ask)
                     cmd.jump = False
         if cmd.jump_user:
