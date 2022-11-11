@@ -3,7 +3,7 @@ try:
 
 
     def history():
-        with open('history.log', 'a') as f:    
+        with open('src/history.log', 'a') as f:    
             f.write(str(f"{cmd.LCommand}\n"))
                     
     def core(MODE="0", pl=0, username=0):

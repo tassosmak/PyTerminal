@@ -8,17 +8,13 @@ except ModuleNotFoundError:
     exit()
 
 line_to_copy="0"
-def Lastlines(filename=0, Num_Lines=0, folder=0):
+def Lastlines():
     global line_to_copy
-    with open(folder/filename) as file:
-         
-        for line in (file.readlines() [-Num_Lines:]):
+    with open('src/history.log', "r") as file:
+        for line in (file.readlines() [-1:]):
             line_to_copy=line
 
-print(Path(__file__).parent.resolve())
-fname = 'history.log'
-N = 1
-#Lastlines(filename=fname, Num_Lines=N, folder=base_folder)
+base_folder = Path(__file__).parent.resolve()
+Lastlines()
 clipboard.copy(str(line_to_copy))
 print("DONE")
-pass

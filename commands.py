@@ -161,9 +161,11 @@ try:
                     CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
         if Command == "latest":
+            # Boot.Run = True
+            # Boot.SecondaryTask(file_name="LineRetriver")
+            from src import LineRetriver
+            LineRetriver.Lastlines()
             LCommand = Command
-            Boot.Run = True
-            Boot.SecondaryTask(file_name="LineRetriver")
 
 
         if Command == "gen password":
