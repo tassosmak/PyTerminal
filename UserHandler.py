@@ -145,6 +145,8 @@ def _FTS():
         import clipboard
     except ModuleNotFoundError:
         cmd.CommandSay("PIP is missing\ncritical features will not work", "FAIL")
+        import time
+        time.sleep(7)
     if not settings.MODE == "9":
         if settings.pl == "1" or settings.pl == "3":
             os.system("clear")
