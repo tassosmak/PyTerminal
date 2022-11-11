@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+os.system("ls")
 try:
     import clipboard
 except ModuleNotFoundError:
@@ -10,7 +11,7 @@ except ModuleNotFoundError:
 line_to_copy="0"
 def Lastlines():
     global line_to_copy
-    with open('src/history.log', "r") as file:
+    with open(f'{base_folder}/history.log', "r") as file:
         for line in (file.readlines() [-1:]):
             line_to_copy=line
 
