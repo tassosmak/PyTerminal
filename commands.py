@@ -178,9 +178,9 @@ try:
                 LCommand = Command
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
-                    sys.exit()
+                    os.system("killall python")
             elif MD == "2" or MD == "9" or MD == "3":
-                sys.exit()
+                os.system("killall python")
 
             
         if Command == "jump":

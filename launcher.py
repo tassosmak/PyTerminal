@@ -66,9 +66,9 @@ def boot():
         if UserH.UserMD == "9" or UserH.UserMD == "3":
             cmd.CommandSay("There Was An Error see 'errors.log' in the Error_Manager Folder for more info", "FAIL")
             logger.log_error()
-            from sys import exit
-            exit()
+            from os import system
+            system("killall python")
         else:
             cmd.CommandSay("There Was An Error", "FAIL")
-            from sys import exit
-            exit()
+            from os import system
+            system("killall python")
