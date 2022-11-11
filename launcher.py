@@ -1,7 +1,7 @@
 import Error_Logger.Logger as logger
 import Kernel as kernel
-import commands as cmd
 import UserHandler as UserH
+import commands as cmd
 from src import settings
 
 def ask():
