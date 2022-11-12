@@ -164,7 +164,7 @@ try:
             Boot.Run = True
             Boot.SecondaryTask(file_name="LineRetriver")
             
-            
+
         if Command == "gen password":
             if not safe_md:
                 LCommand = Command
@@ -332,15 +332,15 @@ try:
         #         print("\n",answer) and Server.SendOnly(Say=answer)
         # else:
         if color == "WARNING":
-            print(f"\n{bcolors.WARNING}{answer}{bcolors.WHITE}\n")
+            sys.stderr.write(f"\n{bcolors.WARNING}{answer}{bcolors.WHITE}\n")
         elif color == "FAIL":
-            print(f"\n{bcolors.FAIL}{answer}{bcolors.WHITE}\n")
+            sys.stderr.write(f"\n{bcolors.FAIL}{answer}{bcolors.WHITE}\n")
         elif color == "OKGREEN":
-            print(f"\n{bcolors.OKGREEN}{answer}{bcolors.WHITE}\n")  
+            sys.stderr.write(f"\n{bcolors.OKGREEN}{answer}{bcolors.WHITE}\n")  
         elif color == "PURPLE":
-            print(f"\n{bcolors.PURPLE}{answer}{bcolors.WHITE}\n") 
+            sys.stderr.write(f"\n{bcolors.PURPLE}{answer}{bcolors.WHITE}\n")
         else:
-            print(f"\n{answer}\n")
+            sys.stderr.write(f"\n{answer}\n")
             #print(answer)
 except BaseException:
     import Error_Logger.Logger as logger
