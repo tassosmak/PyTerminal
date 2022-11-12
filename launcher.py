@@ -23,12 +23,12 @@ def run():
                 ask()
                 settings.MODE = ask_core
                 try:
+                    cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
                     kernel.core(MODE=ask_core, pl=settings.pl, username=UserH.username_ask)
                 except IndexError:
                     ask_corect_md = input("the selected mode doesn't exist These is the available options\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n ")
                     settings.MODE = ask_corect_md
                     kernel.core(MODE=ask_corect_md, pl=settings.pl, username=UserH.username_ask)
-                cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
                 cmd.jump = False
             except NameError:
                     UserH.pl_finder()

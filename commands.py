@@ -163,9 +163,8 @@ try:
         if Command == "latest":
             Boot.Run = True
             Boot.SecondaryTask(file_name="LineRetriver")
-            LCommand = Command
-
-
+            
+            
         if Command == "gen password":
             if not safe_md:
                 LCommand = Command
