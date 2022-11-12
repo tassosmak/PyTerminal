@@ -6,13 +6,9 @@ try:
     import sys
     import Boot
     from pathlib import Path
-
+    from src import settings
     net = False
-    try:
-        import clipboard
-    except ModuleNotFoundError:
-        DNT_IMP_clipboard = True
-        pass
+
     '''
     Adding Modules From Different Folders
     '''
@@ -66,16 +62,18 @@ try:
     answer = 0
     ssh = False
 
-    def CommandAsk(Admin=False, plt=0, USNAME_PRINT=0):
+    def CommandAsk(plt=0, USNAME_PRINT=0, safe_mode=False):
         if MD == "2":
-            CommandList(Command=input(f"!History isn't enabled! PyTerminal Alpha | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt)
+            CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt)
         elif MD == "9": 
             CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+        elif MD == "3":
+            CommandList(Command=input(f"PyTerminal | Safe-Mode $ "), cmd_pl=plt, safe_md=safe_mode)
         else:
-            CommandList(Command=input(f"PyTerminal Alpha | {USNAME_PRINT.capitalize()} $ "), cmd_pl=plt) 
+            CommandList(Command=input(f"PyTerminal Beta | {USNAME_PRINT.capitalize()} $ "), cmd_pl=plt) 
 
 
-    def CommandList(Command=0, cmd_pl=0):
+    def CommandList(Command=0, cmd_pl=0, safe_md=False):
         global jump, jump_user, ask_recv, LCommand, answer
         LCommand = 0
 
@@ -90,8 +88,9 @@ try:
             if MD == "9":
                 CommandSay(answer="tested")
                 CommandSay(answer="tested", color="WARNING")
-                CommandSay(answer="tested", color="FALI")
+                CommandSay(answer="tested", color="FAIL")
                 CommandSay(answer="tested", color="OKGREEN")
+                CommandSay(answer="tested", color="PURPLE")
                 if cmd_pl == "1":
                     now = datetime.datetime.now()
                     CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
@@ -103,7 +102,7 @@ try:
         
         if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
             LCommand = Command
-            CommandSay(answer="PyTerminal V.Alpha by Tassos Mak")
+            CommandSay(answer="PyTerminal V.Beta by Tassos Makrostergios")
         
         if Command == "CML":
             if MD == "2":
@@ -120,102 +119,107 @@ try:
             CommandSay(answer=now.strftime("%Y-%m-%d %H:%M:%S"))
 
         if Command == "del" or Command == "delete":
-            
-            if MD == "2":
-                CommandSay(answer=os.listdir(dir))
-                ask_del = input("what file you want to delete:")
-                try:
-                    CommandSay(answer=ask_del)
-                    os.remove(ask_del)
-                    CommandSay(answer="DONE", color="OKGREEN")
-                except FileNotFoundError:
-                    CommandSay(answer="This file doesn't exist", color="FAIL")
-            else:
-                LCommand = Command
-                CommandSay(answer="This Function isn't available within this mode", color="FAIL")
+            if not safe_md:
+                if MD == "2":
+                    CommandSay(answer=os.listdir(dir))
+                    ask_del = input("what file you want to delete:")
+                    try:
+                        CommandSay(answer=ask_del)
+                        os.remove(ask_del)
+                        CommandSay(answer="DONE", color="OKGREEN")
+                    except FileNotFoundError:
+                        CommandSay(answer="This file doesn't exist", color="FAIL")
+                else:
+                    LCommand = Command
+                    CommandSay(answer="This Function isn't available within this mode", color="FAIL")
 
         if Command == "create":
-            if MD == "1":
-                LCommand = Command
-                ask_name = input("What the name of the file you want to create?")
-                try:
-                    open(ask_name, "x")
-                    CommandSay(answer="DONE", color="OKGREEN")
-                except FileExistsError:
-                    ask_del_create = input("This file already exist try again", color="WARNING")
-                except UnboundLocalError:
-                    CommandSay(answer="There was a Problem try again", color="FAIL")
-            elif MD == "2" or MD == "999":
+            if not safe_md:
+                if MD == "1":
+                    LCommand = Command
                     ask_name = input("What the name of the file you want to create?")
                     try:
                         open(ask_name, "x")
                         CommandSay(answer="DONE", color="OKGREEN")
                     except FileExistsError:
-                        ask_del_create = input("This file already exist do you want to delete it. if yes type 'Y'")
-                        if ask_del_create == "Y" or ask_del_create == "y":
-                            os.remove(ask_name)
-                            CommandSay(answer="DONE", color="OKGREEN")
+                        ask_del_create = input("This file already exist try again", color="WARNING")
                     except UnboundLocalError:
-                            pass
-            else:
-                CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                        CommandSay(answer="There was a Problem try again", color="FAIL")
+                elif MD == "2" or MD == "9":
+                        ask_name = input("What the name of the file you want to create?")
+                        try:
+                            open(ask_name, "x")
+                            CommandSay(answer="DONE", color="OKGREEN")
+                        except FileExistsError:
+                            ask_del_create = input("This file already exist do you want to delete it. if yes type 'Y'")
+                            if ask_del_create == "Y" or ask_del_create == "y":
+                                os.remove(ask_name)
+                                CommandSay(answer="DONE", color="OKGREEN")
+                        except UnboundLocalError:
+                                pass
+                else:
+                    CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
         if Command == "latest":
+            # Boot.Run = True
+            # Boot.SecondaryTask(file_name="LineRetriver")
+            from src import LineRetriver
+            LineRetriver.Lastlines()
             LCommand = Command
-            if DNT_IMP_clipboard:
-                CommandSay(answer="To use this command you have to install the clipboard module", color="FAIL")
-                
-            else:
-                clipboard.copy(open("history.log", mode= "r"))
-                print("DONE")
+
 
         if Command == "gen password":
-            Boot.Run = True
-            Boot.SecondaryTask(file_name="Password_Gen", stay_end=True)
+            if not safe_md:
+                LCommand = Command
+                Boot.Run = True
+                Boot.SecondaryTask(file_name="Password_Gen", stay_end=True)
 
 
-        if Command == "Exit":
+        if Command == "Exit" or Command == "exit":
             if MD == "1":
+                LCommand = Command
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
                     sys.exit()
-            elif MD == "2" or MD == "9":
+            elif MD == "2" or MD == "9" or MD == "3":
                 sys.exit()
 
             
         if Command == "jump":
-            LCommand = Command
-            jump = True
+            if not safe_md:
+                LCommand = Command
+                jump = True
 
         if Command == "jump user":
-            LCommand = Command
-            jump_user = True
+            if not safe_md:
+                LCommand = Command
+                jump_user = True
 
 
         if Command == "print md":
-            if MD == "2":
+            if not safe_md:
                 CommandSay(answer=MD)
             else:
-                LCommand = Command
-                CommandSay(answer="This Function isn't available within this mode\nif you need to use this\ni suggest that you use the 'jump' command", color="WARNING") 
+                CommandSay("You Are in Safe-Mode")
 
 
-        
+
         if Command == "talk":
-            LCommand = Command
-            if net:
-                ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
-                if ask_type == "1":
-                    Server.chat()
+            if not safe_md:
+                LCommand = Command
+                if net:
+                    ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
+                    if ask_type == "1":
+                        Server.chat()
+                    else:
+                        ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
+                        CommandSay(answer=ask_recv)
+                        try: 
+                            client.Chat(IP=ask_recv)
+                        except ConnectionRefusedError:
+                            CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
                 else:
-                    ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
-                    CommandSay(answer=ask_recv)
-                    try: 
-                        client.Chat(IP=ask_recv)
-                    except ConnectionRefusedError:
-                        CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
-            else:
-                CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
+                    CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
 
 
 
@@ -234,51 +238,68 @@ try:
                 os.system(f"more {ask_file}")
         
         if Command == "edit file":
-            if MD == "2":
-                LCommand = Command
-                if cmd_pl == "1" or cmd_pl == "3":
-                    ask_file = input("type the name of the file you want to edit\n:")
-                    if ask_file.endswith(".py"):
-                        os.system(f"vim {ask_file}")
-                    else:
-                        os.system(f"nano {ask_file}")
-                elif cmd_pl == "2":
-                    CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
-            else:
-                CommandSay(answer="This Function isn't available within this mode", color="FALI")
+            if not safe_md:
+                if MD == "2":           
+                    if cmd_pl == "1" or cmd_pl == "3":
+                        ask_file = input("type the name of the file you want to edit\n:")
+                        if ask_file.endswith(".py"):
+                            os.system(f"vim {ask_file}")
+                        else:
+                            os.system(f"nano {ask_file}")
+                    elif cmd_pl == "2":
+                        CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
+                else:
+                    LCommand = Command
+                    CommandSay(answer="This Function isn't available within this mode", color="FALI")
         
         if Command == "weather forecast":
-            LCommand = Command
-            if net:
-                weather = os.system("curl wttr.in/")
-                CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
-            else:
-                CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
+            if not safe_md:
+                LCommand = Command
+                if net:
+                    weather = os.system("curl wttr.in/")
+                    CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
+                else:
+                    CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
 
         if Command == "activity monitor":
-            if MD == "2":
-                if cmd_pl == "1" or cmd_pl == "3":
+            if not safe_md:
+                if MD == "2" or MD == "9":
+                    if cmd_pl == "1" or cmd_pl == "3":
+                        os.system('top')
+                else:
                     LCommand = Command
-                    os.system('top')
-            else:
-                CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                    CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
         if Command == "countdown":
-            LCommand = Command
-            Boot.Run = True
-            Boot.SecondaryTask(file_name="countdown", stay_end=False)
-            
+            if not safe_md:
+                LCommand = Command
+                Boot.Run = True
+                Boot.SecondaryTask(file_name="countdown", stay_end=False)
+                
             
         
         if Command == "check site status":
             if MD == "2" or MD == "9":
-                LCommand = Command
                 site = input("type the site you want to check:\n")
                 os.system(f"ping {site}")
                 
             else:
+                LCommand = Command
                 CommandSay(answer="This Function isn't available within this mode", color="FALI")
-        
+
+
+        if Command == "devices":
+            if not safe_md:
+                if not settings.pl == "2":
+                    Boot.Run = True
+                    if settings.server_use:
+                        import LocalNetworking.server
+                    else:
+                        import LocalNetworking.auth
+                        if LocalNetworking.auth.DONE:
+                            Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
+                else:
+                    CommandSay("LocalNetworking Isn't Supported On Windown Yet\nIt's Under Development :)")
 
     class bcolors:
         HEADER = '\033[95m'
@@ -291,6 +312,8 @@ try:
         BOLD = '\033[1m'
         UNDERLINE = '\033[4m'
         WHITE  = '\33[37m'
+        PURPLE = '\033[95m'
+        DARKCYAN = '\033[36m'
 
     def CommandPush(message):
         command = f'''
@@ -312,13 +335,15 @@ try:
         #         print("\n",answer) and Server.SendOnly(Say=answer)
         # else:
         if color == "WARNING":
-            print("\n",bcolors.WARNING, answer, f"{bcolors.WHITE} ")
+            print(f"\n{bcolors.WARNING}{answer}{bcolors.WHITE}\n")
         elif color == "FAIL":
-            print("\n",bcolors.FAIL, answer, f"{bcolors.WHITE} ")
+            print(f"\n{bcolors.FAIL}{answer}{bcolors.WHITE}\n")
         elif color == "OKGREEN":
-            print("\n",bcolors.OKGREEN, answer, f"{bcolors.WHITE} ")       
+            print(f"\n{bcolors.OKGREEN}{answer}{bcolors.WHITE}\n")  
+        elif color == "PURPLE":
+            print(f"\n{bcolors.PURPLE}{answer}{bcolors.WHITE}\n") 
         else:
-            print("\n",answer)
+            print(f"\n{answer}\n")
             #print(answer)
 except BaseException:
     import Error_Logger.Logger as logger

@@ -1,12 +1,9 @@
 try:
-    import commands
-    import sys
-
-    cmd = commands
+    import commands as cmd
 
 
     def history():
-        with open('history.log', 'a') as f:    
+        with open('src/history.log', 'a') as f:    
             f.write(str(f"{cmd.LCommand}\n"))
                     
     def core(MODE="0", pl=0, username=0):
@@ -18,8 +15,11 @@ try:
             cmd.MD = MODE
             cmd.CommandAsk(plt=pl, USNAME_PRINT=username)
         elif MODE == "9":
+            cmd.MD = MODE         
+            cmd.CommandAsk(plt=pl, USNAME_PRINT=username)
+        elif MODE == "3":
             cmd.MD = MODE
-            cmd.CommandAsk(Admin=True, plt=pl, USNAME_PRINT=username)
+            cmd.CommandAsk(plt=pl, USNAME_PRINT=username, safe_mode=True)
         else:
             raise IndexError
 except BaseException:
