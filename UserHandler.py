@@ -138,12 +138,19 @@ def _FTS():
         _add_csv_data_headless(init_file, data)
     else:
         cmd.CommandSay(answer="Fail FTS", color="FAIL")
-    ftu_install.install(name="pyrad")
-    ftu_install.install(name="clipboard")
+
+    try:
+        import pyrad
+    except ModuleNotFoundError:
+        ftu_install.install(name="pyrad")
+    try:
+        import clipboard
+    except ModuleNotFoundError:
+        ftu_install.install(name="clipboard")
     try:
         import pyrad
         import clipboard
-    except ModuleNotFoundError:
+    except ModuleNotFoundError:       
         cmd.CommandSay("PIP is missing\ncritical features will not work", "FAIL")
         import time
         time.sleep(7)
