@@ -1,6 +1,5 @@
 from pathlib import Path
-import os
-os.system("ls")
+
 try:
     import clipboard
 except ModuleNotFoundError:

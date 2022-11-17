@@ -13,16 +13,17 @@ server.bind(ADDR)
 
 server.listen()
 
-def client_handler(conn, addr, No_recv, Send):
+def client_handler(conn, addr, No_recv=False, Send="0"):
     global answer
     if No_recv:
         conn.send("Server")
         conn.send(Send)
     else:
-        message = conn.recv(2048).decode("utf-8")
-        print(message)
-        answer = input("Type Your message below\n:").encode("utf-8")
-        conn.send(answer)
+        if Send == "0":
+            message = conn.recv(2048).decode("utf-8")
+            print(message)
+            answer = input("Type Your message below\n:").encode("utf-8")
+            conn.send(answer)
 
 
 
