@@ -118,7 +118,7 @@ def init():
         if check.isnumeric():
             if check == "2":
                 settings.server_use = True
-            Use = check
+
     with open('src/history.log', 'a') as f:    
         now = datetime.datetime.now()
         f.write(now.strftime("%Y-%m-%d %H:%M\n"))
