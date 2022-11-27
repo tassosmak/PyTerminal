@@ -91,9 +91,9 @@ try:
                 CommandSay(answer="tested", color="FAIL")
                 CommandSay(answer="tested", color="OKGREEN")
                 CommandSay(answer="tested", color="PURPLE")
-                if cmd_pl == "1":
-                    now = datetime.datetime.now()
-                    CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                CommandSay(answer="tested", color="UNDERLINE")
+                now = datetime.datetime.now()
+                CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
                 if not cmd_pl == "3":
                     Boot.Run = True
                     Boot.SecondaryTask("test", stay_end=True)
@@ -308,10 +308,11 @@ try:
         DARKCYAN = '\033[36m'
 
     def CommandPush(message):
-        command = f'''
-        osascript -e 'display notification "{message}" with title "PyTerminal"'
-        '''
-        os.system(command)
+        if settings.pl == '1':
+            command = f'''
+            osascript -e 'display notification "{message}" with title "PyTerminal"'
+            '''
+            os.system(command)
 
 
 
