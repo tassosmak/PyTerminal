@@ -4,26 +4,6 @@ import platform
 import os
 import json
 from src import FTU_Installer as ftu_install, settings
-
-backup_json_struck = '''
-
-{
-"user_credentials": {
-    "Name": "tassos",
-    "Password": "8596",
-    "Mode": "9"
-},
-"FTU": {
-    "Use": "2"
-},
-"Internal-Software": {
-    "Enable": "1"
-}
-}
-
-
-'''
-
   
 
 ask_name = ""
@@ -45,13 +25,7 @@ def edit_json(file_name="Info.json", loc1="", loc2="", content=""):
 
 def get_credentials(print_credentials=False):
     global Name, Password, Mode, FTU
-    try:
-        f = open('Info.json')
-    except FileNotFoundError:
-        if settings.pl == '1' or settings.pl == '3':
-            os.system('create Info.json')
-        f = open('Info.json')
-        json.dump(backup_json_struck, f, indent=4)
+    f = open('Info.json')
 
     data = json.load(f)
 
