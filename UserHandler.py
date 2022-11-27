@@ -122,8 +122,7 @@ def init():
                     settings.FTU = FTU
                     settings.USERNAME = ask_name
                     settings.PASSWORD = ask_Password
-                else:
-                    cmd.CommandSay(answer="Invalid Credentails\nTry Again")
+                    cmd.CommandPush("Welcome")
             else:
                 settings.MODE = "3"
                 correct_credentials = True
