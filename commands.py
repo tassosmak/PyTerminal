@@ -253,7 +253,7 @@ try:
             if not safe_md:
                 LCommand = Command
                 if net:
-                    weather = os.system("curl wttr.in/")
+                    os.system("curl wttr.in/")
                     CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
                 else:
                     CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")

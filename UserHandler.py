@@ -1,144 +1,83 @@
-from pathlib import Path
 import datetime
-import commands
+import commands as cmd
 import platform
-import Kernel
-import csv
 import os
+import json
 from src import FTU_Installer as ftu_install, settings
 
-cmd = commands
-csv = csv
-kernel = Kernel
+  
+
+ask_name = ""
+ask_Password = ""
+continue_normal = False
+
+correct_credentials = False
+def edit_json(file_name="Info.json", loc1="", loc2="", content=""):
+    with open(file_name, 'r+') as f:
+        data = json.load(f)
+        if not loc2 == "":
+            data[loc1][loc2] = content
+        else:
+            data[loc1] = content
+        f.seek(0)
+        json.dump(data, f, indent=4)
+        f.truncate()    
 
 
-base_folder = Path(__file__).parent.resolve()
-data_file = base_folder/"UserList.csv"
+def get_credentials(print_credentials=False):
+    global Name, Password, Mode, FTU
+    f = open('Info.json')
+    data = json.load(f)
+
+    FTU = data['FTU']['Use']
+    if print_credentials:
+        cmd.CommandSay(answer=("FTU:", FTU))
+
+    Name = data['user_credentials']['Name']
+    if print_credentials:
+        cmd.CommandSay(answer=("Name:", Name))
 
 
+    Password = data['user_credentials']['Password']
+    if print_credentials:
+        cmd.CommandSay(answer=("Password:", Password))
 
 
-
-'''
-UserLogin Handler
-
-'''
-
-
-pl = 0
-UserMD = 0
-
-
-
-def _create_csv_file(data_file):
-    with open(data_file, 'w') as f:
-        writer = csv.writer(f)
-        header = ("Name/Mode")
-        writer.writerow(header)
-
-def _add_csv_data(data_file, data):
-    with open(data_file, 'a') as f:
-        writer = csv.writer(f)
-        writer.writerow(data)
-
-def _add_csv_data_ov(data_file, data):
-    with open(data_file, 'w') as f:
-        header = ("Name/Mode")
-        writer = csv.writer(f)
-        writer.writerow(header)
-        writer.writerow(data)
-
-def _add_csv_data_headless(data_file, data):
-    with open(data_file, 'w') as f:
-        writer = csv.writer(f)
-        writer.writerow(data)
-
-
-def _find_index(input):
-    global UserMD, row
-    fl = open('UserList.csv', 'r').readlines()
-    for row in fl:
-        if row.find(input):
-                UserMD = row
+    Mode = data['user_credentials']['Mode']
+    settings.MODE = Mode
+    if print_credentials:
+        cmd.CommandSay(answer=("Mode:", Mode))
+    
+    f.close()
 
 
 
-def ask():
-    global username_ask, UserMD
-    username_ask = input("Enter Usename")
-    UserSearch = open(data_file, "r")
-    if(username_ask in UserSearch.read()):
-        _find_index(username_ask)
-        for i in row:
-            if int(i.isnumeric()):
-                UserMD = i
-                settings.MODE = i
-                UserSearch.close()
-        if username_ask == "":
-            cmd.CommandSay("Not Typing A Name isn't allowed\nThus You Have Entered Safe-Mode", "FAIL")
-            settings.MODE = "3"
-            
-    else:
-        NewUser = input("This Username Doesn't exist do you want to create a user with this name")
-        if NewUser == "Y" or NewUser == "y":
-            ask_UserMD = input("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode\nChoose One!")
-            data = (username_ask, ask_UserMD)
-            _add_csv_data(data_file, data)
-            UserMD = ask_UserMD
-
-
-def Change_Listed_MODE(NEW_MODE):
-    data = (username_ask, NEW_MODE)
-    _add_csv_data_ov(data_file=data_file, data=data)
 
 
 
-'''
+def ask(print_ask=False):
+    global ask_name, ask_Password
+    ask_name = input("Enter Usename")
+    ask_Password = input("\nEnter Password")
+    if print_ask:
+        cmd.CommandSay(answer=ask_name)
+        cmd.CommandSay(answer=ask_Password)
 
-WorkSpaceHandler
 
-still in dev
-
-'''
-
-FirstTimeUse = 0
-ask_type = 0
-init_file = base_folder/"FTU.csv"
-row = 0
-Use = 0
-
-def init():
-    check_0 = open(init_file, "r")
-    if("0" in check_0.read()):
-        #cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
-        _FTS()
-        check_0.close()
-    check = open(init_file, "r").readline()
-    for i in check:
-        if check.isnumeric():
-            if check == "2":
-                settings.server_use = True
-
-    with open('src/history.log', 'a') as f:    
-        now = datetime.datetime.now()
-        f.write(now.strftime("%Y-%m-%d %H:%M\n"))
-            
-
-def _FTS():
-    cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Worry it's an one time only message ;)\n")
-    FirstTimeUse = open("FTU.csv", "a")       
+def FTU_init():
+    cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
     ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
-    if ask_type == "1":
-        ask_type = "1"
-        data = ask_type
-        _add_csv_data_headless(init_file, data)
-    elif ask_type == "2":
-        ask_type = "2"
-        data = ask_type
-        _add_csv_data_headless(init_file, data)
-    else:
-        cmd.CommandSay(answer="Fail FTS", color="FAIL")
-
+    edit_json(loc1="FTU", loc2="Use", content=ask_type)
+    ask_first_name = input("What is your name")
+    ask_first_Password = input("Type A Password")
+    ask_first_Mode = input("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode\nChoose One!")
+    edit_json(loc1="user_credentials", loc2="Name", content=ask_first_name)
+    edit_json(loc1="user_credentials", loc2="Password", content=ask_first_Password)
+    edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)
+    if settings.pl == "1" or settings.pl == "3":
+        os.system("clear")
+    elif settings.pl == "2":
+        os.system("cls")
     try:
         import pyrad
     except ModuleNotFoundError:
@@ -159,15 +98,35 @@ def _FTS():
             os.system("clear")
         elif settings.pl == "2":
             os.system("cls")
-        
 
+def init():
+    continue_normal = False
+    correct_credentials = False
+    with open('src/history.log', 'a') as f:    
+        now = datetime.datetime.now()
+        f.write(now.strftime("%Y-%m-%d %H:%M\n"))
+    get_credentials()
+    if not FTU == "0":
+        continue_normal = True
+    else:
+        FTU_init()
+        get_credentials()
+        continue_normal = True
 
-
-
-'''
-Platform Identifier
-'''
-
+    if continue_normal:
+        while not correct_credentials:
+            ask()
+            if not ask_name == "":
+                if ask_name == Name and ask_Password == Password:
+                    correct_credentials = True
+                    settings.FTU = FTU
+                    settings.USERNAME = ask_name
+                    settings.PASSWORD = ask_Password
+                else:
+                    cmd.CommandSay(answer="Invalid Credentails\nTry Again")
+            else:
+                settings.MODE = "3"
+                correct_credentials = True
 
 def pl_finder():
     global pl
