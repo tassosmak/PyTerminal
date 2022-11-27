@@ -289,7 +289,7 @@ try:
             if not safe_md:
                 if not settings.pl == "2":
                     Boot.Run = True
-                    if settings.server_use:
+                    if settings.FTU == "2":
                         import LocalNetworking.server
                     else:
                         import LocalNetworking.auth
