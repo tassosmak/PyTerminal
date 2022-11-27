@@ -12,44 +12,37 @@ def ask():
 
 def run():    
         try:
-            kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
+            if settings.EnableIntSoft:
+                kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
+            else:
+                kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME, normal=True)
         except IndexError:
             ask_new_md = input("it seems that the registered mode of user is corrupted\nwhat mode did you used\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n")
             settings.MODE = ask_new_md
             UserH.edit_json(loc1='user_credentials', loc2='Mode', content=ask_new_md)
         if cmd.jump:
-            try:
-                UserH.pl_finder()
-                ask()
-                settings.MODE = ask_core
-                try:
-                    cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
-                    kernel.core(MODE=ask_core, pl=settings.pl, username=settings.USERNAME)
-                except IndexError:
-                    ask_corect_md = input("the selected mode doesn't exist These is the available options\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n ")
-                    settings.MODE = ask_corect_md
-                    kernel.core(MODE=ask_corect_md, pl=settings.pl, username=settings.USERNAME)
-                cmd.jump = False
-            except NameError:
-                    UserH.pl_finder()
-                    ask()
-                    settings.MODE = ask_core
-                    cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
-                    kernel.core(MODE=ask_core, pl=settings.pl, username=settings.USERNAME)
-                    cmd.jump = False
-        if cmd.jump_user:
             UserH.pl_finder()
-            UserH.ask()
-            cmd.MD = settings.MODE
-            cmd.jump_user = False
-            kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
+            ask()
+            settings.MODE = ask_core
+            try:
+                cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
+                if settings.EnableIntSoft:
+                    kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
+                else:
+                    kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME, normal=True)
+            except IndexError:
+                ask_corect_md = input("the selected mode doesn't exist These is the available options\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n ")
+                settings.MODE = ask_corect_md
+                if settings.EnableIntSoft:
+                    kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
+                else:
+                    kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME, normal=True)
+            cmd.jump = False
+
 
 
 UserH.pl_finder()
-try:
-    UserH.init()
-except BaseException:
-    settings.MODE = "3"
+UserH.init()
 
 cmd.CommandSay(answer="Go Ahead")
 def boot():

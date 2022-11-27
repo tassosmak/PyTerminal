@@ -6,5 +6,8 @@
     },
     "FTU": {
         "Use": "2"
+    },
+    "Internal-Software": {
+        "Enable": "0"
     }
 }

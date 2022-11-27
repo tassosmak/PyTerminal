@@ -48,6 +48,15 @@ def get_credentials(print_credentials=False):
     if print_credentials:
         cmd.CommandSay(answer=("Mode:", Mode))
     
+    Internal_Software = data['Internal-Software']['Enable']
+    if Internal_Software == "1":
+        settings.EnableIntSoft = True
+    else: 
+        settings.EnableIntSoft = False
+    if print_credentials:
+        cmd.CommandSay(answer=('Settings-Var', settings.EnableIntSoft))
+        cmd.CommandSay(answer=("Intenal-Software", Internal_Software))
+
     f.close()
 
 
@@ -99,13 +108,21 @@ def FTU_init():
         elif settings.pl == "2":
             os.system("cls")
 
+
+
+
+
+
+
+
+
 def init():
     continue_normal = False
     correct_credentials = False
     with open('src/history.log', 'a') as f:    
         now = datetime.datetime.now()
         f.write(now.strftime("%Y-%m-%d %H:%M\n"))
-    get_credentials()
+    get_credentials() # <-- if you want to print the credentials set the paramater to True
     if not FTU == "0":
         continue_normal = True
     else:
@@ -122,10 +139,23 @@ def init():
                     settings.FTU = FTU
                     settings.USERNAME = ask_name
                     settings.PASSWORD = ask_Password
-                    cmd.CommandPush("Welcome")
+                    welcome_msg = f"Welcome {Name.capitalize()}"
+                    cmd.CommandPush(welcome_msg)
             else:
                 settings.MODE = "3"
                 correct_credentials = True
+
+
+
+
+
+
+
+
+
+
+
+
 
 def pl_finder():
     global pl

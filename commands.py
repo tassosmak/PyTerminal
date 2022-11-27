@@ -187,11 +187,6 @@ try:
                 LCommand = Command
                 jump = True
 
-        if Command == "jump user":
-            if not safe_md:
-                LCommand = Command
-                jump_user = True
-
 
         if Command == "print md":
             if not safe_md:
