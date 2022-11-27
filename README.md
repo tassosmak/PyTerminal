@@ -8,7 +8,7 @@ It has 2 Modes:
 it limits the function to the absoloute basic 
 
 ### The Advanced Mode 
-that offers a bit more features than the basic 
+it offers a bit more features than the basic 
 
 
 ## How it Works:
