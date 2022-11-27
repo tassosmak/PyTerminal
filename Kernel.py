@@ -18,7 +18,7 @@ try:
             cmd.MD = MODE
             cmd.CommandAsk(plt=pl, USNAME_PRINT=username)
         elif MODE == "9" and normal == True:
-            cmd.MD == "2"
+            cmd.MD = "2"
             cmd.CommandAsk(plt=pl, USNAME_PRINT=username)
         elif MODE == "3":
             cmd.MD = MODE
