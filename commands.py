@@ -336,29 +336,34 @@ try:
         global Quest_result
         Quest_result = 0
         if type == '1':
+            if settings.EnableGUI:
+                    al = Alert(ask_admin_msg).with_buttons(Buttons([Button1, Button2,])).show()
 
-            al = Alert(ask_admin_msg).with_buttons(Buttons([Button1, Button2,])).show()
-            al.of_type(AlertType.INFORMATIONAL)
-
-            Quest_result = al.button_returned
+                    Quest_result = al.button_returned
+            else:
+                Quest_result = input((ask_admin_msg, f'Type {Button1} or {Button2}'))
         elif type == "2":
+            if settings.EnableGUI:
+                applescript = f"""
+                display dialog "{error_msg}" with title "{settings.Default_text}" with icon caution buttons "OK"
+                """
 
-            applescript = f"""
-            display dialog "{error_msg}" with title "{settings.Default_text}" with icon caution buttons "OK"
-            """
-
-            subprocess.call("osascript -e '{}'".format(applescript), shell=True)
+                subprocess.call("osascript -e '{}'".format(applescript), shell=True)
+            else:
+                Quest_result = input(quest_msg)
         elif type == '3':
+            if settings.EnableGUI:
+                buttons = Buttons(["Ok", "Exit"])
+                the_dialog = Dialog(quest_msg).with_title(settings.Default_text)
+                the_dialog.with_buttons(buttons)
+                the_dialog.with_icon(quest_icon)
+                the_dialog.with_input("Type Here:")
 
-            buttons = Buttons(["Ok", "Exit"])
-            the_dialog = Dialog(quest_msg).with_title(settings.Default_text)
-            the_dialog.with_buttons(buttons)
-            the_dialog.with_icon(quest_icon)
-            the_dialog.with_input("Type Here:")
+                result = the_dialog.show()
 
-            result = the_dialog.show()
-
-            Quest_result = result.text_returned  # => text entered in input
+                Quest_result = result.text_returned  # => text entered in input
+            else:
+                Quest_result = input(quest_msg)
 
 
     def CommandSay(answer=0, color=0):

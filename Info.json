@@ -9,5 +9,8 @@
     },
     "Internal-Software": {
         "Enable": "1"
+    },
+    "UI": {
+        "Enable-AquaUI": "0"
     }
 }

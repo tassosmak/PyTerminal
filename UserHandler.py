@@ -39,7 +39,7 @@ def _d_encrypt(type=0, input_text=''):
 
 
 def get_credentials(print_credentials=False):
-    global Name, Password, Mode, FTU
+    global Name, Password, Mode, FTU, GUI
     f = open('Info.json')
 
     data = json.load(f)
@@ -47,6 +47,12 @@ def get_credentials(print_credentials=False):
     FTU = data['FTU']['Use']
     if print_credentials:
         cmd.CommandSay(answer=("FTU:", FTU))
+    
+    GUI = data['UI']['Enable-AquaUI']
+    if GUI == "1":
+        settings.EnableGUI = True
+    if print_credentials:
+        cmd.CommandSay(answer=("UI:", GUI))
 
     Name = data['user_credentials']['Name']
     if print_credentials:
