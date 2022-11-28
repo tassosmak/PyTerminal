@@ -177,7 +177,10 @@ try:
                 LCommand = Command
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
-                    os.system("killall python")
+                    if settings.pl == "1" or settings.pl == "3":
+                        os.system("killall python")
+                    else:
+                        raise(SystemExit)
             elif MD == "2" or MD == "9" or MD == "3":
                 os.system("killall python")
 
