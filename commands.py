@@ -228,7 +228,7 @@ try:
             LCommand = Command
             ask_file = input("type the name of the file you want to view\n:")
             if cmd_pl == "1" or cmd_pl == "3":
-                os.system(f"open {ask_file}")
+                os.system(f"cat {ask_file}")
             elif cmd_pl == "2":
                 os.system(f"more {ask_file}")
         
