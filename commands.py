@@ -6,6 +6,8 @@ try:
     import sys
     import Boot
     from pathlib import Path
+    from aquaui import Alert, Buttons, AlertType, Dialog
+    import subprocess
     from src import settings
     net = False
 
@@ -94,6 +96,14 @@ try:
                 CommandSay(answer="tested", color="UNDERLINE")
                 now = datetime.datetime.now()
                 CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                CommandQuest(type='2', error_msg=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                CommandQuest(type='3', quest_msg='Testing')
+                CommandSay(answer=Quest_result, color="WARNING")
+                CommandQuest(type='1', ask_admin_msg="Worked?")
+                if Quest_result == 'Yes':
+                    CommandSay(answer='Positive answer', color='WARNING')
+                else:
+                    CommandSay(answer='Negative answer', color='WARNING')
                 if not cmd_pl == "3":
                     Boot.Run = True
                     Boot.SecondaryTask("test", stay_end=True)
@@ -102,7 +112,7 @@ try:
         
         if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
             LCommand = Command
-            CommandSay(answer="PyTerminal V.Beta by Tassos Makrostergios")
+            CommandSay(answer="PyTerminal V.Beta by Makro Software")
         
         if Command == "CML":
             if MD == "2":
@@ -203,12 +213,14 @@ try:
             if not safe_md:
                 LCommand = Command
                 if net:
-                    ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
-                    if ask_type == "1":
+                    CommandQuest(type='1', ask_admin_msg='do you want to be host or reciever', Button1='Host', Button2='Talker')
+                    #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
+                    if Quest_result == "Host":
                         Server.chat()
-                    else:
-                        ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
-                        CommandSay(answer=ask_recv)
+                    elif Quest_result == "Talker":
+                        #ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
+                        CommandQuest(type='3', quest_msg='To Which IP you want to talk to Type Below!')
+                        ask_recv = str(Quest_result)
                         try: 
                             client.Chat(IP=ask_recv)
                         except ConnectionRefusedError:
@@ -310,13 +322,39 @@ try:
         PURPLE = '\033[95m'
         DARKCYAN = '\033[36m'
 
-    def CommandPush(message):
+    def CommandPush(message, header=settings.Default_text):
         if settings.pl == '1':
             command = f'''
-            osascript -e 'display notification "{message}" with title "PyTerminal"'
+            osascript -e 'display notification "{message}" with title "{header}"'
             '''
             os.system(command)
 
+
+    def CommandQuest(type='0', Button1='No', Button2='Yes', error_msg="Blank", quest_msg='Blank', ask_admin_msg="This Procces Require Administraive Access\n are you sure you want to grant it?"):
+        global Quest_result
+        Quest_result = 0
+        if type == '1':
+
+            al = Alert(ask_admin_msg).with_buttons(Buttons([Button1, Button2,])).show()
+
+            Quest_result = al.button_returned
+        elif type == "2":
+
+            applescript = f"""
+            display dialog "{error_msg}" with title "{settings.Default_text}" with icon caution buttons "OK"
+            """
+
+            subprocess.call("osascript -e '{}'".format(applescript), shell=True)
+        elif type == '3':
+
+            buttons = Buttons(["Ok", "Exit"])
+            the_dialog = Dialog(quest_msg).with_title(settings.Default_text)
+            the_dialog.with_buttons(buttons)
+            the_dialog.with_input("Type Here:")
+
+            result = the_dialog.show()
+
+            Quest_result = result.text_returned  # => text entered in input
 
 
     def CommandSay(answer=0, color=0):

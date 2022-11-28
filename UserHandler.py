@@ -159,7 +159,7 @@ def init():
                     settings.USERNAME = ask_name
                     settings.PASSWORD = ask_Password
                     welcome_msg = f"Welcome {Name.capitalize()}"
-                    cmd.CommandPush(welcome_msg)
+                    cmd.CommandPush(message=welcome_msg)
             else:
                 settings.MODE = "3"
                 correct_credentials = True
