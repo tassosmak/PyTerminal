@@ -20,7 +20,22 @@ def edit_json(file_name="Info.json", loc1="", loc2="", content=""):
             data[loc1] = content
         f.seek(0)
         json.dump(data, f, indent=4)
-        f.truncate()    
+        f.truncate()
+
+def _d_encrypt(type=0, input_text=''):
+    global result
+
+    outstr = "abcdenghik"
+    instr = "1234567890" 
+
+    if type == "1":
+        trans = str.maketrans(instr, outstr)
+        result = input_text.translate(trans)
+        edit_json(loc1='user_credentials', loc2='Password', content=result)
+    elif type == '2':
+        reverse = str.maketrans(outstr, instr)
+        result = input_text.translate(reverse)
+
 
 
 def get_credentials(print_credentials=False):
@@ -39,6 +54,8 @@ def get_credentials(print_credentials=False):
 
 
     Password = data['user_credentials']['Password']
+    _d_encrypt(type='2', input_text=Password)
+    Password = result 
     if print_credentials:
         cmd.CommandSay(answer=("Password:", Password))
 
@@ -79,6 +96,8 @@ def FTU_init():
     edit_json(loc1="FTU", loc2="Use", content=ask_type)
     ask_first_name = input("What is your name")
     ask_first_Password = input("Type A Password")
+    _d_encrypt(type='1', input_text=ask_first_Password)
+    ask_first_Password = result
     ask_first_Mode = input("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode\nChoose One!")
     edit_json(loc1="user_credentials", loc2="Name", content=ask_first_name)
     edit_json(loc1="user_credentials", loc2="Password", content=ask_first_Password)
