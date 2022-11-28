@@ -23,18 +23,18 @@ def edit_json(file_name="Info.json", loc1="", loc2="", content=""):
         f.truncate()
 
 def _d_encrypt(type=0, input_text=''):
-    global result
+    global Dresult
 
     outstr = "abcdenghik"
     instr = "1234567890" 
 
     if type == "1":
         trans = str.maketrans(instr, outstr)
-        result = input_text.translate(trans)
-        edit_json(loc1='user_credentials', loc2='Password', content=result)
+        Dresult = input_text.translate(trans)
+        edit_json(loc1='user_credentials', loc2='Password', content=Dresult)
     elif type == '2':
         reverse = str.maketrans(outstr, instr)
-        result = input_text.translate(reverse)
+        Dresult = input_text.translate(reverse)
 
 
 
@@ -61,7 +61,7 @@ def get_credentials(print_credentials=False):
 
     Password = data['user_credentials']['Password']
     _d_encrypt(type='2', input_text=Password)
-    Password = result 
+    Password = Dresult 
     if print_credentials:
         cmd.CommandSay(answer=("Password:", Password))
 
@@ -98,13 +98,38 @@ def ask(print_ask=False):
 
 def FTU_init():
     cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
-    ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
+    cmd.CommandQuest(type='1', Button1='Personal', Button2='Server', ask_admin_msg='How Do You want to use this instanche?')
+    #ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
+    if cmd.Quest_result == 'Personal':
+        ask_type = '1'
+    elif cmd.Quest_result == 'Server':
+        ask_type = '2'
+    else:
+        ask_type = '1'
     edit_json(loc1="FTU", loc2="Use", content=ask_type)
-    ask_first_name = input("What is your name")
-    ask_first_Password = input("Type A Password")
+    
+    cmd.CommandQuest(type='3', quest_msg='What is your name')
+    ask_first_name = cmd.Quest_result
+    
+    cmd.CommandQuest(type='3', quest_msg='Type a Password')
+    ask_first_Password = cmd.Quest_result
     _d_encrypt(type='1', input_text=ask_first_Password)
-    ask_first_Password = result
-    ask_first_Mode = input("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode\nChoose One!")
+    ask_first_Password = Dresult
+
+
+    cmd.CommandQuest(type='1' ,ask_admin_msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
+    if cmd.Quest_result == 'The Advanced Mode':
+        ask_first_Mode = '2'
+    elif cmd.Quest_result == 'The Basic Mode':
+        ask_first_Mode = '1'
+    elif cmd.Quest_result == '9':
+        ask_first_Mode = '9'
+    else:
+        ask_first_Mode = '1'
+    
+
+
+
     edit_json(loc1="user_credentials", loc2="Name", content=ask_first_name)
     edit_json(loc1="user_credentials", loc2="Password", content=ask_first_Password)
     edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)
