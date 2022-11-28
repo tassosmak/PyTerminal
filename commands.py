@@ -6,7 +6,7 @@ try:
     import sys
     import Boot
     from pathlib import Path
-    from Notifications import Alert, Buttons, AlertType, Dialog
+    from Notifications import Alert, Buttons, AlertType, Dialog, Icon
     import subprocess
     from src import settings
     net = False
@@ -99,7 +99,7 @@ try:
                 CommandQuest(type='2', error_msg=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
                 CommandQuest(type='3', quest_msg='Testing')
                 CommandSay(answer=Quest_result, color="WARNING")
-                CommandQuest(type='1', ask_admin_msg="Worked?")
+                CommandQuest(type='1', ask_admin_msg="tested")
                 if Quest_result == 'Yes':
                     CommandSay(answer='Positive answer', color='WARNING')
                 else:
@@ -332,12 +332,13 @@ try:
             os.system(command)
 
 
-    def CommandQuest(type='0', Button1='No', Button2='Yes', error_msg="Blank", quest_msg='Blank', ask_admin_msg="This Procces Require Administraive Access\n are you sure you want to grant it?"):
+    def CommandQuest(type='0', Button1='No', Button2='Yes', error_msg="Blank", quest_msg='Blank', quest_icon=Icon.NOTE, ask_admin_msg="This Procces Require Administraive Access\n are you sure you want to grant it?"):
         global Quest_result
         Quest_result = 0
         if type == '1':
 
             al = Alert(ask_admin_msg).with_buttons(Buttons([Button1, Button2,])).show()
+            al.of_type(AlertType.INFORMATIONAL)
 
             Quest_result = al.button_returned
         elif type == "2":
@@ -352,6 +353,7 @@ try:
             buttons = Buttons(["Ok", "Exit"])
             the_dialog = Dialog(quest_msg).with_title(settings.Default_text)
             the_dialog.with_buttons(buttons)
+            the_dialog.with_icon(quest_icon)
             the_dialog.with_input("Type Here:")
 
             result = the_dialog.show()
