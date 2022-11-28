@@ -112,8 +112,7 @@ def FTU_init():
     ask_first_name = cmd.Quest_result
     
     cmd.CommandQuest(type='3', quest_msg='Type a Password')
-    ask_first_Password = cmd.Quest_result
-    _d_encrypt(type='1', input_text=ask_first_Password)
+    _d_encrypt(type='1', input_text=cmd.Quest_result)
     ask_first_Password = Dresult
 
 
