@@ -6,7 +6,7 @@ try:
     import sys
     import Boot
     from pathlib import Path
-    from aquaui import Alert, Buttons, AlertType, Dialog
+    from Notifications import Alert, Buttons, AlertType, Dialog
     import subprocess
     from src import settings
     net = False
