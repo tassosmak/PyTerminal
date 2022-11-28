@@ -8,7 +8,7 @@
         "Use": "2"
     },
     "Internal-Software": {
-        "Enable": "1"
+        "Enable": "0"
     },
     "UI": {
         "Enable-AquaUI": "0"

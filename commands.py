@@ -227,7 +227,10 @@ try:
                         try: 
                             client.Chat(IP=ask_recv)
                         except ConnectionRefusedError:
-                            CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
+                            if not Quest_result == '':
+                                CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
+                            else:
+                               pass 
                 else:
                     CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
 
