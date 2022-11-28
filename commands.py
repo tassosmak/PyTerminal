@@ -189,10 +189,13 @@ try:
                 if ask_exit == "Y" or ask_exit == "y":
                     if settings.pl == "1" or settings.pl == "3":
                         os.system("killall python")
-                    else:
-                        raise(SystemExit)
+                    elif settings.pl == "2":
+                        os.system('exit')
             elif MD == "2" or MD == "9" or MD == "3":
-                os.system("killall python")
+                if settings.pl == "1" or settings.pl == "3":
+                    os.system("killall python")
+                elif settings.pl == "2":
+                    os.system('exit')
 
             
         if Command == "jump":
