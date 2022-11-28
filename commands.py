@@ -238,21 +238,23 @@ try:
 
         if Command == "view file":
             LCommand = Command
-            ask_file = input("type the name of the file you want to view\n:")
+            CommandQuest(type='3', quest_msg='type the name of the file you want to view')
+            #ask_file = input("type the name of the file you want to view\n:")
             if cmd_pl == "1" or cmd_pl == "3":
-                os.system(f"cat {ask_file}")
+                os.system(f"cat {Quest_result}")
             elif cmd_pl == "2":
-                os.system(f"more {ask_file}")
+                os.system(f"more {Quest_result}")
         
         if Command == "edit file":
             if not safe_md:
                 if MD == "2":           
                     if cmd_pl == "1" or cmd_pl == "3":
-                        ask_file = input("type the name of the file you want to edit\n:")
-                        if ask_file.endswith(".py"):
-                            os.system(f"vim {ask_file}")
+                        CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
+                        #ask_file = input("type the name of the file you want to edit\n:")
+                        if Quest_result.endswith(".py"):
+                            os.system(f"vim {Quest_result}")
                         else:
-                            os.system(f"nano {ask_file}")
+                            os.system(f"nano {Quest_result}")
                     elif cmd_pl == "2":
                         CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
                 else:
