@@ -4,10 +4,11 @@ import platform
 import os
 import json
 from src import FTU_Installer as ftu_install, settings
-  
+
 
 ask_name = ""
 ask_Password = ""
+Dresult = ""
 continue_normal = False
 
 correct_credentials = False
@@ -46,7 +47,8 @@ def _d_encrypt(type=0, input_text=''):
     elif type == '2':
         reverse = str.maketrans(outstr, instr)
         final_text = input_text.translate(reverse)
-        Dresult= reverse_key(final_text)
+        Dresult = reverse_key(final_text)
+
 
 
 
@@ -222,7 +224,6 @@ def init():
 def pl_finder():
     global pl
     pl = platform.platform()
-
     if pl.startswith("macOS"):
         #os.system("killall python")
         pl = "1"
