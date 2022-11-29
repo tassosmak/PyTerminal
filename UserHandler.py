@@ -13,7 +13,7 @@ continue_normal = False
 
 correct_credentials = False
 
-def reverse_key(text=''):
+def _reverse_key(text=''):
     str = ""
     for i in text:
         str = i + str
@@ -42,12 +42,12 @@ def _d_encrypt(type=0, input_text=''):
     if type == "1":
         trans = str.maketrans(instr, outstr)
         final_text = input_text.translate(trans)
-        Dresult = reverse_key(final_text)
+        Dresult = _reverse_key(final_text)
         edit_json(loc1='user_credentials', loc2='Password', content=Dresult)
     elif type == '2':
         reverse = str.maketrans(outstr, instr)
         final_text = input_text.translate(reverse)
-        Dresult = reverse_key(final_text)
+        Dresult = _reverse_key(final_text)
 
 
 
@@ -55,7 +55,11 @@ def _d_encrypt(type=0, input_text=''):
 
 def get_credentials(print_credentials=False):
     global Name, Password, Mode, FTU, GUI
-    f = open('Info.json')
+    try:
+        f = open('Info.json')
+    except FileNotFoundError:
+        from src import Recover_Json
+        f = open('Info.json')
 
     data = json.load(f)
 
