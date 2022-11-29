@@ -58,8 +58,14 @@ def get_credentials(print_credentials=False):
     try:
         f = open('Info.json')
     except FileNotFoundError:
-        from src import Recover_Json
+        try:
+            from src import Recover_Json
+        except ImportError:
+            cmd.CommandSay(answer='This Installation is corrupted install a new one', color='FAIL')
+            from os import system
+            system('killall python')
         f = open('Info.json')
+        
 
     data = json.load(f)
 
