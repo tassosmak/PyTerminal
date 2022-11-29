@@ -11,6 +11,6 @@
         "Enable": "1"
     },
     "UI": {
-        "Enable-AquaUI": "0"
+        "Enable-AquaUI": "1"
     }
 }
