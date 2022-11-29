@@ -11,6 +11,15 @@ ask_Password = ""
 continue_normal = False
 
 correct_credentials = False
+
+def reverse_key(text=''):
+    str = ""
+    for i in text:
+        str = i + str
+    return str
+  
+
+
 def edit_json(file_name="Info.json", loc1="", loc2="", content=""):
     with open(file_name, 'r+') as f:
         data = json.load(f)
@@ -22,19 +31,23 @@ def edit_json(file_name="Info.json", loc1="", loc2="", content=""):
         json.dump(data, f, indent=4)
         f.truncate()
 
+
 def _d_encrypt(type=0, input_text=''):
     global Dresult
 
     outstr = "abcdenghik"
-    instr = "1234567890" 
+    instr =  "1234567890" 
 
     if type == "1":
         trans = str.maketrans(instr, outstr)
-        Dresult = input_text.translate(trans)
+        final_text = input_text.translate(trans)
+        Dresult = reverse_key(final_text)
         edit_json(loc1='user_credentials', loc2='Password', content=Dresult)
     elif type == '2':
         reverse = str.maketrans(outstr, instr)
-        Dresult = input_text.translate(reverse)
+        final_text = input_text.translate(reverse)
+        Dresult= reverse_key(final_text)
+
 
 
 
