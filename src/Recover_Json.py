@@ -2,7 +2,6 @@ from pathlib import Path
 dir = Path(__file__).parent.resolve()
 
 
-
 with open(f'{dir}/../Info.json', 'w') as apple:
     apple.write('''{
     "user_credentials": {
@@ -20,7 +19,3 @@ with open(f'{dir}/../Info.json', 'w') as apple:
         "Enable-AquaUI": "1"
     }
 }''')
-
-
-
-
