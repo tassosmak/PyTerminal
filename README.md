@@ -1,5 +1,7 @@
 # PyTerminal
 
+## To Get The Stable Version Check The <a href="https://github.com/tassosmak/PyTerminal/tree/master" target="_blank">Master Branch</a>
+
 PyTerminal is a somewhat terminal interface that still bases on the terminal of your computer(Unix/Windows)
 
 It has 2 Modes:
