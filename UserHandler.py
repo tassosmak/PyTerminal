@@ -21,8 +21,8 @@ def _reverse_key(text=''):
   
 
 
-def edit_json(file_name="Info.json", loc1="", loc2="", content=""):
-    with open(file_name, 'r+') as f:
+def edit_json(loc1="", loc2="", content=""):
+    with open("Info.json", 'r+') as f:
         data = json.load(f)
         if not loc2 == "":
             data[loc1][loc2] = content
