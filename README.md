@@ -1,4 +1,5 @@
 # PyTerminal
+<a href="https://www.codefactor.io/repository/github/tassosmak/pyterminal"><img src="https://www.codefactor.io/repository/github/tassosmak/pyterminal/badge" alt="CodeFactor" /></a>
 
 ## To Get The Stable Version Check The <a href="https://github.com/tassosmak/PyTerminal/tree/master" target="_blank">Master Branch</a>
 
