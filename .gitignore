@@ -30,3 +30,4 @@ pyrad.log
 src/__pycache__/Server.cpython-39.pyc
 src/__pycache__/Server.cpython-39.pyc
 src/__pycache__/client.cpython-39.pyc
+src/history.log
