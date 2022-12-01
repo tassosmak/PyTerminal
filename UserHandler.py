@@ -53,7 +53,7 @@ def _d_encrypt(type=0, input_text=''):
 
 
 
-def get_credentials(print_credentials=False):
+def _get_credentials(print_credentials=False):
     global Name, Password, Mode, FTU, GUI
     try:
         f = open('Info.json')
@@ -112,7 +112,7 @@ def get_credentials(print_credentials=False):
 
 
 
-def ask(print_ask=False):
+def _ask(print_ask=False):
     global ask_name, ask_Password
     ask_name = input("Enter Usename")
     ask_Password = input("\nEnter Password")
@@ -121,7 +121,7 @@ def ask(print_ask=False):
         cmd.CommandSay(answer=ask_Password)
 
 
-def FTU_init():
+def _FTU_init():
     cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
     cmd.CommandQuest(type='1', Button1='Personal', Button2='Server', ask_admin_msg='How Do You want to use this instanche?')
     #ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
@@ -196,17 +196,17 @@ def init():
     with open('src/history.log', 'a') as f:    
         now = datetime.datetime.now()
         f.write(now.strftime("%Y-%m-%d %H:%M\n"))
-    get_credentials() # <-- if you want to print the credentials set the paramater to True
+    _get_credentials() # <-- if you want to print the credentials set the paramater to True
     if not FTU == "0":
         continue_normal = True
     else:
-        FTU_init()
-        get_credentials()
+        _FTU_init()
+        _get_credentials()
         continue_normal = True
 
     if continue_normal:
         while not correct_credentials:
-            ask()
+            _ask()
             if not ask_name == "":
                 if ask_name == Name and ask_Password == Password:
                     correct_credentials = True
