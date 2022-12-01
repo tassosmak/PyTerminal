@@ -191,6 +191,7 @@ def _FTU_init():
 
 
 def init():
+    _pl_finder()
     continue_normal = False
     correct_credentials = False
     with open('src/history.log', 'a') as f:    
@@ -231,7 +232,7 @@ def init():
 
 
 
-def pl_finder():
+def _pl_finder():
     global pl
     pl = platform.platform()
     if pl.startswith("macOS"):

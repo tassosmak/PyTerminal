@@ -21,7 +21,6 @@ def run():
             settings.MODE = ask_new_md
             UserH.edit_json(loc1='user_credentials', loc2='Mode', content=ask_new_md)
         if cmd.jump:
-            UserH.pl_finder()
             ask()
             settings.MODE = ask_core
             try:
@@ -41,7 +40,7 @@ def run():
 
 
 
-UserH.pl_finder()
+
 UserH.init()
 
 cmd.CommandSay(answer="Go Ahead")
