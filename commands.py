@@ -56,7 +56,6 @@ try:
     plt = 0
     USNAME_PRINT = 0
     sys_detect = platform.uname()
-    MD = 0
     Version = 2
     jump = False
     jump_user = False
@@ -64,18 +63,18 @@ try:
     answer = 0
     ssh = False
 
-    def CommandAsk(plt=0, USNAME_PRINT=0, safe_mode=False):
+    def CommandAsk(plt=0, USNAME_PRINT=0, safe_mode=False, MD='0'):
         if MD == "2":
-            CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt)
+            CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt, MD=MD)
         elif MD == "9": 
-            CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+            CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt, MD=MD)
         elif MD == "3":
-            CommandList(Command=input(f"PyTerminal | Safe-Mode $ "), cmd_pl=plt, safe_md=safe_mode)
+            CommandList(Command=input(f"PyTerminal | Safe-Mode $ "), cmd_pl=plt, safe_md=safe_mode, MD=MD)
         else:
-            CommandList(Command=input(f"PyTerminal Beta | {USNAME_PRINT.capitalize()} $ "), cmd_pl=plt) 
+            CommandList(Command=input(f"PyTerminal Beta | {USNAME_PRINT.capitalize()} $ "), cmd_pl=plt, MD=MD) 
 
 
-    def CommandList(Command=0, cmd_pl=0, safe_md=False):
+    def CommandList(Command=0, cmd_pl=0, safe_md=False, MD=0):
         global jump, jump_user, ask_recv, LCommand, answer
         LCommand = 0
 
@@ -187,14 +186,14 @@ try:
                 LCommand = Command
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
-                    if settings.pl == "1" or settings.pl == "3":
+                    if cmd_pl == "1" or cmd_pl == "3":
                         os.system("killall python")
-                    elif settings.pl == "2":
+                    elif cmd_pl == "2":
                         os.system('exit')
             elif MD == "2" or MD == "9" or MD == "3":
-                if settings.pl == "1" or settings.pl == "3":
+                if cmd_pl == "1" or cmd_pl == "3":
                     os.system("killall python")
-                elif settings.pl == "2":
+                elif cmd_pl == "2":
                     os.system('exit')
 
             
@@ -305,7 +304,7 @@ try:
 
         if Command == "devices":
             if not safe_md:
-                if not settings.pl == "2":
+                if not cmd_pl == "2":
                     Boot.Run = True
                     if settings.FTU == "2":
                         import LocalNetworking.server

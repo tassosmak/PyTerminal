@@ -91,11 +91,6 @@ def _get_credentials(print_credentials=False):
         cmd.CommandSay(answer=("Password:", Password))
 
 
-    Mode = data['user_credentials']['Mode']
-    settings.MODE = Mode
-    if print_credentials:
-        cmd.CommandSay(answer=("Mode:", Mode))
-    
     Internal_Software = data['Internal-Software']['Enable']
     if Internal_Software == "1":
         settings.EnableIntSoft = True
@@ -104,7 +99,16 @@ def _get_credentials(print_credentials=False):
     if print_credentials:
         cmd.CommandSay(answer=('Settings-Var', settings.EnableIntSoft))
         cmd.CommandSay(answer=("Intenal-Software", Internal_Software))
-
+        
+    Mode = data['user_credentials']['Mode']
+    if settings.EnableIntSoft == False and Mode == '9':
+        settings.MODE = '2'
+    else:
+        settings.MODE = Mode
+    if print_credentials:
+        cmd.CommandSay(answer=("Mode:", Mode))
+    
+        
     f.close()
 
 
