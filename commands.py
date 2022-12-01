@@ -6,7 +6,7 @@ try:
     import sys
     import Boot
     from pathlib import Path
-    from Notifications import Alert, Buttons, AlertType, Dialog, Icon
+    from NotificationsKit import Alert, Buttons, AlertType, Dialog, Icon
     import subprocess
     from src import settings
     net = False
@@ -307,10 +307,10 @@ try:
                 if not cmd_pl == "2":
                     Boot.Run = True
                     if settings.FTU == "2":
-                        import LocalNetworking.server
+                        import NetworkingKit.server
                     else:
-                        import LocalNetworking.auth
-                        if LocalNetworking.auth.DONE:
+                        import NetworkingKit.auth
+                        if NetworkingKit.auth.DONE:
                             Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
                 else:
                     CommandSay("LocalNetworking Isn't Supported On Windown Yet\nIt's Under Development :)")

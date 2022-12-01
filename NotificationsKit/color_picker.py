@@ -1,4 +1,4 @@
-from Notifications.utils import run_applescript
+from NotificationsKit.utils import run_applescript
 from typing import List, Union
 
 
