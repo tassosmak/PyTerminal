@@ -1,14 +1,14 @@
 {
     "user_credentials": {
-        "Name": "",
-        "Password": "",
-        "Mode": ""
+        "Name": "tassos",
+        "Password": "nieh",
+        "Mode": "9"
     },
     "FTU": {
-        "Use": "0"
+        "Use": "2"
     },
     "Internal-Software": {
-        "Enable": "0"
+        "Enable": "1"
     },
     "UI": {
         "Enable-AquaUI": "1"
