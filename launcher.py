@@ -58,7 +58,8 @@ def boot():
             from os import system
             system("killall python")
         else:
-            logger.log_error() # <-- temp delete it
+            if settings.EnableIntSoft:
+                logger.log_error("IntSoft Enabled")
             cmd.CommandSay("There Was An Error", "FAIL")
             from os import system
             system("killall python")

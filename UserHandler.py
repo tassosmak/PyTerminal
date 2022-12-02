@@ -10,7 +10,7 @@ ask_name = ""
 ask_Password = ""
 Dresult = ""
 continue_normal = False
-
+correct_pswd_input = False
 correct_credentials = False
 
 def _reverse_key(text=''):
@@ -126,6 +126,8 @@ def _ask(print_ask=False):
 
 
 def _FTU_init():
+    correct_pswd_input = False
+    
     cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
     cmd.CommandQuest(type='1', Button1='Personal', Button2='Server', ask_admin_msg='How Do You want to use this instanche?')
     #ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
@@ -140,9 +142,12 @@ def _FTU_init():
     cmd.CommandQuest(type='3', quest_msg='What is your name')
     ask_first_name = cmd.Quest_result
     
-    cmd.CommandQuest(type='3', quest_msg='Type a Password')
-    _d_encrypt(type='1', input_text=cmd.Quest_result)
-    ask_first_Password = Dresult
+    while not correct_pswd_input:
+        cmd.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
+        if cmd.Quest_result.isdigit():
+            _d_encrypt(type='1', input_text=cmd.Quest_result)
+            correct_pswd_input = True
+
 
 
     cmd.CommandQuest(type='1' ,ask_admin_msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
@@ -159,7 +164,6 @@ def _FTU_init():
 
 
     edit_json(loc1="user_credentials", loc2="Name", content=ask_first_name)
-    edit_json(loc1="user_credentials", loc2="Password", content=ask_first_Password)
     edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)
     if settings.pl == "1" or settings.pl == "3":
         os.system("clear")
