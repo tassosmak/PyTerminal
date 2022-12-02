@@ -1,0 +1,16 @@
+{
+    "user_credentials": {
+        "Name": "",
+        "Password": "",
+        "Mode": ""
+    },
+    "FTU": {
+        "Use": "0"
+    },
+    "Internal-Software": {
+        "Enable": "0"
+    },
+    "UI": {
+        "Enable-AquaUI": "1"
+    }
+}

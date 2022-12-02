@@ -6,6 +6,8 @@ try:
     import sys
     import Boot
     from pathlib import Path
+    from NotificationsKit import Alert, Buttons, AlertType, Dialog, Icon
+    import subprocess
     from src import settings
     net = False
 
@@ -54,7 +56,6 @@ try:
     plt = 0
     USNAME_PRINT = 0
     sys_detect = platform.uname()
-    MD = 0
     Version = 2
     jump = False
     jump_user = False
@@ -62,18 +63,18 @@ try:
     answer = 0
     ssh = False
 
-    def CommandAsk(plt=0, USNAME_PRINT=0, safe_mode=False):
+    def CommandAsk(plt=0, USNAME_PRINT=0, safe_mode=False, MD='0'):
         if MD == "2":
-            CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt)
+            CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt, MD=MD)
         elif MD == "9": 
-            CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt)
+            CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt, MD=MD)
         elif MD == "3":
-            CommandList(Command=input(f"PyTerminal | Safe-Mode $ "), cmd_pl=plt, safe_md=safe_mode)
+            CommandList(Command=input(f"PyTerminal | Safe-Mode $ "), cmd_pl=plt, safe_md=safe_mode, MD=MD)
         else:
-            CommandList(Command=input(f"PyTerminal Beta | {USNAME_PRINT.capitalize()} $ "), cmd_pl=plt) 
+            CommandList(Command=input(f"PyTerminal Beta | {USNAME_PRINT.capitalize()} $ "), cmd_pl=plt, MD=MD) 
 
 
-    def CommandList(Command=0, cmd_pl=0, safe_md=False):
+    def CommandList(Command=0, cmd_pl=0, safe_md=False, MD=0):
         global jump, jump_user, ask_recv, LCommand, answer
         LCommand = 0
 
@@ -91,9 +92,17 @@ try:
                 CommandSay(answer="tested", color="FAIL")
                 CommandSay(answer="tested", color="OKGREEN")
                 CommandSay(answer="tested", color="PURPLE")
-                if cmd_pl == "1":
-                    now = datetime.datetime.now()
-                    CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                CommandSay(answer="tested", color="UNDERLINE")
+                now = datetime.datetime.now()
+                CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                CommandQuest(type='2', error_msg=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                CommandQuest(type='3', quest_msg='Testing')
+                CommandSay(answer=Quest_result, color="WARNING")
+                CommandQuest(type='1', ask_admin_msg="tested")
+                if Quest_result == 'Yes':
+                    CommandSay(answer='Positive answer', color='WARNING')
+                else:
+                    CommandSay(answer='Negative answer', color='WARNING')
                 if not cmd_pl == "3":
                     Boot.Run = True
                     Boot.SecondaryTask("test", stay_end=True)
@@ -102,7 +111,7 @@ try:
         
         if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
             LCommand = Command
-            CommandSay(answer="PyTerminal V.Beta by Tassos Makrostergios")
+            CommandSay(answer="PyTerminal V.Beta by Makro Software")
         
         if Command == "CML":
             if MD == "2":
@@ -163,9 +172,7 @@ try:
         if Command == "latest":
             Boot.Run = True
             Boot.SecondaryTask(file_name="LineRetriver")
-
-            LCommand = Command
-
+            
 
         if Command == "gen password":
             if not safe_md:
@@ -179,20 +186,21 @@ try:
                 LCommand = Command
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
-                    sys.exit()
+                    if cmd_pl == "1" or cmd_pl == "3":
+                        os.system("killall python")
+                    elif cmd_pl == "2":
+                        os.system('exit')
             elif MD == "2" or MD == "9" or MD == "3":
-                sys.exit()
+                if cmd_pl == "1" or cmd_pl == "3":
+                    os.system("killall python")
+                elif cmd_pl == "2":
+                    os.system('exit')
 
             
         if Command == "jump":
             if not safe_md:
                 LCommand = Command
                 jump = True
-
-        if Command == "jump user":
-            if not safe_md:
-                LCommand = Command
-                jump_user = True
 
 
         if Command == "print md":
@@ -207,16 +215,21 @@ try:
             if not safe_md:
                 LCommand = Command
                 if net:
-                    ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
-                    if ask_type == "1":
+                    CommandQuest(type='1', ask_admin_msg='do you want to be host or reciever', Button1='Host', Button2='Talker')
+                    #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
+                    if Quest_result == "Host":
                         Server.chat()
-                    else:
-                        ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
-                        CommandSay(answer=ask_recv)
+                    elif Quest_result == "Talker":
+                        #ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
+                        CommandQuest(type='3', quest_msg='To Which IP you want to talk to Type Below!')
+                        ask_recv = str(Quest_result)
                         try: 
                             client.Chat(IP=ask_recv)
                         except ConnectionRefusedError:
-                            CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
+                            if not Quest_result == '':
+                                CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
+                            else:
+                               pass 
                 else:
                     CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
 
@@ -230,21 +243,23 @@ try:
 
         if Command == "view file":
             LCommand = Command
-            ask_file = input("type the name of the file you want to view\n:")
+            CommandQuest(type='3', quest_msg='type the name of the file you want to view')
+            #ask_file = input("type the name of the file you want to view\n:")
             if cmd_pl == "1" or cmd_pl == "3":
-                os.system(f"open {ask_file}")
+                os.system(f"cat {Quest_result}")
             elif cmd_pl == "2":
-                os.system(f"more {ask_file}")
+                os.system(f"more {Quest_result}")
         
         if Command == "edit file":
             if not safe_md:
                 if MD == "2":           
                     if cmd_pl == "1" or cmd_pl == "3":
-                        ask_file = input("type the name of the file you want to edit\n:")
-                        if ask_file.endswith(".py"):
-                            os.system(f"vim {ask_file}")
+                        CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
+                        #ask_file = input("type the name of the file you want to edit\n:")
+                        if Quest_result.endswith(".py"):
+                            os.system(f"vim {Quest_result}")
                         else:
-                            os.system(f"nano {ask_file}")
+                            os.system(f"nano {Quest_result}")
                     elif cmd_pl == "2":
                         CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
                 else:
@@ -255,7 +270,7 @@ try:
             if not safe_md:
                 LCommand = Command
                 if net:
-                    weather = os.system("curl wttr.in/")
+                    os.system("curl wttr.in/")
                     CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
                 else:
                     CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
@@ -289,13 +304,13 @@ try:
 
         if Command == "devices":
             if not safe_md:
-                if not settings.pl == "2":
+                if not cmd_pl == "2":
                     Boot.Run = True
-                    if settings.server_use:
-                        import LocalNetworking.server
+                    if settings.FTU == "2":
+                        import NetworkingKit.server
                     else:
-                        import LocalNetworking.auth
-                        if LocalNetworking.auth.DONE:
+                        import NetworkingKit.auth
+                        if NetworkingKit.auth.DONE:
                             Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
                 else:
                     CommandSay("LocalNetworking Isn't Supported On Windown Yet\nIt's Under Development :)")
@@ -314,12 +329,46 @@ try:
         PURPLE = '\033[95m'
         DARKCYAN = '\033[36m'
 
-    def CommandPush(message):
-        command = f'''
-        osascript -e 'display notification "{message}" with title "PyTerminal"'
-        '''
-        os.system(command)
+    def CommandPush(message, header=settings.Default_text):
+        if settings.pl == '1':
+            command = f'''
+            osascript -e 'display notification "{message}" with title "{header}"'
+            '''
+            os.system(command)
 
+
+    def CommandQuest(type='0', Button1='No', Button2='Yes', error_msg="Blank", quest_msg='Blank', quest_icon=Icon.NOTE, ask_admin_msg="This Procces Require Administraive Access\n are you sure you want to grant it?"):
+        global Quest_result
+        Quest_result = 0
+        if type == '1':
+            if settings.EnableGUI:
+                    al = Alert(ask_admin_msg).with_buttons(Buttons([Button1, Button2,])).show()
+
+                    Quest_result = al.button_returned
+            else:
+                Quest_result = input((ask_admin_msg, f'Type {Button1} or {Button2}'))
+        elif type == "2":
+            if settings.EnableGUI:
+                applescript = f"""
+                display dialog "{error_msg}" with title "{settings.Default_text}" with icon caution buttons "OK"
+                """
+
+                subprocess.call("osascript -e '{}'".format(applescript), shell=True)
+            else:
+                Quest_result = input(quest_msg)
+        elif type == '3':
+            if settings.EnableGUI:
+                buttons = Buttons(["Ok", "Exit"])
+                the_dialog = Dialog(quest_msg).with_title(settings.Default_text)
+                the_dialog.with_buttons(buttons)
+                the_dialog.with_icon(quest_icon)
+                the_dialog.with_input("Type Here:")
+
+                result = the_dialog.show()
+
+                Quest_result = result.text_returned  # => text entered in input
+            else:
+                Quest_result = input(quest_msg)
 
 
     def CommandSay(answer=0, color=0):
@@ -334,15 +383,15 @@ try:
         #         print("\n",answer) and Server.SendOnly(Say=answer)
         # else:
         if color == "WARNING":
-            print(f"\n{bcolors.WARNING}{answer}{bcolors.WHITE}\n")
+            sys.stderr.write(f"\n{bcolors.WARNING}{answer}{bcolors.WHITE}\n")
         elif color == "FAIL":
-            print(f"\n{bcolors.FAIL}{answer}{bcolors.WHITE}\n")
+            sys.stderr.write(f"\n{bcolors.FAIL}{answer}{bcolors.WHITE}\n")
         elif color == "OKGREEN":
-            print(f"\n{bcolors.OKGREEN}{answer}{bcolors.WHITE}\n")  
+            sys.stderr.write(f"\n{bcolors.OKGREEN}{answer}{bcolors.WHITE}\n")  
         elif color == "PURPLE":
-            print(f"\n{bcolors.PURPLE}{answer}{bcolors.WHITE}\n") 
+            sys.stderr.write(f"\n{bcolors.PURPLE}{answer}{bcolors.WHITE}\n")
         else:
-            print(f"\n{answer}\n")
+            sys.stderr.write(f"\n{answer}\n")
             #print(answer)
 except BaseException:
     import Error_Logger.Logger as logger

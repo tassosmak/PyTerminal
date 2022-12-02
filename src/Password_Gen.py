@@ -1,9 +1,8 @@
 import string
 from random import random, shuffle, choice
-import settings
+from src import settings
 
 def gen():
-    print(settings.MODE, "pswd")
     characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")
     length = int(input("How long do you want your password to be:"))
     shuffle(characters)
