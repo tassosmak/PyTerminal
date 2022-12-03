@@ -39,7 +39,7 @@ def _d_encrypt(type=0, input_text=''):
     global Dresult
 
     outstr = "abcdenghik"
-    instr =  "1234567890" 
+    instr = "1234567890" 
 
     if type == "1":
         trans = str.maketrans(instr, outstr)
@@ -64,8 +64,7 @@ def _get_credentials(print_credentials=False):
             from src import Recover_Json
         except ImportError:
             cmd.CommandSay(answer='This Installation is corrupted install a new one', color='FAIL')
-            from os import system
-            system('killall python')
+            subprocess.call("/bin/killall python", shell=False)
         f = open('Info.json')
         
 
