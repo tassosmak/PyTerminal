@@ -127,71 +127,79 @@ def _ask(print_ask=False):
 
 
 def _FTU_init():
-    correct_pswd_input = False
     
-    cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
-    cmd.CommandQuest(type='1', Button1='Personal', Button2='Server', ask_admin_msg='How Do You want to use this instanche?')
-    #ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
-    if cmd.Quest_result == 'Personal':
-        ask_type = '1'
-    elif cmd.Quest_result == 'Server':
-        ask_type = '2'
-    else:
-        ask_type = '1'
-    edit_json(loc1="FTU", loc2="Use", content=ask_type)
-    
-    cmd.CommandQuest(type='3', quest_msg='What is your name')
-    ask_first_name = cmd.Quest_result
-    
-    while not correct_pswd_input:
-        cmd.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
-        if cmd.Quest_result.isdigit():
-            _d_encrypt(type='1', input_text=cmd.Quest_result)
-            correct_pswd_input = True
+    def _ask_use():
+        cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
+        cmd.CommandQuest(type='1', Button1='Personal', Button2='Server', ask_admin_msg='How Do You want to use this instanche?')
+        #ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
+        if cmd.Quest_result == 'Personal':
+            ask_type = '1'
+        elif cmd.Quest_result == 'Server':
+            ask_type = '2'
+        else:
+            ask_type = '1'
+        edit_json(loc1="FTU", loc2="Use", content=ask_type)
+        
+        
+    def _ask_name_password():    
+        cmd.CommandQuest(type='3', quest_msg='What is your name')
+        edit_json(loc1="user_credentials", loc2="Name", content=cmd.Quest_result)
+        
+        correct_pswd_input = False
+        while not correct_pswd_input:
+            cmd.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
+            if cmd.Quest_result.isdigit():
+                _d_encrypt(type='1', input_text=cmd.Quest_result)
+                correct_pswd_input = True
+
+
+    def _ask_mode():
+        cmd.CommandQuest(type='1' ,ask_admin_msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
+        if cmd.Quest_result == 'The Advanced Mode':
+            ask_first_Mode = '2'
+        elif cmd.Quest_result == 'The Basic Mode':
+            ask_first_Mode = '1'
+        elif cmd.Quest_result == '9':
+            ask_first_Mode = '9'
+        else:
+            ask_first_Mode = '1'
+        edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)        
 
 
 
-    cmd.CommandQuest(type='1' ,ask_admin_msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
-    if cmd.Quest_result == 'The Advanced Mode':
-        ask_first_Mode = '2'
-    elif cmd.Quest_result == 'The Basic Mode':
-        ask_first_Mode = '1'
-    elif cmd.Quest_result == '9':
-        ask_first_Mode = '9'
-    else:
-        ask_first_Mode = '1'
-    
-
-
-
-    edit_json(loc1="user_credentials", loc2="Name", content=ask_first_name)
-    edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)
-    if settings.pl == "1" or settings.pl == "3":
-        os.system("clear")
-    elif settings.pl == "2":
-        os.system("cls")
-    try:
-        import pyrad
-    except ModuleNotFoundError:
-        ftu_install.install(name="pyrad")
-    try:
-        import clipboard
-    except ModuleNotFoundError:
-        ftu_install.install(name="clipboard")
-    try:
-        import pyrad
-        import clipboard
-    except ModuleNotFoundError:       
-        cmd.CommandSay("PIP is missing\ncritical features will not work", "FAIL")
-        import time
-        time.sleep(7)
-    if not settings.MODE == "9":
+    def _install_dependecies():
         if settings.pl == "1" or settings.pl == "3":
             os.system("clear")
         elif settings.pl == "2":
             os.system("cls")
+        try:
+            import pyrad
+        except ModuleNotFoundError:
+            ftu_install.install(name="pyrad")
+        try:
+            import clipboard
+        except ModuleNotFoundError:
+            ftu_install.install(name="clipboard")
+        try:
+            import pyrad
+            import clipboard
+        except ModuleNotFoundError:       
+            cmd.CommandSay("PIP is missing\ncritical features will not work", "FAIL")
+            import time
+            time.sleep(7)
+        if not settings.MODE == "9":
+            if settings.pl == "1" or settings.pl == "3":
+                os.system("clear")
+            elif settings.pl == "2":
+                os.system("cls")
 
-
+    """
+    run
+    """
+    _ask_use()
+    _ask_name_password()
+    _ask_mode()
+    _install_dependecies()
 
 
 
