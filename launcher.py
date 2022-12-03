@@ -1,7 +1,7 @@
 import Error_Logger.Logger as logger
 if not __name__ == '__main__':
     import Kernel as kernel
-    import UserHandler as UserH
+    from UserHandler import init, edit_json
     import commands as cmd
 from src import settings
 
@@ -19,8 +19,8 @@ def run():
         except IndexError:
             ask_new_md = input("it seems that the registered mode of user is corrupted\nwhat mode did you used\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n")
             settings.MODE = ask_new_md
-            UserH.edit_json(loc1='user_credentials', loc2='Mode', content=ask_new_md)
-            UserH.edit_json(loc1='Internal-Software', loc2='Enable', content='0')
+            edit_json(loc1='user_credentials', loc2='Mode', content=ask_new_md)
+            edit_json(loc1='Internal-Software', loc2='Enable', content='0')
         if cmd.jump:
             ask()
             settings.MODE = ask_core
@@ -42,7 +42,7 @@ def run():
 
 
 if not __name__ == '__main__':
-    UserH.init()
+    init()
 
 def boot():
     try:
