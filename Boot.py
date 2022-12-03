@@ -1,5 +1,6 @@
 import threading
-import launcher
+if __name__ == '__main__':
+    import launcher
 from pathlib import Path
 from src import settings
 from Error_Logger import Logger
