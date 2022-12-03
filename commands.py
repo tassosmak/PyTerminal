@@ -6,6 +6,7 @@ try:
     import sys
     import Boot
     from pathlib import Path
+    import subprocess
     from NotificationsKit import Alert, Buttons, AlertType, Dialog, Icon
     from src import settings
     net = False
