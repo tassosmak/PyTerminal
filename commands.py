@@ -67,7 +67,7 @@ try:
         if MD == "2":
             CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt, MD=MD)
         elif MD == "9": 
-            CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt, MD=MD)
+            CommandList(Command=input(f"PyTerminal {sys_detect.system} | {sys_detect.machine} % "), cmd_pl=plt, MD=MD)
         elif MD == "3":
             CommandList(Command=input(f"PyTerminal | Safe-Mode $ "), cmd_pl=plt, safe_md=safe_mode, MD=MD)
         else:
