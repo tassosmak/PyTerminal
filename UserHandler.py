@@ -3,6 +3,7 @@ if not __name__ == '__main__':
     import commands as cmd
 import platform
 import os
+import subprocess
 import json
 from src import FTU_Installer as ftu_install, settings
 
@@ -169,7 +170,7 @@ def _FTU_init():
 
     def _install_dependecies():
         if settings.pl == "1" or settings.pl == "3":
-            os.system("clear")
+            subprocess.call("/bin/clear", shell=False)
         elif settings.pl == "2":
             os.system("cls")
         try:
@@ -189,7 +190,7 @@ def _FTU_init():
             time.sleep(7)
         if not settings.MODE == "9":
             if settings.pl == "1" or settings.pl == "3":
-                os.system("clear")
+                subprocess.call("/bin/clear", shell=False)
             elif settings.pl == "2":
                 os.system("cls")
 
