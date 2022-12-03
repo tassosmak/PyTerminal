@@ -1,7 +1,8 @@
 import Error_Logger.Logger as logger
-import Kernel as kernel
-import UserHandler as UserH
-import commands as cmd
+if not __name__ == '__main__':
+    import Kernel as kernel
+    import UserHandler as UserH
+    import commands as cmd
 from src import settings
 
 def ask():
@@ -40,10 +41,10 @@ def run():
 
 
 
+if not __name__ == '__main__':
+    UserH.init()
+    cmd.CommandSay(answer="Go Ahead")
 
-UserH.init()
-
-cmd.CommandSay(answer="Go Ahead")
 def boot():
     try:
         #print(UserH.UserMD)

@@ -1,5 +1,6 @@
 try:
-    import commands as cmd
+    if not __name__ == '__main__':
+        import commands as cmd
 
 
     def history():

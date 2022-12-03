@@ -1,5 +1,6 @@
 import datetime
-import commands as cmd
+if not __name__ == '__main__':
+    import commands as cmd
 import platform
 import os
 import json
