@@ -7,7 +7,6 @@ try:
     import Boot
     from pathlib import Path
     from NotificationsKit import Alert, Buttons, AlertType, Dialog, Icon
-    import subprocess
     from src import settings
     net = False
 
@@ -187,7 +186,7 @@ try:
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
                     if cmd_pl == "1" or cmd_pl == "3":
-                        os.system("killall python")
+                        os.system('killall python')
                     elif cmd_pl == "2":
                         os.system('exit')
             elif MD == "2" or MD == "9" or MD == "3":

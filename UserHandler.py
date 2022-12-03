@@ -64,7 +64,7 @@ def _get_credentials(print_credentials=False):
             from src import Recover_Json
         except ImportError:
             cmd.CommandSay(answer='This Installation is corrupted install a new one', color='FAIL')
-            subprocess.call("/bin/killall python", shell=False)
+            os.system('killall python')
         f = open('Info.json')
         
 
@@ -169,7 +169,7 @@ def _FTU_init():
 
     def _install_dependecies():
         if settings.pl == "1" or settings.pl == "3":
-            subprocess.call("/bin/clear", shell=False)
+            os.system('clear')
         elif settings.pl == "2":
             os.system("cls")
         try:
@@ -189,7 +189,7 @@ def _FTU_init():
             time.sleep(7)
         if not settings.MODE == "9":
             if settings.pl == "1" or settings.pl == "3":
-                subprocess.call("/bin/clear", shell=False)
+                os.system('clear')
             elif settings.pl == "2":
                 os.system("cls")
 
