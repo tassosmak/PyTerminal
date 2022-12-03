@@ -43,7 +43,6 @@ def run():
 
 if not __name__ == '__main__':
     UserH.init()
-    cmd.CommandSay(answer="Go Ahead")
 
 def boot():
     try:

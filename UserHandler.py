@@ -225,6 +225,7 @@ def init():
                     settings.PASSWORD = ask_Password
                     welcome_msg = f"Welcome {Name.capitalize()}"
                     cmd.CommandPush(message=welcome_msg)
+                    cmd.CommandSay(answer="Go Ahead")
             else:
                 settings.MODE = "3"
                 correct_credentials = True
