@@ -136,9 +136,11 @@ def _FTU_init():
             ask_type = '1'
         elif cmd.Quest_result == 'Server':
             ask_type = '2'
+            cmd.CommandQuest(type='3', quest_msg='Type The ip address you want to send the commands')
+            edit_json(loc1="FTU", loc2="IP", content=cmd.Quest_result)
         else:
             ask_type = '1'
-        edit_json(loc1="FTU", loc2="Use", content=ask_type)
+        # edit_json(loc1="FTU", loc2="Use", content=ask_type)
         
         
     def _ask_name_password():    

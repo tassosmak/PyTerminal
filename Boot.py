@@ -2,7 +2,7 @@ import threading
 if __name__ == '__main__':
     import launcher
 from pathlib import Path
-from src import settings
+from src import settings, Server
 from Error_Logger import Logger
 
 
@@ -34,6 +34,14 @@ def SecondaryTask(file_name="0", stay_end=False):
                 os.system(f"start cmd /c py  src/{file_name}.py")
         else:
             os.system(f"python3 {base_folder}/src/{file_name}.py")
+
+
+def ServerTask(CommandToSay):
+    # try:
+    #     Server.SendOnly(Say=CommandToSay)
+    # except ConnectionRefusedError:
+    #     pass 
+    pass
 
 try:
     if __name__ == "__main__":

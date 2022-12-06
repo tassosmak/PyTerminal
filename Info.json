@@ -2,10 +2,11 @@
     "user_credentials": {
         "Name": "tassos",
         "Password": "nieh",
-        "Mode": "9"
+        "Mode": "2"
     },
     "FTU": {
-        "Use": "2"
+        "Use": "0",
+        "IP": "127.0.0.1"
     },
     "Internal-Software": {
         "Enable": "1"
