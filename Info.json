@@ -2,14 +2,14 @@
     "user_credentials": {
         "Name": "tassos",
         "Password": "nieh",
-        "Mode": "2"
+        "Mode": "1"
     },
     "FTU": {
-        "Use": "0",
-        "IP": "127.0.0.1"
+        "Use": "1",
+        "IP": "0.0.0.0"
     },
     "Internal-Software": {
-        "Enable": "1"
+        "Enable": "0"
     },
     "UI": {
         "Enable-AquaUI": "1"

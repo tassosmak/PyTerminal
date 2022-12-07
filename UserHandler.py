@@ -3,7 +3,6 @@ if not __name__ == '__main__':
     import commands as cmd
 import platform
 import os
-import subprocess
 import json
 from src import FTU_Installer as ftu_install, settings
 
@@ -14,6 +13,8 @@ Dresult = ""
 continue_normal = False
 correct_pswd_input = False
 correct_credentials = False
+UserLess_Connection = False
+GO_TO_FTU = False
 
 def _reverse_key(text=''):
     str = ""
@@ -23,8 +24,8 @@ def _reverse_key(text=''):
   
 
 
-def edit_json(loc1="", loc2="", content=""):
-    with open("Info.json", 'r+') as f:
+def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
+    with open(file_name, 'r+') as f:
         data = json.load(f)
         if not loc2 == "":
             data[loc1][loc2] = content
@@ -53,8 +54,27 @@ def _d_encrypt(type=0, input_text=''):
 
 
 
-
-
+def _get_propiatery(print_credentials=False):
+    global UserLess_Connection, GO_TO_FTU
+    try:
+        f = open('MakroPropiatery.json')
+        
+        data = json.load(f)
+    
+        UserLess_Connection = data['user_login']['UserLess Connection']
+        if UserLess_Connection == "1":
+            settings.UserLess_Connection = True
+        if print_credentials:
+            cmd.CommandSay(answer=("UserLess Connection:", UserLess_Connection))
+        
+        GO_TO_FTU = data['user_login']['GO TO FTU']
+        if GO_TO_FTU == "1":
+            settings.GO_TO_FTU = True
+        if print_credentials:
+            cmd.CommandSay(answer=("GO_TO_FTU:", GO_TO_FTU))
+        f.close()
+    except FileNotFoundError:
+        pass
 def _get_credentials(print_credentials=False):
     global Name, Password, Mode, FTU, GUI
     try:
@@ -126,7 +146,7 @@ def _ask(print_ask=False):
         cmd.CommandSay(answer=ask_Password)
 
 
-def _FTU_init():
+def _FTU_init(edit_use=True):
     
     def _ask_use():
         cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
@@ -140,7 +160,8 @@ def _FTU_init():
             edit_json(loc1="FTU", loc2="IP", content=cmd.Quest_result)
         else:
             ask_type = '1'
-        # edit_json(loc1="FTU", loc2="Use", content=ask_type)
+        if edit_use:
+            edit_json(loc1="FTU", loc2="Use", content=ask_type)
         
         
     def _ask_name_password():    
@@ -211,43 +232,55 @@ def _FTU_init():
 
 def init():
     _pl_finder()
-    continue_normal = False
-    correct_credentials = False
-    with open('src/history.log', 'a') as f:    
-        now = datetime.datetime.now()
-        f.write(now.strftime("%Y-%m-%d %H:%M\n"))
     _get_credentials() # <-- if you want to print the credentials set the paramater to True
-    if not FTU == "0":
-        continue_normal = True
-    else:
-        _FTU_init()
-        _get_credentials()
-        continue_normal = True
+    
+    def normal_init():
+        continue_normal = False
+        correct_credentials = False
+        with open('src/history.log', 'a') as f:    
+            now = datetime.datetime.now()
+            f.write(now.strftime("%Y-%m-%d %H:%M\n"))
+        if not FTU == "0":
+            continue_normal = True
+        else:
+            _FTU_init()
+            _get_credentials()
+            continue_normal = True
 
-    if continue_normal:
-        while not correct_credentials:
-            _ask()
-            if not ask_name == "":
-                if ask_name == Name and ask_Password == Password:
+        if continue_normal:
+            while not correct_credentials:
+                _ask()
+                if not ask_name == "":
+                    if ask_name == Name and ask_Password == Password:
+                        correct_credentials = True
+                        settings.FTU = FTU
+                        settings.USERNAME = ask_name
+                        settings.PASSWORD = ask_Password
+                        welcome_msg = f"Welcome {Name.capitalize()}"
+                        cmd.CommandPush(message=welcome_msg)
+                        cmd.CommandSay(answer="Go Ahead")
+                else:
+                    settings.MODE = "3"
                     correct_credentials = True
-                    settings.FTU = FTU
-                    settings.USERNAME = ask_name
-                    settings.PASSWORD = ask_Password
-                    welcome_msg = f"Welcome {Name.capitalize()}"
-                    cmd.CommandPush(message=welcome_msg)
-                    cmd.CommandSay(answer="Go Ahead")
-            else:
-                settings.MODE = "3"
-                correct_credentials = True
+    def advanced_init():
+        # _get_propiatery(True)
+        if settings.GO_TO_FTU:
+            _FTU_init(False)
+        settings.FTU = '2'
+        settings.USERNAME = "lets keep it private"
+        settings.PASSWORD = '2007'
+        settings.MODE = '2'
+        cmd.CommandPush(message="Lets keep it private", header='Makro PyTerminal Internal Software')
 
-
-
-
-
-
-
-
-
+    # print(settings.EnableIntSoft)
+    if settings.EnableIntSoft:
+        _get_propiatery(True)
+        if UserLess_Connection == '1' or GO_TO_FTU == '1':
+            advanced_init()
+        else:
+            normal_init()
+    else:
+        normal_init()
 
 
 

@@ -5,15 +5,27 @@ if not __name__ == '__main__':
     import commands as cmd
 from src import settings
 
-def ask():
-    global ask_core
-    print("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
+Modes = [
+    '1',
+    '2',
+    '9'
+]
+
+def _ask():
+    cmd.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
     ask_core = input("select Mode")
     if ask_core == '9' and settings.EnableIntSoft == False:
         ask_core = '2'
+    while not ask_core in Modes:
+        cmd.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
+        ask_core = input("select Mode")
+        if ask_core in Modes:
+            if ask_core == '9' and settings.EnableIntSoft == False:
+                ask_core = '2'
+    settings.MODE = ask_core
 
 
-def run():    
+def _run():    
         try:
             kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
         except IndexError:
@@ -22,23 +34,10 @@ def run():
             edit_json(loc1='user_credentials', loc2='Mode', content=ask_new_md)
             edit_json(loc1='Internal-Software', loc2='Enable', content='0')
         if cmd.jump:
-            ask()
-            settings.MODE = ask_core
-            try:
-                cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
-                if settings.EnableIntSoft:
-                    kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
-                else:
-                    kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
-            except IndexError:
-                ask_corect_md = input("the selected mode doesn't exist These is the available options\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n ")
-                settings.MODE = ask_corect_md
-                if settings.EnableIntSoft:
-                    kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
-                else:
-                    kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
+            _ask()
+            cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
+            kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
             cmd.jump = False
-
 
 
 if not __name__ == '__main__':
@@ -47,7 +46,7 @@ if not __name__ == '__main__':
 def boot():
     try:
         #print(UserH.UserMD)
-        run()
+        _run()
     except KeyboardInterrupt:
         print("\n")
         pass

@@ -5,4 +5,6 @@ FTU = 0
 EnableIntSoft = False
 pl = 0
 EnableGUI = False
+UserLess_Connection = "0"
+GO_TO_FTU = False
 Default_text = 'Makro PyTerminal Beta'
