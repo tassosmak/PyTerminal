@@ -290,10 +290,9 @@ def init():
         if settings.GO_TO_FTU:
             _FTU_init(False)
         settings.FTU = '2'
-        settings.USERNAME = "lets keep it private"
-        settings.PASSWORD = '2007'
+        settings.USERNAME = "Lets Keep It Private"
         settings.MODE = '2'
-        cmd.CommandPush(message="Lets keep it private", header='Makro PyTerminal Internal Software')
+        cmd.CommandPush(message="Lets keep it private")
 
     # print(settings.EnableIntSoft)
     if settings.EnableIntSoft:
