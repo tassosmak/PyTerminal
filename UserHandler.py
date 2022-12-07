@@ -4,6 +4,8 @@ if not __name__ == '__main__':
 import platform
 import os
 import json
+import string
+from random import random, shuffle, choice
 from src import FTU_Installer as ftu_install, settings
 
 
@@ -34,6 +36,7 @@ def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
         f.seek(0)
         json.dump(data, f, indent=4)
         f.truncate()
+        
 
 
 def _d_encrypt(type=0, input_text=''):
@@ -51,6 +54,21 @@ def _d_encrypt(type=0, input_text=''):
         reverse = str.maketrans(outstr, instr)
         final_text = input_text.translate(reverse)
         Dresult = _reverse_key(final_text)
+
+
+        
+def _gen_safe_password():
+    characters = list(string.digits)
+    length = 8
+    # length = int(cmd.Quest_result)
+    shuffle(characters)
+    password = []
+    for i in range(length):
+        password.append(choice(characters))
+    password_str = ''.join(str(e) for e in password)
+    final_password = str(password_str)
+    cmd.CommandSay(answer=f'YOUR PASSWORD IS {final_password} keep it safe', color="WARNING")
+    _d_encrypt(type='1', input_text=final_password)
 
 
 
@@ -170,10 +188,15 @@ def _FTU_init(edit_use=True):
         
         correct_pswd_input = False
         while not correct_pswd_input:
-            cmd.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
-            if cmd.Quest_result.isdigit():
-                _d_encrypt(type='1', input_text=cmd.Quest_result)
+            cmd.CommandQuest(type='1', ask_admin_msg='Do You Want to to Use A safe Password', Button1='No', Button2='Yes')
+            if cmd.Quest_result == 'Yes':
+                _gen_safe_password()
                 correct_pswd_input = True
+            else:
+                cmd.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
+                if cmd.Quest_result.isdigit():
+                    _d_encrypt(type='1', input_text=cmd.Quest_result)
+                    correct_pswd_input = True
 
 
     def _ask_mode():
