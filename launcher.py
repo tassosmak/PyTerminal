@@ -25,7 +25,7 @@ def _ask():
     settings.MODE = ask_core
 
 
-def _run():    
+def _run():
         try:
             kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
         except IndexError:

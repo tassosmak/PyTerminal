@@ -23,7 +23,7 @@ def _reverse_key(text=''):
     for i in text:
         str = i + str
     return str
-  
+
 
 
 def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
@@ -36,14 +36,14 @@ def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
         f.seek(0)
         json.dump(data, f, indent=4)
         f.truncate()
-        
+
 
 
 def _d_encrypt(type=0, input_text=''):
     global Dresult
 
     outstr = "abcdenghik"
-    instr = "1234567890" 
+    instr = "1234567890"
 
     if type == "1":
         trans = str.maketrans(instr, outstr)
@@ -56,8 +56,9 @@ def _d_encrypt(type=0, input_text=''):
         Dresult = _reverse_key(final_text)
 
 
-        
+
 def _gen_safe_password():
+    global final_password
     characters = list(string.digits)
     length = 8
     # length = int(cmd.Quest_result)
@@ -67,7 +68,7 @@ def _gen_safe_password():
         password.append(choice(characters))
     password_str = ''.join(str(e) for e in password)
     final_password = str(password_str)
-    cmd.CommandSay(answer=f'YOUR PASSWORD IS {final_password} keep it safe', color="WARNING")
+    # cmd.CommandSay(answer=f'YOUR PASSWORD IS {final_password} keep it safe', color="WARNING")
     _d_encrypt(type='1', input_text=final_password)
 
 
@@ -76,15 +77,15 @@ def _get_propiatery(print_credentials=False):
     global UserLess_Connection, GO_TO_FTU
     try:
         f = open('MakroPropiatery.json')
-        
+
         data = json.load(f)
-    
+
         UserLess_Connection = data['user_login']['UserLess Connection']
         if UserLess_Connection == "1":
             settings.UserLess_Connection = True
         if print_credentials:
             cmd.CommandSay(answer=("UserLess Connection:", UserLess_Connection))
-        
+
         GO_TO_FTU = data['user_login']['GO TO FTU']
         if GO_TO_FTU == "1":
             settings.GO_TO_FTU = True
@@ -104,7 +105,7 @@ def _get_credentials(print_credentials=False):
             cmd.CommandSay(answer='This Installation is corrupted install a new one', color='FAIL')
             os.system('killall python')
         f = open('Info.json')
-        
+
 
     data = json.load(f)
 
@@ -165,10 +166,10 @@ def _ask(print_ask=False):
 
 
 def _FTU_init(edit_use=True):
-    
+
     def _ask_use():
         cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
-        cmd.CommandQuest(type='1', Button1='Personal', Button2='Server', ask_admin_msg='How Do You want to use this instanche?')
+        cmd.CommandQuest(type='1', Button1='Server', Button2='Personal', ask_admin_msg='How Do You want to use this instanche?')
         #ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
         if cmd.Quest_result == 'Personal':
             ask_type = '1'
@@ -180,9 +181,9 @@ def _FTU_init(edit_use=True):
             ask_type = '1'
         if edit_use:
             edit_json(loc1="FTU", loc2="Use", content=ask_type)
-        
-        
-    def _ask_name_password():    
+
+
+    def _ask_name_password():
         cmd.CommandQuest(type='3', quest_msg='What is your name')
         edit_json(loc1="user_credentials", loc2="Name", content=cmd.Quest_result)
         
@@ -191,6 +192,8 @@ def _FTU_init(edit_use=True):
             cmd.CommandQuest(type='1', ask_admin_msg='Do You Want to to Use A safe Password', Button1='No', Button2='Yes')
             if cmd.Quest_result == 'Yes':
                 _gen_safe_password()
+                Password_msg= f'YOUR PASSWORD IS {final_password} KEEP IT SAFE'
+                cmd.CommandQuest(type='2', error_msg=Password_msg)
                 correct_pswd_input = True
             else:
                 cmd.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
@@ -209,7 +212,7 @@ def _FTU_init(edit_use=True):
             ask_first_Mode = '9'
         else:
             ask_first_Mode = '1'
-        edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)        
+        edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)
 
 
 
@@ -229,7 +232,7 @@ def _FTU_init(edit_use=True):
         try:
             import pyrad
             import clipboard
-        except ModuleNotFoundError:       
+        except ModuleNotFoundError:
             cmd.CommandSay("PIP is missing\ncritical features will not work", "FAIL")
             import time
             time.sleep(7)
@@ -260,7 +263,7 @@ def init():
     def normal_init():
         continue_normal = False
         correct_credentials = False
-        with open('src/history.log', 'a') as f:    
+        with open('src/history.log', 'a') as f:
             now = datetime.datetime.now()
             f.write(now.strftime("%Y-%m-%d %H:%M\n"))
         if not FTU == "0":

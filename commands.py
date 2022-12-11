@@ -355,7 +355,7 @@ try:
 
                 subprocess.call("osascript -e '{}'".format(applescript), shell=True)
             else:
-                Quest_result = input(quest_msg)
+                Quest_result = CommandSay(answer=quest_msg, color='WARNING')
         elif type == '3':
             if settings.EnableGUI:
                 buttons = Buttons(["Ok", "Exit"])
