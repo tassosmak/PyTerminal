@@ -39,7 +39,7 @@ def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
 
 
 
-def _d_encrypt(type=0, input_text=''):
+def _d_encrypt(type=0, input_text='', not_edit=False):
     global Dresult
 
     outstr = "abcdenghik"
@@ -49,7 +49,8 @@ def _d_encrypt(type=0, input_text=''):
         trans = str.maketrans(instr, outstr)
         final_text = input_text.translate(trans)
         Dresult = _reverse_key(final_text)
-        edit_json(loc1='user_credentials', loc2='Password', content=Dresult)
+        if not not_edit:
+            edit_json(loc1='user_credentials', loc2='Password', content=Dresult)
     elif type == '2':
         reverse = str.maketrans(outstr, instr)
         final_text = input_text.translate(reverse)
@@ -69,7 +70,7 @@ def _gen_safe_password():
     password_str = ''.join(str(e) for e in password)
     final_password = str(password_str)
     # cmd.CommandSay(answer=f'YOUR PASSWORD IS {final_password} keep it safe', color="WARNING")
-    _d_encrypt(type='1', input_text=final_password)
+    _d_encrypt(type='1', input_text=final_password, not_edit=True)
 
 
 
