@@ -39,7 +39,7 @@ def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
 
 
 
-def _d_encrypt(type=0, input_text='', not_edit=False):
+def _d_encrypt(type=0, input_text=''):
     global Dresult
 
     outstr = "abcdenghik"
@@ -49,8 +49,7 @@ def _d_encrypt(type=0, input_text='', not_edit=False):
         trans = str.maketrans(instr, outstr)
         final_text = input_text.translate(trans)
         Dresult = _reverse_key(final_text)
-        if not not_edit:
-            edit_json(loc1='user_credentials', loc2='Password', content=Dresult)
+        edit_json(loc1='user_credentials', loc2='Password', content=Dresult)
     elif type == '2':
         reverse = str.maketrans(outstr, instr)
         final_text = input_text.translate(reverse)
@@ -70,7 +69,7 @@ def _gen_safe_password():
     password_str = ''.join(str(e) for e in password)
     final_password = str(password_str)
     # cmd.CommandSay(answer=f'YOUR PASSWORD IS {final_password} keep it safe', color="WARNING")
-    _d_encrypt(type='1', input_text=final_password, not_edit=True)
+    _d_encrypt(type='1', input_text=final_password)
 
 
 
@@ -168,6 +167,12 @@ def _ask(print_ask=False):
 
 def _FTU_init(edit_use=True):
 
+
+    def _check_gui():
+        if not settings.pl == '1':
+            edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
+            settings.EnableGUI = False
+
     def _ask_use():
         cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
         cmd.CommandQuest(type='1', Button1='Server', Button2='Personal', ask_admin_msg='How Do You want to use this instanche?')
@@ -246,6 +251,7 @@ def _FTU_init(edit_use=True):
     """
     run
     """
+    _check_gui()
     _ask_use()
     _ask_name_password()
     _ask_mode()
