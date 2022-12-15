@@ -34,14 +34,6 @@ def SecondaryTask(file_name="0", stay_end=False):
         else:
             os.system(f"python3 {base_folder}/src/{file_name}.py")
 
-
-def ServerTask(CommandToSay):
-    # try:
-    #     Server.SendOnly(Say=CommandToSay)
-    # except ConnectionRefusedError:
-    #     pass 
-    pass
-
 try:
     if __name__ == "__main__":
         t1 = threading.Thread(target=MainTask, name='t1')

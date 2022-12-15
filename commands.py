@@ -384,19 +384,14 @@ try:
         # else:
         if color == "WARNING":
             sys.stderr.write(f"\n{bcolors.WARNING}{answer}{bcolors.WHITE}\n")
-            Boot.ServerTask(CommandToSay=answer)
         elif color == "FAIL":
             sys.stderr.write(f"\n{bcolors.FAIL}{answer}{bcolors.WHITE}\n")
-            Boot.ServerTask(CommandToSay=answer)
         elif color == "OKGREEN":
             sys.stderr.write(f"\n{bcolors.OKGREEN}{answer}{bcolors.WHITE}\n")
-            Boot.ServerTask(CommandToSay=answer) 
         elif color == "PURPLE":
             sys.stderr.write(f"\n{bcolors.PURPLE}{answer}{bcolors.WHITE}\n")
-            Boot.ServerTask(CommandToSay=answer)
         else:
             sys.stderr.write(f"\n{answer}\n")
-            Boot.ServerTask(CommandToSay=answer)
             #print(answer)
 except BaseException:
     import Error_Logger.Logger as logger
