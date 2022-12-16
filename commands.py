@@ -346,7 +346,7 @@ try:
 
                     Quest_result = al.button_returned
             else:
-                Quest_result = input((ask_admin_msg, f'Type {Button1} or {Button2}'))
+                Quest_result = input(f'{ask_admin_msg}, Type "{Button1}" or "{Button2}":')
         elif type == "2":
             if settings.EnableGUI:
                 applescript = f"""
@@ -355,7 +355,9 @@ try:
 
                 subprocess.call("osascript -e '{}'".format(applescript), shell=True)
             else:
-                Quest_result = CommandSay(answer=quest_msg, color='WARNING')
+                # print(quest_msg)
+                quest_msg.removeprefix('( ) "" ')
+                Quest_result = CommandSay(answer=error_msg, color='WARNING')
         elif type == '3':
             if settings.EnableGUI:
                 buttons = Buttons(["Ok", "Exit"])
@@ -368,7 +370,7 @@ try:
 
                 Quest_result = result.text_returned  # => text entered in input
             else:
-                Quest_result = input(quest_msg)
+                Quest_result = input(f"{quest_msg}:")
 
 
     def CommandSay(answer=0, color=0):
