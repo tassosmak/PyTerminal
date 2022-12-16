@@ -58,6 +58,7 @@ try:
     sys_detect = platform.uname()
     Version = 2
     jump = False
+    logout = False
     jump_user = False
     ask_recv = 0
     answer = 0
@@ -75,7 +76,7 @@ try:
 
 
     def CommandList(Command=0, cmd_pl=0, safe_md=False, MD=0):
-        global jump, jump_user, ask_recv, LCommand, answer
+        global jump, logout, jump_user, ask_recv, LCommand, answer
         LCommand = 0
 
         if Command == "ls":
@@ -314,6 +315,21 @@ try:
                             Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
                 else:
                     CommandSay("LocalNetworking Isn't Supported On Windown Yet\nIt's Under Development :)")
+
+
+
+        if Command == "logout":
+            LCommand = Command
+            logout = True
+            if cmd_pl == "1" or cmd_pl == "3":
+                os.system('clear')
+            else:
+                os.system('cls')
+
+
+
+
+
 
     class bcolors:
         HEADER = '\033[95m'

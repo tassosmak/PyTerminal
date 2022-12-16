@@ -38,7 +38,9 @@ def _run():
             cmd.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
             kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
             cmd.jump = False
-
+        if cmd.logout:
+            cmd.logout = False
+            init()
 
 if not __name__ == '__main__':
     init()
