@@ -9,6 +9,7 @@ try:
     import subprocess
     from NotificationsKit import Alert, Buttons, AlertType, Dialog, Icon
     from src import settings
+    from UserHandler import edit_json
     net = False
 
     '''
@@ -325,8 +326,27 @@ try:
                 os.system('clear')
             else:
                 os.system('cls')
-
-
+                
+                
+        if Command == "edit parameters":
+            if MD == "9":
+                ask_what_params = input('What parameters You Want to Edit\n1) GUI\n2) Use\nSelect:')
+                if ask_what_params == '1':
+                    ask_gui_params = input('Do You Want to Enable it or Disable it\nSelect')
+                    if ask_gui_params == 'enable' or ask_gui_params == 'Enable':
+                        edit_json(loc1='UI', loc2='Enable-AquaUI', content='1')
+                        CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                    elif ask_gui_params == 'disable' or ask_gui_params == 'Disable':
+                        edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
+                        CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                elif ask_what_params == '2':
+                    ask_use_params = input('How Do You Want To Use This Instanche?, Type "Server" or "Personal":')
+                    if ask_use_params == "Server":
+                        edit_json(loc1='FTU', loc2='Use', content='2')
+                        CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                    elif ask_use_params == 'Personal':
+                        edit_json(loc1='FTU', loc2='Use', content='1')
+                        CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
 
 
 

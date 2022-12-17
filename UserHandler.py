@@ -94,6 +94,9 @@ def _get_propiatery(print_credentials=False):
         f.close()
     except FileNotFoundError:
         pass
+    
+    
+
 def _get_credentials(print_credentials=False):
     global Name, Password, Mode, FTU, GUI
     try:
