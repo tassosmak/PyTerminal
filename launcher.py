@@ -39,8 +39,8 @@ def _run():
             kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
             cmd.jump = False
         if cmd.logout:
-            cmd.logout = False
             init()
+            cmd.logout = False
 
 if not __name__ == '__main__':
     init()
@@ -49,9 +49,6 @@ def boot():
     try:
         #print(UserH.UserMD)
         _run()
-    except KeyboardInterrupt:
-        print("\n")
-        pass
     except BaseException:
         if settings.MODE == "9" or settings.MODE == "3":
             cmd.CommandSay("There Was An Error see 'errors.log' in the Error_Manager Folder for more info", "FAIL")
