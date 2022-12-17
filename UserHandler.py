@@ -5,7 +5,7 @@ import platform
 import os
 import json
 import string
-from random import random, shuffle, choice
+from random import shuffle, choice
 from src import FTU_Installer as ftu_install, settings
 
 
