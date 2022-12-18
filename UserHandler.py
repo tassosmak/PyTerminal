@@ -1,6 +1,6 @@
 import datetime
 if not __name__ == '__main__':
-    import commands as cmd
+    from src import Renderer as RD
 import platform
 import os
 import json
@@ -84,13 +84,13 @@ def _get_propiatery(print_credentials=False):
         if UserLess_Connection == "1":
             settings.UserLess_Connection = True
         if print_credentials:
-            cmd.CommandSay(answer=("UserLess Connection:", UserLess_Connection))
+            RD.CommandSay(answer=("UserLess Connection:", UserLess_Connection))
 
         GO_TO_FTU = data['user_login']['GO TO FTU']
         if GO_TO_FTU == "1":
             settings.GO_TO_FTU = True
         if print_credentials:
-            cmd.CommandSay(answer=("GO_TO_FTU:", GO_TO_FTU))
+            RD.CommandSay(answer=("GO_TO_FTU:", GO_TO_FTU))
         f.close()
     except FileNotFoundError:
         pass
@@ -105,7 +105,7 @@ def _get_credentials(print_credentials=False):
         try:
             from src import Recover_Json
         except ImportError:
-            cmd.CommandSay(answer='This Installation is corrupted install a new one', color='FAIL')
+            RD.CommandSay(answer='This Installation is corrupted install a new one', color='FAIL')
             os.system('killall python')
         f = open('Info.json')
 
@@ -114,24 +114,24 @@ def _get_credentials(print_credentials=False):
 
     FTU = data['FTU']['Use']
     if print_credentials:
-        cmd.CommandSay(answer=("FTU:", FTU))
+        RD.CommandSay(answer=("FTU:", FTU))
     
     GUI = data['UI']['Enable-AquaUI']
     if GUI == "1":
         settings.EnableGUI = True
     if print_credentials:
-        cmd.CommandSay(answer=("UI:", GUI))
+        RD.CommandSay(answer=("UI:", GUI))
 
     Name = data['user_credentials']['Name']
     if print_credentials:
-        cmd.CommandSay(answer=("Name:", Name))
+        RD.CommandSay(answer=("Name:", Name))
 
 
     Password = data['user_credentials']['Password']
     _d_encrypt(type='2', input_text=Password)
     Password = Dresult 
     if print_credentials:
-        cmd.CommandSay(answer=("Password:", Password))
+        RD.CommandSay(answer=("Password:", Password))
 
 
     Internal_Software = data['Internal-Software']['Enable']
@@ -140,8 +140,8 @@ def _get_credentials(print_credentials=False):
     else: 
         settings.EnableIntSoft = False
     if print_credentials:
-        cmd.CommandSay(answer=('Settings-Var', settings.EnableIntSoft))
-        cmd.CommandSay(answer=("Intenal-Software", Internal_Software))
+        RD.CommandSay(answer=('Settings-Var', settings.EnableIntSoft))
+        RD.CommandSay(answer=("Intenal-Software", Internal_Software))
         
     Mode = data['user_credentials']['Mode']
     if settings.EnableIntSoft == False and Mode == '9':
@@ -149,7 +149,7 @@ def _get_credentials(print_credentials=False):
     else:
         settings.MODE = Mode
     if print_credentials:
-        cmd.CommandSay(answer=("Mode:", Mode))
+        RD.CommandSay(answer=("Mode:", Mode))
     
         
     f.close()
@@ -164,8 +164,8 @@ def _ask(print_ask=False):
     ask_name = input("Enter Usename")
     ask_Password = input("\nEnter Password")
     if print_ask:
-        cmd.CommandSay(answer=ask_name)
-        cmd.CommandSay(answer=ask_Password)
+        RD.CommandSay(answer=ask_name)
+        RD.CommandSay(answer=ask_Password)
 
 
 def _FTU_init(edit_use=True):
@@ -177,15 +177,15 @@ def _FTU_init(edit_use=True):
             settings.EnableGUI = False
 
     def _ask_use():
-        cmd.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
-        cmd.CommandQuest(type='1', Button1='Server', Button2='Personal', ask_admin_msg='How Do You want to use this instanche?')
+        RD.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
+        RD.CommandQuest(type='1', Button1='Server', Button2='Personal', ask_admin_msg='How Do You want to use this instanche?')
         #ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
-        if cmd.Quest_result == 'Personal':
+        if RD.Quest_result == 'Personal':
             ask_type = '1'
-        elif cmd.Quest_result == 'Server':
+        elif RD.Quest_result == 'Server':
             ask_type = '2'
-            cmd.CommandQuest(type='3', quest_msg='Type The ip address you want to send the commands')
-            edit_json(loc1="FTU", loc2="IP", content=cmd.Quest_result)
+            RD.CommandQuest(type='3', quest_msg='Type The ip address you want to send the commands')
+            edit_json(loc1="FTU", loc2="IP", content=RD.Quest_result)
         else:
             ask_type = '1'
         if edit_use:
@@ -193,31 +193,31 @@ def _FTU_init(edit_use=True):
 
 
     def _ask_name_password():
-        cmd.CommandQuest(type='3', quest_msg='What is your name')
-        edit_json(loc1="user_credentials", loc2="Name", content=cmd.Quest_result)
+        RD.CommandQuest(type='3', quest_msg='What is your name')
+        edit_json(loc1="user_credentials", loc2="Name", content=RD.Quest_result)
         
         correct_pswd_input = False
         while not correct_pswd_input:
-            cmd.CommandQuest(type='1', ask_admin_msg='Do You Want to to Use A safe Password', Button1='No', Button2='Yes')
-            if cmd.Quest_result == 'Yes':
+            RD.CommandQuest(type='1', ask_admin_msg='Do You Want to to Use A safe Password', Button1='No', Button2='Yes')
+            if RD.Quest_result == 'Yes':
                 _gen_safe_password()
                 Password_msg= f'YOUR PASSWORD IS {final_password} KEEP IT SAFE'
-                cmd.CommandQuest(type='2', error_msg=Password_msg)
+                RD.CommandQuest(type='2', error_msg=Password_msg)
                 correct_pswd_input = True
             else:
-                cmd.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
-                if cmd.Quest_result.isdigit():
-                    _d_encrypt(type='1', input_text=cmd.Quest_result)
+                RD.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
+                if RD.Quest_result.isdigit():
+                    _d_encrypt(type='1', input_text=RD.Quest_result)
                     correct_pswd_input = True
 
 
     def _ask_mode():
-        cmd.CommandQuest(type='1' ,ask_admin_msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
-        if cmd.Quest_result == 'The Advanced Mode':
+        RD.CommandQuest(type='1' ,ask_admin_msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
+        if RD.Quest_result == 'The Advanced Mode':
             ask_first_Mode = '2'
-        elif cmd.Quest_result == 'The Basic Mode':
+        elif RD.Quest_result == 'The Basic Mode':
             ask_first_Mode = '1'
-        elif cmd.Quest_result == '9':
+        elif RD.Quest_result == '9':
             ask_first_Mode = '9'
         else:
             ask_first_Mode = '1'
@@ -242,7 +242,7 @@ def _FTU_init(edit_use=True):
             import pyrad
             import clipboard
         except ModuleNotFoundError:
-            cmd.CommandSay("PIP is missing\ncritical features will not work", "FAIL")
+            RD.CommandSay("PIP is missing\ncritical features will not work", "FAIL")
             import time
             time.sleep(7)
         if not settings.MODE == "9":
@@ -293,8 +293,8 @@ def init():
                         settings.USERNAME = ask_name
                         settings.PASSWORD = ask_Password
                         welcome_msg = f"Welcome {Name.capitalize()}"
-                        cmd.CommandPush(message=welcome_msg)
-                        cmd.CommandSay(answer="Go Ahead")
+                        RD.CommandPush(message=welcome_msg)
+                        RD.CommandSay(answer="Go Ahead")
                 else:
                     settings.MODE = "3"
                     correct_credentials = True
@@ -304,8 +304,8 @@ def init():
             _FTU_init(False)
         settings.FTU = '2'
         settings.USERNAME = "Lets Keep It Private"
-        settings.MODE = '2'
-        cmd.CommandPush(message="Lets keep it private")
+        settings.MODE = '9'
+        RD.CommandPush(message="Lets keep it private")
 
     # print(settings.EnableIntSoft)
     if settings.EnableIntSoft:

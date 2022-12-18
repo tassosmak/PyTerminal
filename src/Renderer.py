@@ -4,11 +4,6 @@ from NotificationsKit import Alert, Buttons, AlertType, Dialog, Icon
 import subprocess
 import sys
 
-Quest_result = 0
-
-
-
-
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -46,7 +41,7 @@ def CommandPush(message, header=settings.Default_text):
 
 def CommandQuest(type='0', Button1='No', Button2='Yes', error_msg="Blank", quest_msg='Blank', quest_icon=Icon.NOTE, ask_admin_msg="This Procces Require Administraive Access\n are you sure you want to grant it?"):
     global Quest_result
-    Quest_result = 0
+    Quest_result = ''
     if type == '1':
         if settings.EnableGUI:
                 al = Alert(ask_admin_msg).with_buttons(Buttons([Button1, Button2,])).show()

@@ -3,14 +3,10 @@ try:
     import os
     import datetime
     import platform
-    import sys
     import Boot
     from pathlib import Path
-    import subprocess
-    from NotificationsKit import Alert, Buttons, AlertType, Dialog, Icon
-    from src import settings
     from UserHandler import edit_json
-    from src.Renderer import CommandSay, CommandQuest, CommandPush, Quest_result
+    from src import settings, Renderer as RD
     net = False
 
     '''
@@ -83,67 +79,67 @@ try:
 
         if Command == "ls":
             if MD == "2":
-                CommandSay(answer=os.listdir(dir))
+                RD.CommandSay(answer=os.listdir(dir))
             else:
-                CommandSay(answer="This Function isn't available within this mode", color="WARNING")
+                RD.CommandSay(answer="This Function isn't available within this mode", color="WARNING")
 
         if Command == "test":
             LCommand = Command
             if MD == "9":
-                CommandSay(answer="tested")
-                CommandSay(answer="tested", color="WARNING")
-                CommandSay(answer="tested", color="FAIL")
-                CommandSay(answer="tested", color="OKGREEN")
-                CommandSay(answer="tested", color="PURPLE")
-                CommandSay(answer="tested", color="UNDERLINE")
+                RD.CommandSay(answer="tested")
+                RD.CommandSay(answer="tested", color="WARNING")
+                RD.CommandSay(answer="tested", color="FAIL")
+                RD.CommandSay(answer="tested", color="OKGREEN")
+                RD.CommandSay(answer="tested", color="PURPLE")
+                RD.CommandSay(answer="tested", color="UNDERLINE")
                 now = datetime.datetime.now()
-                CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
-                CommandQuest(type='2', error_msg=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
-                CommandQuest(type='3', quest_msg='Testing')
-                CommandSay(answer=Quest_result, color="WARNING")
-                CommandQuest(type='1', ask_admin_msg="tested")
-                if Quest_result == 'Yes':
-                    CommandSay(answer='Positive answer', color='WARNING')
+                RD.CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                RD.CommandQuest(type='2', error_msg=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                RD.CommandQuest(type='3', quest_msg='Testing')
+                RD.CommandSay(answer=RD.Quest_result, color="WARNING")
+                RD.CommandQuest(type='1', ask_admin_msg="tested")
+                if RD.Quest_result == 'Yes':
+                    RD.CommandSay(answer='Positive answer', color='WARNING')
                 else:
-                    CommandSay(answer='Negative answer', color='WARNING')
+                    RD.CommandSay(answer='Negative answer', color='WARNING')
                 if not cmd_pl == "3":
                     Boot.Run = True
                     Boot.SecondaryTask("test", stay_end=True)
             else:
-                CommandSay(answer="tested")
+                RD.CommandSay(answer="tested")
         
         if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
             LCommand = Command
-            CommandSay(answer="PyTerminal V.Beta by Makro Software")
+            RD.CommandSay(answer="PyTerminal V.Beta by Makro Software")
         
         if Command == "CML":
             if MD == "2":
-                CommandSay(answer=CMLAD)
+                RD.CommandSay(answer=CMLAD)
             elif MD == "1":
                 LCommand = Command
-                CommandSay(answer=CML)
+                RD.CommandSay(answer=CML)
             else:
-                CommandSay(answer="This Function isn't available within this mode", color="WARNING")
+                RD.CommandSay(answer="This Function isn't available within this mode", color="WARNING")
         
         if Command == "time":
             LCommand = Command
             now = datetime.datetime.now()
-            CommandSay(answer=now.strftime("%Y-%m-%d %H:%M:%S"))
+            RD.CommandSay(answer=now.strftime("%Y-%m-%d %H:%M:%S"))
 
         if Command == "del" or Command == "delete":
             if not safe_md:
                 if MD == "2":
-                    CommandSay(answer=os.listdir(dir))
+                    RD.CommandSay(answer=os.listdir(dir))
                     ask_del = input("what file you want to delete:")
                     try:
-                        CommandSay(answer=ask_del)
+                        RD.CommandSay(answer=ask_del)
                         os.remove(ask_del)
-                        CommandSay(answer="DONE", color="OKGREEN")
+                        RD.CommandSay(answer="DONE", color="OKGREEN")
                     except FileNotFoundError:
-                        CommandSay(answer="This file doesn't exist", color="FAIL")
+                        RD.CommandSay(answer="This file doesn't exist", color="FAIL")
                 else:
                     LCommand = Command
-                    CommandSay(answer="This Function isn't available within this mode", color="FAIL")
+                    RD.CommandSay(answer="This Function isn't available within this mode", color="FAIL")
 
         if Command == "create":
             if not safe_md:
@@ -152,25 +148,25 @@ try:
                     ask_name = input("What the name of the file you want to create?")
                     try:
                         open(ask_name, "x")
-                        CommandSay(answer="DONE", color="OKGREEN")
+                        RD.CommandSay(answer="DONE", color="OKGREEN")
                     except FileExistsError:
                         ask_del_create = input("This file already exist try again", color="WARNING")
                     except UnboundLocalError:
-                        CommandSay(answer="There was a Problem try again", color="FAIL")
+                        RD.CommandSay(answer="There was a Problem try again", color="FAIL")
                 elif MD == "2" or MD == "9":
                         ask_name = input("What the name of the file you want to create?")
                         try:
                             open(ask_name, "x")
-                            CommandSay(answer="DONE", color="OKGREEN")
+                            RD.CommandSay(answer="DONE", color="OKGREEN")
                         except FileExistsError:
                             ask_del_create = input("This file already exist do you want to delete it. if yes type 'Y'")
                             if ask_del_create == "Y" or ask_del_create == "y":
                                 os.remove(ask_name)
-                                CommandSay(answer="DONE", color="OKGREEN")
+                                RD.CommandSay(answer="DONE", color="OKGREEN")
                         except UnboundLocalError:
                                 pass
                 else:
-                    CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                    RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
         if Command == "latest":
             Boot.Run = True
@@ -208,9 +204,9 @@ try:
 
         if Command == "print md":
             if not safe_md:
-                CommandSay(answer=MD)
+                RD.CommandSay(answer=MD)
             else:
-                CommandSay("You Are in Safe-Mode")
+                RD.CommandSay("You Are in Safe-Mode")
 
 
 
@@ -218,23 +214,23 @@ try:
             if not safe_md:
                 LCommand = Command
                 if net:
-                    CommandQuest(type='1', ask_admin_msg='do you want to be host or reciever', Button1='Host', Button2='Talker')
+                    RD.CommandQuest(type='1', ask_admin_msg='do you want to be host or reciever', Button1='Host', Button2='Talker')
                     #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
-                    if Quest_result == "Host":
+                    if RD.Quest_result == "Host":
                         Server.chat()
-                    elif Quest_result == "Talker":
+                    elif RD.Quest_result == "Talker":
                         #ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
-                        CommandQuest(type='3', quest_msg='To Which IP you want to talk to Type Below!')
-                        ask_recv = str(Quest_result)
+                        RD.CommandQuest(type='3', quest_msg='To Which IP you want to talk to Type Below!')
+                        ask_recv = str(RD.Quest_result)
                         try: 
                             client.Chat(IP=ask_recv)
                         except ConnectionRefusedError:
-                            if not Quest_result == '':
-                                CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
+                            if not RD.Quest_result == '':
+                               RD.CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
                             else:
                                pass 
                 else:
-                    CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
+                    RD.CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
 
 
 
@@ -246,37 +242,37 @@ try:
 
         if Command == "view file":
             LCommand = Command
-            CommandQuest(type='3', quest_msg='type the name of the file you want to view')
+            RD.CommandQuest(type='3', quest_msg='type the name of the file you want to view')
             #ask_file = input("type the name of the file you want to view\n:")
             if cmd_pl == "1" or cmd_pl == "3":
-                os.system(f"cat {Quest_result}")
+                os.system(f"cat {RD.Quest_result}")
             elif cmd_pl == "2":
-                os.system(f"more {Quest_result}")
+                os.system(f"more {RD.Quest_result}")
         
         if Command == "edit file":
             if not safe_md:
                 if MD == "2" or MD == '9':           
                     if cmd_pl == "1" or cmd_pl == "3":
-                        CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
+                        RD.CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
                         #ask_file = input("type the name of the file you want to edit\n:")
-                        if Quest_result.endswith(".py"):
-                            os.system(f"vim {Quest_result}")
+                        if RD.Quest_result.endswith(".py"):
+                            os.system(f"vim {RD.Quest_result}")
                         else:
-                            os.system(f"nano {Quest_result}")
+                            os.system(f"nano {RD.Quest_result}")
                     elif cmd_pl == "2":
-                        CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
+                        RD.CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
                 else:
                     LCommand = Command
-                    CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                    RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
         
         if Command == "weather forecast":
             if not safe_md:
                 LCommand = Command
                 if net:
                     os.system("curl wttr.in/")
-                    CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
+                    RD.CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
                 else:
-                    CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
+                    RD.CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
 
         if Command == "activity monitor":
             if not safe_md:
@@ -285,7 +281,7 @@ try:
                         os.system('top')
                 else:
                     LCommand = Command
-                    CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                    RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
         if Command == "countdown":
             if not safe_md:
@@ -302,7 +298,7 @@ try:
                 
             else:
                 LCommand = Command
-                CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
 
         if Command == "devices":
@@ -316,7 +312,7 @@ try:
                         if NetworkingKit.auth.DONE:
                             Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
                 else:
-                    CommandSay("LocalNetworking Isn't Supported On Windown Yet\nIt's Under Development :)")
+                    RD.CommandSay("LocalNetworking Isn't Supported On Windown Yet\nIt's Under Development :)")
 
 
 
@@ -336,18 +332,19 @@ try:
                     ask_gui_params = input('Do You Want to Enable it or Disable it\nSelect')
                     if ask_gui_params == 'enable' or ask_gui_params == 'Enable':
                         edit_json(loc1='UI', loc2='Enable-AquaUI', content='1')
-                        CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
                     elif ask_gui_params == 'disable' or ask_gui_params == 'Disable':
                         edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
-                        CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
                 elif ask_what_params == '2':
                     ask_use_params = input('How Do You Want To Use This Instanche?, Type "Server" or "Personal":')
                     if ask_use_params == "Server":
                         edit_json(loc1='FTU', loc2='Use', content='2')
-                        CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
                     elif ask_use_params == 'Personal':
                         edit_json(loc1='FTU', loc2='Use', content='1')
-                        CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+
 except BaseException:
     import Error_Logger.Logger as logger
     logger.log_error(message="Command.py")
