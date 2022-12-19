@@ -7,6 +7,7 @@ import json
 import string
 from random import shuffle, choice
 from src import FTU_Installer as ftu_install, settings
+from CryptographyKit import EncryptPassword, DecryptPassword
 
 
 ask_name = ""
@@ -206,7 +207,13 @@ def _FTU_init(edit_use=True):
                 correct_pswd_input = True
             else:
                 RD.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
-                if RD.Quest_result.isdigit():
+                if settings.EnableIntSoft:
+                    EncryptPassword.password = RD.Quest_result
+                    RD.CommandQuest(type='3', quest_msg='Type a private Key')
+                    EncryptPassword.encrypt_password(password=EncryptPassword.password, key=RD.Quest_result)
+                    correct_pswd_input = True
+                    
+                elif RD.Quest_result.isdigit():
                     _d_encrypt(type='1', input_text=RD.Quest_result)
                     correct_pswd_input = True
 
@@ -285,19 +292,28 @@ def init():
 
         if continue_normal:
             while not correct_credentials:
-                _ask()
-                if not ask_name == "":
-                    if ask_name == Name and ask_Password == Password:
-                        correct_credentials = True
-                        settings.FTU = FTU
-                        settings.USERNAME = ask_name
-                        settings.PASSWORD = ask_Password
-                        welcome_msg = f"Welcome {Name.capitalize()}"
-                        RD.CommandPush(message=welcome_msg)
-                        RD.CommandSay(answer="Go Ahead")
-                else:
-                    settings.MODE = "3"
+                if settings.EnableIntSoft:
+                    DecryptPassword.ask_decrypt()
                     correct_credentials = True
+                    settings.FTU = FTU
+                    settings.USERNAME = Name
+                    welcome_msg = f"Welcome {Name.capitalize()}"
+                    RD.CommandPush(message=welcome_msg)
+                    RD.CommandSay(answer="Go Ahead")
+                else:
+                    _ask()
+                    if not ask_name == "":
+                        if ask_name == Name and ask_Password == Password:
+                            correct_credentials = True
+                            settings.FTU = FTU
+                            settings.USERNAME = ask_name
+                            settings.PASSWORD = ask_Password
+                            welcome_msg = f"Welcome {Name.capitalize()}"
+                            RD.CommandPush(message=welcome_msg)
+                            RD.CommandSay(answer="Go Ahead")
+                    else:
+                        settings.MODE = "3"
+                        correct_credentials = True
     def advanced_init():
         # _get_propiatery(True)
         if settings.GO_TO_FTU:
