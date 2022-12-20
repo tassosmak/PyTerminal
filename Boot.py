@@ -1,4 +1,5 @@
 import threading
+import sys
 if __name__ == '__main__':
     import launcher
 from pathlib import Path
@@ -38,14 +39,21 @@ def SecondaryTask(file_name="0", stay_end=False):
 
 try:
     if __name__ == "__main__":
-        t1 = threading.Thread(target=MainTask, name='t1')
-        t2 = threading.Thread(target=SecondaryTask, name='t2')  
+        try:
+            if str(sys.argv[1]) == 'Run':
+                t1 = threading.Thread(target=MainTask, name='t1')
+                t2 = threading.Thread(target=SecondaryTask, name='t2')  
 
-        t1.start()
-        t2.start()
+                t1.start()
+                t2.start()
 
-        t1.join()
-        t2.join()
+                t1.join()
+                t2.join()
+            elif str(sys.argv[1]) == 'FakeInit':
+                init()
+        except IndexError:
+            pass
+
 
 except BaseException:
     logger.log_error("boot.py")

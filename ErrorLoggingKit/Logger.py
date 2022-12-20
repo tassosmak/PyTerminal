@@ -3,7 +3,7 @@ import os
 import sys
 import datetime
 
-save_path = 'Error_Logger'
+save_path = 'ErrorLoggingKit'
 
 def log_error(message="NO_MSG", fl_name="errors.log"):
     if not message == "KeyboardInterrupt":
