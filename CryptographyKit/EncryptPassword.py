@@ -1,6 +1,5 @@
 import json
 import base64
-# from UserHandler import edit_json
 
 
 password = 0
@@ -32,6 +31,3 @@ def main():
 
     # Encrypt the password and save it to the file
     encrypt_password(password, key)
-
-if __name__ == "__main__":
-    main()

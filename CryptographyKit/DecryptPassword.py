@@ -3,7 +3,7 @@ import base64
 
 def decrypt_password(key, password):
     # Load the encrypted password and key from the file
-    f = open('MakroPropiatery.json')
+    f = open("MakroPropiatery.json")
     data = json.load(f)
     Password = data['user_credentials']['Password']
     key_json = data['user_credentials']['Key']
@@ -23,7 +23,3 @@ def decrypt_password(key, password):
 def ask_decrypt():
     key = input("Enter key")
     password = input("\nEnter Password")
-    decrypt_password(key, password)
-
-if __name__ == "__main__":
-    ask_decrypt()
