@@ -2,6 +2,7 @@ import threading
 if __name__ == '__main__':
     import launcher
 from pathlib import Path
+from UserHandler import init
 from src import settings, Server
 from Error_Logger import Logger
 
@@ -9,6 +10,7 @@ from Error_Logger import Logger
 
 def MainTask():
     #print("1 Main Threading")
+    init()
     while True:
         launcher.boot()
         

@@ -42,8 +42,7 @@ def _run():
             init()
             cmd.logout = False
 
-if not __name__ == '__main__':
-    init()
+
 
 def boot():
     try:
