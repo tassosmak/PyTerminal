@@ -23,3 +23,4 @@ def decrypt_password(key, password):
 def ask_decrypt():
     key = input("Enter key")
     password = input("\nEnter Password")
+    decrypt_password(key, password)

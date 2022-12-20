@@ -6,7 +6,8 @@ try:
     import Boot
     from pathlib import Path
     from UserHandler import edit_json
-    from src import settings, Renderer as RD
+    from RendererKit import Renderer as RD
+    from src import settings
     net = False
 
     '''

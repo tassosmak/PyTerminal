@@ -1,6 +1,6 @@
 import datetime
 if not __name__ == '__main__':
-    from src import Renderer as RD
+    from RendererKit import Renderer as RD
 import platform
 import os
 import json

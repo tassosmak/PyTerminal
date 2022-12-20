@@ -1,9 +1,10 @@
 import Error_Logger.Logger as logger
+from RendererKit import Renderer as RD
 if not __name__ == '__main__':
     import Kernel as kernel
     from UserHandler import init, edit_json
     import commands as cmd
-from src import settings, Renderer as RD
+from src import settings
 
 Modes = [
     '1',
