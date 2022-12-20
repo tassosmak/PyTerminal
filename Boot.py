@@ -49,7 +49,7 @@ try:
 
                 t1.join()
                 t2.join()
-            elif str(sys.argv[1]) == 'FakeInit':
+            elif str(sys.argv[1]) == 'FakeLogin':
                 init()
         except IndexError:
             pass
