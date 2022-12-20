@@ -209,7 +209,8 @@ def _FTU_init(edit_use=True):
                 RD.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
                 if settings.EnableIntSoft:
                     EncryptPassword.password = RD.Quest_result
-                    RD.CommandQuest(type='3', quest_msg='Type a private Key')
+                    _d_encrypt(type='1', input_text=RD.Quest_result)
+                    RD.CommandQuest(type='3', quest_msg='Type a Key')
                     EncryptPassword.encrypt_password(password=EncryptPassword.password, key=RD.Quest_result)
                     correct_pswd_input = True
                     

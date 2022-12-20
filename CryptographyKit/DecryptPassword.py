@@ -14,15 +14,15 @@ def decrypt_password(key, password):
     
     # Decrypt the password using the key
     decrypted_password = base64.b64decode(Password.encode()).decode()
-
+ 
     while password != decrypted_password:
         password = input("Enter Password: ")
             
     return decrypted_password
 
 def ask_decrypt():
-    key = input("Enter key: ")
-    password = input("Enter Password: ")
+    key = input("Enter key")
+    password = input("\nEnter Password")
     decrypt_password(key, password)
 
 if __name__ == "__main__":
