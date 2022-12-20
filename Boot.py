@@ -3,7 +3,7 @@ if __name__ == '__main__':
     import launcher
 from pathlib import Path
 from UserHandler import init
-from src import settings, Server
+from src import settings
 from Error_Logger import Logger
 
 
