@@ -4,7 +4,7 @@ if __name__ == '__main__':
 from pathlib import Path
 from UserHandler import init
 from src import settings
-from Error_Logger import Logger
+import ErrorLoggingKit.Logger as logger
 
 
 
@@ -48,4 +48,4 @@ try:
         t2.join()
 
 except BaseException:
-    Logger.log_error("boot.py")
+    logger.log_error("boot.py")

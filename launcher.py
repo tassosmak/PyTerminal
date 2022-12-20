@@ -1,4 +1,4 @@
-import Error_Logger.Logger as logger
+from ErrorLoggingKit import Logger as logger
 from RendererKit import Renderer as RD
 if not __name__ == '__main__':
     import Kernel as kernel

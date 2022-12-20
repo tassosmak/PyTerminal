@@ -347,5 +347,5 @@ try:
                         RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
 
 except BaseException:
-    import Error_Logger.Logger as logger
+    import ErrorLoggingKit.Logger as logger
     logger.log_error(message="Command.py")
