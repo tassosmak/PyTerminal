@@ -189,12 +189,12 @@ try:
                     if cmd_pl == "1" or cmd_pl == "3":
                         os.system('killall python')
                     elif cmd_pl == "2":
-                        os.system('exit')
+                        os._exit(1)
             elif MD == "2" or MD == "9" or MD == "3":
                 if cmd_pl == "1" or cmd_pl == "3":
                     os.system("killall python")
                 elif cmd_pl == "2":
-                    os._exit()
+                    os._exit(1)
 
             
         if Command == "jump":
