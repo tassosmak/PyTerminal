@@ -258,7 +258,8 @@ try:
                         else:
                             os.system(f"nano {RD.Quest_result}")
                     elif cmd_pl == "2":
-                        RD.CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
+                        RD.CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
+                        os.system(f'notepad {RD.Quest_result}')
                 else:
                     LCommand = Command
                     RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
