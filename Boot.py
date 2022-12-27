@@ -18,8 +18,7 @@ def MainTask():
 
 
 base_folder = Path(__file__).parent.resolve()
-Run = False
-def SecondaryTask(file_name="0", stay_end=False):
+def SecondaryTask(Run=False, file_name="0", stay_end=False):
     if Run:
         import os
         if settings.pl == "1":

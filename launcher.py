@@ -53,11 +53,17 @@ def boot():
         if settings.MODE == "9" or settings.MODE == "3":
             RD.CommandSay("There Was An Error see 'errors.log' in the Error_Manager Folder for more info", "FAIL")
             logger.log_error()
-            from os import system
-            system("killall python")
+            from os import system, _exit
+            if settings.pl == '1' or settings.pl == '3':
+                system("killall python")
+            elif settings.pl:
+                _exit(1)
         else:
             if settings.EnableIntSoft:
                 logger.log_error("IntSoft Enabled")
             RD.CommandSay("There Was An Error", "FAIL")
-            from os import system
-            system("killall python")
+            from os import system, _exit
+            if settings.pl == '1' or settings.pl == '3':
+                system("killall python")
+            elif settings.pl:
+                _exit(1)

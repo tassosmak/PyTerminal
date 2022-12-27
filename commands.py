@@ -104,8 +104,7 @@ try:
                 else:
                     RD.CommandSay(answer='Negative answer', color='WARNING')
                 if not cmd_pl == "3":
-                    Boot.Run = True
-                    Boot.SecondaryTask("test", stay_end=True)
+                    Boot.SecondaryTask(Run=True, file_name="test", stay_end=True)
             else:
                 RD.CommandSay(answer="tested")
         
@@ -170,15 +169,13 @@ try:
                     RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
         if Command == "latest":
-            Boot.Run = True
-            Boot.SecondaryTask(file_name="LineRetriver")
+            Boot.SecondaryTask(Run=True, file_name="LineRetriver")
             
 
         if Command == "gen password":
             if not safe_md:
                 LCommand = Command
-                Boot.Run = True
-                Boot.SecondaryTask(file_name="Password_Gen", stay_end=True)
+                Boot.SecondaryTask(Run=True, file_name="Password_Gen", stay_end=True)
 
 
         if Command == "Exit" or Command == "exit":
@@ -287,8 +284,7 @@ try:
         if Command == "countdown":
             if not safe_md:
                 LCommand = Command
-                Boot.Run = True
-                Boot.SecondaryTask(file_name="countdown", stay_end=False)
+                Boot.SecondaryTask(Run=True, file_name="countdown", stay_end=False)
                 
             
         
@@ -305,13 +301,12 @@ try:
         if Command == "devices":
             if not safe_md:
                 if not cmd_pl == "2":
-                    Boot.Run = True
                     if settings.FTU == "2":
                         import NetworkingKit.server
                     else:
                         import NetworkingKit.auth
                         if NetworkingKit.auth.DONE:
-                            Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
+                            Boot.SecondaryTask(Run=True, file_name="Handle-External-Devices", stay_end=True)
                 else:
                     RD.CommandSay("LocalNetworking Isn't Supported On Windown Yet\nIt's Under Development :)")
 
