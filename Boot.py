@@ -18,8 +18,8 @@ def MainTask():
 
 
 base_folder = Path(__file__).parent.resolve()
-def SecondaryTask(Run=False, file_name="0", stay_end=False):
-    if Run:
+def SecondaryTask(file_name="0", stay_end=False):
+    if not file_name=='0':
         import os
         if settings.pl == "1":
             if stay_end:
