@@ -31,7 +31,9 @@ def _run():
             kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
         except IndexError:
             ask_new_md = input("it seems that the registered mode of user is corrupted\nwhat mode did you used\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n")
-            settings.MODE = ask_new_md
+            if ask_new_md == '9':
+                settings.MODE = '2'
+                ask_new_md = '2'
             edit_json(loc1='user_credentials', loc2='Mode', content=ask_new_md)
             edit_json(loc1='Internal-Software', loc2='Enable', content='0')
         if cmd.jump:
