@@ -128,7 +128,7 @@ try:
 
         if Command == "del" or Command == "delete":
             if not safe_md:
-                if MD == "2":
+                if MD == "2" or MD == '9':
                     RD.CommandSay(answer=os.listdir(dir))
                     ask_del = input("what file you want to delete:")
                     try:
