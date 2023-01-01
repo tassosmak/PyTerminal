@@ -26,8 +26,6 @@ def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
 
 
 def _d_encrypt(type=0, input_text=''):
-    global Dresult
-
     outstr = "abcdenghik"
     instr = "1234567890"
 
