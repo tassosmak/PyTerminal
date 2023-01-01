@@ -5,14 +5,11 @@ from os import _exit
 
 def decrypt_password(key, password):
     # Load the encrypted password and key from the file
-    try:
-        f = open("MakroPropiatery.json")
-        data = json.load(f)
-        Password = data['user_credentials']['Password']
-        key_json = data['user_credentials']['Key']
-    except FileNotFoundError:
-        RD.CommandSay(answer='You Dont Have the Privilages to Enter This Mode', color='FAIL')
-        _exit(1)
+    f = open("MakroPropiatery.json")
+    data = json.load(f)
+    Password = data['user_credentials']['Password']
+    key_json = data['user_credentials']['Key']
+    
     while key != key_json:
         key = input("Enter key: ")
     
@@ -22,10 +19,17 @@ def decrypt_password(key, password):
  
     while password != decrypted_password:
         password = input("Enter Password: ")
-            
+    
+    f.close()        
     return decrypted_password
 
 def ask_decrypt():
+    try:
+        f = open("MakroPropiatery.json")
+        f.close()
+    except FileNotFoundError:
+        RD.CommandSay(answer='You Dont Have the Privilages to Enter This Mode', color='FAIL')
+        _exit(1)
     key = input("Enter key")
     password = input("\nEnter Password")
     decrypt_password(key, password)
