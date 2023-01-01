@@ -102,7 +102,3 @@ def init():
             normal_init()
     else:
         normal_init()
-
-
-
-
