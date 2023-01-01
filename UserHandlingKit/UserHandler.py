@@ -13,10 +13,6 @@ ask_Password = ""
 continue_normal = False
 correct_pswd_input = False
 correct_credentials = False
-UserLess_Connection = False
-GO_TO_FTU = False
-
-
 
 
 
@@ -30,14 +26,6 @@ def _ask(print_ask=False):
     if print_ask:
         RD.CommandSay(answer=ask_name)
         RD.CommandSay(answer=ask_Password)
-
-
-
-
-
-
-
-
 
 
 
@@ -96,7 +84,7 @@ def init():
     # print(settings.EnableIntSoft)
     if settings.EnableIntSoft:
         cred._get_propiatery(True)
-        if UserLess_Connection == '1' or GO_TO_FTU == '1':
+        if cred.UserLess_Connection == '1' or cred.GO_TO_FTU == '1':
             advanced_init()
         else:
             normal_init()

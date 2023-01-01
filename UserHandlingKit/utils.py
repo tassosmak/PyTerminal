@@ -40,6 +40,7 @@ def _d_encrypt(type=0, input_text=''):
         reverse = str.maketrans(outstr, instr)
         final_text = input_text.translate(reverse)
         Dresult = _reverse_key(final_text)
+    return Dresult
 
 
 final_password = 0
