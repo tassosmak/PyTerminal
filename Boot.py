@@ -3,7 +3,7 @@ import sys
 if __name__ == '__main__':
     import launcher
 from pathlib import Path
-from UserHandlingKit import UserHandler as UserH
+from UserHandlingKit.UserHandler import init
 from src import settings
 import ErrorLoggingKit.Logger as logger
 
@@ -11,7 +11,7 @@ import ErrorLoggingKit.Logger as logger
 
 def MainTask():
     #print("1 Main Threading")
-    UserH.init()
+    init()
     while True:
         launcher.boot()
         
@@ -28,7 +28,6 @@ def SecondaryTask(file_name="0", stay_end=False):
                 os.system(f"""osascript -e 'tell application "Terminal" to do script "python3 {base_folder}/src/{file_name}.py"'""")
                 os.system("""osascript -e 'tell application "Terminal" to quit"'""")
         elif settings.pl == "2":
-            #print(type)
             if stay_end:
                 os.system(f"start cmd /k py  src/{file_name}.py")
             else:
@@ -49,9 +48,9 @@ try:
                 t1.join()
                 t2.join()
             elif str(sys.argv[1]) == 'FakeLogin':
-                UserH.init()
+                init()
             elif str(sys.argv[1]) == 'NoThread':
-                    UserH.init()
+                    init()
                     while True:
                         launcher.boot()
                         SecondaryTask()
