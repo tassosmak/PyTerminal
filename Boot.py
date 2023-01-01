@@ -50,6 +50,11 @@ try:
                 t2.join()
             elif str(sys.argv[1]) == 'FakeLogin':
                 init()
+            elif str(sys.argv[1]) == 'NoThread':
+                    init()
+                    while True:
+                        launcher.boot()
+                        SecondaryTask()
         except IndexError:
             pass
 
