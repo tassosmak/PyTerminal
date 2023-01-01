@@ -43,7 +43,6 @@ def _d_encrypt(type=0, input_text=''):
     return Dresult
 
 
-final_password = 0
 def _gen_safe_password():
     global final_password
     characters = list(string.digits)
@@ -55,6 +54,7 @@ def _gen_safe_password():
     password_str = ''.join(str(e) for e in password)
     final_password = str(password_str)
     _d_encrypt(type='1', input_text=final_password)
+    return final_password
 
 def _pl_finder():
     pl = platform.platform()

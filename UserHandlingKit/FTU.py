@@ -1,7 +1,7 @@
 from src import settings
 from RendererKit import Renderer as RD
-from UserHandlingKit.utils import edit_json, _gen_safe_password, final_password, _d_encrypt
-from CryptographyKit import EncryptPassword, DecryptPassword
+from UserHandlingKit.utils import edit_json, _gen_safe_password, _d_encrypt
+from CryptographyKit import EncryptPassword
 import os
 from src import FTU_Installer as ftu_install
 
@@ -41,8 +41,8 @@ def _FTU_init(edit_use=True):
             
             
             if RD.Quest_result == 'Yes':
-                _gen_safe_password()
-                Password_msg= f'YOUR PASSWORD IS {final_password} KEEP IT SAFE'
+                # _gen_safe_password()
+                Password_msg= f'YOUR PASSWORD IS {_gen_safe_password()} KEEP IT SAFE'
                 RD.CommandQuest(type='2', error_msg=Password_msg)
                 correct_pswd_input = True
             
