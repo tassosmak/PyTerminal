@@ -1,7 +1,5 @@
 import json
 import base64
-from RendererKit import Renderer as RD
-from os import _exit
 
 def decrypt_password(key, password):
     # Load the encrypted password and key from the file
@@ -28,7 +26,11 @@ def ask_decrypt():
         f = open("MakroPropiatery.json")
         f.close()
     except FileNotFoundError:
+        from RendererKit import Renderer as RD
+        from os import _exit
+        from UserHandlingKit.utils import edit_json
         RD.CommandSay(answer='You Dont Have the Privilages to Enter This Mode', color='FAIL')
+        edit_json(loc1='Internal-Software', loc2='Enable', content='0')
         _exit(1)
     key = input("Enter key")
     password = input("\nEnter Password")
