@@ -2,7 +2,8 @@ from ErrorLoggingKit import Logger as logger
 from RendererKit import Renderer as RD
 if not __name__ == '__main__':
     import Kernel as kernel
-    from UserHandler import init, edit_json
+    from UserHandlingKit.UserHandler import init
+    from UserHandlingKit.utils import edit_json
     import commands as cmd
 from src import settings
 

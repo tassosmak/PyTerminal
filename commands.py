@@ -5,7 +5,7 @@ try:
     import platform
     import Boot
     from pathlib import Path
-    from UserHandler import edit_json
+    from UserHandlingKit.utils import edit_json
     from RendererKit import Renderer as RD
     from src import settings
     net = False

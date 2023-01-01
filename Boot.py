@@ -3,7 +3,7 @@ import sys
 if __name__ == '__main__':
     import launcher
 from pathlib import Path
-from UserHandler import init
+from UserHandlingKit import UserHandler as UserH
 from src import settings
 import ErrorLoggingKit.Logger as logger
 
@@ -11,7 +11,7 @@ import ErrorLoggingKit.Logger as logger
 
 def MainTask():
     #print("1 Main Threading")
-    init()
+    UserH.init()
     while True:
         launcher.boot()
         
@@ -49,9 +49,9 @@ try:
                 t1.join()
                 t2.join()
             elif str(sys.argv[1]) == 'FakeLogin':
-                init()
+                UserH.init()
             elif str(sys.argv[1]) == 'NoThread':
-                    init()
+                    UserH.init()
                     while True:
                         launcher.boot()
                         SecondaryTask()
