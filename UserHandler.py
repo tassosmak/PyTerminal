@@ -339,14 +339,10 @@ def init():
 
 
 def _pl_finder():
-    global pl
     pl = platform.platform()
     if pl.startswith("macOS"):
-        #os.system("killall python")
-        pl = "1"
+        settings.pl = "1"
     elif pl.startswith("Windows"):
-        pl = "2"
+        settings.pl = "2"
     elif pl.startswith("Linux"):
-        #os.system("killall python")
-        pl = "3"
-    settings.pl = pl
+        settings.pl = "3"
