@@ -40,7 +40,11 @@ try:
         'NetworkingKit/server.py',
         'NetworkingKit/auth.py',
         'RendererKit/Renderer.py',
-        'RendererKit/WindowRenderer.py'        
+        'RendererKit/WindowRenderer.py',
+        'UserHandlingKit/credentials.py',
+        'UserHandlingKit/FTU.py',
+        'UserHandlingKit/utils.py',
+        'UserHandlingKit/UserHandler.py'
     ]
 
     CML =[
