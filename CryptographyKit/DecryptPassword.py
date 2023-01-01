@@ -11,7 +11,7 @@ def decrypt_password(key, password):
         Password = data['user_credentials']['Password']
         key_json = data['user_credentials']['Key']
     except FileNotFoundError:
-        RD.CommandSay(answer='You Dont Have the Privilages to Enter This Mode')
+        RD.CommandSay(answer='You Dont Have the Privilages to Enter This Mode', color='FAIL')
         _exit(1)
     while key != key_json:
         key = input("Enter key: ")
