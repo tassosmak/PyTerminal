@@ -24,6 +24,24 @@ try:
 
 
     dir = Path(__file__).parent.resolve()
+    
+    
+    file_list = [
+        'commands.py',
+        'Info.json',
+        'Kernel.py',
+        'launcer.py',
+        'MakroPropiatery.py',
+        'pyrad.log',
+        'UserHandler.py',
+        'Boot.py',
+        'CryptographyKit/DecryptPassword.py',
+        'CryptographyKit/EncryptPassword.py',
+        'NetworkingKit/server.py',
+        'NetworkingKit/auth.py',
+        'RendererKit/Renderer.py',
+        'RendererKit/WindowRenderer.py'        
+    ]
 
     CML =[
     "test",
@@ -243,23 +261,27 @@ try:
             RD.CommandQuest(type='3', quest_msg='type the name of the file you want to view')
             #ask_file = input("type the name of the file you want to view\n:")
             if cmd_pl == "1" or cmd_pl == "3":
-                os.system(f"cat {RD.Quest_result}")
+                if not RD.Quest_result in file_list:
+                    os.system(f"cat {RD.Quest_result}")
             elif cmd_pl == "2":
-                os.system(f"more {RD.Quest_result}")
+                if not RD.Quest_result in file_list:
+                    os.system(f"more {RD.Quest_result}")
         
         if Command == "edit file":
             if not safe_md:
                 if MD == "2" or MD == '9':           
                     if cmd_pl == "1" or cmd_pl == "3":
                         RD.CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
-                        #ask_file = input("type the name of the file you want to edit\n:")
-                        if RD.Quest_result.endswith(".py"):
-                            os.system(f"vim {RD.Quest_result}")
-                        else:
-                            os.system(f"nano {RD.Quest_result}")
+                        if not RD.Quest_result in file_list:
+                            #ask_file = input("type the name of the file you want to edit\n:")
+                            if RD.Quest_result.endswith(".py"):
+                                os.system(f"vim {RD.Quest_result}")
+                            else:
+                                os.system(f"nano {RD.Quest_result}")
                     elif cmd_pl == "2":
                         RD.CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
-                        os.system(f'notepad {RD.Quest_result}')
+                        if not RD.Quest_result in file_list:
+                            os.system(f'notepad {RD.Quest_result}')
                 else:
                     LCommand = Command
                     RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
