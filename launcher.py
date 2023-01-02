@@ -59,7 +59,7 @@ def boot():
             from os import system, _exit
             if settings.pl == '1' or settings.pl == '3':
                 system("killall python")
-            elif settings.pl:
+            else:
                 _exit(1)
         else:
             if settings.EnableIntSoft:
@@ -68,5 +68,5 @@ def boot():
             from os import system, _exit
             if settings.pl == '1' or settings.pl == '3':
                 system("killall python")
-            elif settings.pl:
+            else:
                 _exit(1)
