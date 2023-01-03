@@ -73,13 +73,11 @@ def init():
 
     # print(settings.EnableIntSoft)
     if settings.EnableIntSoft:
-        try:
-            cred._get_propiatery(True)
-            if cred.UserLess_Connection == '1' or cred.GO_TO_FTU == '1':
-                advanced_init()
-            else:
-                normal_init()
-        except BaseException:
+        cred._get_propiatery(True)
+        if cred.UserLess_Connection == '1' or cred.GO_TO_FTU == '1':
+            advanced_init()
+        else:
             normal_init()
+
     else:
         normal_init()
