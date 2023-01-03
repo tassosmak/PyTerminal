@@ -10,7 +10,8 @@ with open(f'{dir}/../Info.json', 'w') as apple:
         "Mode": ""
     },
     "FTU": {
-        "Use": "0"
+        "Use": "0",
+        "IP": "0.0.0.0"
     },
     "Internal-Software": {
         "Enable": "0"
