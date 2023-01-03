@@ -52,6 +52,8 @@ def boot():
     try:
         #print(UserH.UserMD)
         _run()
+    except KeyboardInterrupt:
+        RD.CommandSay('')
     except BaseException:
         if settings.MODE == "9" or settings.MODE == "3":
             RD.CommandSay("There Was An Error see 'errors.log' in the Error_Manager Folder for more info", "FAIL")
