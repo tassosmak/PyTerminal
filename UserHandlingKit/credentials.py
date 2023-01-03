@@ -40,7 +40,6 @@ def _get_credentials(print_credentials=False):
     except FileNotFoundError:
         try:
             from src import Recover_Json
-            RD.CommandQuest(type='2', error_msg='Your Installation Is Restored')
         except ImportError:
             RD.CommandSay(answer='This Installation is corrupted install a new one', color='FAIL')
             os.system('killall python')
