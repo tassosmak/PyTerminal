@@ -1,10 +1,6 @@
 {
     "user_login": {
         "UserLess Connection": "0",
-        "GO TO FTU": "0"
-    },
-    "user_credentials": {
-        "Key": "tassos",
-        "Password": "ODU5Ng=="
+        "GO TO FTU": "1"
     }
 }

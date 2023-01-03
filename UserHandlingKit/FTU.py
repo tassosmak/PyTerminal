@@ -30,8 +30,7 @@ def _FTU_init(edit_use=True):
 
     def _ask_name_password():
         RD.CommandQuest(type='3', quest_msg='What is your name')
-        ask_name = RD.Quest_result
-        edit_json(loc1="user_credentials", loc2="Name", content=ask_name)
+        edit_json(loc1="user_credentials", loc2="Name", content=RD.Quest_result)
         
         correct_pswd_input = False
         
@@ -41,24 +40,17 @@ def _FTU_init(edit_use=True):
             
             
             if RD.Quest_result == 'Yes':
-                # _gen_safe_password()
-                Password_msg= f'YOUR PASSWORD IS {_gen_safe_password()} KEEP IT SAFE'
+                pre_enc_pswd = _gen_safe_password()
+                Password_msg= f'YOUR PASSWORD IS {EncryptPassword.encrypt_password(password=pre_enc_pswd)} KEEP IT SAFE'
                 RD.CommandQuest(type='2', error_msg=Password_msg)
                 correct_pswd_input = True
             
             
             else:
                 RD.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
-                if settings.EnableIntSoft:
-                    EncryptPassword.password = RD.Quest_result
-                    _d_encrypt(type='1', input_text=RD.Quest_result)
-                    RD.CommandQuest(type='3', quest_msg='Type a Key')
-                    EncryptPassword.encrypt_password(password=EncryptPassword.password, key=RD.Quest_result)
-                    correct_pswd_input = True
+                EncryptPassword.encrypt_password(password=RD.Quest_result)
+                correct_pswd_input = True
                     
-                elif RD.Quest_result.isdigit():
-                    _d_encrypt(type='1', input_text=RD.Quest_result)
-                    correct_pswd_input = True
                     
     def _ask_mode():
         RD.CommandQuest(type='1' ,ask_admin_msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')

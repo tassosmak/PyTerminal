@@ -1,23 +1,14 @@
 import json
 import base64
 
-def decrypt_password(key, password):
+def decrypt_password(password):
     # Load the encrypted password and key from the file
-    f = open("MakroPropiatery.json")
+    f = open("Info.json")
     data = json.load(f)
     Password = data['user_credentials']['Password']
-    key_json = data['user_credentials']['Key']
-    
-    while key != key_json:
-        key = input("Enter key: ")
-    
     
     # Decrypt the password using the key
-    decrypted_password = base64.b64decode(Password.encode()).decode()
- 
-    while password != decrypted_password:
-        password = input("Enter Password: ")
-    
+    decrypted_password = base64.b64decode(Password.encode()).decode()   
     f.close()        
     return decrypted_password
 

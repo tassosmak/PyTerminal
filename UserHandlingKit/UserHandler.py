@@ -2,7 +2,6 @@ import datetime
 if not __name__ == '__main__':
     from RendererKit import Renderer as RD
 from src import settings
-from CryptographyKit import DecryptPassword
 from UserHandlingKit.utils import _pl_finder
 from UserHandlingKit import credentials as cred
 from UserHandlingKit.FTU import _FTU_init
@@ -50,28 +49,19 @@ def init():
 
         if continue_normal:
             while not correct_credentials:
-                if settings.EnableIntSoft:
-                    DecryptPassword.ask_decrypt()
-                    correct_credentials = True
-                    settings.FTU = cred.FTU
-                    settings.USERNAME = cred.Name
-                    welcome_msg = f"Welcome {cred.Name.capitalize()}"
-                    RD.CommandPush(message=welcome_msg)
-                    RD.CommandSay(answer="Go Ahead")
-                else:
-                    _ask()
-                    if not ask_name == "":
-                        if ask_name == cred.Name and ask_Password == cred.Password:
-                            correct_credentials = True
-                            settings.FTU = cred.FTU
-                            settings.USERNAME = ask_name
-                            settings.PASSWORD = ask_Password
-                            welcome_msg = f"Welcome {cred.Name.capitalize()}"
-                            RD.CommandPush(message=welcome_msg)
-                            RD.CommandSay(answer="Go Ahead")
-                    else:
-                        settings.MODE = "3"
+                _ask()
+                if not ask_name == "":
+                    if ask_name == cred.Name and ask_Password == cred.Password:
+                        settings.FTU = cred.FTU
+                        settings.USERNAME = ask_name
+                        settings.PASSWORD = ask_Password
+                        welcome_msg = f"Welcome {cred.Name.capitalize()}"
+                        RD.CommandPush(message=welcome_msg)
+                        RD.CommandSay(answer="Go Ahead")
                         correct_credentials = True
+                else:
+                    settings.MODE = "3"
+                    correct_credentials = True
     def advanced_init():
         # _get_propiatery(True)
         if settings.GO_TO_FTU:

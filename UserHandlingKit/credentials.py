@@ -2,7 +2,7 @@ from src import settings
 from RendererKit import Renderer as RD
 import json
 import os
-from UserHandlingKit.utils import _d_encrypt
+from CryptographyKit import DecryptPassword
 
 
 def _get_propiatery(print_credentials=False):
@@ -64,7 +64,7 @@ def _get_credentials(print_credentials=False):
 
 
     Password = data['user_credentials']['Password']
-    Password = _d_encrypt(type='2', input_text=Password)
+    Password = DecryptPassword.decrypt_password(password=Password)
         
     if print_credentials:
         RD.CommandSay(answer=("Password:", Password))

@@ -2,10 +2,9 @@ import json
 import base64
 
 
-password = 0
 
 
-def edit_json(file_name='MakroPropiatery.json', loc1="", loc2="", content=""):
+def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
     with open(file_name, 'r+') as f:
         data = json.load(f)
         if not loc2 == "":
@@ -16,11 +15,11 @@ def edit_json(file_name='MakroPropiatery.json', loc1="", loc2="", content=""):
         json.dump(data, f, indent=4)
         f.truncate()
 
-def encrypt_password(password, key):
+def encrypt_password(password):
     # Encrypt the password using a key
     encrypted_password = base64.b64encode(password.encode()).decode()
     edit_json(loc1='user_credentials', loc2='Password', content=encrypted_password)
-    edit_json(loc1='user_credentials', loc2='Key', content=key)
+    return encrypted_password
 
 
 
