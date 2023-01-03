@@ -1,5 +1,6 @@
 try:
-    import commands as cmd
+    if not __name__ == '__main__':
+        import commands as cmd
 
 
     def history():
@@ -17,5 +18,5 @@ try:
         else:
             raise IndexError
 except BaseException:
-    import Error_Logger.Logger as logger
+    import ErrorLoggingKit.Logger as logger
     logger.log_error()

@@ -8,7 +8,10 @@ hostname = socket.gethostname()
 SERVER_IP = socket.gethostbyname(hostname)
 PORT = 5050
 ADDR = (SERVER_IP, PORT)
-server.bind(ADDR)
+try:
+    server.bind(ADDR)
+except OSError:
+    pass
 
 
 server.listen()

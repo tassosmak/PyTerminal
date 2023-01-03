@@ -3,11 +3,10 @@ try:
     import os
     import datetime
     import platform
-    import sys
     import Boot
     from pathlib import Path
-    from NotificationsKit import Alert, Buttons, AlertType, Dialog, Icon
-    import subprocess
+    from UserHandlingKit.utils import edit_json
+    from RendererKit import Renderer as RD
     from src import settings
     net = False
 
@@ -25,6 +24,28 @@ try:
 
 
     dir = Path(__file__).parent.resolve()
+    
+    
+    file_list = [
+        'commands.py',
+        'Info.json',
+        'Kernel.py',
+        'launcer.py',
+        'MakroPropiatery.py',
+        'pyrad.log',
+        'UserHandler.py',
+        'Boot.py',
+        'CryptographyKit/DecryptPassword.py',
+        'CryptographyKit/EncryptPassword.py',
+        'NetworkingKit/server.py',
+        'NetworkingKit/auth.py',
+        'RendererKit/Renderer.py',
+        'RendererKit/WindowRenderer.py',
+        'UserHandlingKit/credentials.py',
+        'UserHandlingKit/FTU.py',
+        'UserHandlingKit/utils.py',
+        'UserHandlingKit/UserHandler.py'
+    ]
 
     CML =[
     "test",
@@ -58,6 +79,7 @@ try:
     sys_detect = platform.uname()
     Version = 2
     jump = False
+    logout = False
     jump_user = False
     ask_recv = 0
     answer = 0
@@ -67,7 +89,7 @@ try:
         if MD == "2":
             CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt, MD=MD)
         elif MD == "9": 
-            CommandList(Command=input(f"PyTerminal {sys_detect.processor} | {sys_detect.system} {sys_detect.machine} % "), cmd_pl=plt, MD=MD)
+            CommandList(Command=input(f"PyTerminal {sys_detect.system} | {sys_detect.machine} % "), cmd_pl=plt, MD=MD)
         elif MD == "3":
             CommandList(Command=input(f"PyTerminal | Safe-Mode $ "), cmd_pl=plt, safe_md=safe_mode, MD=MD)
         else:
@@ -75,72 +97,71 @@ try:
 
 
     def CommandList(Command=0, cmd_pl=0, safe_md=False, MD=0):
-        global jump, jump_user, ask_recv, LCommand, answer
+        global jump, logout, jump_user, ask_recv, LCommand, answer
         LCommand = 0
 
         if Command == "ls":
             if MD == "2":
-                CommandSay(answer=os.listdir(dir))
+                RD.CommandSay(answer=os.listdir(dir))
             else:
-                CommandSay(answer="This Function isn't available within this mode", color="WARNING")
+                RD.CommandSay(answer="This Function isn't available within this mode", color="WARNING")
 
         if Command == "test":
             LCommand = Command
             if MD == "9":
-                CommandSay(answer="tested")
-                CommandSay(answer="tested", color="WARNING")
-                CommandSay(answer="tested", color="FAIL")
-                CommandSay(answer="tested", color="OKGREEN")
-                CommandSay(answer="tested", color="PURPLE")
-                CommandSay(answer="tested", color="UNDERLINE")
+                RD.CommandSay(answer="tested")
+                RD.CommandSay(answer="tested", color="WARNING")
+                RD.CommandSay(answer="tested", color="FAIL")
+                RD.CommandSay(answer="tested", color="OKGREEN")
+                RD.CommandSay(answer="tested", color="PURPLE")
+                RD.CommandSay(answer="tested", color="UNDERLINE")
                 now = datetime.datetime.now()
-                CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
-                CommandQuest(type='2', error_msg=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
-                CommandQuest(type='3', quest_msg='Testing')
-                CommandSay(answer=Quest_result, color="WARNING")
-                CommandQuest(type='1', ask_admin_msg="tested")
-                if Quest_result == 'Yes':
-                    CommandSay(answer='Positive answer', color='WARNING')
+                RD.CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                RD.CommandQuest(type='2', error_msg=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                RD.CommandQuest(type='3', quest_msg='Testing')
+                RD.CommandSay(answer=RD.Quest_result, color="WARNING")
+                RD.CommandQuest(type='1', ask_admin_msg="tested")
+                if RD.Quest_result == 'Yes':
+                    RD.CommandSay(answer='Positive answer', color='WARNING')
                 else:
-                    CommandSay(answer='Negative answer', color='WARNING')
+                    RD.CommandSay(answer='Negative answer', color='WARNING')
                 if not cmd_pl == "3":
-                    Boot.Run = True
-                    Boot.SecondaryTask("test", stay_end=True)
+                    Boot.SecondaryTask(file_name="test", stay_end=True)
             else:
-                CommandSay(answer="tested")
+                RD.CommandSay(answer="tested")
         
         if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
             LCommand = Command
-            CommandSay(answer="PyTerminal V.Beta by Makro Software")
+            RD.CommandSay(answer="PyTerminal V.Beta by Makro Software")
         
         if Command == "CML":
             if MD == "2":
-                CommandSay(answer=CMLAD)
+                RD.CommandSay(answer=CMLAD)
             elif MD == "1":
                 LCommand = Command
-                CommandSay(answer=CML)
+                RD.CommandSay(answer=CML)
             else:
-                CommandSay(answer="This Function isn't available within this mode", color="WARNING")
+                RD.CommandSay(answer="This Function isn't available within this mode", color="WARNING")
         
         if Command == "time":
             LCommand = Command
             now = datetime.datetime.now()
-            CommandSay(answer=now.strftime("%Y-%m-%d %H:%M:%S"))
+            RD.CommandSay(answer=now.strftime("%Y-%m-%d %H:%M:%S"))
 
         if Command == "del" or Command == "delete":
             if not safe_md:
-                if MD == "2":
-                    CommandSay(answer=os.listdir(dir))
+                if MD == "2" or MD == '9':
+                    RD.CommandSay(answer=os.listdir(dir))
                     ask_del = input("what file you want to delete:")
                     try:
-                        CommandSay(answer=ask_del)
+                        RD.CommandSay(answer=ask_del)
                         os.remove(ask_del)
-                        CommandSay(answer="DONE", color="OKGREEN")
+                        RD.CommandSay(answer="DONE", color="OKGREEN")
                     except FileNotFoundError:
-                        CommandSay(answer="This file doesn't exist", color="FAIL")
+                        RD.CommandSay(answer="This file doesn't exist", color="FAIL")
                 else:
                     LCommand = Command
-                    CommandSay(answer="This Function isn't available within this mode", color="FAIL")
+                    RD.CommandSay(answer="This Function isn't available within this mode", color="FAIL")
 
         if Command == "create":
             if not safe_md:
@@ -149,35 +170,33 @@ try:
                     ask_name = input("What the name of the file you want to create?")
                     try:
                         open(ask_name, "x")
-                        CommandSay(answer="DONE", color="OKGREEN")
+                        RD.CommandSay(answer="DONE", color="OKGREEN")
                     except FileExistsError:
                         ask_del_create = input("This file already exist try again", color="WARNING")
                     except UnboundLocalError:
-                        CommandSay(answer="There was a Problem try again", color="FAIL")
+                        RD.CommandSay(answer="There was a Problem try again", color="FAIL")
                 elif MD == "2" or MD == "9":
                         ask_name = input("What the name of the file you want to create?")
                         try:
                             open(ask_name, "x")
-                            CommandSay(answer="DONE", color="OKGREEN")
+                            RD.CommandSay(answer="DONE", color="OKGREEN")
                         except FileExistsError:
                             ask_del_create = input("This file already exist do you want to delete it. if yes type 'Y'")
                             if ask_del_create == "Y" or ask_del_create == "y":
                                 os.remove(ask_name)
-                                CommandSay(answer="DONE", color="OKGREEN")
+                                RD.CommandSay(answer="DONE", color="OKGREEN")
                         except UnboundLocalError:
                                 pass
                 else:
-                    CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                    RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
         if Command == "latest":
-            Boot.Run = True
             Boot.SecondaryTask(file_name="LineRetriver")
             
 
         if Command == "gen password":
             if not safe_md:
                 LCommand = Command
-                Boot.Run = True
                 Boot.SecondaryTask(file_name="Password_Gen", stay_end=True)
 
 
@@ -187,14 +206,14 @@ try:
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
                     if cmd_pl == "1" or cmd_pl == "3":
-                        os.system("killall python")
+                        os.system('killall python')
                     elif cmd_pl == "2":
-                        os.system('exit')
+                        os._exit(1)
             elif MD == "2" or MD == "9" or MD == "3":
                 if cmd_pl == "1" or cmd_pl == "3":
                     os.system("killall python")
                 elif cmd_pl == "2":
-                    os.system('exit')
+                    os._exit(1)
 
             
         if Command == "jump":
@@ -205,9 +224,9 @@ try:
 
         if Command == "print md":
             if not safe_md:
-                CommandSay(answer=MD)
+                RD.CommandSay(answer=MD)
             else:
-                CommandSay("You Are in Safe-Mode")
+                RD.CommandSay("You Are in Safe-Mode")
 
 
 
@@ -215,23 +234,23 @@ try:
             if not safe_md:
                 LCommand = Command
                 if net:
-                    CommandQuest(type='1', ask_admin_msg='do you want to be host or reciever', Button1='Host', Button2='Talker')
+                    RD.CommandQuest(type='1', ask_admin_msg='do you want to be host or reciever', Button1='Host', Button2='Talker')
                     #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
-                    if Quest_result == "Host":
+                    if RD.Quest_result == "Host":
                         Server.chat()
-                    elif Quest_result == "Talker":
+                    elif RD.Quest_result == "Talker":
                         #ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
-                        CommandQuest(type='3', quest_msg='To Which IP you want to talk to Type Below!')
-                        ask_recv = str(Quest_result)
+                        RD.CommandQuest(type='3', quest_msg='To Which IP you want to talk to Type Below!')
+                        ask_recv = str(RD.Quest_result)
                         try: 
                             client.Chat(IP=ask_recv)
                         except ConnectionRefusedError:
-                            if not Quest_result == '':
-                                CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
+                            if not RD.Quest_result == '':
+                               RD.CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
                             else:
                                pass 
                 else:
-                    CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
+                    RD.CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
 
 
 
@@ -243,37 +262,42 @@ try:
 
         if Command == "view file":
             LCommand = Command
-            CommandQuest(type='3', quest_msg='type the name of the file you want to view')
+            RD.CommandQuest(type='3', quest_msg='type the name of the file you want to view')
             #ask_file = input("type the name of the file you want to view\n:")
             if cmd_pl == "1" or cmd_pl == "3":
-                os.system(f"cat {Quest_result}")
+                if not RD.Quest_result in file_list:
+                    os.system(f"cat {RD.Quest_result}")
             elif cmd_pl == "2":
-                os.system(f"more {Quest_result}")
+                if not RD.Quest_result in file_list:
+                    os.system(f"more {RD.Quest_result}")
         
         if Command == "edit file":
             if not safe_md:
-                if MD == "2":           
+                if MD == "2" or MD == '9':           
                     if cmd_pl == "1" or cmd_pl == "3":
-                        CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
-                        #ask_file = input("type the name of the file you want to edit\n:")
-                        if Quest_result.endswith(".py"):
-                            os.system(f"vim {Quest_result}")
-                        else:
-                            os.system(f"nano {Quest_result}")
+                        RD.CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
+                        if not RD.Quest_result in file_list:
+                            #ask_file = input("type the name of the file you want to edit\n:")
+                            if RD.Quest_result.endswith(".py"):
+                                os.system(f"vim {RD.Quest_result}")
+                            else:
+                                os.system(f"nano {RD.Quest_result}")
                     elif cmd_pl == "2":
-                        CommandSay(answer="You can't edit files within The Windows Command Prompt", color="FAIL")
+                        RD.CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
+                        if not RD.Quest_result in file_list:
+                            os.system(f'notepad {RD.Quest_result}')
                 else:
                     LCommand = Command
-                    CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                    RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
         
         if Command == "weather forecast":
             if not safe_md:
                 LCommand = Command
                 if net:
                     os.system("curl wttr.in/")
-                    CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
+                    RD.CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
                 else:
-                    CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
+                    RD.CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
 
         if Command == "activity monitor":
             if not safe_md:
@@ -282,12 +306,11 @@ try:
                         os.system('top')
                 else:
                     LCommand = Command
-                    CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                    RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
         if Command == "countdown":
             if not safe_md:
                 LCommand = Command
-                Boot.Run = True
                 Boot.SecondaryTask(file_name="countdown", stay_end=False)
                 
             
@@ -299,13 +322,12 @@ try:
                 
             else:
                 LCommand = Command
-                CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
 
         if Command == "devices":
             if not safe_md:
                 if not cmd_pl == "2":
-                    Boot.Run = True
                     if settings.FTU == "2":
                         import NetworkingKit.server
                     else:
@@ -313,86 +335,39 @@ try:
                         if NetworkingKit.auth.DONE:
                             Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
                 else:
-                    CommandSay("LocalNetworking Isn't Supported On Windown Yet\nIt's Under Development :)")
-
-    class bcolors:
-        HEADER = '\033[95m'
-        OKBLUE = '\033[94m'
-        OKCYAN = '\033[96m'
-        OKGREEN = '\033[92m'
-        WARNING = '\033[93m'
-        FAIL = '\033[91m'
-        ENDC = '\033[0m'
-        BOLD = '\033[1m'
-        UNDERLINE = '\033[4m'
-        WHITE  = '\33[37m'
-        PURPLE = '\033[95m'
-        DARKCYAN = '\033[36m'
-
-    def CommandPush(message, header=settings.Default_text):
-        if settings.pl == '1':
-            command = f'''
-            osascript -e 'display notification "{message}" with title "{header}"'
-            '''
-            os.system(command)
+                    RD.CommandSay("LocalNetworking Isn't Supported On Windown Yet\nIt's Under Development :)")
 
 
-    def CommandQuest(type='0', Button1='No', Button2='Yes', error_msg="Blank", quest_msg='Blank', quest_icon=Icon.NOTE, ask_admin_msg="This Procces Require Administraive Access\n are you sure you want to grant it?"):
-        global Quest_result
-        Quest_result = 0
-        if type == '1':
-            if settings.EnableGUI:
-                    al = Alert(ask_admin_msg).with_buttons(Buttons([Button1, Button2,])).show()
 
-                    Quest_result = al.button_returned
+        if Command == "logout":
+            LCommand = Command
+            logout = True
+            if cmd_pl == "1" or cmd_pl == "3":
+                os.system('clear')
             else:
-                Quest_result = input((ask_admin_msg, f'Type {Button1} or {Button2}'))
-        elif type == "2":
-            if settings.EnableGUI:
-                applescript = f"""
-                display dialog "{error_msg}" with title "{settings.Default_text}" with icon caution buttons "OK"
-                """
+                os.system('cls')
+                
+                
+        if Command == "edit parameters":
+            if MD == "9":
+                ask_what_params = input('What parameters You Want to Edit\n1) GUI\n2) Use\nSelect:')
+                if ask_what_params == '1':
+                    ask_gui_params = input('Do You Want to Enable it or Disable it\nSelect')
+                    if ask_gui_params == 'enable' or ask_gui_params == 'Enable':
+                        edit_json(loc1='UI', loc2='Enable-AquaUI', content='1')
+                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                    elif ask_gui_params == 'disable' or ask_gui_params == 'Disable':
+                        edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
+                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                elif ask_what_params == '2':
+                    ask_use_params = input('How Do You Want To Use This Instanche?, Type "Server" or "Personal":')
+                    if ask_use_params == "Server":
+                        edit_json(loc1='FTU', loc2='Use', content='2')
+                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                    elif ask_use_params == 'Personal':
+                        edit_json(loc1='FTU', loc2='Use', content='1')
+                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
 
-                subprocess.call("osascript -e '{}'".format(applescript), shell=True)
-            else:
-                Quest_result = input(quest_msg)
-        elif type == '3':
-            if settings.EnableGUI:
-                buttons = Buttons(["Ok", "Exit"])
-                the_dialog = Dialog(quest_msg).with_title(settings.Default_text)
-                the_dialog.with_buttons(buttons)
-                the_dialog.with_icon(quest_icon)
-                the_dialog.with_input("Type Here:")
-
-                result = the_dialog.show()
-
-                Quest_result = result.text_returned  # => text entered in input
-            else:
-                Quest_result = input(quest_msg)
-
-
-    def CommandSay(answer=0, color=0):
-        # if ssh == True:
-        #     if color == "WARNING":
-        #         print("\n",bcolors.WARNING, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
-        #     elif color == "FAIL":
-        #         print("\n",bcolors.FAIL, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
-        #     elif color == "OKGREEN":
-        #         print("\n",bcolors.OKGREEN, answer, f"{bcolors.WHITE} ") and Server.SendOnly(Say=answer)
-        #     else:
-        #         print("\n",answer) and Server.SendOnly(Say=answer)
-        # else:
-        if color == "WARNING":
-            sys.stderr.write(f"\n{bcolors.WARNING}{answer}{bcolors.WHITE}\n")
-        elif color == "FAIL":
-            sys.stderr.write(f"\n{bcolors.FAIL}{answer}{bcolors.WHITE}\n")
-        elif color == "OKGREEN":
-            sys.stderr.write(f"\n{bcolors.OKGREEN}{answer}{bcolors.WHITE}\n")  
-        elif color == "PURPLE":
-            sys.stderr.write(f"\n{bcolors.PURPLE}{answer}{bcolors.WHITE}\n")
-        else:
-            sys.stderr.write(f"\n{answer}\n")
-            #print(answer)
 except BaseException:
-    import Error_Logger.Logger as logger
+    import ErrorLoggingKit.Logger as logger
     logger.log_error(message="Command.py")

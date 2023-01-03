@@ -1,6 +1,6 @@
 import string
 from random import random, shuffle, choice
-from src import settings
+import settings
 
 def gen():
     characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")
