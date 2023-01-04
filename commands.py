@@ -117,10 +117,10 @@ try:
                 RD.CommandSay(answer="tested", color="UNDERLINE")
                 now = datetime.datetime.now()
                 RD.CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
-                RD.CommandQuest(type='2', error_msg=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
-                RD.CommandQuest(type='3', quest_msg='Testing')
+                RD.CommandQuest(type='2', msg=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                RD.CommandQuest(type='3', msg='Testing')
                 RD.CommandSay(answer=RD.Quest_result, color="WARNING")
-                RD.CommandQuest(type='1', ask_admin_msg="tested")
+                RD.CommandQuest(type='1', msg="tested")
                 if RD.Quest_result == 'Yes':
                     RD.CommandSay(answer='Positive answer', color='WARNING')
                 else:
@@ -158,37 +158,38 @@ try:
                         os.remove(ask_del)
                         RD.CommandSay(answer="DONE", color="OKGREEN")
                     except FileNotFoundError:
-                        RD.CommandSay(answer="This file doesn't exist", color="FAIL")
+                        RD.CommandQuest(type='2', msg="This file doesn't exist")
                 else:
                     LCommand = Command
-                    RD.CommandSay(answer="This Function isn't available within this mode", color="FAIL")
+                    RD.CommandQuest(type='2', msg="This Function isn't available within this mode")
 
         if Command == "create":
             if not safe_md:
                 if MD == "1":
                     LCommand = Command
-                    ask_name = input("What the name of the file you want to create?")
+                    RD.CommandQuest(type='3', msg="What the name of the file you want to create?")
                     try:
-                        open(ask_name, "x")
+                        open(RD.Quest_result, "x")
                         RD.CommandSay(answer="DONE", color="OKGREEN")
                     except FileExistsError:
-                        ask_del_create = input("This file already exist try again", color="WARNING")
+                        RD.CommandQuest(type='2', msg="This file already exist try again")
                     except UnboundLocalError:
-                        RD.CommandSay(answer="There was a Problem try again", color="FAIL")
+                        RD.CommandQuest(type='2', msg="There was a Problem try again")
                 elif MD == "2" or MD == "9":
-                        ask_name = input("What the name of the file you want to create?")
+                        RD.CommandQuest(type='3', msg="What the name of the file you want to create?")
                         try:
-                            open(ask_name, "x")
+                            open(RD.Quest_result, "x")
                             RD.CommandSay(answer="DONE", color="OKGREEN")
+                            ask_name = RD.Quest_result
                         except FileExistsError:
-                            ask_del_create = input("This file already exist do you want to delete it. if yes type 'Y'")
-                            if ask_del_create == "Y" or ask_del_create == "y":
+                            RD.CommandQuest(type='1', msg="This file already exist do you want to delete it. if yes type 'Y'", Button1='No', Button2='Yes')
+                            if RD.Quest_result == "Yes" or RD.Quest_result == "yes":
                                 os.remove(ask_name)
                                 RD.CommandSay(answer="DONE", color="OKGREEN")
                         except UnboundLocalError:
                                 pass
                 else:
-                    RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                    RD.CommandQuest(type='2', msg="This Function isn't available within this mode")
 
         if Command == "latest":
             Boot.SecondaryTask(file_name="LineRetriver")
@@ -226,7 +227,7 @@ try:
             if not safe_md:
                 RD.CommandSay(answer=MD)
             else:
-                RD.CommandSay("You Are in Safe-Mode")
+                RD.CommandSay("You Are in Safe-Mode", color='WARNING')
 
 
 

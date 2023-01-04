@@ -33,9 +33,11 @@ def boot():
         #print(UserH.UserMD)
         _run()
     except KeyboardInterrupt:
-        RD.CommandSay('')
+        if settings.EnableIntSoft:
+            RD.CommandQuest(type='2', msg='KeyboardInterrupt')
     except EOFError:
-        RD.CommandSay('')
+        if settings.EnableIntSoft:
+            RD.CommandQuest(type='2', msg='EOFError')
     except BaseException:
         if settings.MODE == "9" or settings.MODE == "3":
             RD.CommandSay("There Was An Error see 'errors.log' in the Error_Manager Folder for more info", "FAIL")

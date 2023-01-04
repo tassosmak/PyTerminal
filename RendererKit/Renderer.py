@@ -39,31 +39,31 @@ def CommandPush(message, header=settings.Default_text):
 
 
 
-def CommandQuest(type='0', Button1='No', Button2='Yes', error_msg="Blank", quest_msg='Blank', quest_icon=Icon.NOTE, ask_admin_msg="This Procces Require Administraive Access\n are you sure you want to grant it?"):
+def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, msg="Blank Request"):
     global Quest_result
     Quest_result = ''
     if type == '1':
         if settings.EnableGUI:
-                al = Alert(ask_admin_msg).with_buttons(Buttons([Button1, Button2,])).show()
+                al = Alert(msg).with_buttons(Buttons([Button1, Button2,])).show()
 
                 Quest_result = al.button_returned
         else:
-            Quest_result = input(f'{ask_admin_msg}, Type "{Button1}" or "{Button2}":')
+            Quest_result = input(f'{msg}, Type "{Button1}" or "{Button2}":')
     elif type == "2":
         if settings.EnableGUI:
             applescript = f"""
-            display dialog "{error_msg}" with title "{settings.Default_text}" with icon caution buttons "OK"
+            display dialog "{msg}" with title "{settings.Default_text}" with icon caution buttons "OK"
             """
 
             subprocess.call("osascript -e '{}'".format(applescript), shell=True)
         else:
             # print(quest_msg)
-            quest_msg.removeprefix('( ) "" ')
-            Quest_result = CommandSay(answer=error_msg, color='WARNING')
+            msg.removeprefix('( ) "" ')
+            Quest_result = CommandSay(answer=msg, color='WARNING')
     elif type == '3':
         if settings.EnableGUI:
             buttons = Buttons(["Ok", "Exit"])
-            the_dialog = Dialog(quest_msg).with_title(settings.Default_text)
+            the_dialog = Dialog(msg).with_title(settings.Default_text)
             the_dialog.with_buttons(buttons)
             the_dialog.with_icon(quest_icon)
             the_dialog.with_input("Type Here:")
@@ -72,7 +72,7 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', error_msg="Blank", quest
 
             Quest_result = result.text_returned  # => text entered in input
         else:
-            Quest_result = input(f"{quest_msg}:")
+            Quest_result = input(f"{msg}:")
 
 
 def CommandSay(answer=0, color=0):
