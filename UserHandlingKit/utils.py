@@ -3,6 +3,7 @@ import string
 from random import shuffle, choice
 import platform
 from src import settings
+from RendererKit import Renderer as RD
 
 def _reverse_key(text=''):
     str = ""
@@ -53,6 +54,26 @@ def _gen_safe_password():
     final_password = str(password_str)
     _d_encrypt(type='1', input_text=final_password)
     return final_password
+
+
+
+
+
+def jump_mode():
+    RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
+    ask_core = input("select Mode")
+    if ask_core == '9' and settings.EnableIntSoft == False:
+        ask_core = '2'
+    while not ask_core in settings.ModeList:
+        RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
+        ask_core = input("select Mode")
+        if ask_core in settings.ModeList:
+            if ask_core == '9' and settings.EnableIntSoft == False:
+                ask_core = '2'
+    settings.MODE = ask_core
+    RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
+
+
 
 def _pl_finder():
     pl = platform.platform()

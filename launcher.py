@@ -3,28 +3,9 @@ from RendererKit import Renderer as RD
 if not __name__ == '__main__':
     import Kernel as kernel
     from UserHandlingKit.UserHandler import init
-    from UserHandlingKit.utils import edit_json
+    from UserHandlingKit.utils import edit_json, jump_mode
     import commands as cmd
 from src import settings
-
-Modes = [
-    '1',
-    '2',
-    '9'
-]
-
-def _ask():
-    RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
-    ask_core = input("select Mode")
-    if ask_core == '9' and settings.EnableIntSoft == False:
-        ask_core = '2'
-    while not ask_core in Modes:
-        RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
-        ask_core = input("select Mode")
-        if ask_core in Modes:
-            if ask_core == '9' and settings.EnableIntSoft == False:
-                ask_core = '2'
-    settings.MODE = ask_core
 
 
 def _run():
@@ -38,8 +19,7 @@ def _run():
             edit_json(loc1='user_credentials', loc2='Mode', content=ask_new_md)
             edit_json(loc1='Internal-Software', loc2='Enable', content='0')
         if cmd.jump:
-            _ask()
-            RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
+            jump_mode()
             kernel.core(MODE=settings.MODE, pl=settings.pl, username=settings.USERNAME)
             cmd.jump = False
         if cmd.logout:
