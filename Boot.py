@@ -3,7 +3,7 @@ import sys
 if __name__ == '__main__':
     import launcher
 from pathlib import Path
-from UserHandler import init
+from UserHandlingKit.UserHandler import init
 from src import settings
 import ErrorLoggingKit.Logger as logger
 
