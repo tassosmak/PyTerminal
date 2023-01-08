@@ -241,7 +241,7 @@ try:
                         Server.chat()
                     elif RD.Quest_result == "Talker":
                         #ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
-                        RD.CommandQuest(type='3', quest_msg='To Which IP you want to talk to Type Below!')
+                        RD.CommandQuest(type='3', msg='To Which IP you want to talk to Type Below!')
                         ask_recv = str(RD.Quest_result)
                         try: 
                             client.Chat(IP=ask_recv)
@@ -263,7 +263,7 @@ try:
 
         if Command == "view file":
             LCommand = Command
-            RD.CommandQuest(type='3', quest_msg='type the name of the file you want to view')
+            RD.CommandQuest(type='3', msg='type the name of the file you want to view')
             #ask_file = input("type the name of the file you want to view\n:")
             if cmd_pl == "1" or cmd_pl == "3":
                 if not RD.Quest_result in file_list:
@@ -276,7 +276,7 @@ try:
             if not safe_md:
                 if MD == "2" or MD == '9':           
                     if cmd_pl == "1" or cmd_pl == "3":
-                        RD.CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
+                        RD.CommandQuest(type='3', msg='Type the name of the file you want to edit')
                         if not RD.Quest_result in file_list:
                             #ask_file = input("type the name of the file you want to edit\n:")
                             if RD.Quest_result.endswith(".py"):
@@ -284,7 +284,7 @@ try:
                             else:
                                 os.system(f"nano {RD.Quest_result}")
                     elif cmd_pl == "2":
-                        RD.CommandQuest(type='3', quest_msg='Type the name of the file you want to edit')
+                        RD.CommandQuest(type='3', msg='Type the name of the file you want to edit')
                         if not RD.Quest_result in file_list:
                             os.system(f'notepad {RD.Quest_result}')
                 else:

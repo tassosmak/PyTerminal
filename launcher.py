@@ -38,6 +38,8 @@ def boot():
     except EOFError:
         if settings.EnableIntSoft:
             RD.CommandQuest(type='2', msg='EOFError')
+        else:
+            RD.CommandSay(answer='\n')
     except BaseException:
         if settings.MODE == "9" or settings.MODE == "3":
             RD.CommandSay("There Was An Error see 'errors.log' in the Error_Manager Folder for more info", "FAIL")
