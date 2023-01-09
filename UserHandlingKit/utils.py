@@ -42,17 +42,17 @@ def _d_encrypt(type=0, input_text=''):
     return Dresult
 
 
-def _gen_safe_password():
+def _gen_safe_password(length=8, save=True):
     global final_password
     characters = list(string.digits)
-    length = 8
     shuffle(characters)
     password = []
     for i in range(length):
         password.append(choice(characters))
     password_str = ''.join(str(e) for e in password)
     final_password = str(password_str)
-    _d_encrypt(type='1', input_text=final_password)
+    if save:
+        _d_encrypt(type='1', input_text=final_password)
     return final_password
 
 

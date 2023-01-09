@@ -15,10 +15,11 @@ def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
         json.dump(data, f, indent=4)
         f.truncate()
 
-def encrypt_password(password):
+def encrypt_password(password, save=True):
     # Encrypt the password using a key
     encrypted_password = base64.b64encode(password.encode()).decode()
-    edit_json(loc1='user_credentials', loc2='Password', content=encrypted_password)
+    if save:
+        edit_json(loc1='user_credentials', loc2='Password', content=encrypted_password)
     return encrypted_password
 
 
