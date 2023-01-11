@@ -14,13 +14,13 @@ def _FTU_init(edit_use=True):
 
     def _ask_use():
         RD.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
-        RD.CommandQuest(type='1', Button1='Server', Button2='Personal', ask_admin_msg='How Do You want to use this instanche?')
+        RD.CommandQuest(type='1', Button1='Server', Button2='Personal', msg='How Do You want to use this instanche?')
         #ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
         if RD.Quest_result == 'Personal':
             ask_type = '1'
         elif RD.Quest_result == 'Server':
             ask_type = '2'
-            RD.CommandQuest(type='3', quest_msg='Type The ip address you want to send the commands')
+            RD.CommandQuest(type='3', msg='Type The ip address you want to send the commands')
             edit_json(loc1="FTU", loc2="IP", content=RD.Quest_result)
         else:
             ask_type = '1'
@@ -29,31 +29,31 @@ def _FTU_init(edit_use=True):
 
 
     def _ask_name_password():
-        RD.CommandQuest(type='3', quest_msg='What is your name')
+        RD.CommandQuest(type='3', msg='What is your name')
         edit_json(loc1="user_credentials", loc2="Name", content=RD.Quest_result)
         
         correct_pswd_input = False
         
         
         while not correct_pswd_input:
-            RD.CommandQuest(type='1', ask_admin_msg='Do You Want to to Use A safe Password', Button1='No', Button2='Yes')
+            RD.CommandQuest(type='1', msg='Do You Want to to Use A safe Password', Button1='No', Button2='Yes')
             
             
             if RD.Quest_result == 'Yes':
                 pre_enc_pswd = _gen_safe_password()
                 Password_msg= f'YOUR PASSWORD IS {EncryptPassword.encrypt_password(password=pre_enc_pswd)} KEEP IT SAFE'
-                RD.CommandQuest(type='2', error_msg=Password_msg)
+                RD.CommandQuest(type='2', msg=Password_msg)
                 correct_pswd_input = True
             
             
             else:
-                RD.CommandQuest(type='3', quest_msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
+                RD.CommandQuest(type='3', msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
                 EncryptPassword.encrypt_password(password=RD.Quest_result)
                 correct_pswd_input = True
                     
                     
     def _ask_mode():
-        RD.CommandQuest(type='1' ,ask_admin_msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
+        RD.CommandQuest(type='1', msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
         if RD.Quest_result == 'The Advanced Mode':
             ask_first_Mode = '2'
         elif RD.Quest_result == 'The Basic Mode':
