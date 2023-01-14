@@ -369,6 +369,14 @@ try:
                         edit_json(loc1='FTU', loc2='Use', content='1')
                         RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
 
+
+        if Command == 'chatbox':
+            if not safe_md:
+                if net:
+                    Boot.SecondaryTask('chatgpt')
+            
+            
+            
 except BaseException:
     import ErrorLoggingKit.Logger as logger
     logger.log_error(message="Command.py")
