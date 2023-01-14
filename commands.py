@@ -374,8 +374,14 @@ try:
             if not safe_md:
                 if net:
                     Boot.SecondaryTask('chatgpt')
-            
-            
+        if Command == 'chatbox install':
+            if not safe_md:
+                if net:
+                    os.system('python3 src/chatgpt.py install')
+                    if cmd_pl == "1" or cmd_pl == "3":
+                        os.system('clear')
+                    else:
+                        os.system('cls')
             
 except BaseException:
     import ErrorLoggingKit.Logger as logger

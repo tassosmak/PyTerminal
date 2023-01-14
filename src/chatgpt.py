@@ -102,8 +102,7 @@ class ChatGPT:
         if "accessToken" not in self.session:
             yield (
                 "Your ChatGPT session is not usable.\n"
-                "* Run this program with the `install` parameter and log in to ChatGPT.\n"
-                "* If you think you are already logged in, try running the `session` command."
+                "* Run this commnad with the `install` parameter and log in to ChatGPT.\n"
             )
             return
 
