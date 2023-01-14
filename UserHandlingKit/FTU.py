@@ -72,6 +72,10 @@ def _FTU_init(edit_use=True):
         elif settings.pl == "2":
             os.system("cls")
         try:
+            import playwright
+        except ModuleNotFoundError:
+            ftu_install.install(name="playwright")
+        try:
             import pyrad
         except ModuleNotFoundError:
             ftu_install.install(name="pyrad")
@@ -82,6 +86,7 @@ def _FTU_init(edit_use=True):
         try:
             import pyrad
             import clipboard
+            import playwright
         except ModuleNotFoundError:
             RD.CommandSay("PIP is missing\ncritical features will not work\n Wait a Moment", "FAIL")
             import time
