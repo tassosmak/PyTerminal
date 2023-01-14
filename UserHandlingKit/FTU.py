@@ -94,6 +94,7 @@ def _FTU_init(edit_use=True):
             import rich
         except ModuleNotFoundError:
             RD.CommandSay("PIP is missing\ncritical features will not work\n Wait a Moment", "FAIL")
+            os.system('playwright install')
             import time
             time.sleep(7)
         if not settings.MODE == "9":
