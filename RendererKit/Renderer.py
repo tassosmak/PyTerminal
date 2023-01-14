@@ -1,8 +1,9 @@
 from src import settings
 import os
-from NotificationsKit import Alert, Buttons, AlertType, Dialog, Icon
+from NotificationsKit import Alert, Buttons, Dialog, Icon
 import subprocess
 import sys
+from RendererKit import Highlight
 
 class bcolors:
     HEADER = '\033[95m'
@@ -77,12 +78,12 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
 
 def CommandSay(answer=0, color=0):
     if color == "WARNING":
-        sys.stderr.write(f"\n{bcolors.WARNING}{answer}{bcolors.WHITE}\n")
+        Highlight.output(content=answer, args='Bold Yellow')
     elif color == "FAIL":
-        sys.stderr.write(f"\n{bcolors.FAIL}{answer}{bcolors.WHITE}\n")
+        Highlight.output(content=answer, args='Bold Red')
     elif color == "OKGREEN":
-        sys.stderr.write(f"\n{bcolors.OKGREEN}{answer}{bcolors.WHITE}\n")
+        Highlight.output(content=answer, args='Bold Green')
     elif color == "PURPLE":
-        sys.stderr.write(f"\n{bcolors.PURPLE}{answer}{bcolors.WHITE}\n")
+        Highlight.output(content=answer, args='Bold Purple')
     else:
-        sys.stderr.write(f"\n{answer}\n")
+        Highlight.output(content=answer, args='')

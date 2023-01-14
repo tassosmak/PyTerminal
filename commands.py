@@ -304,7 +304,7 @@ try:
             if not safe_md:
                 if MD == "2" or MD == "9":
                     if cmd_pl == "1" or cmd_pl == "3":
-                        os.system('top')
+                        Boot.SecondaryTask('top')
                 else:
                     LCommand = Command
                     RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")

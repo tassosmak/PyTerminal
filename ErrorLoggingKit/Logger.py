@@ -1,6 +1,6 @@
+from ErrorLoggingKit.ErrorPreviewer import ErrorScreen
 import logging
 import os
-import sys
 import datetime
 
 save_path = 'ErrorLoggingKit'
@@ -20,4 +20,4 @@ def log_error(message="NO_MSG", fl_name="errors.log"):
         # Here Is The Actual Command That Types The Error :)
         now = datetime.datetime.now()
         logger.exception(f'\n{now.strftime("%Y-%m-%d %H:%M:%S")} {message}\nHere is the error good luck solving it :)')
-        
+        ErrorScreen()
