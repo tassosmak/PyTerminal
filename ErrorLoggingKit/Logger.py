@@ -1,9 +1,12 @@
 from ErrorLoggingKit.ErrorPreviewer import ErrorScreen
+from HighlightKit.console import Console
+from src import settings
 import logging
 import os
 import datetime
 
 save_path = 'ErrorLoggingKit'
+console = Console()
 
 def log_error(message="NO_MSG", fl_name="errors.log"):
     if not message == "KeyboardInterrupt":
@@ -21,3 +24,5 @@ def log_error(message="NO_MSG", fl_name="errors.log"):
         now = datetime.datetime.now()
         logger.exception(f'\n{now.strftime("%Y-%m-%d %H:%M:%S")} {message}\nHere is the error good luck solving it :)')
         ErrorScreen()
+        if settings.EnableIntSoft:
+            console.print_exception(show_locals=True)
