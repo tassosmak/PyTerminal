@@ -1,9 +1,8 @@
-from src import settings
-import os
 from NotificationsKit import Alert, Buttons, Dialog, Icon
+from RendererKit.HighlightKit import Highlight
+from src import settings
 import subprocess
-import sys
-from RendererKit import Highlight
+import os
 
 class bcolors:
     HEADER = '\033[95m'
@@ -86,4 +85,4 @@ def CommandSay(answer=0, color=0):
     elif color == "PURPLE":
         Highlight.output(content=answer, args='Bold Purple')
     else:
-        Highlight.output(content=answer, args='')
+        Highlight.output(content=answer)

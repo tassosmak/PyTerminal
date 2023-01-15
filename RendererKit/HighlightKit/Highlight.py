@@ -2,9 +2,9 @@
 This example demonstrates a simple text highlighter.
 """
 
-from HighlightKit.console import Console
-from HighlightKit.highlighter import RegexHighlighter
-from HighlightKit.theme import Theme
+from RendererKit.HighlightKit.console import Console
+from RendererKit.HighlightKit.highlighter import RegexHighlighter
+from RendererKit.HighlightKit.theme import Theme
 
 
 class Highlighter(RegexHighlighter):
@@ -12,7 +12,7 @@ class Highlighter(RegexHighlighter):
 
     highlights = [r"(?P<highlight>[\w-])"]
 
-def output(content, args):
+def output(content, args=''):
     theme = Theme({"highlight": args})
     console = Console(highlighter=Highlighter(), theme=theme)
 

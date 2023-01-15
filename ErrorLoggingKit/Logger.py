@@ -1,5 +1,5 @@
 from ErrorLoggingKit.ErrorPreviewer import ErrorScreen
-from HighlightKit.console import Console
+from RendererKit.HighlightKit.console import Console
 from src import settings
 import logging
 import os
