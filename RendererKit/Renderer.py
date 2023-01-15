@@ -1,5 +1,5 @@
 from NotificationsKit import Alert, Buttons, Dialog, Icon
-from RendererKit.HighlightKit import Highlight
+from RendererKit.HighlightKit import color_text
 from src import settings
 import subprocess
 import os
@@ -77,12 +77,12 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
 
 def CommandSay(answer=0, color=0):
     if color == "WARNING":
-        Highlight.output(content=answer, args='Bold Yellow')
+        color_text.output(content=answer, args='Bold Yellow')
     elif color == "FAIL":
-        Highlight.output(content=answer, args='Bold Red')
+        color_text.output(content=answer, args='Bold Red')
     elif color == "OKGREEN":
-        Highlight.output(content=answer, args='Bold Green')
+        color_text.output(content=answer, args='Bold Green')
     elif color == "PURPLE":
-        Highlight.output(content=answer, args='Bold Purple')
+        color_text.output(content=answer, args='Bold Purple')
     else:
-        Highlight.output(content=answer)
+        color_text.output(content=answer)

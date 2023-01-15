@@ -263,14 +263,17 @@ try:
 
         if Command == "view file":
             LCommand = Command
-            RD.CommandQuest(type='3', msg='type the name of the file you want to view')
-            #ask_file = input("type the name of the file you want to view\n:")
-            if cmd_pl == "1" or cmd_pl == "3":
-                if not RD.Quest_result in file_list:
-                    os.system(f"cat {RD.Quest_result}")
-            elif cmd_pl == "2":
-                if not RD.Quest_result in file_list:
-                    os.system(f"more {RD.Quest_result}")
+            if settings.EnableIntSoft:
+                Boot.SecondaryTask('view_file')
+            else:
+                RD.CommandQuest(type='3', msg='type the name of the file you want to view')
+                #ask_file = input("type the name of the file you want to view\n:")
+                if cmd_pl == "1" or cmd_pl == "3":
+                    if not RD.Quest_result in file_list:
+                        os.system(f"cat {RD.Quest_result}")
+                elif cmd_pl == "2":
+                    if not RD.Quest_result in file_list:
+                        os.system(f"more {RD.Quest_result}")
         
         if Command == "edit file":
             if not safe_md:
