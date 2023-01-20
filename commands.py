@@ -385,7 +385,13 @@ try:
                         os.system('clear')
                     else:
                         os.system('cls')
-            
+
+
+        #DONT WRITE ANYTHING BELOW HERE
+        else:
+            if not Command == '':
+                RD.CommandSay(answer=f"Command {Command} doesn't exist", color='WARNING')
+
 except BaseException:
     import ErrorLoggingKit.Logger as logger
     logger.log_error(message="Command.py")
