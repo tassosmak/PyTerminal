@@ -1,13 +1,12 @@
 try:
     DNT_IMP_clipboard = False
-    import os
-    import datetime
-    import platform
-    import Boot
-    from pathlib import Path
     from UserHandlingKit.utils import edit_json
     from RendererKit import Renderer as RD
+    from pathlib import Path
     from src import flags
+    import datetime
+    import os
+    import Boot
     net = False
 
     '''
@@ -24,74 +23,14 @@ try:
 
 
     dir = Path(__file__).parent.resolve()
-    
-    
-    file_list = [
-        'commands.py',
-        'Info.json',
-        'Kernel.py',
-        'launcer.py',
-        'MakroPropiatery.py',
-        'pyrad.log',
-        'UserHandler.py',
-        'Boot.py',
-        'CryptographyKit/DecryptPassword.py',
-        'CryptographyKit/EncryptPassword.py',
-        'NetworkingKit/server.py',
-        'NetworkingKit/auth.py',
-        'RendererKit/Renderer.py',
-        'RendererKit/WindowRenderer.py',
-        'UserHandlingKit/credentials.py',
-        'UserHandlingKit/FTU.py',
-        'UserHandlingKit/utils.py',
-        'UserHandlingKit/UserHandler.py'
-    ]
-
-    CML =[
-    "test",
-    "about",
-    "ABOUT",
-    "time",
-    "exit",
-    "version",
-    "jump",
-    "logout",
-    "ls",
-    "del",
-    "print md",
-    "countdown",
-    "devices",
-    "chatbox",
-    "chatbox install",
-    "activity monitor",
-    "create",
-    "edit file",
-    "view file",
-    "gen password",
-    "latest",
-    "edit parameters",
-    "talk",
-    "check site status",
-    "weather forecast",
-    "clear"
-    ]
-    
-    plt = 0
-    USNAME_PRINT = 0
-    sys_detect = platform.uname()
-    Version = 2
     jump = False
     logout = False
-    jump_user = False
-    ask_recv = 0
-    answer = 0
-    ssh = False
 
     def CommandAsk(plt=0, USNAME_PRINT=0, safe_mode=False, MD='0'):
         if MD == "2":
             CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {USNAME_PRINT.capitalize()} % "), cmd_pl=plt, MD=MD)
         elif MD == "9": 
-            CommandList(Command=input(f"PyTerminal {sys_detect.system} | {sys_detect.machine} % "), cmd_pl=plt, MD=MD)
+            CommandList(Command=input(f"PyTerminal {flags.sys_detect.system} | {flags.sys_detect.machine} % "), cmd_pl=plt, MD=MD)
         elif MD == "3":
             CommandList(Command=input(f"PyTerminal | Safe-Mode $ "), cmd_pl=plt, safe_md=safe_mode, MD=MD)
         else:
@@ -99,7 +38,7 @@ try:
 
 
     def CommandList(Command=0, cmd_pl=0, safe_md=False, MD=0):
-        global jump, logout, jump_user, ask_recv, LCommand, answer
+        global jump, logout, ask_recv, LCommand
         LCommand = 0
 
         if Command == "ls":
@@ -138,7 +77,7 @@ try:
         
         if Command == "CML":
             LCommand == Command
-            RD.CommandSay(answer=CML)
+            RD.CommandSay(answer=flags.CML)
         
         if Command == "time":
             LCommand = Command
@@ -232,7 +171,7 @@ try:
             if not safe_md:
                 LCommand = Command
                 if net:
-                    RD.CommandQuest(type='1', ask_admin_msg='do you want to be host or reciever', Button1='Host', Button2='Talker')
+                    RD.CommandQuest(type='1', msg='do you want to be host or reciever', Button1='Host', Button2='Talker')
                     #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
                     if RD.Quest_result == "Host":
                         Server.chat()
@@ -242,7 +181,7 @@ try:
                         ask_recv = str(RD.Quest_result)
                         try: 
                             client.Chat(IP=ask_recv)
-                        except ConnectionRefusedError:
+                        except:
                             if not RD.Quest_result == '':
                                RD.CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
                             else:
@@ -266,10 +205,10 @@ try:
                 RD.CommandQuest(type='3', msg='type the name of the file you want to view')
                 #ask_file = input("type the name of the file you want to view\n:")
                 if cmd_pl == "1" or cmd_pl == "3":
-                    if not RD.Quest_result in file_list:
+                    if not RD.Quest_result in flags.file_list:
                         os.system(f"cat {RD.Quest_result}")
                 elif cmd_pl == "2":
-                    if not RD.Quest_result in file_list:
+                    if not RD.Quest_result in flags.file_list:
                         os.system(f"more {RD.Quest_result}")
         
         if Command == "edit file":
@@ -277,7 +216,7 @@ try:
                 if MD == "2" or MD == '9':           
                     if cmd_pl == "1" or cmd_pl == "3":
                         RD.CommandQuest(type='3', msg='Type the name of the file you want to edit')
-                        if not RD.Quest_result in file_list:
+                        if not RD.Quest_result in flags.file_list:
                             #ask_file = input("type the name of the file you want to edit\n:")
                             if RD.Quest_result.endswith(".py"):
                                 os.system(f"vim {RD.Quest_result}")
@@ -285,7 +224,7 @@ try:
                                 os.system(f"nano {RD.Quest_result}")
                     elif cmd_pl == "2":
                         RD.CommandQuest(type='3', msg='Type the name of the file you want to edit')
-                        if not RD.Quest_result in file_list:
+                        if not RD.Quest_result in flags.file_list:
                             os.system(f'notepad {RD.Quest_result}')
                 else:
                     LCommand = Command
@@ -386,7 +325,7 @@ try:
 
         #DONT WRITE ANYTHING BELOW HERE
         else:
-            if not Command in CML:
+            if not Command in flags.CML:
                 if not Command == '' :
                     RD.CommandSay(answer=f"Command {Command} doesn't exist", color='WARNING')
 

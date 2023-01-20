@@ -110,6 +110,8 @@ def clear_history():
     file_to_delete = open("src/history.log",'w')
     file_to_delete.close()    
 
+def args_help():
+    RD.CommandSay(answer=flags.ArgsList, color='OKGREEN')
 
 
 def _pl_finder():

@@ -48,6 +48,10 @@ try:
 
                 t1.join()
                 t2.join()
+                
+                
+            elif str(sys.argv[1]) == 'Help':
+                utils.args_help()
             
             elif str(sys.argv[1]) == 'ClearErrors':
                 utils.clear_error()
