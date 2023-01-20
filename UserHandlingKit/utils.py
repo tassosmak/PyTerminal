@@ -103,12 +103,12 @@ def set_flags():
 
 
 def clear_error():
-    file_to_delete = open("ErrorLoggingKit/errors.log",'w')
-    file_to_delete.close()
+    clear_file = open("ErrorLoggingKit/errors.log",'w')
+    clear_file.close()
     
 def clear_history():
-    file_to_delete = open("src/history.log",'w')
-    file_to_delete.close()    
+    clear_file = open("src/history.log",'w')
+    clear_file.close()
 
 def args_help():
     RD.CommandSay(answer=flags.ArgsList, color='OKGREEN')
