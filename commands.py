@@ -53,27 +53,28 @@ try:
     "ABOUT",
     "time",
     "exit",
-    "Version",
+    "version",
     "jump",
-    "jump_user"
-
-    ]
-
-
-    CMLAD =[
-    "LS",
-    "test",
-    "about",
-    "ABOUT",
-    "CML",
-    "time",
-    "delete",
+    "logout",
+    "ls",
     "del",
-    "exit",
-    "Vesion",
+    "print md",
+    "countdown",
+    "devices",
+    "chatbox",
+    "chatbox install",
+    "activity monitor",
     "create",
-
+    "edit file",
+    "view file",
+    "gen password",
+    "latest",
+    "edit parameters",
+    "talk",
+    "check site status",
+    "weather forecast",
     ]
+    
     plt = 0
     USNAME_PRINT = 0
     sys_detect = platform.uname()
@@ -135,13 +136,8 @@ try:
             RD.CommandSay(answer="PyTerminal V.Beta by Makro Software")
         
         if Command == "CML":
-            if MD == "2":
-                RD.CommandSay(answer=CMLAD)
-            elif MD == "1":
-                LCommand = Command
-                RD.CommandSay(answer=CML)
-            else:
-                RD.CommandSay(answer="This Function isn't available within this mode", color="WARNING")
+            LCommand == Command
+            RD.CommandSay(answer=CML)
         
         if Command == "time":
             LCommand = Command
@@ -389,8 +385,9 @@ try:
 
         #DONT WRITE ANYTHING BELOW HERE
         else:
-            if not Command == '':
-                RD.CommandSay(answer=f"Command {Command} doesn't exist", color='WARNING')
+            if not Command in CML:
+                if not Command == '' :
+                    RD.CommandSay(answer=f"Command {Command} doesn't exist", color='WARNING')
 
 except BaseException:
     import ErrorLoggingKit.Logger as logger
