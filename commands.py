@@ -73,6 +73,7 @@ try:
     "talk",
     "check site status",
     "weather forecast",
+    "clear"
     ]
     
     plt = 0
