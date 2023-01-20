@@ -55,7 +55,7 @@ try:
             elif str(sys.argv[1]) == 'ClearHistory':
                 utils.clear_history()
                 
-            elif str(sys.argv[1] == "SetFlags"):
+            elif str(sys.argv[1]) == "SetFlags":
                 utils.set_flags()
             
             elif str(sys.argv[1]) == 'FakeLogin':
