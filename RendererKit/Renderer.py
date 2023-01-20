@@ -1,6 +1,6 @@
 from NotificationsKit import Alert, Buttons, Dialog, Icon
 from RendererKit.HighlightKit import color_text
-from src import settings
+from src import flags
 import subprocess
 import os
 
@@ -26,8 +26,8 @@ class bcolors:
 
 
 
-def CommandPush(message, header=settings.Default_text):
-    if settings.pl == '1':
+def CommandPush(message, header=flags.Default_text):
+    if flags.pl == '1':
         command = f'''
         osascript -e 'display notification "{message}" with title "{header}"'
         '''
@@ -43,16 +43,16 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
     global Quest_result
     Quest_result = ''
     if type == '1':
-        if settings.EnableGUI:
+        if flags.EnableGUI:
                 al = Alert(msg).with_buttons(Buttons([Button1, Button2,])).show()
 
                 Quest_result = al.button_returned
         else:
             Quest_result = input(f'{msg}, Type "{Button1}" or "{Button2}":')
     elif type == "2":
-        if settings.EnableGUI:
+        if flags.EnableGUI:
             applescript = f"""
-            display dialog "{msg}" with title "{settings.Default_text}" with icon caution buttons "OK"
+            display dialog "{msg}" with title "{flags.Default_text}" with icon caution buttons "OK"
             """
 
             subprocess.call("osascript -e '{}'".format(applescript), shell=True)
@@ -61,9 +61,9 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
             msg.removeprefix('( ) "" ')
             Quest_result = CommandSay(answer=msg, color='WARNING')
     elif type == '3':
-        if settings.EnableGUI:
+        if flags.EnableGUI:
             buttons = Buttons(["Ok", "Exit"])
-            the_dialog = Dialog(msg).with_title(settings.Default_text)
+            the_dialog = Dialog(msg).with_title(flags.Default_text)
             the_dialog.with_buttons(buttons)
             the_dialog.with_icon(quest_icon)
             the_dialog.with_input("Type Here:")

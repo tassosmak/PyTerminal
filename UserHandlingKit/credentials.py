@@ -1,4 +1,4 @@
-from src import settings
+from src import flags
 from RendererKit import Renderer as RD
 import json
 import os
@@ -14,13 +14,13 @@ def _get_propiatery(print_credentials=False):
 
         UserLess_Connection = data['user_login']['UserLess Connection']
         if UserLess_Connection == "1":
-            settings.UserLess_Connection = True
+            flags.UserLess_Connection = True
         if print_credentials:
             RD.CommandSay(answer=("UserLess Connection:", UserLess_Connection))
 
         GO_TO_FTU = data['user_login']['GO TO FTU']
         if GO_TO_FTU == "1":
-            settings.GO_TO_FTU = True
+            flags.GO_TO_FTU = True
         if print_credentials:
             RD.CommandSay(answer=("GO_TO_FTU:", GO_TO_FTU))
         f.close()
@@ -54,7 +54,7 @@ def _get_credentials(print_credentials=False):
     
     GUI = data['UI']['Enable-AquaUI']
     if GUI == "1":
-        settings.EnableGUI = True
+        flags.EnableGUI = True
     if print_credentials:
         RD.CommandSay(answer=("UI:", GUI))
 
@@ -72,18 +72,18 @@ def _get_credentials(print_credentials=False):
 
     Internal_Software = data['Internal-Software']['Enable']
     if Internal_Software == "1":
-        settings.EnableIntSoft = True
+        flags.EnableIntSoft = True
     else: 
-        settings.EnableIntSoft = False
+        flags.EnableIntSoft = False
     if print_credentials:
-        RD.CommandSay(answer=('Settings-Var', settings.EnableIntSoft))
+        RD.CommandSay(answer=('Settings-Var', flags.EnableIntSoft))
         RD.CommandSay(answer=("Intenal-Software", Internal_Software))
         
     Mode = data['user_credentials']['Mode']
-    if settings.EnableIntSoft == False and Mode == '9':
-        settings.MODE = '2'
+    if flags.EnableIntSoft == False and Mode == '9':
+        flags.MODE = '2'
     else:
-        settings.MODE = Mode
+        flags.MODE = Mode
     if print_credentials:
         RD.CommandSay(answer=("Mode:", Mode))
     

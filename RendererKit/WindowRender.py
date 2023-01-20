@@ -1,5 +1,5 @@
 import customtkinter
-from src import settings
+from src import flags
 
 
 DONE = False
@@ -11,7 +11,7 @@ def button_callback():
 num=1
 def switch_callback():
     if (int(num) % 2) == 0:
-        settings.EnableGUI=True
+        flags.EnableGUI=True
     num =+ 1
             
 def opener():

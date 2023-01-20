@@ -2,8 +2,9 @@ import json
 import string
 from random import shuffle, choice
 import platform
-from src import settings
+from src import flags
 from RendererKit import Renderer as RD
+from UserHandlingKit import credentials as cred
 
 def _reverse_key(text=''):
     str = ""
@@ -62,24 +63,47 @@ def _gen_safe_password(length=8, save=True):
 def jump_mode():
     RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
     ask_core = input("select Mode")
-    if ask_core == '9' and settings.EnableIntSoft == False:
+    if ask_core == '9' and flags.EnableIntSoft == False:
         ask_core = '2'
-    while not ask_core in settings.ModeList:
+    while not ask_core in flags.ModeList:
         RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
         ask_core = input("select Mode")
-        if ask_core in settings.ModeList:
-            if ask_core == '9' and settings.EnableIntSoft == False:
+        if ask_core in flags.ModeList:
+            if ask_core == '9' and flags.EnableIntSoft == False:
                 ask_core = '2'
-    settings.MODE = ask_core
+    flags.MODE = ask_core
     RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
 
+def set_flags():
+    RD.CommandSay(answer='')
+    cred._get_propiatery(True)
+    RD.CommandSay(answer='')
+    ask_which = input('1)Userless Connection\n2)GO TO FTU\nType Here:')
+    
+    if ask_which == '1':
+        ask_userless_state = input('Enable Or Disable?')
+        if ask_userless_state == 'Enable' or ask_userless_state == 'enable':
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content='1')
+            RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+        elif ask_userless_state == 'Disable' or ask_userless_state == 'disable':
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content='0')
+            RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+
+    elif ask_which == '2':
+        ask_ftu_state = input('Enable Or Disable?')
+        if ask_ftu_state == 'Enable' or ask_ftu_state == 'enable':
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='1')
+            RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+        elif ask_ftu_state == 'Disable' or ask_ftu_state == 'disable':
+            RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='0')
 
 
 def _pl_finder():
     pl = platform.platform()
     if pl.startswith("macOS"):
-        settings.pl = "1"
+        flags.pl = "1"
     elif pl.startswith("Windows"):
-        settings.pl = "2"
+        flags.pl = "2"
     elif pl.startswith("Linux"):
-        settings.pl = "3"
+        flags.pl = "3"

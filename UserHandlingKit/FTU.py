@@ -1,4 +1,4 @@
-from src import settings
+from src import flags
 from RendererKit import Renderer as RD
 from UserHandlingKit.utils import edit_json, _gen_safe_password, _d_encrypt
 from CryptographyKit import EncryptPassword
@@ -8,9 +8,9 @@ from src import FTU_Installer as ftu_install
 def _FTU_init(edit_use=True):
 
     def _check_gui():
-        if not settings.pl == '1':
+        if not flags.pl == '1':
             edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
-            settings.EnableGUI = False
+            flags.EnableGUI = False
 
     def _ask_use():
         RD.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
@@ -67,9 +67,9 @@ def _FTU_init(edit_use=True):
 
 
     def _install_dependecies():
-        if settings.pl == "1" or settings.pl == "3":
+        if flags.pl == "1" or flags.pl == "3":
             os.system('clear')
-        elif settings.pl == "2":
+        elif flags.pl == "2":
             os.system("cls")
         try:
             import rich
@@ -97,10 +97,10 @@ def _FTU_init(edit_use=True):
             import time
             time.sleep(7)
         os.system('playwright install')
-        if not settings.MODE == "9":
-            if settings.pl == "1" or settings.pl == "3":
+        if not flags.MODE == "9":
+            if flags.pl == "1" or flags.pl == "3":
                 os.system('clear')
-            elif settings.pl == "2":
+            elif flags.pl == "2":
                 os.system("cls")
 
     """

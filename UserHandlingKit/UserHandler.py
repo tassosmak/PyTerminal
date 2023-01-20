@@ -1,7 +1,7 @@
 import datetime
 if not __name__ == '__main__':
     from RendererKit import Renderer as RD
-from src import settings
+from src import flags
 from UserHandlingKit.utils import _pl_finder
 from UserHandlingKit import credentials as cred
 from UserHandlingKit.FTU import _FTU_init
@@ -36,7 +36,7 @@ def init():
     def normal_init():
         continue_normal = False
         correct_credentials = False
-        if not settings.EnableIntSoft:
+        if not flags.EnableIntSoft:
             with open('src/history.log', 'a') as f:
                 now = datetime.datetime.now()
                 f.write(now.strftime("%Y-%m-%d %H:%M\n"))
@@ -52,27 +52,27 @@ def init():
                 _ask()
                 if not ask_name == "":
                     if ask_name == cred.Name and ask_Password == cred.Password:
-                        settings.FTU = cred.FTU
-                        settings.USERNAME = ask_name
-                        settings.PASSWORD = ask_Password
+                        flags.FTU = cred.FTU
+                        flags.USERNAME = ask_name
+                        flags.PASSWORD = ask_Password
                         welcome_msg = f"Welcome {cred.Name.capitalize()}"
                         RD.CommandPush(message=welcome_msg)
                         RD.CommandSay(answer="Go Ahead")
                         correct_credentials = True
                 else:
-                    settings.MODE = "3"
+                    flags.MODE = "3"
                     correct_credentials = True
     def advanced_init():
         # _get_propiatery(True)
-        if settings.GO_TO_FTU:
+        if flags.GO_TO_FTU:
             _FTU_init(False)
-        settings.FTU = '2'
-        settings.USERNAME = "Lets Keep It Private"
-        settings.MODE = '9'
+        flags.FTU = '2'
+        flags.USERNAME = "Lets Keep It Private"
+        flags.MODE = '9'
         RD.CommandPush(message="Lets keep it private")
 
     # print(settings.EnableIntSoft)
-    if settings.EnableIntSoft:
+    if flags.EnableIntSoft:
         cred._get_propiatery(True)
         if cred.UserLess_Connection == '1' or cred.GO_TO_FTU == '1':
             advanced_init()

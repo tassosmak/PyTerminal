@@ -7,7 +7,7 @@ try:
     from pathlib import Path
     from UserHandlingKit.utils import edit_json
     from RendererKit import Renderer as RD
-    from src import settings
+    from src import flags
     net = False
 
     '''
@@ -260,7 +260,7 @@ try:
 
         if Command == "view file":
             LCommand = Command
-            if settings.EnableIntSoft:
+            if flags.EnableIntSoft:
                 Boot.SecondaryTask('view_file')
             else:
                 RD.CommandQuest(type='3', msg='type the name of the file you want to view')
@@ -329,7 +329,7 @@ try:
         if Command == "devices":
             if not safe_md:
                 if not cmd_pl == "2":
-                    if settings.FTU == "2":
+                    if flags.FTU == "2":
                         import NetworkingKit.server
                     else:
                         import NetworkingKit.auth
