@@ -6,6 +6,7 @@ from src import flags
 from RendererKit import Renderer as RD
 from UserHandlingKit import credentials as cred
 
+
 def _reverse_key(text=''):
     str = ""
     for i in text:
@@ -75,28 +76,40 @@ def jump_mode():
     RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
 
 def set_flags():
-    RD.CommandSay(answer='')
-    cred._get_propiatery(True)
-    RD.CommandSay(answer='')
-    ask_which = input('1)Userless Connection\n2)GO TO FTU\nType Here:')
-    
-    if ask_which == '1':
-        ask_userless_state = input('Enable Or Disable?')
-        if ask_userless_state == 'Enable' or ask_userless_state == 'enable':
-            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content='1')
-            RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
-        elif ask_userless_state == 'Disable' or ask_userless_state == 'disable':
-            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content='0')
-            RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+    cred._get_credentials()
+    if flags.EnableIntSoft:
+        RD.CommandSay(answer='')
+        cred._get_propiatery(True)
+        RD.CommandSay(answer='')
+        ask_which = input('1)Userless Connection\n2)GO TO FTU\nType Here:')
+        
+        if ask_which == '1':
+            ask_userless_state = input('Enable Or Disable?')
+            if ask_userless_state == 'Enable' or ask_userless_state == 'enable':
+                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content='1')
+                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+            elif ask_userless_state == 'Disable' or ask_userless_state == 'disable':
+                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content='0')
+                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
 
-    elif ask_which == '2':
-        ask_ftu_state = input('Enable Or Disable?')
-        if ask_ftu_state == 'Enable' or ask_ftu_state == 'enable':
-            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='1')
-            RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
-        elif ask_ftu_state == 'Disable' or ask_ftu_state == 'disable':
-            RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
-            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='0')
+        elif ask_which == '2':
+            ask_ftu_state = input('Enable Or Disable?')
+            if ask_ftu_state == 'Enable' or ask_ftu_state == 'enable':
+                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='1')
+                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+            elif ask_ftu_state == 'Disable' or ask_ftu_state == 'disable':
+                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='0')
+
+
+def clear_error():
+    file_to_delete = open("ErrorLoggingKit/errors.log",'w')
+    file_to_delete.close()
+    
+def clear_history():
+    file_to_delete = open("src/history.log",'w')
+    file_to_delete.close()    
+
 
 
 def _pl_finder():
