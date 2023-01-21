@@ -105,7 +105,8 @@ def set_flags():
 def clear_error():
     clear_file = open("ErrorLoggingKit/errors.log",'w')
     clear_file.close()
-    system('killall osascript')
+    if flags.pl == '1':
+        system('killall osascript')
     
 def clear_history():
     clear_file = open("src/history.log",'w')
