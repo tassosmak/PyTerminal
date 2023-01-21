@@ -1,4 +1,3 @@
-from UserHandlingKit import credentials as cred
 from RendererKit import Renderer as RD
 from random import shuffle, choice
 from src import flags
@@ -76,11 +75,6 @@ def jump_mode():
     RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
 
 def set_flags():
-    cred._get_credentials()
-    if flags.EnableIntSoft:
-        RD.CommandSay(answer='')
-        cred._get_propiatery(True)
-        RD.CommandSay(answer='')
         ask_which = input('1)Userless Connection\n2)GO TO FTU\nType Here:')
         
         if ask_which == '1':
