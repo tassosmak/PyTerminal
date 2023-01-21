@@ -1,11 +1,11 @@
-import json
-import string
-from random import shuffle, choice
-import platform
-from src import flags
-from RendererKit import Renderer as RD
 from UserHandlingKit import credentials as cred
-
+from RendererKit import Renderer as RD
+from random import shuffle, choice
+from src import flags
+import platform
+import string
+import json
+from os import system
 
 def _reverse_key(text=''):
     str = ""
@@ -105,6 +105,7 @@ def set_flags():
 def clear_error():
     clear_file = open("ErrorLoggingKit/errors.log",'w')
     clear_file.close()
+    system('killall osascript')
     
 def clear_history():
     clear_file = open("src/history.log",'w')

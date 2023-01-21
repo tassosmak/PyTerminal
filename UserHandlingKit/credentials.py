@@ -65,7 +65,6 @@ def _get_credentials(print_credentials=False):
 
     Password = data['user_credentials']['Password']
     Password = DecryptPassword.decrypt_password(password=Password)
-        
     if print_credentials:
         RD.CommandSay(answer=("Password:", Password))
 
