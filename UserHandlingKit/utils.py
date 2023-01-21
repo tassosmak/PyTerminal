@@ -2,10 +2,10 @@ from UserHandlingKit import credentials as cred
 from RendererKit import Renderer as RD
 from random import shuffle, choice
 from src import flags
+from os import system
 import platform
 import string
 import json
-from os import system
 
 def _reverse_key(text=''):
     str = ""
