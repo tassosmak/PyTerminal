@@ -2,17 +2,17 @@ import colorsys
 import io
 from time import process_time
 
-from rich import box
-from rich.color import Color
-from rich.console import Console, ConsoleOptions, Group, RenderableType, RenderResult
-from rich.markdown import Markdown
-from rich.measure import Measurement
-from rich.pretty import Pretty
-from rich.segment import Segment
-from rich.style import Style
-from rich.syntax import Syntax
-from rich.table import Table
-from rich.text import Text
+from HighlightKit import box
+from HighlightKit.color import Color
+from HighlightKit.console import Console, ConsoleOptions, Group, RenderableType, RenderResult
+from HighlightKit.markdown import Markdown
+from HighlightKit.measure import Measurement
+from HighlightKit.pretty import Pretty
+from HighlightKit.segment import Segment
+from HighlightKit.style import Style
+from HighlightKit.syntax import Syntax
+from HighlightKit.table import Table
+from HighlightKit.text import Text
 
 
 class ColorBox:
@@ -231,7 +231,7 @@ if __name__ == "__main__":  # pragma: no cover
     print(f"rendered in {pre_cache_taken}ms (cold cache)")
     print(f"rendered in {taken}ms (warm cache)")
 
-    from rich.panel import Panel
+    from HighlightKit.panel import Panel
 
     console = Console()
 

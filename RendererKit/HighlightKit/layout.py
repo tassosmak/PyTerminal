@@ -26,7 +26,7 @@ from .segment import Segment
 from .style import StyleType
 
 if TYPE_CHECKING:
-    from rich.tree import Tree
+    from HighlightKit.tree import Tree
 
 
 class LayoutRender(NamedTuple):
@@ -222,9 +222,9 @@ class Layout:
     @property
     def tree(self) -> "Tree":
         """Get a tree renderable to show layout structure."""
-        from rich.styled import Styled
-        from rich.table import Table
-        from rich.tree import Tree
+        from HighlightKit.styled import Styled
+        from HighlightKit.table import Table
+        from HighlightKit.tree import Tree
 
         def summary(layout: "Layout") -> Table:
 
@@ -417,7 +417,7 @@ class Layout:
 
 
 if __name__ == "__main__":
-    from rich.console import Console
+    from HighlightKit.console import Console
 
     console = Console()
     layout = Layout()

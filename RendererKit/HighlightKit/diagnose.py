@@ -1,10 +1,10 @@
 import os
 import platform
 
-from rich import inspect
-from rich.console import Console, get_windows_console_features
-from rich.panel import Panel
-from rich.pretty import Pretty
+from HighlightKit import inspect
+from HighlightKit.console import Console, get_windows_console_features
+from HighlightKit.panel import Panel
+from HighlightKit.pretty import Pretty
 
 
 def report() -> None:  # pragma: no cover

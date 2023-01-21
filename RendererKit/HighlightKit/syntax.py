@@ -37,8 +37,8 @@ from pygments.token import (
 )
 from pygments.util import ClassNotFound
 
-from rich.containers import Lines
-from rich.padding import Padding, PaddingDimensions
+from HighlightKit.containers import Lines
+from HighlightKit.padding import Padding, PaddingDimensions
 
 from ._loop import loop_first
 from .cells import cell_len
@@ -913,7 +913,7 @@ if __name__ == "__main__":  # pragma: no cover
     )
     args = parser.parse_args()
 
-    from rich.console import Console
+    from HighlightKit.console import Console
 
     console = Console(force_terminal=args.force_color, width=args.width)
 

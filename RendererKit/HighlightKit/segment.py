@@ -706,9 +706,9 @@ class SegmentLines:
 
 
 if __name__ == "__main__":  # pragma: no cover
-    from rich.console import Console
-    from rich.syntax import Syntax
-    from rich.text import Text
+    from HighlightKit.console import Console
+    from HighlightKit.syntax import Syntax
+    from HighlightKit.text import Text
 
     code = """from rich.console import Console
 console = Console()

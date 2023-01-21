@@ -5,7 +5,7 @@ from typing import Sequence, Tuple, TYPE_CHECKING
 from .color_triplet import ColorTriplet
 
 if TYPE_CHECKING:
-    from rich.table import Table
+    from HighlightKit.table import Table
 
 
 class Palette:
@@ -18,10 +18,10 @@ class Palette:
         return ColorTriplet(*self._colors[number])
 
     def __rich__(self) -> "Table":
-        from rich.color import Color
-        from rich.style import Style
-        from rich.text import Text
-        from rich.table import Table
+        from HighlightKit.color import Color
+        from HighlightKit.style import Style
+        from HighlightKit.text import Text
+        from HighlightKit.table import Table
 
         table = Table(
             "index",
@@ -75,10 +75,10 @@ class Palette:
 if __name__ == "__main__":  # pragma: no cover
     import colorsys
     from typing import Iterable
-    from rich.color import Color
-    from rich.console import Console, ConsoleOptions
-    from rich.segment import Segment
-    from rich.style import Style
+    from HighlightKit.color import Color
+    from HighlightKit.console import Console, ConsoleOptions
+    from HighlightKit.segment import Segment
+    from HighlightKit.style import Style
 
     class ColorBox:
         def __rich_console__(
