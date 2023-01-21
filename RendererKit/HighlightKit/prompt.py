@@ -347,7 +347,7 @@ class Confirm(PromptBase[bool]):
 
 if __name__ == "__main__":  # pragma: no cover
 
-    from HighlightKit import print
+    from RendererKit.HighlightKit import print
 
     if Confirm.ask("Run [i]prompt[/i] tests?", default=True):
         while True:

@@ -81,8 +81,8 @@ class Emoji(JupyterMixin):
 if __name__ == "__main__":  # pragma: no cover
     import sys
 
-    from HighlightKit.columns import Columns
-    from HighlightKit.console import Console
+    from RendererKit.HighlightKit.columns import Columns
+    from RendererKit.HighlightKit.console import Console
 
     console = Console(record=True)
 

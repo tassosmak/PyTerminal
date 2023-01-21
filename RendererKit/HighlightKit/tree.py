@@ -196,11 +196,11 @@ class Tree(JupyterMixin):
 
 if __name__ == "__main__":  # pragma: no cover
 
-    from HighlightKit.console import Group
-    from HighlightKit.markdown import Markdown
-    from HighlightKit.panel import Panel
-    from HighlightKit.syntax import Syntax
-    from HighlightKit.table import Table
+    from RendererKit.HighlightKit.console import Group
+    from RendererKit.HighlightKit.markdown import Markdown
+    from RendererKit.HighlightKit.panel import Panel
+    from RendererKit.HighlightKit.syntax import Syntax
+    from RendererKit.HighlightKit.table import Table
 
     table = Table(row_styles=["", "dim"])
 

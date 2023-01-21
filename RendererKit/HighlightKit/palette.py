@@ -75,10 +75,10 @@ class Palette:
 if __name__ == "__main__":  # pragma: no cover
     import colorsys
     from typing import Iterable
-    from HighlightKit.color import Color
-    from HighlightKit.console import Console, ConsoleOptions
-    from HighlightKit.segment import Segment
-    from HighlightKit.style import Style
+    from RendererKit.HighlightKit.color import Color
+    from RendererKit.HighlightKit.console import Console, ConsoleOptions
+    from RendererKit.HighlightKit.segment import Segment
+    from RendererKit.HighlightKit.style import Style
 
     class ColorBox:
         def __rich_console__(

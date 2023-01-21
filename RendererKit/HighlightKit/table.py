@@ -922,9 +922,9 @@ class Table(JupyterMixin):
 
 
 if __name__ == "__main__":  # pragma: no cover
-    from HighlightKit.console import Console
-    from HighlightKit.highlighter import ReprHighlighter
-    from HighlightKit.table import Table as Table
+    from RendererKit.HighlightKit.console import Console
+    from RendererKit.HighlightKit.highlighter import ReprHighlighter
+    from RendererKit.HighlightKit.table import Table as Table
 
     from ._timer import timer
 

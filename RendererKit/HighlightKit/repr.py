@@ -130,7 +130,7 @@ if __name__ == "__main__":
             yield "buy", "hand sanitizer"
 
     foo = Foo()
-    from HighlightKit.console import Console
+    from RendererKit.HighlightKit.console import Console
 
     console = Console()
 

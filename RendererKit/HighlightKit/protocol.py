@@ -2,7 +2,7 @@ from typing import Any, cast, Set, TYPE_CHECKING
 from inspect import isclass
 
 if TYPE_CHECKING:
-    from HighlightKit.console import RenderableType
+    from RendererKit.HighlightKit.console import RenderableType
 
 _GIBBERISH = """aihwerij235234ljsdnp34ksodfipwoe234234jlskjdf"""
 

@@ -123,7 +123,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    from HighlightKit.console import Console
+    from RendererKit.HighlightKit.console import Console
 
     console = Console()
     error_console = Console(stderr=True)

@@ -35,8 +35,8 @@ class Styled:
 
 
 if __name__ == "__main__":  # pragma: no cover
-    from HighlightKit import print
-    from HighlightKit.panel import Panel
+    from RendererKit.HighlightKit import print
+    from RendererKit.HighlightKit.panel import Panel
 
     panel = Styled(Panel("hello"), "on blue")
     print(panel)

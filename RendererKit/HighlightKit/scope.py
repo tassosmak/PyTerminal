@@ -68,7 +68,7 @@ def render_scope(
 
 
 if __name__ == "__main__":  # pragma: no cover
-    from HighlightKit import print
+    from RendererKit.HighlightKit import print
 
     print()
 

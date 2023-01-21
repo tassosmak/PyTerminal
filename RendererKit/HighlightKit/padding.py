@@ -136,6 +136,6 @@ class Padding(JupyterMixin):
 
 
 if __name__ == "__main__":  #  pragma: no cover
-    from HighlightKit import print
+    from RendererKit.HighlightKit import print
 
     print(Padding("Hello, World", (2, 4), style="on blue"))

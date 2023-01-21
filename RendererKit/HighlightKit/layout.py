@@ -417,7 +417,7 @@ class Layout:
 
 
 if __name__ == "__main__":
-    from HighlightKit.console import Console
+    from RendererKit.HighlightKit.console import Console
 
     console = Console()
     layout = Layout()

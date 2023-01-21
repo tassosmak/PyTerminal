@@ -235,8 +235,8 @@ if __name__ == "__main__":  # pragma: no cover
         ":warning-emoji: [bold red blink] DANGER![/]",
     ]
 
-    from HighlightKit import print
-    from HighlightKit.table import Table
+    from RendererKit.HighlightKit import print
+    from RendererKit.HighlightKit.table import Table
 
     grid = Table("Markup", "Result", padding=(0, 1))
 

@@ -25,7 +25,7 @@ from typing import (
     Union,
 )
 
-from HighlightKit.repr import RichReprResult
+from RendererKit.HighlightKit.repr import RichReprResult
 
 try:
     import attr as _attr_module
@@ -221,7 +221,7 @@ def install(
         expand_all (bool, optional): Expand all containers. Defaults to False.
         max_frames (int): Maximum number of frames to show in a traceback, 0 for no maximum. Defaults to 100.
     """
-    from HighlightKit import get_console
+    from RendererKit.HighlightKit import get_console
 
     console = console or get_console()
     assert console is not None
@@ -1018,7 +1018,7 @@ if __name__ == "__main__":  # pragma: no cover
     }
     data["foo"].append(data)  # type: ignore[attr-defined]
 
-    from HighlightKit import print
+    from RendererKit.HighlightKit import print
 
     # print(Pretty(data, indent_guides=True, max_string=20))
 

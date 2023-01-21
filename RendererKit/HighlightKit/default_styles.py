@@ -168,9 +168,9 @@ if __name__ == "__main__":  # pragma: no cover
     import argparse
     import io
 
-    from HighlightKit.console import Console
-    from HighlightKit.table import Table
-    from HighlightKit.text import Text
+    from RendererKit.HighlightKit.console import Console
+    from RendererKit.HighlightKit.table import Table
+    from RendererKit.HighlightKit.text import Text
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--html", action="store_true", help="Export as HTML table")

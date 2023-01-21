@@ -31,7 +31,7 @@ class Screen:
         style: Optional[StyleType] = None,
         application_mode: bool = False,
     ) -> None:
-        from HighlightKit.console import Group
+        from RendererKit.HighlightKit.console import Group
 
         self.renderable = Group(*renderables)
         self.style = style
