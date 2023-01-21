@@ -49,10 +49,6 @@ try:
                 t1.join()
                 t2.join()
                 
-                
-            elif str(sys.argv[1]) == 'Help':
-                utils.args_help()
-            
             elif str(sys.argv[1]) == 'ClearErrors':
                 utils.clear_error()
                 
@@ -70,9 +66,8 @@ try:
                     while True:
                         launcher.boot()
                         SecondaryTask()
+                        
         except IndexError:
-            pass
-
-
+            utils.args_help()
 except BaseException:
     logger.log_error("boot.py")

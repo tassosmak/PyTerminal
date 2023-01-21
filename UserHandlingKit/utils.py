@@ -113,6 +113,7 @@ def clear_history():
     clear_file.close()
 
 def args_help():
+    RD.CommandSay(answer=(flags.Default_text + '\nThose Are The Available Commands:'))
     RD.CommandSay(answer=flags.ArgsList, color='OKGREEN')
 
 
