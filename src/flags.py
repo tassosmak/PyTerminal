@@ -1,19 +1,17 @@
-import platform
-
 '''
 Flags Start
 '''
 
-MODE = 0
+UserLess_Connection = 0
+EnableIntSoft = False
+GO_TO_FTU = False
+EnableGUI = False
+sys_detect = 0
 USERNAME = 0
 PASSWORD = 0
+MODE = 0
 FTU = 0
-EnableIntSoft = False
 pl = 0
-EnableGUI = False
-UserLess_Connection = "0"
-GO_TO_FTU = False
-sys_detect = platform.uname()
 
 '''
 Flags End
@@ -30,8 +28,7 @@ ArgsList = [
     "Run",
     "ClearErrors",
     "ClearHistory",
-    "FakeLogin",
-    "NoThread"
+    "FakeLogin"
 ]
 
 

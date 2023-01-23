@@ -327,7 +327,10 @@ try:
         else:
             if not Command in flags.CML:
                 if not Command == '' :
-                    RD.CommandSay(answer=f"Command {Command} doesn't exist", color='WARNING')
+                    if flags.EnableIntSoft:
+                        RD.CommandSay(f"This Commmand Isn't registered with The PyTerminal CML", "FAIL")
+                    else:
+                        RD.CommandSay(f'Command {Command} Does Not Exist', 'WARNING')
 
 except BaseException:
     import ErrorLoggingKit.Logger as logger

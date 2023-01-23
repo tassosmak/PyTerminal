@@ -42,7 +42,7 @@ def _FTU_init(edit_use=True):
             if RD.Quest_result == 'Yes':
                 pre_enc_pswd = _gen_safe_password()
                 Password_msg= f'YOUR PASSWORD IS {pre_enc_pswd} KEEP IT SAFE'
-                EncryptPassword.encrypt_password(password=_d_encrypt(type="1", input_text=pre_enc_pswd))
+                EncryptPassword.encrypt_password(password=pre_enc_pswd)
                 RD.CommandQuest(type='2', msg=Password_msg)
                 correct_pswd_input = True
             
@@ -50,7 +50,7 @@ def _FTU_init(edit_use=True):
             else:
                 RD.CommandQuest(type='3', msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
                 # EncryptPassword.encrypt_password(password=RD.Quest_result)
-                EncryptPassword.encrypt_password(password=_d_encrypt(type='1', input_text=RD.Quest_result), save=True)
+                EncryptPassword.encrypt_password(password=RD.Quest_result)
                 correct_pswd_input = True
                     
                     

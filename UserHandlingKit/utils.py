@@ -114,8 +114,11 @@ def args_help():
 def _pl_finder():
     pl = platform.platform()
     if pl.startswith("macOS"):
+        flags.sys_detect = platform.uname()
         flags.pl = "1"
     elif pl.startswith("Windows"):
+        flags.sys_detect = platform.uname()
         flags.pl = "2"
     elif pl.startswith("Linux"):
+        flags.sys_detect = platform.uname()
         flags.pl = "3"
