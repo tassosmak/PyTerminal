@@ -74,7 +74,7 @@ def init():
     # print(settings.EnableIntSoft)
     if flags.EnableIntSoft:
         cred._get_propiatery(True)
-        if cred.UserLess_Connection == '1' or cred.GO_TO_FTU == '1':
+        if flags.UserLess_Connection == True or flags.GO_TO_FTU == True:
             advanced_init()
         else:
             normal_init()

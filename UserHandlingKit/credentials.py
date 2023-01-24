@@ -8,25 +8,28 @@ import os
 
 def _get_propiatery(print_credentials=False):
     global UserLess_Connection, GO_TO_FTU
+    f = open('MakroPropiatery.json')
+
+    data = json.load(f)
     try:
-        f = open('MakroPropiatery.json')
-
-        data = json.load(f)
-
         UserLess_Connection = data['user_login']['UserLess Connection']
-        if UserLess_Connection == "1":
-            flags.UserLess_Connection = True
-        if print_credentials:
-            RD.CommandSay(answer=("UserLess Connection:", UserLess_Connection))
+    except KeyError:
+        raise FileNotFoundError
+    if UserLess_Connection == "1":
+        flags.UserLess_Connection = True
+    if print_credentials:
+        RD.CommandSay(answer=("UserLess Connection:", UserLess_Connection))
 
+    try:
         GO_TO_FTU = data['user_login']['GO TO FTU']
-        if GO_TO_FTU == "1":
-            flags.GO_TO_FTU = True
-        if print_credentials:
-            RD.CommandSay(answer=("GO_TO_FTU:", GO_TO_FTU))
-        f.close()
-    except FileNotFoundError:
-        pass
+    except KeyError:
+        raise FileNotFoundError
+    if GO_TO_FTU == "1":
+        flags.GO_TO_FTU = True
+    if print_credentials:
+        RD.CommandSay(answer=("GO_TO_FTU:", GO_TO_FTU))
+    f.close()
+
     
     
 Name = 0
@@ -71,10 +74,14 @@ def _get_credentials(print_credentials=False):
 
 
     Internal_Software = data['Internal-Software']['Enable']
-    if Internal_Software == "1":
-        flags.EnableIntSoft = True
-    else: 
-        flags.EnableIntSoft = False
+    try:
+        _get_propiatery()
+        if Internal_Software == "1":
+            flags.EnableIntSoft = True
+        else: 
+            flags.EnableIntSoft = False
+    except FileNotFoundError:
+        flags.EnableIntSoft == True
     if print_credentials:
         RD.CommandSay(answer=('Settings-Var', flags.EnableIntSoft))
         RD.CommandSay(answer=("Intenal-Software", Internal_Software))
