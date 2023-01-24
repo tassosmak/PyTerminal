@@ -46,7 +46,7 @@ def _get_credentials(print_credentials=False):
             from src import Recover_Json
         except ImportError:
             RD.CommandSay(answer='This Installation is corrupted install a new one', color='FAIL')
-            os.system('killall python')
+            os._exit(1)
         f = open('Info.json')
 
 

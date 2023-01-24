@@ -25,7 +25,7 @@ def rich_cast(renderable: object) -> "RenderableType":
     Returns:
         object: The result of recursively calling __rich__.
     """
-    from rich.console import RenderableType
+    from RendererKit.HighlightKit.console import RenderableType
 
     rich_visited_set: Set[type] = set()  # Prevent potential infinite loop
     while hasattr(renderable, "__rich__") and not isclass(renderable):

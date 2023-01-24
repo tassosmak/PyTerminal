@@ -1,11 +1,11 @@
-import datetime
+from UserHandlingKit import credentials as cred
+from UserHandlingKit.utils import _pl_finder
 if not __name__ == '__main__':
     from RendererKit import Renderer as RD
-from src import flags
-from UserHandlingKit.utils import _pl_finder
-from UserHandlingKit import credentials as cred
 from UserHandlingKit.FTU import _FTU_init
-
+from src import flags
+import datetime
+import sys
 
 ask_name = ""
 ask_Password = ""
@@ -69,6 +69,7 @@ def init():
         flags.FTU = '2'
         flags.USERNAME = "Lets Keep It Private"
         flags.MODE = '9'
+        RD.CommandSay(answer=sys.version, color='OKGREEN')
         RD.CommandPush(message="Lets keep it private")
 
     # print(settings.EnableIntSoft)

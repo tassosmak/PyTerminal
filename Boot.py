@@ -1,15 +1,13 @@
-import threading
-import sys
+from UserHandlingKit import credentials as cred
+from UserHandlingKit.UserHandler import init
+import ErrorLoggingKit.Logger as logger
+from UserHandlingKit import utils
 if __name__ == '__main__':
     import launcher
 from pathlib import Path
-from UserHandlingKit.UserHandler import init
-from UserHandlingKit import credentials as cred
-from UserHandlingKit import utils
 from src import flags
-import ErrorLoggingKit.Logger as logger
-
-
+import threading
+import sys
 
 def MainTask():
     #print("1 Main Threading")
