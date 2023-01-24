@@ -55,7 +55,7 @@ def init():
                         flags.FTU = cred.FTU
                         flags.USERNAME = ask_name
                         flags.PASSWORD = ask_Password
-                        welcome_msg = f"Welcome {cred.Name.capitalize()}"
+                        welcome_msg = f"Welcome {flags.USERNAME.capitalize()}"
                         RD.CommandPush(message=welcome_msg)
                         RD.CommandSay(answer="Go Ahead")
                         correct_credentials = True
