@@ -63,8 +63,6 @@ def _gen_safe_password(length=8, save=True):
 def jump_mode():
     RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
     ask_core = input("select Mode")
-    if ask_core == '9' and flags.EnableIntSoft == False:
-        ask_core = '2'
     while not ask_core in flags.ModeList:
         RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
         ask_core = input("select Mode")
