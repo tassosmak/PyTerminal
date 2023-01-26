@@ -2,7 +2,7 @@
 Flags Start
 '''
 
-UserLess_Connection = 0
+UserLess_Connection = False
 EnableIntSoft = False
 GO_TO_FTU = False
 EnableGUI = False
@@ -79,7 +79,8 @@ CML =[
 "talk",
 "check site status",
 "weather forecast",
-"clear"
+"clear",
+"InfoStats"
 ]
 
 Default_text = 'Makro PyTerminal Beta'

@@ -41,6 +41,15 @@ try:
         global jump, logout, ask_recv, LCommand
         LCommand = 0
 
+        if not Command in flags.CML:
+            if not Command == '' :
+                if flags.EnableIntSoft:
+                    RD.CommandSay(f"This Commmand Isn't registered with The PyTerminal CML", "FAIL")
+                    return
+                else:
+                    RD.CommandSay(f'Command {Command} Does Not Exist', 'WARNING')
+                    return
+
         if Command == "ls":
             if MD == "2":
                 RD.CommandSay(answer=os.listdir(dir))
@@ -315,17 +324,20 @@ try:
                         os.system('clear')
                     else:
                         os.system('cls')
-
-
-        #DONT WRITE ANYTHING BELOW HERE
-        else:
-            if not Command in flags.CML:
-                if not Command == '' :
-                    if flags.EnableIntSoft:
-                        RD.CommandSay(f"This Commmand Isn't registered with The PyTerminal CML", "FAIL")
+        
+        if Command == 'InfoStats':
+            if not safe_md:
+                if flags.EnableIntSoft:
+                    if cmd_pl == "1" or cmd_pl == "3":
+                        os.system('clear')
                     else:
-                        RD.CommandSay(f'Command {Command} Does Not Exist', 'WARNING')
-
+                        os.system('cls')
+                    RD.CommandSay(answer=flags.Default_text, color='OKGREEN')
+                    RD.CommandSay(answer=("Platform ID: " + flags.pl))
+                    RD.CommandSay(answer=("Username: " + flags.USERNAME))
+                    RD.CommandSay(answer="\nFlags Below:")
+                    RD.CommandSay(("UserLess Connection", flags.UserLess_Connection))
+                    RD.CommandSay(("GO TO FTU", flags.GO_TO_FTU))
 except BaseException:
     import ErrorLoggingKit.Logger as logger
     logger.log_error(message="Command.py")
