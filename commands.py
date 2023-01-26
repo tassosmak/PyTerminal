@@ -5,8 +5,9 @@ try:
     from pathlib import Path
     from src import flags
     import datetime
-    import os
     import Boot
+    import sys
+    import os
     net = False
 
     '''
@@ -331,6 +332,9 @@ try:
                     else:
                         os.system('cls')
                     RD.CommandSay(answer=flags.Default_text, color='OKGREEN')
+                    RD.CommandSay('')
+                    RD.CommandSay(answer=sys.version, color='OKGREEN')
+                    RD.CommandSay('')
                     RD.CommandSay(answer=("Platform ID: " + flags.pl))
                     RD.CommandSay(answer=("Username: " + flags.USERNAME))
                     RD.CommandSay(answer="\nFlags Below:")
