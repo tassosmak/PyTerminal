@@ -1,4 +1,3 @@
-from UserHandlingKit.utils import _d_encrypt
 from CryptographyKit import DecryptPassword
 from RendererKit import Renderer as RD
 from src import flags

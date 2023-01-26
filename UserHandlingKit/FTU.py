@@ -1,6 +1,6 @@
 from src import flags
 from RendererKit import Renderer as RD
-from UserHandlingKit.utils import edit_json, _gen_safe_password, _d_encrypt
+from UserHandlingKit.utils import edit_json, _gen_safe_password
 from CryptographyKit import EncryptPassword
 import os
 from src import FTU_Installer as ftu_install
