@@ -39,16 +39,17 @@ try:
 
     def CommandList(Command=0, cmd_pl=0, safe_md=False, MD=0):
         global jump, logout, ask_recv, LCommand
+        Command = Command.lower()
         LCommand = 0
-
+        
         if not Command in flags.CML:
-            if not Command == '' :
-                if flags.EnableIntSoft:
-                    RD.CommandSay(f"This Commmand Isn't registered with The PyTerminal CML", "FAIL")
-                    return
-                else:
-                    RD.CommandSay(f'Command {Command} Does Not Exist', 'WARNING')
-                    return
+                if not Command == '' :
+                    if flags.EnableIntSoft:
+                        RD.CommandSay(f"This Commmand Isn't registered with The PyTerminal CML", "FAIL")
+                        return
+                    else:
+                        RD.CommandSay(f'Command {Command} Does Not Exist', 'WARNING')
+                        return
 
         if Command == "ls":
             if MD == "2":
@@ -80,13 +81,10 @@ try:
             else:
                 RD.CommandSay(answer="tested")
         
-        if Command == "about" or Command == "ABOUT" or Command == "Version" or Command == "version": 
+        if Command == "about" or Command == "version": 
             LCommand = Command
             RD.CommandSay(answer="PyTerminal V.Beta by Makro Software")
         
-        if Command == "CML":
-            LCommand == Command
-            RD.CommandSay(answer=flags.CML)
         
         if Command == "time":
             LCommand = Command
@@ -146,7 +144,7 @@ try:
                 Boot.SecondaryTask(file_name="Password_Gen", stay_end=True)
 
 
-        if Command == "Exit" or Command == "exit":
+        if Command == "exit":
             if MD == "1":
                 LCommand = Command
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
@@ -325,7 +323,7 @@ try:
                     else:
                         os.system('cls')
         
-        if Command == 'InfoStats':
+        if Command == 'infostats':
             if not safe_md:
                 if flags.EnableIntSoft:
                     if cmd_pl == "1" or cmd_pl == "3":
