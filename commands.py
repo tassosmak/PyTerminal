@@ -331,7 +331,7 @@ try:
                         os.system('clear')
                     else:
                         os.system('cls')
-                    RD.CommandSay(answer=flags.Default_text, color='OKGREEN')
+                    RD.CommandSay(answer=flags.Default_text, color='PURPLE')
                     RD.CommandSay('')
                     RD.CommandSay(answer=sys.version, color='OKGREEN')
                     RD.CommandSay('')
