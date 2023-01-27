@@ -4,8 +4,9 @@ try:
 
 
     def history():
-        with open('src/history.log', 'a') as f:    
-            f.write(str(f"{cmd.LCommand}\n"))
+        if not cmd.LCommand == '0':
+            with open('src/history.log', 'a') as f:
+                f.write(str(f"{cmd.LCommand}\n"))
 
     def core(MODE="0", pl=0, username=0):
         if MODE == '1' or MODE == '2' or MODE == '3' or MODE == '9':

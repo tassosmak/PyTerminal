@@ -42,19 +42,13 @@ def boot():
             RD.CommandSay(answer='\n')
     except BaseException:
         if flags.MODE == "9" or flags.MODE == "3":
-            RD.CommandSay("There Was An Error see 'errors.log' in the Error_Manager Folder for more info", "FAIL")
             logger.log_error()
-            from os import system, _exit
-            if flags.pl == '1' or flags.pl == '3':
-                system("killall python")
-            else:
-                _exit(1)
+            from os import _exit
+            _exit(1)
         else:
             if flags.EnableIntSoft:
                 logger.log_error("IntSoft Enabled")
-            RD.CommandSay("There Was An Error", "FAIL")
-            from os import system, _exit
-            if flags.pl == '1' or flags.pl == '3':
-                system("killall python")
             else:
-                _exit(1)
+                RD.CommandSay("There Was An Error", "FAIL")
+            from os import _exit
+            _exit(1)

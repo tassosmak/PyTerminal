@@ -75,7 +75,7 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
             Quest_result = input(f"{msg}:")
 
 
-def CommandSay(answer=0, color=0):
+def CommandSay(answer=0, color=''):
     if color == "WARNING":
         color_text.output(content=answer, args='Bold Yellow')
     elif color == "FAIL":
@@ -85,4 +85,4 @@ def CommandSay(answer=0, color=0):
     elif color == "PURPLE":
         color_text.output(content=answer, args='Bold Purple')
     else:
-        color_text.output(content=answer)
+        color_text.output(content=answer, args=color)

@@ -1,5 +1,4 @@
 try:
-    DNT_IMP_clipboard = False
     from UserHandlingKit.utils import edit_json
     from RendererKit import Renderer as RD
     from pathlib import Path
@@ -8,7 +7,6 @@ try:
     import Boot
     import sys
     import os
-    net = False
 
     '''
     Adding Modules From Different Folders
@@ -16,10 +14,10 @@ try:
     try:
         from src import Server
         from src import client
-        net = True
+        flags.net = True
     except OSError:
         print("\nunfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable\n")
-        net = False
+        flags.net = False
 
 
 
@@ -41,16 +39,20 @@ try:
     def CommandList(Command=0, cmd_pl=0, safe_md=False, MD=0):
         global jump, logout, ask_recv, LCommand
         Command = Command.lower()
-        LCommand = 0
-        
         if not Command in flags.CML:
                 if not Command == '' :
                     if flags.EnableIntSoft:
                         RD.CommandSay(f"This Commmand Isn't registered with The PyTerminal CML", "FAIL")
+                        LCommand = '0'
                         return
                     else:
                         RD.CommandSay(f'Command {Command} Does Not Exist', 'WARNING')
+                        LCommand = '0'
                         return
+                else:
+                    LCommand = '0'
+        else:
+            LCommand = Command
 
         if Command == "ls":
             if MD == "2":
@@ -59,14 +61,13 @@ try:
                 RD.CommandSay(answer="This Function isn't available within this mode", color="WARNING")
 
         if Command == "test":
-            LCommand = Command
             if MD == "9":
                 RD.CommandSay(answer="tested")
                 RD.CommandSay(answer="tested", color="WARNING")
                 RD.CommandSay(answer="tested", color="FAIL")
                 RD.CommandSay(answer="tested", color="OKGREEN")
                 RD.CommandSay(answer="tested", color="PURPLE")
-                RD.CommandSay(answer="tested", color="UNDERLINE")
+                RD.CommandSay(answer="tested", color="BLUE")
                 now = datetime.datetime.now()
                 RD.CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
                 RD.CommandQuest(type='2', msg=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
@@ -83,12 +84,10 @@ try:
                 RD.CommandSay(answer="tested")
         
         if Command == "about" or Command == "version": 
-            LCommand = Command
             RD.CommandSay(answer="PyTerminal V.Beta by Makro Software")
         
         
         if Command == "time":
-            LCommand = Command
             now = datetime.datetime.now()
             RD.CommandSay(answer=now.strftime("%Y-%m-%d %H:%M:%S"))
 
@@ -104,13 +103,11 @@ try:
                     except FileNotFoundError:
                         RD.CommandQuest(type='2', msg="This file doesn't exist")
                 else:
-                    LCommand = Command
                     RD.CommandQuest(type='2', msg="This Function isn't available within this mode")
 
         if Command == "create":
             if not safe_md:
                 if MD == "1":
-                    LCommand = Command
                     RD.CommandQuest(type='3', msg="What the name of the file you want to create?")
                     try:
                         open(RD.Quest_result, "x")
@@ -141,13 +138,11 @@ try:
 
         if Command == "gen password":
             if not safe_md:
-                LCommand = Command
                 Boot.SecondaryTask(file_name="Password_Gen", stay_end=True)
 
 
         if Command == "exit":
             if MD == "1":
-                LCommand = Command
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
                     os._exit(1)
@@ -157,7 +152,6 @@ try:
             
         if Command == "jump":
             if not safe_md:
-                LCommand = Command
                 jump = True
 
 
@@ -171,8 +165,7 @@ try:
 
         if Command == "talk":
             if not safe_md:
-                LCommand = Command
-                if net:
+                if flags.net:
                     RD.CommandQuest(type='1', msg='do you want to be host or reciever', Button1='Host', Button2='Talker')
                     #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
                     if RD.Quest_result == "Host":
@@ -200,7 +193,6 @@ try:
                 os.system('cls')
 
         if Command == "view file":
-            LCommand = Command
             if flags.EnableIntSoft:
                 Boot.SecondaryTask('view_file')
             else:
@@ -229,13 +221,11 @@ try:
                         if not RD.Quest_result in flags.file_list:
                             os.system(f'notepad {RD.Quest_result}')
                 else:
-                    LCommand = Command
                     RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
         
         if Command == "weather forecast":
             if not safe_md:
-                LCommand = Command
-                if net:
+                if flags.net:
                     os.system("curl wttr.in/")
                     RD.CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
                 else:
@@ -247,12 +237,10 @@ try:
                     if cmd_pl == "1" or cmd_pl == "3":
                         Boot.SecondaryTask('top')
                 else:
-                    LCommand = Command
                     RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
         if Command == "countdown":
             if not safe_md:
-                LCommand = Command
                 Boot.SecondaryTask(file_name="countdown", stay_end=False)
                 
             
@@ -263,7 +251,6 @@ try:
                 os.system(f"ping {site}")
                 
             else:
-                LCommand = Command
                 RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
 
@@ -282,7 +269,6 @@ try:
 
 
         if Command == "logout":
-            LCommand = Command
             logout = True
             if cmd_pl == "1" or cmd_pl == "3":
                 os.system('clear')
@@ -313,11 +299,11 @@ try:
 
         if Command == 'chatbox':
             if not safe_md:
-                if net:
+                if flags.net:
                     Boot.SecondaryTask('chatgpt')
         if Command == 'chatbox install':
             if not safe_md:
-                if net:
+                if flags.net:
                     os.system('python3 src/chatgpt.py install')
                     if cmd_pl == "1" or cmd_pl == "3":
                         os.system('clear')
@@ -335,9 +321,9 @@ try:
                     RD.CommandSay('')
                     RD.CommandSay(answer=sys.version, color='OKGREEN')
                     RD.CommandSay('')
-                    RD.CommandSay(answer=("Platform ID: " + flags.pl))
-                    RD.CommandSay(answer=("Username: " + flags.USERNAME))
-                    RD.CommandSay(answer="\nFlags Below:")
+                    RD.CommandSay(answer=("Platform ID: " + flags.pl), color='BLUE')
+                    RD.CommandSay(answer=("Username: " + flags.USERNAME), color='BLUE')
+                    RD.CommandSay(answer="\nFlags Below:", color='Bold Green')
                     RD.CommandSay(("UserLess Connection", flags.UserLess_Connection))
                     RD.CommandSay(("GO TO FTU", flags.GO_TO_FTU))
 except BaseException:
