@@ -19,12 +19,12 @@ correct_credentials = False
 
 
 def _ask(print_ask=False):
-    global ask_name, ask_Password
     ask_name = input("Enter Usename")
     ask_Password = input("\nEnter Password")
     if print_ask:
         RD.CommandSay(answer=ask_name)
         RD.CommandSay(answer=ask_Password)
+    return ask_name, ask_Password
 
 
 
@@ -49,7 +49,7 @@ def init():
 
         if continue_normal:
             while not correct_credentials:
-                _ask()
+                ask_name, ask_Password = _ask()
                 if not ask_name == "":
                     if ask_name == cred.Name and ask_Password == cred.Password:
                         flags.FTU = cred.FTU

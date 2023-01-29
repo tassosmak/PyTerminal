@@ -81,7 +81,8 @@ CML =[
 "check site status",
 "weather forecast",
 "clear",
-"infostats"
+"infostats",
+'show cmd'
 ]
 
 Default_text = 'Makro PyTerminal Beta'

@@ -208,7 +208,7 @@ try:
         if Command == "edit file":
             if not safe_md:
                 if MD == "2" or MD == '9':           
-                    if cmd_pl == "1" or cmd_pl == "3":
+                    if flags.pl == "1" or flags.pl == "3":
                         RD.CommandQuest(type='3', msg='Type the name of the file you want to edit')
                         if not RD.Quest_result in flags.file_list:
                             #ask_file = input("type the name of the file you want to edit\n:")
@@ -216,12 +216,12 @@ try:
                                 os.system(f"vim {RD.Quest_result}")
                             else:
                                 os.system(f"nano {RD.Quest_result}")
-                    elif cmd_pl == "2":
+                    elif flags.pl == "2":
                         RD.CommandQuest(type='3', msg='Type the name of the file you want to edit')
                         if not RD.Quest_result in flags.file_list:
                             os.system(f'notepad {RD.Quest_result}')
                 else:
-                    RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                    RD.CommandSay(answer="This Function isn't available within this mode", color="FAIL")
         
         if Command == "weather forecast":
             if not safe_md:
@@ -326,6 +326,11 @@ try:
                     RD.CommandSay(answer="\nFlags Below:", color='Bold Green')
                     RD.CommandSay(("UserLess Connection", flags.UserLess_Connection))
                     RD.CommandSay(("GO TO FTU", flags.GO_TO_FTU))
+        
+        if Command == "show cmd":
+            if not safe_md:
+                if flags.EnableIntSoft:
+                    RD.CommandSay(flags.CML, color='BLUE')
 except BaseException:
     import ErrorLoggingKit.Logger as logger
     logger.log_error(message="Command.py")
