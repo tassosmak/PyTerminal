@@ -1,4 +1,4 @@
-from UserHandlingKit.utils import Clear, set_flags
+from UserHandlingKit.utils import Clear, set_flags, args_help
 from UserHandlingKit import credentials as cred
 from UserHandlingKit.UserHandler import init
 import ErrorLoggingKit.Logger as logger
@@ -70,6 +70,6 @@ try:
                         SecondaryTask()
                         
         except IndexError:
-            utils.args_help()
+            args_help()
 except BaseException:
     logger.log_error("boot.py")
