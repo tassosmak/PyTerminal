@@ -1,7 +1,7 @@
+from UserHandlingKit.utils import Clear, set_flags
 from UserHandlingKit import credentials as cred
 from UserHandlingKit.UserHandler import init
 import ErrorLoggingKit.Logger as logger
-from UserHandlingKit import utils
 if __name__ == '__main__':
     import launcher
 from pathlib import Path
@@ -49,16 +49,16 @@ try:
                 t2.join()
                 
             elif str(sys.argv[1]) == 'ClearErrors':
-                utils.clear_error()
+                Clear.clear_error()
                 
             elif str(sys.argv[1]) == 'ClearHistory':
-                utils.clear_history()
+                Clear.clear_history()
                 
             elif str(sys.argv[1]) == "SetFlags":
                 cred._get_credentials()
                 if flags.EnableIntSoft:    
                     cred._get_propiatery(True)
-                    utils.set_flags()
+                    set_flags()
             
             elif str(sys.argv[1]) == 'FakeLogin':
                 init()

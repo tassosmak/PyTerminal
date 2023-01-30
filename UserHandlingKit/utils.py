@@ -94,16 +94,16 @@ def set_flags():
                 RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='0')
 
-
-def clear_error():
-    clear_file = open("ErrorLoggingKit/errors.log",'w')
-    clear_file.close()
-    if flags.pl == '1':
-        os.system('killall osascript')
-    
-def clear_history():
-    clear_file = open("src/history.log",'w')
-    clear_file.close()
+class Clear:
+    def clear_error():
+        clear_file = open("ErrorLoggingKit/errors.log",'w')
+        clear_file.close()
+        if flags.pl == '1':
+            os.system('killall osascript')
+        
+    def clear_history():
+        clear_file = open("src/history.log",'w')
+        clear_file.close()
 
 def args_help():
     RD.CommandSay(answer=(flags.Default_text + '\nThose Are The Available Commands:'))
