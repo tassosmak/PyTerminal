@@ -7,16 +7,6 @@ from src import flags
 import datetime
 import sys
 
-ask_name = ""
-ask_Password = ""
-continue_normal = False
-correct_pswd_input = False
-correct_credentials = False
-
-
-
-
-
 
 def _ask(print_ask=False):
     ask_name = input("Enter Usename")

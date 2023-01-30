@@ -70,6 +70,10 @@ class _FTU_init:
         #Install_Deperndices
         clear_screen()
         try:
+            import customtkinter
+        except ModuleNotFoundError:
+            ftu_install.install(name="customtkinter")
+        try:
             import rich
         except ModuleNotFoundError:
             ftu_install.install(name="rich")
@@ -86,6 +90,7 @@ class _FTU_init:
         except ModuleNotFoundError:
             ftu_install.install(name="clipboard")
         try:
+            import customtkinter
             import pyrad
             import clipboard
             import playwright
