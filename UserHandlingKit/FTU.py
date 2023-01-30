@@ -1,18 +1,20 @@
 from src import flags
 from RendererKit import Renderer as RD
-from UserHandlingKit.utils import edit_json, _gen_safe_password
+from UserHandlingKit.utils import edit_json, _gen_safe_password, clear_screen
 from CryptographyKit import EncryptPassword
 import os
 from src import FTU_Installer as ftu_install
 
-def _FTU_init(edit_use=True):
-
-    def _check_gui():
+class _FTU_init:
+    def __init__(self, edit_use):
+        self.edit_use = edit_use
+    
+        #check_gui
         if not flags.pl == '1':
             edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
             flags.EnableGUI = False
 
-    def _ask_use():
+        #use_configure
         RD.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
         RD.CommandQuest(type='1', Button1='Server', Button2='Personal', msg='How Do You want to use this instanche?')
         #ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
@@ -24,11 +26,10 @@ def _FTU_init(edit_use=True):
             edit_json(loc1="FTU", loc2="IP", content=RD.Quest_result)
         else:
             ask_type = '1'
-        if edit_use:
+        if self.edit_use:
             edit_json(loc1="FTU", loc2="Use", content=ask_type)
 
-
-    def _ask_name_password():
+        #username_password configuration
         RD.CommandQuest(type='3', msg='What is your name')
         edit_json(loc1="user_credentials", loc2="Name", content=RD.Quest_result)
         
@@ -53,8 +54,7 @@ def _FTU_init(edit_use=True):
                 EncryptPassword.encrypt_password(password=RD.Quest_result)
                 correct_pswd_input = True
                     
-                    
-    def _ask_mode():
+        #Mode_Configuration
         RD.CommandQuest(type='1', msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
         if RD.Quest_result == 'The Advanced Mode':
             ask_first_Mode = '2'
@@ -67,12 +67,8 @@ def _FTU_init(edit_use=True):
         edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)
 
 
-
-    def _install_dependecies():
-        if flags.pl == "1" or flags.pl == "3":
-            os.system('clear')
-        elif flags.pl == "2":
-            os.system("cls")
+        #Install_Deperndices
+        clear_screen()
         try:
             import rich
         except ModuleNotFoundError:
@@ -100,16 +96,4 @@ def _FTU_init(edit_use=True):
             time.sleep(7)
         os.system('playwright install')
         if not flags.MODE == "9":
-            if flags.pl == "1" or flags.pl == "3":
-                os.system('clear')
-            elif flags.pl == "2":
-                os.system("cls")
-
-    """
-    run
-    """
-    _check_gui()
-    _ask_use()
-    _ask_name_password()
-    _ask_mode()
-    _install_dependecies()
+            clear_screen()

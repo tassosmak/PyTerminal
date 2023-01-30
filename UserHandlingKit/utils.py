@@ -1,7 +1,8 @@
+from ErrorLoggingKit import Logger as logger
 from RendererKit import Renderer as RD
 from random import shuffle, choice
 from src import flags
-from os import system
+import os
 import platform
 import string
 import json
@@ -98,7 +99,7 @@ def clear_error():
     clear_file = open("ErrorLoggingKit/errors.log",'w')
     clear_file.close()
     if flags.pl == '1':
-        system('killall osascript')
+        os.system('killall osascript')
     
 def clear_history():
     clear_file = open("src/history.log",'w')
@@ -107,9 +108,27 @@ def clear_history():
 def args_help():
     RD.CommandSay(answer=(flags.Default_text + '\nThose Are The Available Commands:'))
     RD.CommandSay(answer=flags.ArgsList, color='OKGREEN')
+    
+def error_exit():
+    if flags.MODE == "9" or flags.MODE == "3":
+        logger.log_error()
+        from os import _exit
+        _exit(1)
+    else:
+        if flags.EnableIntSoft:
+            logger.log_error("IntSoft Enabled")
+        else:
+            RD.CommandSay("There Was An Error", "FAIL")
+            from os import _exit
+            _exit(1)
 
+def clear_screen():
+    if flags.pl == "1" or flags.pl == "3":
+        os.system('clear')
+    else:
+        os.system('cls')
 
-def _pl_finder():
+def pl_finder():
     pl = platform.platform()
     if pl.startswith("macOS"):
         flags.sys_detect = platform.uname()

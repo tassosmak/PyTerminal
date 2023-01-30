@@ -1,5 +1,5 @@
 try:
-    from UserHandlingKit.utils import edit_json
+    from UserHandlingKit.utils import edit_json, clear_screen, error_exit
     from RendererKit import Renderer as RD
     from pathlib import Path
     from src import flags
@@ -187,10 +187,7 @@ try:
 
 
         if Command == "clear":
-            if cmd_pl == "1" or cmd_pl == "3":
-                os.system('clear')
-            else:
-                os.system('cls')
+            clear_screen()
 
         if Command == "view file":
             if flags.EnableIntSoft:
@@ -270,10 +267,7 @@ try:
 
         if Command == "logout":
             logout = True
-            if cmd_pl == "1" or cmd_pl == "3":
-                os.system('clear')
-            else:
-                os.system('cls')
+            clear_screen()
                 
                 
         if Command == "edit parameters":
@@ -305,18 +299,12 @@ try:
             if not safe_md:
                 if flags.net:
                     os.system('python3 src/chatgpt.py install')
-                    if cmd_pl == "1" or cmd_pl == "3":
-                        os.system('clear')
-                    else:
-                        os.system('cls')
+                    clear_screen()
         
         if Command == 'infostats':
             if not safe_md:
                 if flags.EnableIntSoft:
-                    if cmd_pl == "1" or cmd_pl == "3":
-                        os.system('clear')
-                    else:
-                        os.system('cls')
+                    clear_screen()
                     RD.CommandSay(answer=flags.Default_text, color='PURPLE')
                     RD.CommandSay('')
                     RD.CommandSay(answer=sys.version, color='OKGREEN')
@@ -332,5 +320,4 @@ try:
                 if flags.EnableIntSoft:
                     RD.CommandSay(flags.CML, color='BLUE')
 except BaseException:
-    import ErrorLoggingKit.Logger as logger
-    logger.log_error(message="Command.py")
+    error_exit()

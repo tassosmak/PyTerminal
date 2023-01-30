@@ -19,5 +19,5 @@ try:
         else:
             raise IndexError
 except BaseException:
-    import ErrorLoggingKit.Logger as logger
-    logger.log_error()
+    from UserHandlingKit.utils import error_exit
+    error_exit()

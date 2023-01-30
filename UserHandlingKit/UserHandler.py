@@ -1,5 +1,5 @@
 from UserHandlingKit import credentials as cred
-from UserHandlingKit.utils import _pl_finder
+from UserHandlingKit.utils import pl_finder
 if not __name__ == '__main__':
     from RendererKit import Renderer as RD
 from UserHandlingKit.FTU import _FTU_init
@@ -30,7 +30,7 @@ def _ask(print_ask=False):
 
 
 def init():
-    _pl_finder()
+    pl_finder()
     cred._get_credentials() # <-- if you want to print the credentials set the paramater to True
     
     def normal_init():

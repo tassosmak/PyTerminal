@@ -1,10 +1,9 @@
-from ErrorLoggingKit import Logger as logger
-from RendererKit import Renderer as RD
 if not __name__ == '__main__':
-    import Kernel as kernel
+    from UserHandlingKit.utils import edit_json, jump_mode, error_exit
     from UserHandlingKit.UserHandler import init
-    from UserHandlingKit.utils import edit_json, jump_mode
+    import Kernel as kernel
     import commands as cmd
+from RendererKit import Renderer as RD
 from src import flags
 
 
@@ -41,14 +40,4 @@ def boot():
         else:
             RD.CommandSay(answer='\n')
     except BaseException:
-        if flags.MODE == "9" or flags.MODE == "3":
-            logger.log_error()
-            from os import _exit
-            _exit(1)
-        else:
-            if flags.EnableIntSoft:
-                logger.log_error("IntSoft Enabled")
-            else:
-                RD.CommandSay("There Was An Error", "FAIL")
-            from os import _exit
-            _exit(1)
+        error_exit()
