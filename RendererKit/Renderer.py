@@ -62,7 +62,7 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
             Quest_result = CommandSay(answer=msg, color='WARNING')
     elif type == '3':
         if flags.EnableGUI:
-            buttons = Buttons(["Ok", "Exit"])
+            buttons = Buttons(["Ok"])
             the_dialog = Dialog(msg).with_title(flags.Default_text)
             the_dialog.with_buttons(buttons)
             the_dialog.with_icon(quest_icon)
