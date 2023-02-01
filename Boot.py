@@ -1,16 +1,17 @@
 try:
     from Kernel.utils import Clear, set_flags, args_help
-except ModuleNotFoundError:
+    import Kernel.ErrorLoggingKit.Logger as logger
+    from Kernel import credentials as cred
+    from Kernel.UserHandler import init
+    from Kernel import flags
+except:
     print('Kernel is Missing')
     from os import _exit
     _exit(1)
-from Kernel import credentials as cred
-from Kernel.UserHandler import init
-import Kernel.ErrorLoggingKit.Logger as logger
+    
 if __name__ == '__main__':
     import launcher
 from pathlib import Path
-from Kernel import flags
 import threading
 import sys
 
