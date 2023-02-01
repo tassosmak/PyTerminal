@@ -64,6 +64,7 @@ try:
                 init()
             
             elif str(sys.argv[1]) == 'NoThread':
+                    flags.ThreadActivated = False
                     init()
                     while True:
                         launcher.boot()

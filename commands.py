@@ -314,6 +314,7 @@ try:
                     RD.CommandSay(answer="\nFlags Below:", color='Bold Green')
                     RD.CommandSay(("UserLess Connection", flags.UserLess_Connection))
                     RD.CommandSay(("GO TO FTU", flags.GO_TO_FTU))
+                    RD.CommandSay(("Threading", flags.ThreadActivated))
         
         if Command == "show cmd":
             if not safe_md:
