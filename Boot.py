@@ -68,7 +68,8 @@ try:
                     while True:
                         launcher.boot()
                         SecondaryTask()
-                        
+            else:
+                args_help()            
         except IndexError:
             args_help()
 except BaseException:
