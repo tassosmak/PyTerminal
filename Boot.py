@@ -1,4 +1,9 @@
-from Kernel.utils import Clear, set_flags, args_help
+try:
+    from Kernel.utils import Clear, set_flags, args_help
+except ModuleNotFoundError:
+    print('Kernel is Missing')
+    from os import _exit
+    _exit(1)
 from Kernel import credentials as cred
 from Kernel.UserHandler import init
 import Kernel.ErrorLoggingKit.Logger as logger
