@@ -42,7 +42,7 @@ def _get_credentials(print_credentials=False):
         f = open('Info.json')
     except FileNotFoundError:
         try:
-            from src import Recover_Json
+            from Kernel.src import Recover_Json
         except ImportError:
             RD.CommandSay(answer='This Installation is corrupted install a new one', color='FAIL')
             os._exit(1)

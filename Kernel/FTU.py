@@ -3,7 +3,7 @@ from Kernel.RendererKit import Renderer as RD
 from Kernel.utils import edit_json, _gen_safe_password, clear_screen
 from Kernel.CryptographyKit import EncryptPassword
 import os
-from src import FTU_Installer as ftu_install
+from Kernel.src import FTU_Installer as ftu_install
 
 class _FTU_init:
     def __init__(self, edit_use):

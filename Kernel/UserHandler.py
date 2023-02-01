@@ -1,9 +1,15 @@
-from Kernel import credentials as cred
-from Kernel.utils import pl_finder
 if not __name__ == '__main__':
+    from Kernel import credentials as cred
+    from Kernel.utils import pl_finder
     from Kernel.RendererKit import Renderer as RD
-from Kernel.FTU import _FTU_init
-from Kernel import flags
+    from Kernel.FTU import _FTU_init
+    from Kernel import flags
+else:
+    import credentials as cred
+    from utils import pl_finder
+    from RendererKit import Renderer as RD
+    from FTU import _FTU_init
+    import flags
 import datetime
 import sys
 

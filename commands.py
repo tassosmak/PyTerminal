@@ -244,8 +244,8 @@ try:
         
         if Command == "check site status":
             if MD == "2" or MD == "9":
-                site = input("type the site you want to check:\n")
-                os.system(f"ping {site}")
+                RD.CommandQuest(type='3', msg="type the site you want to check:\n")
+                os.system(f"ping {RD.Quest_result}")
                 
             else:
                 RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
