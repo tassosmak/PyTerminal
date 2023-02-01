@@ -5,7 +5,7 @@ try:
     from Kernel.UserHandler import init
     from Kernel import flags
 except:
-    print('Kernel is Missing')
+    print('Kernel Error')
     from os import _exit
     _exit(1)
     
