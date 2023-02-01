@@ -1,6 +1,6 @@
-from NotificationsKit import Alert, Buttons, Dialog, Icon
-from RendererKit.HighlightKit import color_text
-from src import flags
+from Kernel.NotificationsKit import Alert, Buttons, Dialog, Icon
+from Kernel.RendererKit.HighlightKit import color_text
+from Kernel import flags
 import subprocess
 import os
 

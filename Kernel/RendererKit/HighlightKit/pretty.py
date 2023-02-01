@@ -25,7 +25,7 @@ from typing import (
     Union,
 )
 
-from RendererKit.HighlightKit.repr import RichReprResult
+from Kernel.RendererKit.HighlightKit.repr import RichReprResult
 
 try:
     import attr as _attr_module

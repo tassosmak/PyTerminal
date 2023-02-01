@@ -2,9 +2,9 @@
 This example demonstrates a simple text highlighter.
 """
 
-from RendererKit.HighlightKit.console import Console
-from RendererKit.HighlightKit.highlighter import RegexHighlighter
-from RendererKit.HighlightKit.theme import Theme
+from Kernel.RendererKit.HighlightKit.console import Console
+from Kernel.RendererKit.HighlightKit.highlighter import RegexHighlighter
+from Kernel.RendererKit.HighlightKit.theme import Theme
 
 
 class Highlighter(RegexHighlighter):

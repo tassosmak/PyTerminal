@@ -1,11 +1,11 @@
 from Kernel.utils import Clear, set_flags, args_help
 from Kernel import credentials as cred
 from Kernel.UserHandler import init
-import ErrorLoggingKit.Logger as logger
+import Kernel.ErrorLoggingKit.Logger as logger
 if __name__ == '__main__':
     import launcher
 from pathlib import Path
-from src import flags
+from Kernel import flags
 import threading
 import sys
 

@@ -1,6 +1,6 @@
-from CryptographyKit import DecryptPassword
-from RendererKit import Renderer as RD
-from src import flags
+from Kernel.CryptographyKit import DecryptPassword
+from Kernel.RendererKit import Renderer as RD
+from Kernel import flags
 import json
 import os
 

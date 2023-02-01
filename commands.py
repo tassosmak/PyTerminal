@@ -1,8 +1,8 @@
 try:
     from Kernel.utils import edit_json, clear_screen, error_exit
-    from RendererKit import Renderer as RD
+    from Kernel.RendererKit import Renderer as RD
     from pathlib import Path
-    from src import flags
+    from Kernel import flags
     import datetime
     import Boot
     import sys
@@ -31,7 +31,7 @@ try:
         elif MD == "9": 
             CommandList(Command=input(f"PyTerminal {flags.sys_detect.system} | {flags.sys_detect.machine} % "), cmd_pl=flags.pl, MD=flags.MODE)
         elif MD == "3":
-            CommandList(Command=input(f"PyTerminal | Safe-Mode $ "), cmd_pl=flags.MODE, safe_md=safe_mode, MD=flags.MODE)
+            CommandList(Command=input(f"PyTerminal | Safe-Mode $ "), cmd_pl=flags.pl, safe_md=safe_mode, MD=flags.MODE)
         else:
             CommandList(Command=input(f"PyTerminal Beta | {flags.USERNAME.capitalize()} $ "), cmd_pl=flags.pl, MD=flags.MODE) 
 

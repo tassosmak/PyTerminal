@@ -37,8 +37,8 @@ from pygments.token import (
 )
 from pygments.util import ClassNotFound
 
-from RendererKit.HighlightKit.containers import Lines
-from RendererKit.HighlightKit.padding import Padding, PaddingDimensions
+from Kernel.RendererKit.HighlightKit.containers import Lines
+from Kernel.RendererKit.HighlightKit.padding import Padding, PaddingDimensions
 
 from ._loop import loop_first
 from .cells import cell_len

@@ -3,8 +3,8 @@ if not __name__ == '__main__':
     from Kernel.UserHandler import init
     import ModeHandling as kernel
     import commands as cmd
-from RendererKit import Renderer as RD
-from src import flags
+from Kernel.RendererKit import Renderer as RD
+from Kernel import flags
 
 
 def _run():
@@ -13,8 +13,8 @@ def _run():
         except IndexError:
             ask_new_md = input("it seems that the registered mode of user is corrupted\nwhat mode did you used\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n")
             if ask_new_md == '9':
-                flags.MODE = '2'
                 ask_new_md = '2'
+            flags.MODE = ask_new_md
             edit_json(loc1='user_credentials', loc2='Mode', content=ask_new_md)
             edit_json(loc1='Internal-Software', loc2='Enable', content='0')
         if cmd.jump:

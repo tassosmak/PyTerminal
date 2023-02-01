@@ -1,9 +1,9 @@
 from Kernel import credentials as cred
 from Kernel.utils import pl_finder
 if not __name__ == '__main__':
-    from RendererKit import Renderer as RD
+    from Kernel.RendererKit import Renderer as RD
 from Kernel.FTU import _FTU_init
-from src import flags
+from Kernel import flags
 import datetime
 import sys
 
@@ -72,3 +72,5 @@ def init():
 
     else:
         normal_init()
+if __name__ == '__main__':
+    init()

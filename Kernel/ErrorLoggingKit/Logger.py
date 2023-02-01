@@ -1,11 +1,11 @@
-from ErrorLoggingKit.ErrorPreviewer import ErrorScreen
-from RendererKit.HighlightKit.console import Console
-from src import flags
+from Kernel.ErrorLoggingKit.ErrorPreviewer import ErrorScreen
+from Kernel.RendererKit.HighlightKit.console import Console
+from Kernel import flags
 import logging
 import os
 import datetime
 
-save_path = 'ErrorLoggingKit'
+save_path = 'Kernel/ErrorLoggingKit'
 console = Console()
 
 def log_error(message="NO_MSG", fl_name="errors.log"):

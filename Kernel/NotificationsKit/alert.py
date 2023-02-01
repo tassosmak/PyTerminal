@@ -1,6 +1,6 @@
 from enum import Enum, unique
 from typing import Union
-from NotificationsKit.utils import quotify, run_applescript
+from Kernel.NotificationsKit.utils import quotify, run_applescript
 from .types.buttons import Buttons
 from .types.result import Result
 

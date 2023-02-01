@@ -1,7 +1,7 @@
-from ErrorLoggingKit import Logger as logger
-from RendererKit import Renderer as RD
+from Kernel.ErrorLoggingKit import Logger as logger
+from Kernel.RendererKit import Renderer as RD
 from random import shuffle, choice
-from src import flags
+from Kernel import flags
 import os
 import platform
 import string
@@ -115,12 +115,12 @@ def error_exit():
         from os import _exit
         _exit(1)
     else:
-        if flags.EnableIntSoft:
+        # if flags.EnableIntSoft:
             logger.log_error("IntSoft Enabled")
-        else:
-            RD.CommandSay("There Was An Error", "FAIL")
-            from os import _exit
-            _exit(1)
+        # else:
+            # RD.CommandSay("There Was An Error", "FAIL")
+            # from os import _exit
+            # _exit(1)
 
 def clear_screen():
     if flags.pl == "1" or flags.pl == "3":

@@ -1,6 +1,6 @@
 import string
 from random import random, shuffle, choice
-import flags
+import Kernel.flags as flags
 
 def gen():
     characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")

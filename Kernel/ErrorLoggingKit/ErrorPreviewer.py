@@ -1,8 +1,8 @@
 from time import sleep
 
-from RendererKit.HighlightKit.align import Align
-from RendererKit.HighlightKit.console import Console
-from RendererKit.HighlightKit.panel import Panel
+from Kernel.RendererKit.HighlightKit.align import Align
+from Kernel.RendererKit.HighlightKit.console import Console
+from Kernel.RendererKit.HighlightKit.panel import Panel
 
 def ErrorScreen():
     console = Console()

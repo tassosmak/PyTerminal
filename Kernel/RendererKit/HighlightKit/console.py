@@ -33,7 +33,7 @@ from typing import (
     cast,
 )
 
-from RendererKit.HighlightKit._null_file import NULL_FILE
+from Kernel.RendererKit.HighlightKit._null_file import NULL_FILE
 
 if sys.version_info >= (3, 8):
     from typing import Literal, Protocol, runtime_checkable
