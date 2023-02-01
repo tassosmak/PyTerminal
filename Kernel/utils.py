@@ -139,3 +139,5 @@ def pl_finder():
     elif pl.startswith("Linux"):
         flags.sys_detect = platform.uname()
         flags.pl = "3"
+    else:
+        error_exit()
