@@ -255,13 +255,13 @@ try:
             if not safe_md:
                 if not cmd_pl == "2":
                     if flags.FTU == "2":
-                        import NetworkingKit.server
+                        import Kernel.NetworkingKit.server
                     else:
-                        import NetworkingKit.auth
-                        if NetworkingKit.auth.DONE:
+                        import Kernel.NetworkingKit.auth
+                        if Kernel.NetworkingKit.auth.DONE:
                             Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
                 else:
-                    RD.CommandSay("LocalNetworking Isn't Supported On Windown Yet\nIt's Under Development :)")
+                    RD.CommandSay("NetworkingKit Isn't Supported On Windown")
 
 
 
