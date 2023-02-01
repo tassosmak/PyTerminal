@@ -19,5 +19,5 @@ try:
         else:
             raise IndexError
 except BaseException:
-    from UserHandlingKit.utils import error_exit
+    from Kernel.utils import error_exit
     error_exit()

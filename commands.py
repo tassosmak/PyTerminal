@@ -1,5 +1,5 @@
 try:
-    from UserHandlingKit.utils import edit_json, clear_screen, error_exit
+    from Kernel.utils import edit_json, clear_screen, error_exit
     from RendererKit import Renderer as RD
     from pathlib import Path
     from src import flags

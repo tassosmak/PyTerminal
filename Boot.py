@@ -1,6 +1,6 @@
-from UserHandlingKit.utils import Clear, set_flags, args_help
-from UserHandlingKit import credentials as cred
-from UserHandlingKit.UserHandler import init
+from Kernel.utils import Clear, set_flags, args_help
+from Kernel import credentials as cred
+from Kernel.UserHandler import init
 import ErrorLoggingKit.Logger as logger
 if __name__ == '__main__':
     import launcher

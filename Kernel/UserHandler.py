@@ -1,8 +1,8 @@
-from UserHandlingKit import credentials as cred
-from UserHandlingKit.utils import pl_finder
+from Kernel import credentials as cred
+from Kernel.utils import pl_finder
 if not __name__ == '__main__':
     from RendererKit import Renderer as RD
-from UserHandlingKit.FTU import _FTU_init
+from Kernel.FTU import _FTU_init
 from src import flags
 import datetime
 import sys

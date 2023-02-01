@@ -1,6 +1,6 @@
 import json
 import base64
-from UserHandlingKit.utils import _d_encrypt
+from Kernel.utils import _d_encrypt
 
 
 
