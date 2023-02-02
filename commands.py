@@ -4,12 +4,11 @@ try:
     '''
     from Kernel.utils import edit_json, clear_screen, error_exit
     from Kernel.RendererKit import Renderer as RD
+    from Kernel import ThreadHandler
     from Kernel import flags
 
     from pathlib import Path
     import datetime
-    # import Boot
-    from Kernel import ThreadHandler
     import sys
     import os
 
