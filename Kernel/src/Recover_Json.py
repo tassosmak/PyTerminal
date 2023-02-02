@@ -2,12 +2,13 @@ from pathlib import Path
 dir = Path(__file__).parent.resolve()
 
 
-with open(f'{dir}/../Info.json', 'w') as apple:
-    apple.write('''{
+with open(f'{dir}/../../Info.json', 'w') as recover:
+    recover.write('''{
     "user_credentials": {
         "Name": "",
         "Password": "",
-        "Mode": ""
+        "Mode": "",
+        "Serial": "".
     },
     "FTU": {
         "Use": "0",

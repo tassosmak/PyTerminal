@@ -7,7 +7,7 @@ import os
 from Kernel.src import FTU_Installer as ftu_install
 
 class _FTU_init:
-    def __init__(self, edit_use=False):
+    def __init__(self, edit_use=True):
         self.edit_use = edit_use
         SNC.guid(write=True)
         #check_gui
