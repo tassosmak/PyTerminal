@@ -28,8 +28,12 @@ try:
     def CommandAsk(plt=0, USNAME_PRINT=0, safe_mode=False, MD='0'):
         if MD == "2":
             CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {flags.USERNAME.capitalize()} % "), cmd_pl=flags.pl, MD=flags.MODE)
-        elif MD == "9": 
-            CommandList(Command=input(f"PyTerminal {flags.sys_detect.system} | {flags.sys_detect.machine} % "), cmd_pl=flags.pl, MD=flags.MODE)
+        elif MD == "9":
+            if flags.Fully_GUI:
+                RD.CommandQuest(type='3', msg=f"PyTerminal {flags.sys_detect.system} | {flags.sys_detect.machine}") 
+                CommandList(Command=RD.Quest_result, cmd_pl=flags.pl, MD=flags.MODE)
+            else:
+                CommandList(Command=input(f"PyTerminal {flags.sys_detect.system} | {flags.sys_detect.machine} % "), cmd_pl=flags.pl, MD=flags.MODE)
         elif MD == "3":
             CommandList(Command=input(f"PyTerminal | Safe-Mode $ "), cmd_pl=flags.pl, safe_md=safe_mode, MD=flags.MODE)
         else:
@@ -314,6 +318,7 @@ try:
                     RD.CommandSay(answer="\nFlags Below:", color='Bold Green')
                     RD.CommandSay(("UserLess Connection", flags.UserLess_Connection))
                     RD.CommandSay(("GO TO FTU", flags.GO_TO_FTU))
+                    RD.CommandSay(("Fully GUI", flags.Fully_GUI))
                     RD.CommandSay(("Threading", flags.ThreadActivated))
         
         if Command == "show cmd":

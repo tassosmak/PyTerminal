@@ -74,7 +74,7 @@ def jump_mode():
     RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
 
 def set_flags():
-        ask_which = input('1)Userless Connection\n2)GO TO FTU\nType Here:')
+        ask_which = input('1)Userless Connection\n2)GO TO FTU\n3)Fully GUI\nType Here:')
         
         if ask_which == '1':
             ask_userless_state = input('Enable Or Disable?')
@@ -93,6 +93,15 @@ def set_flags():
             elif ask_ftu_state == 'Disable' or ask_ftu_state == 'disable':
                 RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='0')
+                
+        elif ask_which == '3':
+            ask_Fully_GUI_state = input('Enable Or Disable?')
+            if ask_Fully_GUI_state == 'Enable' or ask_Fully_GUI_state == 'enable':
+                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Fully GUI', content='1')
+                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+            elif ask_Fully_GUI_state == 'Disable' or ask_Fully_GUI_state == 'disable':
+                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Fully GUI', content='0')
 
 class Clear:
     def clear_error():

@@ -7,7 +7,7 @@ import os
 
 
 def _get_propiatery(print_credentials=False):
-    global UserLess_Connection, GO_TO_FTU
+    global UserLess_Connection, GO_TO_FTU, Fully_GUI
     f = open('MakroPropiatery.json')
 
     data = json.load(f)
@@ -28,6 +28,14 @@ def _get_propiatery(print_credentials=False):
         flags.GO_TO_FTU = True
     if print_credentials:
         RD.CommandSay(answer=("GO_TO_FTU:", GO_TO_FTU))
+    try:
+        Fully_GUI = data['user_login']['Fully GUI']
+    except KeyError:
+        raise FileNotFoundError
+    if Fully_GUI == "1":
+        flags.Fully_GUI = True
+    if print_credentials:
+        RD.CommandSay(answer=("Fully_GUI:", Fully_GUI))
     f.close()
 
     
