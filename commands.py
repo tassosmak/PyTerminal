@@ -1,8 +1,12 @@
 try:
+    '''
+    Adding Modules from The Kernel
+    '''
     from Kernel.utils import edit_json, clear_screen, error_exit
     from Kernel.RendererKit import Renderer as RD
-    from pathlib import Path
     from Kernel import flags
+
+    from pathlib import Path
     import datetime
     import Boot
     import sys
@@ -16,7 +20,7 @@ try:
         from src import client
         flags.net = True
     except OSError:
-        print("\nunfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable\n")
+        RD.CommandSay(answer="\nunfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable\n")
         flags.net = False
 
 
