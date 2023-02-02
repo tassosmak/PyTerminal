@@ -3,7 +3,7 @@ Flags Start
 '''
 
 UserLess_Connection = False
-Dont_Run_FTU_Again = False
+BuildReseted = False
 ThreadActivated = True
 EnableIntSoft = False
 Fully_GUI = False

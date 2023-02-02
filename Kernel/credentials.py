@@ -111,7 +111,7 @@ def _get_credentials(print_credentials=False):
             RD.CommandSay("The Serial number of the computer doesn't match the doesn't match the serial number given", 'FAIL')
         from Kernel import FTU as ft
         ft._FTU_init()
-        flags.Dont_Run_FTU_Again = True
+        flags.BuildReseted = True
     if print_credentials:
         RD.CommandSay(answer=("Serial:", SerialNum))
     
