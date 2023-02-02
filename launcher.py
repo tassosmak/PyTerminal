@@ -19,7 +19,6 @@ def _run():
             edit_json(loc1='Internal-Software', loc2='Enable', content='0')
         if cmd.jump:
             jump_mode()
-            kernel.core(MODE=flags.MODE, pl=flags.pl, username=flags.USERNAME)
             cmd.jump = False
         if cmd.logout:
             init()
