@@ -40,7 +40,8 @@ def init():
         if not cred.FTU == "0":
             continue_normal = True
         else:
-            _FTU_init()
+            if flags.Dont_Run_FTU_Again == False:
+                _FTU_init()
             cred._get_credentials()
             continue_normal = True
 

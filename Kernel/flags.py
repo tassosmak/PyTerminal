@@ -5,6 +5,7 @@ Flags Start
 UserLess_Connection = False
 ThreadActivated = True
 EnableIntSoft = False
+Dont_Run_FTU_Again = False
 GO_TO_FTU = False
 EnableGUI = False
 sys_detect = 0
