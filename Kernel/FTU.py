@@ -71,36 +71,10 @@ class _FTU_init:
 
         #Install_Deperndices
         clear_screen()
-        try:
-            import customtkinter
-        except ModuleNotFoundError:
-            ftu_install.install(name="customtkinter")
-        try:
-            import rich
-        except ModuleNotFoundError:
-            ftu_install.install(name="rich")
-        try:
-            import playwright
-        except ModuleNotFoundError:
-            ftu_install.install(name="playwright")
-        try:
-            import pyrad
-        except ModuleNotFoundError:
-            ftu_install.install(name="pyrad")
-        try:
-            import clipboard
-        except ModuleNotFoundError:
-            ftu_install.install(name="clipboard")
-        try:
-            import customtkinter
-            import pyrad
-            import clipboard
-            import playwright
-            import rich
-        except ModuleNotFoundError:
-            RD.CommandSay("PIP is missing\ncritical features will not work\n Wait a Moment", "FAIL")
-            import time
-            time.sleep(7)
+        num = 0
+        while len(flags.Dependecies) > num:
+            ftu_install.install(flags.Dependecies[num])
+            num += 1
         os.system('playwright install')
         if not flags.MODE == "9":
             clear_screen()

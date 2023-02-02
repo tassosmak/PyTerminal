@@ -21,6 +21,13 @@ pl = 0
 Flags End
 '''
 
+Dependecies = [
+    'customtkinter',
+    'rich',
+    'playwright',
+    'pyrad',
+    'clipboard',
+]
 
 ModeList = [
     '1',
