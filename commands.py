@@ -35,7 +35,7 @@ try:
             CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {flags.USERNAME.capitalize()} % ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
         elif MD == "9" and flags.BuildReseted == False:
             if flags.Fully_GUI:
-                RD.CommandQuest(type='3', msg=f"PyTerminal {flags.sys_detect.system} | {flags.sys_detect.machine}") 
+                RD.CommandQuest(type='3', msg=f"PyTerminal {flags.sys_detect.system} | {flags.sys_detect.machine} | Expreimental GUI") 
                 CommandList(Command=RD.Quest_result.lower(), cmd_pl=flags.pl, MD=flags.MODE)
             else:
                 CommandList(Command=input(f"PyTerminal {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower(), cmd_pl=flags.pl, MD=flags.MODE)

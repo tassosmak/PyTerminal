@@ -32,7 +32,7 @@ flags.base_folder = Path(__file__).parent.resolve()
 try:
     try:
         if str(sys.argv[1]) == 'Run':
-            TH.run(MainThread=MainTask)
+            TH.run(MainTask)
         elif str(sys.argv[1]) == 'ClearErrors':
             Clear.clear_error()
             
