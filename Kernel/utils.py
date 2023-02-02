@@ -96,7 +96,8 @@ def set_flags():
 
 class Clear:
     def clear_error():
-        clear_file = open("ErrorLoggingKit/errors.log",'w')
+        pl_finder()
+        clear_file = open("Kernel/ErrorLoggingKit/errors.log",'w')
         clear_file.close()
         if flags.pl == '1':
             os.system('killall osascript')

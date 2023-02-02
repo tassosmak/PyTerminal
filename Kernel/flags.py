@@ -3,9 +3,9 @@ Flags Start
 '''
 
 UserLess_Connection = False
+Dont_Run_FTU_Again = False
 ThreadActivated = True
 EnableIntSoft = False
-Dont_Run_FTU_Again = False
 GO_TO_FTU = False
 EnableGUI = False
 sys_detect = 0
@@ -36,24 +36,24 @@ ArgsList = [
 
 
 file_list = [
-    'commands.py',
-    'Info.json',
-    'Kernel.py',
-    'launcer.py',
+    'Kernel/CryptographyKit/DecryptPassword.py',
+    'Kernel/CryptographyKit/EncryptPassword.py',
+    'Kernel/RendererKit/WindowRenderer.py',
+    'Kernel/NetworkingKit/server.py',
+    'Kernel/RendererKit/Renderer.py',
+    'Kernel/NetworkingKit/auth.py',
+    'Kernel/UserHandler.py',
+    'Kernel/credentials.py',
     'MakroPropiatery.py',
-    'pyrad.log',
+    'Kernel/utils.py',
     'UserHandler.py',
+    'Kernel/FTU.py',
+    'commands.py',
+    'launcer.py',
+    'Kernel.py',
+    'Info.json',
+    'pyrad.log',
     'Boot.py',
-    'CryptographyKit/DecryptPassword.py',
-    'CryptographyKit/EncryptPassword.py',
-    'NetworkingKit/server.py',
-    'NetworkingKit/auth.py',
-    'RendererKit/Renderer.py',
-    'RendererKit/WindowRenderer.py',
-    'UserHandlingKit/credentials.py',
-    'UserHandlingKit/FTU.py',
-    'UserHandlingKit/utils.py',
-    'UserHandlingKit/UserHandler.py'
 ]
 
 CML =[
