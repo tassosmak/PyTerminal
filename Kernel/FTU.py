@@ -1,14 +1,15 @@
 from Kernel import flags
 from Kernel.RendererKit import Renderer as RD
+from Kernel import SNC
 from Kernel.utils import edit_json, _gen_safe_password, clear_screen
 from Kernel.CryptographyKit import EncryptPassword
 import os
 from Kernel.src import FTU_Installer as ftu_install
 
 class _FTU_init:
-    def __init__(self, edit_use):
+    def __init__(self, edit_use=False):
         self.edit_use = edit_use
-    
+        SNC.guid(write=True)
         #check_gui
         if not flags.pl == '1':
             edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')

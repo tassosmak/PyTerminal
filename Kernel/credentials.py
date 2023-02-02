@@ -96,7 +96,13 @@ def _get_credentials(print_credentials=False):
         RD.CommandSay(answer=("Mode:", Mode))
         
     SerialNum = data['user_credentials']['Serial']
-    SNC.guid()
+    try:
+        SNC.guid()
+    except IndexError:
+        if flags.EnableIntSoft:
+            RD.CommandSay("The Serial number of the computer doesn't match the doesn't match the serial number given", 'FAIL')
+        from Kernel import FTU as ft
+        ft._FTU_init()
     if print_credentials:
         RD.CommandSay(answer=("Serial:", SerialNum))
     
