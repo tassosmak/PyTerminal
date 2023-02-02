@@ -1,5 +1,6 @@
 from Kernel.CryptographyKit import DecryptPassword
 from Kernel.RendererKit import Renderer as RD
+from Kernel import utils
 from Kernel import flags
 from Kernel import SNC
 import json
@@ -109,6 +110,8 @@ def _get_credentials(print_credentials=False):
     except IndexError:
         if flags.EnableIntSoft:
             RD.CommandSay("The Serial number of the computer doesn't match the doesn't match the serial number given", 'FAIL')
+        utils.Clear.clear_error()
+        utils.Clear.clear_history()
         from Kernel import FTU as ft
         ft._FTU_init()
         flags.BuildReseted = True
