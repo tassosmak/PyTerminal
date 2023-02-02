@@ -32,7 +32,7 @@ def _get_propiatery(print_credentials=False):
         Fully_GUI = data['user_login']['Fully GUI']
     except KeyError:
         raise FileNotFoundError
-    if Fully_GUI == "1" and flags.EnableGUI:
+    if Fully_GUI == "1" and flags.EnableGUI and flags.pl == '1':
         flags.Fully_GUI = True
     if print_credentials:
         RD.CommandSay(answer=("Fully_GUI:", Fully_GUI))
