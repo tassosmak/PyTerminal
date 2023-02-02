@@ -1,0 +1,119 @@
+from Kernel.CryptographyKit import DecryptPassword
+from Kernel.RendererKit import Renderer as RD
+from Kernel import flags
+from Kernel import SNC
+import json
+import os
+
+
+def _get_propiatery(print_credentials=False):
+    global UserLess_Connection, GO_TO_FTU, Fully_GUI
+    f = open('MakroPropiatery.json')
+
+    data = json.load(f)
+    try:
+        UserLess_Connection = data['user_login']['UserLess Connection']
+    except KeyError:
+        raise FileNotFoundError
+    if UserLess_Connection == "1":
+        flags.UserLess_Connection = True
+    if print_credentials:
+        RD.CommandSay(answer=("UserLess Connection:", UserLess_Connection))
+
+    try:
+        GO_TO_FTU = data['user_login']['GO TO FTU']
+    except KeyError:
+        raise FileNotFoundError
+    if GO_TO_FTU == "1":
+        flags.GO_TO_FTU = True
+    if print_credentials:
+        RD.CommandSay(answer=("GO_TO_FTU:", GO_TO_FTU))
+    try:
+        Fully_GUI = data['user_login']['Fully GUI']
+    except KeyError:
+        raise FileNotFoundError
+    if Fully_GUI == "1":
+        flags.Fully_GUI = True
+    if print_credentials:
+        RD.CommandSay(answer=("Fully_GUI:", Fully_GUI))
+    f.close()
+
+    
+    
+Name = 0
+Password = 0
+Mode = 0
+FTU = 0
+GUI = 0
+SerialNum = 0
+def _get_credentials(print_credentials=False):
+    global Name, Password, Mode, FTU, GUI, SerialNum
+    try:
+        f = open('Info.json')
+    except FileNotFoundError:
+        try:
+            from Kernel.src import Recover_Json
+        except ImportError:
+            RD.CommandSay(answer='This Installation is corrupted install a new one', color='FAIL')
+            os._exit(1)
+        f = open('Info.json')
+
+
+    data = json.load(f)
+
+    FTU = data['FTU']['Use']
+    if print_credentials:
+        RD.CommandSay(answer=("FTU:", FTU))
+    
+    GUI = data['UI']['Enable-AquaUI']
+    if GUI == "1":
+        flags.EnableGUI = True
+    if print_credentials:
+        RD.CommandSay(answer=("UI:", GUI))
+
+    Name = data['user_credentials']['Name']
+    if print_credentials:
+        RD.CommandSay(answer=("Name:", Name))
+
+
+    Password = data['user_credentials']['Password']
+    Password = DecryptPassword.decrypt_password(password=Password)
+    if print_credentials:
+        RD.CommandSay(answer=("Password:", Password))
+
+
+    Internal_Software = data['Internal-Software']['Enable']
+    try:
+        _get_propiatery()
+        if Internal_Software == "1":
+            flags.EnableIntSoft = True
+        else: 
+            flags.EnableIntSoft = False
+    except FileNotFoundError:
+        flags.EnableIntSoft == True
+    if print_credentials:
+        RD.CommandSay(answer=('Settings-Var', flags.EnableIntSoft))
+        RD.CommandSay(answer=("Intenal-Software", Internal_Software))
+        
+    Mode = data['user_credentials']['Mode']
+    if flags.EnableIntSoft == False and Mode == '9':
+        flags.MODE = '2'
+    else:
+        flags.MODE = Mode
+    if print_credentials:
+        RD.CommandSay(answer=("Mode:", Mode))
+        
+    SerialNum = data['user_credentials']['Serial']
+    try:
+        SNC.guid()
+    except IndexError:
+        if flags.EnableIntSoft:
+            RD.CommandSay("The Serial number of the computer doesn't match the doesn't match the serial number given", 'FAIL')
+        from Kernel import FTU as ft
+        ft._FTU_init()
+        flags.Dont_Run_FTU_Again = True
+    if print_credentials:
+        RD.CommandSay(answer=("Serial:", SerialNum))
+    
+        
+    f.close()

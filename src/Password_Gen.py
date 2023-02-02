@@ -1,6 +1,6 @@
 import string
 from random import random, shuffle, choice
-import settings
+import Kernel.flags as flags
 
 def gen():
     characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")
@@ -12,7 +12,7 @@ def gen():
     password_str = ''.join(str(e) for e in password)
     print("".join(password))
     #print("\033[1;32m \n".join(password))
-    if settings.MODE == "2" or settings.MODE == "9":
+    if flags.MODE == "2" or flags.MODE == "9":
         save_ask = input("Would You like to export the password to a txt?\n if YES press y")
         if save_ask == "y" or save_ask == "Y":
             f = open("export.log", "w")
