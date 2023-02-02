@@ -31,6 +31,8 @@ def init():
                     now = datetime.datetime.now()
                     f.write(now.strftime("%Y-%m-%d %H:%M\n"))
             except FileNotFoundError:
+                import os
+                os.mkdir('src')
                 with open('src/history.log', 'w+') as f:
                     now = datetime.datetime.now()
                     f.write(now.strftime("%Y-%m-%d %H:%M\n"))
