@@ -8,7 +8,8 @@ try:
 
     from pathlib import Path
     import datetime
-    import Boot
+    # import Boot
+    from Kernel import ThreadHandler
     import sys
     import os
 
@@ -69,6 +70,8 @@ try:
 
         if Command == "test":
             if MD == "9":
+                if not cmd_pl == "3":
+                    ThreadHandler.SecondaryTask(file_name="test", stay_end=True)
                 RD.CommandSay(answer="tested")
                 RD.CommandSay(answer="tested", color="WARNING")
                 RD.CommandSay(answer="tested", color="FAIL")
@@ -85,8 +88,6 @@ try:
                     RD.CommandSay(answer='Positive answer', color='WARNING')
                 else:
                     RD.CommandSay(answer='Negative answer', color='WARNING')
-                if not cmd_pl == "3":
-                    Boot.SecondaryTask(file_name="test", stay_end=True)
             else:
                 RD.CommandSay(answer="tested")
         
@@ -140,12 +141,12 @@ try:
                     RD.CommandQuest(type='2', msg="This Function isn't available within this mode")
 
         if Command == "latest":
-            Boot.SecondaryTask(file_name="LineRetriver")
+            ThreadHandler.SecondaryTask(file_name="LineRetriver")
             
 
         if Command == "gen password":
             if not safe_md:
-                Boot.SecondaryTask(file_name="Password_Gen", stay_end=True)
+                ThreadHandler.SecondaryTask(file_name="Password_Gen", stay_end=True)
 
 
         if Command == "exit":
@@ -198,7 +199,7 @@ try:
 
         if Command == "view file":
             if flags.EnableIntSoft and flags.pl == '1':
-                Boot.SecondaryTask('view_file')
+                ThreadHandler.SecondaryTask('view_file')
             else:
                 RD.CommandQuest(type='3', msg='type the name of the file you want to view')
                 #ask_file = input("type the name of the file you want to view\n:")
@@ -239,13 +240,13 @@ try:
             if not safe_md:
                 if MD == "2" or MD == "9":
                     if cmd_pl == "1" or cmd_pl == "3":
-                        Boot.SecondaryTask('top')
+                        ThreadHandler.SecondaryTask('top')
                 else:
                     RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
 
         if Command == "countdown":
             if not safe_md:
-                Boot.SecondaryTask(file_name="countdown", stay_end=False)
+                ThreadHandler.SecondaryTask(file_name="countdown", stay_end=False)
                 
             
         
@@ -266,7 +267,7 @@ try:
                     else:
                         import Kernel.NetworkingKit.auth
                         if Kernel.NetworkingKit.auth.DONE:
-                            Boot.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
+                            ThreadHandler.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
                 else:
                     RD.CommandSay("NetworkingKit Isn't Supported On Windown")
 
@@ -301,7 +302,7 @@ try:
         if Command == 'chatbox':
             if not safe_md:
                 if flags.net:
-                    Boot.SecondaryTask('chatgpt')
+                    ThreadHandler.SecondaryTask('chatgpt')
         if Command == 'chatbox install':
             if not safe_md:
                 if flags.net:
