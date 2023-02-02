@@ -1,6 +1,7 @@
 from Kernel.CryptographyKit import DecryptPassword
 from Kernel.RendererKit import Renderer as RD
 from Kernel import flags
+from Kernel import SNC
 import json
 import os
 
@@ -36,8 +37,9 @@ Password = 0
 Mode = 0
 FTU = 0
 GUI = 0
+SerialNum = 0
 def _get_credentials(print_credentials=False):
-    global Name, Password, Mode, FTU, GUI
+    global Name, Password, Mode, FTU, GUI, SerialNum
     try:
         f = open('Info.json')
     except FileNotFoundError:
@@ -92,6 +94,11 @@ def _get_credentials(print_credentials=False):
         flags.MODE = Mode
     if print_credentials:
         RD.CommandSay(answer=("Mode:", Mode))
+        
+    SerialNum = data['user_credentials']['Serial']
+    SNC.guid()
+    if print_credentials:
+        RD.CommandSay(answer=("Serial:", SerialNum))
     
         
     f.close()

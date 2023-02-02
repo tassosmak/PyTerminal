@@ -115,13 +115,15 @@ def error_exit():
         from os import _exit
         _exit(1)
     else:
-        # if flags.EnableIntSoft:
+        if flags.EnableIntSoft:
             logger.log_error("IntSoft Enabled")
-        # else:
-            # RD.CommandSay("There Was An Error", "FAIL")
-            # from os import _exit
-            # _exit(1)
-
+            from os import _exit
+            _exit(1)
+        else:
+            RD.CommandSay("There Was An Error", "FAIL")
+            from os import _exit
+            _exit(1)
+            
 def clear_screen():
     if flags.pl == "1" or flags.pl == "3":
         os.system('clear')
