@@ -90,7 +90,7 @@ def _get_credentials(print_credentials=False):
         else: 
             flags.EnableIntSoft = False
     except FileNotFoundError:
-        flags.EnableIntSoft == True
+        flags.EnableIntSoft == False
     if print_credentials:
         RD.CommandSay(answer=('Settings-Var', flags.EnableIntSoft))
         RD.CommandSay(answer=("Intenal-Software", Internal_Software))
