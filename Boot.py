@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 try:
     from Kernel.utils import args_help, Clear, set_flags
     from Kernel import ThreadHandler as TH
