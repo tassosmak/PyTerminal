@@ -26,9 +26,15 @@ def init():
         continue_normal = False
         correct_credentials = False
         if not flags.EnableIntSoft:
-            with open('src/history.log', 'a') as f:
-                now = datetime.datetime.now()
-                f.write(now.strftime("%Y-%m-%d %H:%M\n"))
+            try:
+                with open('src/history.log', 'a') as f:
+                    now = datetime.datetime.now()
+                    f.write(now.strftime("%Y-%m-%d %H:%M\n"))
+            except FileNotFoundError:
+                with open('src/history.log', 'w+') as f:
+                    now = datetime.datetime.now()
+                    f.write(now.strftime("%Y-%m-%d %H:%M\n"))
+                
         if not cred.FTU == "0":
             continue_normal = True
         else:
