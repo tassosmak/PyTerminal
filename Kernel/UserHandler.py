@@ -8,8 +8,14 @@ import sys
 
 
 def _ask(print_ask=False):
-    ask_name = input("Enter Usename")
-    ask_Password = input("\nEnter Password")
+    if flags.Fully_GUI and flags.MODE == '9':
+        RD.CommandQuest(type='3', msg='Enter Usename')
+        ask_name = RD.Quest_result
+        RD.CommandQuest(type='3', msg='Enter Password')
+        ask_Password = RD.Quest_result
+    else:    
+        ask_name = input("Enter Usename")
+        ask_Password = input("\nEnter Password")
     if print_ask:
         RD.CommandSay(answer=ask_name)
         RD.CommandSay(answer=ask_Password)
