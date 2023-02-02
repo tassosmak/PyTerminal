@@ -8,7 +8,7 @@ with open(f'{dir}/../../Info.json', 'w') as recover:
         "Name": "",
         "Password": "",
         "Mode": "",
-        "Serial": "",
+        "Serial": ""
     },
     "FTU": {
         "Use": "0",
