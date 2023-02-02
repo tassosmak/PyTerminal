@@ -25,19 +25,19 @@ try:
     jump = False
     logout = False
 
-    def CommandAsk(plt=0, USNAME_PRINT=0, safe_mode=False, MD='0'):
+    def CommandAsk(MD='0', safe_mode=False):
         if MD == "2":
-            CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {flags.USERNAME.capitalize()} % ").lower(), cmd_pl=flags.pl, MD=MD)
+            CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {flags.USERNAME.capitalize()} % ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
         elif MD == "9":
             if flags.Fully_GUI:
                 RD.CommandQuest(type='3', msg=f"PyTerminal {flags.sys_detect.system} | {flags.sys_detect.machine}") 
-                CommandList(Command=RD.Quest_result.lower(), cmd_pl=flags.pl, MD=MD)
+                CommandList(Command=RD.Quest_result.lower(), cmd_pl=flags.pl, MD=flags.MODE)
             else:
-                CommandList(Command=input(f"PyTerminal {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower(), cmd_pl=flags.pl, MD=MD)
+                CommandList(Command=input(f"PyTerminal {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
         elif MD == "3":
-            CommandList(Command=input(f"PyTerminal | Safe-Mode $ ").lower(), cmd_pl=flags.pl, safe_md=safe_mode, MD=MD)
+            CommandList(Command=input(f"PyTerminal | Safe-Mode $ ").lower(), cmd_pl=flags.pl, safe_md=safe_mode, MD=flags.MODE)
         else:
-            CommandList(Command=input(f"PyTerminal Beta | {flags.USERNAME.capitalize()} $ ").lower(), cmd_pl=flags.pl, MD=MD) 
+            CommandList(Command=input(f"PyTerminal Beta | {flags.USERNAME.capitalize()} $ ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
 
 
     def CommandList(Command=0, cmd_pl=0, safe_md=False, MD=0):

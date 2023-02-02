@@ -9,7 +9,7 @@ from Kernel import flags
 
 def _run():
         try:
-            kernel.core(MODE=flags.MODE, pl=flags.pl, username=flags.USERNAME)
+            kernel.core(MODE=flags.MODE)
         except IndexError:
             ask_new_md = input("it seems that the registered mode of user is corrupted\nwhat mode did you used\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n")
             if ask_new_md == '9':
