@@ -190,7 +190,7 @@ try:
             clear_screen()
 
         if Command == "view file":
-            if flags.EnableIntSoft:
+            if flags.EnableIntSoft and flags.pl == '1':
                 Boot.SecondaryTask('view_file')
             else:
                 RD.CommandQuest(type='3', msg='type the name of the file you want to view')
