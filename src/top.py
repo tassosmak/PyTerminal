@@ -5,10 +5,10 @@ import sys
 import time
 from dataclasses import dataclass
 
-from HighlightKit import box
-from HighlightKit.console import Console
-from HighlightKit.live import Live
-from HighlightKit.table import Table
+from rich import box
+from rich import Console
+from rich import Live
+from rich import Table
 
 if sys.version_info >= (3, 8):
     from typing import Literal
