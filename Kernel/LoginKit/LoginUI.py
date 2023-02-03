@@ -7,7 +7,6 @@ from Kernel import flags
 
 
 class Login:
-    correct_credentials = False
     
     def ask(print_ask=False):
         if flags.Fully_GUI and flags.MODE == '9':
@@ -24,7 +23,9 @@ class Login:
         return ask_name, ask_Password
 
     def Verify():
-        while not Login.correct_credentials:
+        correct_credentials = False
+        
+        while not correct_credentials:
             ask_name, ask_Password = Login.ask()
             if not ask_name == "":
                 if ask_name == cred.Name and ask_Password == cred.Password:
@@ -34,7 +35,7 @@ class Login:
                     welcome_msg = f"Welcome {flags.USERNAME.capitalize()}"
                     RD.CommandPush(message=welcome_msg)
                     RD.CommandSay(answer="Go Ahead")
-                    Login.correct_credentials = True
+                    correct_credentials = True
             else:
                 flags.MODE = "3"
-                Login.correct_credentials = True
+                correct_credentials = True

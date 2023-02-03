@@ -273,8 +273,8 @@ try:
 
 
         if Command == "logout":
-            logout = True
             clear_screen()
+            logout = True
                 
                 
         if Command == "edit parameters":

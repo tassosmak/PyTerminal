@@ -9,14 +9,14 @@ EnableIntSoft = False
 Fully_GUI = False
 GO_TO_FTU = False
 EnableGUI = False
-base_folder = 0
-sys_detect = 0
-USERNAME = 0
-PASSWORD = 0
+base_folder = ''
+sys_detect = ''
+USERNAME = ''
+PASSWORD = ''
 net = True
-MODE = 0
-FTU = 0
-pl = 0
+MODE = ''
+FTU = ''
+pl = ''
 
 '''
 Flags End
