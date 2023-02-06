@@ -29,6 +29,7 @@ def _get_propiatery(print_credentials=False):
         flags.GO_TO_FTU = True
     if print_credentials:
         RD.CommandSay(answer=("GO_TO_FTU:", GO_TO_FTU))
+        
     try:
         Fully_GUI = data['user_login']['Fully GUI']
     except KeyError:
@@ -37,6 +38,15 @@ def _get_propiatery(print_credentials=False):
         flags.Fully_GUI = True
     if print_credentials:
         RD.CommandSay(answer=("Fully_GUI:", Fully_GUI))
+    
+    try:
+        Inside_Thread = data['user_login']['Run-Threads Inside']
+    except KeyError:
+        raise FileNotFoundError
+    if Inside_Thread == "1":
+        flags.Inside_Thread = True
+    if print_credentials:
+        RD.CommandSay(answer=("Run-Threads Inside:", Inside_Thread))
     f.close()
 
     

@@ -1,6 +1,7 @@
 {
     "user_login": {
         "UserLess Connection": "0",
+        "Run-Threads Inside": "0",
         "GO TO FTU": "0",
         "Fully GUI": "0"
     }
