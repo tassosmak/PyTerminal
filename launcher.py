@@ -2,7 +2,6 @@ if not __name__ == '__main__':
     from Kernel.utils import edit_json, jump_mode, error_exit
     from Kernel.UserHandler import init
     import ModeHandling as kernel
-    import commands as cmd
 from Kernel.RendererKit import Renderer as RD
 from Kernel import flags
 
