@@ -302,6 +302,7 @@ try:
                     RD.CommandSay(("GO TO FTU", flags.GO_TO_FTU))
                     RD.CommandSay(("Fully GUI", flags.Fully_GUI))
                     RD.CommandSay(("Threading", flags.ThreadActivated))
+                    RD.CommandSay(("Inside_Thread", flags.Inside_Thread))
         
         if Command == "show cmd":
             if not safe_md:
