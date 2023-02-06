@@ -26,9 +26,7 @@ try:
 
 
     dir = Path(__file__).parent.resolve()
-    jump = False
-    logout = False
-
+    
     def CommandAsk(MD='0', safe_mode=False):
         if MD == "2":
             CommandList(Command=input(f"!History isn't enabled! PyTerminal Beta | {flags.USERNAME.capitalize()} % ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
@@ -45,7 +43,7 @@ try:
 
 
     def CommandList(Command=0, cmd_pl=0, safe_md=False, MD=0):
-        global jump, logout, ask_recv, LCommand
+        global ask_recv, LCommand
         if not Command in flags.CML:
                 if not Command == '' :
                     if flags.EnableIntSoft:
@@ -159,7 +157,7 @@ try:
             
         if Command == "jump":
             if not safe_md:
-                jump = True
+                flags.jump = True
 
 
         if Command == "print md":
@@ -274,7 +272,7 @@ try:
 
         if Command == "logout":
             clear_screen()
-            logout = True
+            flags.logout = True
                 
                 
         if Command == "edit parameters":

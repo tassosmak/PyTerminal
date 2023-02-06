@@ -79,6 +79,7 @@ def jump_mode():
             if ask_core == '9' and flags.EnableIntSoft == False:
                 ask_core = '2'
     flags.MODE = ask_core
+    flags.jump = False
     RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
             
 

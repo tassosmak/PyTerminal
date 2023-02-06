@@ -17,12 +17,11 @@ def _run():
             flags.MODE = ask_new_md
             edit_json(loc1='user_credentials', loc2='Mode', content=ask_new_md)
             edit_json(loc1='Internal-Software', loc2='Enable', content='0')
-        if cmd.jump:
+        if flags.jump:
             jump_mode()
-            cmd.jump = False
-        if cmd.logout:
+        if flags.logout:
             init()
-            cmd.logout = False
+            flags.logout = False
 
 
 
