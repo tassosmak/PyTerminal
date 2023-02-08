@@ -308,5 +308,9 @@ try:
             if not safe_md:
                 if flags.EnableIntSoft:
                     RD.CommandSay(flags.CML, color='BLUE')
+        
+        if Command == "terminal":
+            if flags.EnableIntSoft and flags.MODE == '9':
+                os.system('python3 test.py')
 except BaseException:
     error_exit()

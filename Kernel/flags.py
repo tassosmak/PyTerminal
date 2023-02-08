@@ -96,7 +96,8 @@ CML =[
 "weather forecast",
 "clear",
 "infostats",
-'show cmd'
+'show cmd',
+'terminal',
 ]
 
 MD2 = "!History isn't enabled! PyTerminal Beta"
