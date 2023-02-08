@@ -1,8 +1,6 @@
 from Kernel.CryptographyKit import DecryptPassword
 from Kernel.RendererKit import Renderer as RD
-from Kernel import utils
-from Kernel import flags
-from Kernel import SNC
+from Kernel import utils, flags, SNC
 import json
 import os
 
