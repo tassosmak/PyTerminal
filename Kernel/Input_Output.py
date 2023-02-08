@@ -23,4 +23,4 @@ def CommandAsk(MD='0', safe_mode=False, Module=''):
         
     #MODE 1
     else:
-        Module(Command=input(f"{flags.Default_text}| {flags.USERNAME.capitalize()} $ ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
+        Module(Command=input(f"{flags.Default_text} | {flags.USERNAME.capitalize()} $ ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
