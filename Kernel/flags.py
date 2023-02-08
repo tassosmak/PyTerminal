@@ -99,4 +99,7 @@ CML =[
 'show cmd'
 ]
 
+MD2 = "!History isn't enabled! PyTerminal Beta"
+MD3 = "PyTerminal | Safe-Mode $ "
+MD9 = "PyTerminal-DM"
 Default_text = 'Makro PyTerminal Beta'
