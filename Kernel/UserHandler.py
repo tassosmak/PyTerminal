@@ -8,7 +8,7 @@ import datetime
 import sys
 
 
-class init():
+def init():
     pl_finder()
     cred._get_credentials() # <-- if you want to print the credentials set the paramater to True
     
