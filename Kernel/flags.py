@@ -31,6 +31,7 @@ Dependecies = [
     'playwright',
     'pyrad',
     'clipboard',
+    'ffmpeg',
 ]
 
 ModeList = [

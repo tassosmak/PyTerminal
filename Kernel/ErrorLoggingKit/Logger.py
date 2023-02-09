@@ -1,5 +1,6 @@
 from Kernel.ErrorLoggingKit.ErrorPreviewer import ErrorScreen
 from Kernel.RendererKit.HighlightKit.console import Console
+from Kernel.AudioKit import Audio
 from Kernel import flags
 import logging
 import os
@@ -26,3 +27,4 @@ def log_error(message="NO_MSG", fl_name="errors.log"):
         ErrorScreen()
         if flags.EnableIntSoft:
             console.print_exception(show_locals=True)
+        Audio.play('Kernel/AudioKit/src/Error.mp3')

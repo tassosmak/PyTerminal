@@ -1,7 +1,9 @@
 from Kernel.RendererKit import Renderer as RD
+from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel.LoginKit.LoginUI import Login
 from Kernel import credentials as cred
 from Kernel.utils import pl_finder
+from Kernel.AudioKit import Audio
 from Kernel.FTU import _FTU_init
 from Kernel import flags
 import datetime
@@ -11,6 +13,8 @@ import sys
 def init():
     pl_finder()
     cred._get_credentials() # <-- if you want to print the credentials set the paramater to True
+    if not flags.EnableIntSoft:
+        Audio.play('Kernel/AudioKit/src/Boot.mp3')
     
     def normal_init():
         continue_normal = False
