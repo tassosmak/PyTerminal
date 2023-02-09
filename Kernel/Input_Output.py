@@ -15,7 +15,7 @@ def CommandAsk(MD='0', safe_mode=False, Module=''):
             Module(Command=RD.Quest_result.lower(), cmd_pl=flags.pl, MD=flags.MODE)
         #Non GUI
         else:
-            Module(Command=input(f"{flags.MD9} | {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
+            Module(Command=input(f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
             
     #Safe Mode
     elif MD == "3":
