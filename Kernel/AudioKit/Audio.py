@@ -2,4 +2,7 @@
 import subprocess
 
 def play(file):
-    subprocess.run(f'mpg123 {file}', shell=True, capture_output=True , check=True, encoding="utf-8")
+    try:
+        subprocess.run(f'mpg123 {file}', shell=True, capture_output=True , check=True, encoding="utf-8")
+    except:
+        pass
