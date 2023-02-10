@@ -13,6 +13,7 @@
         "Enable": "1"
     },
     "UI": {
-        "Enable-AquaUI": "1"
+        "Enable-AquaUI": "1",
+        "Enable-Audio": "1"
     }
 }

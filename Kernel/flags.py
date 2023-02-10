@@ -3,10 +3,11 @@ Flags Start
 '''
 
 UserLess_Connection = False
-BuildReseted = False
 ThreadActivated = True
 EnableIntSoft = False
 Inside_Thread = False
+BuildReseted = False
+EnableAudio = False
 Fully_GUI = False
 GO_TO_FTU = False
 EnableGUI = False
