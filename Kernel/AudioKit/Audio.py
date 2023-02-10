@@ -11,3 +11,4 @@ def play(file):
         RD.CommandSay("AudioKit failed", 'FAIL')
         from Kernel.utils import edit_json
         edit_json(loc1='UI', loc2='Enable-Audio', content='0')
+        flags.EnableAudio = False
