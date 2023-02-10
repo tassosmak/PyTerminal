@@ -260,7 +260,7 @@ try:
                 
         if Command == "edit parameters":
             if MD == "9":
-                ask_what_params = input('What parameters You Want to Edit\n1) GUI\n2) Use\nSelect:')
+                ask_what_params = input('What parameters You Want to Edit\n1) GUI\n2) Use\n3) Aduio\nSelect:')
                 if ask_what_params == '1':
                     ask_gui_params = input('Do You Want to Enable it or Disable it\nSelect')
                     if ask_gui_params == 'enable' or ask_gui_params == 'Enable':
@@ -276,6 +276,14 @@ try:
                         RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
                     elif ask_use_params == 'Personal':
                         edit_json(loc1='FTU', loc2='Use', content='1')
+                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                elif ask_what_params == '3':
+                    ask_audio_params = input('Do You Want to Enable it or Disable it\nSelect')
+                    if ask_audio_params == "Enable" or ask_audio_params == 'enable':
+                        edit_json(loc1='UI', loc2='Enable-Audio', content='1')
+                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
+                    elif ask_audio_params == 'Disable' or ask_audio_params == 'disable':
+                        edit_json(loc1='UI', loc2='Enable-Audio', content='0')
                         RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
 
 
