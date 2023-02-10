@@ -51,12 +51,16 @@ def init():
         RD.CommandPush(message="Lets keep it private")
 
     # print(settings.EnableIntSoft)
-    if flags.EnableIntSoft:
-        cred._get_propiatery(True)
-        if flags.UserLess_Connection == True or flags.GO_TO_FTU == True:
-            advanced_init()
+    try:
+        if flags.EnableIntSoft:
+            cred._get_propiatery(True)
+            if flags.UserLess_Connection == True or flags.GO_TO_FTU == True:
+                advanced_init()
+            else:
+                normal_init()
+
         else:
             normal_init()
-
-    else:
-        normal_init()
+    except:
+        from Kernel.utils import error_exit
+        error_exit()

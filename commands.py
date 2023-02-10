@@ -3,6 +3,7 @@ try:
     Adding Modules from The Kernel
     '''
     from Kernel.utils import edit_json, clear_screen, error_exit
+    from Kernel.AudioKit import Audio
     from Kernel.RendererKit import Renderer as RD
     from Kernel import ThreadHandler
     from Kernel import flags
@@ -49,7 +50,7 @@ try:
         if Command == "test":
             if MD == "9":
                 if not cmd_pl == "3":
-                    ThreadHandler.SecondaryTask(file_name="test", stay_end=True)
+                    ThreadHandler.SecondaryTask(file_name="test")
                 RD.CommandSay(answer="tested")
                 RD.CommandSay(answer="tested", color="WARNING")
                 RD.CommandSay(answer="tested", color="FAIL")
@@ -66,6 +67,7 @@ try:
                     RD.CommandSay(answer='Positive answer', color='WARNING')
                 else:
                     RD.CommandSay(answer='Negative answer', color='WARNING')
+                Audio.play('Kernel/AudioKit/src/Boot.mp3')
             else:
                 RD.CommandSay(answer="tested")
         
@@ -124,7 +126,7 @@ try:
 
         if Command == "gen password":
             if not safe_md:
-                ThreadHandler.SecondaryTask(file_name="Password_Gen", stay_end=True)
+                ThreadHandler.SecondaryTask(file_name="Password_Gen")
 
 
         if Command == "exit":
@@ -224,7 +226,7 @@ try:
 
         if Command == "countdown":
             if not safe_md:
-                ThreadHandler.SecondaryTask(file_name="countdown", stay_end=False)
+                ThreadHandler.SecondaryTask(file_name="countdown")
                 
             
         
@@ -245,7 +247,7 @@ try:
                     else:
                         import Kernel.NetworkingKit.auth
                         if Kernel.NetworkingKit.auth.DONE:
-                            ThreadHandler.SecondaryTask(file_name="Handle-External-Devices", stay_end=True)
+                            ThreadHandler.SecondaryTask(file_name="Handle-External-Devices")
                 else:
                     RD.CommandSay("NetworkingKit Isn't Supported On Windown")
 

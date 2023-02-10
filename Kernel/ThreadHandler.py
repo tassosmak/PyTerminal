@@ -1,6 +1,7 @@
 from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel import flags
 import threading
+import subprocess
 
 
 
@@ -9,11 +10,7 @@ def SecondaryTask(file_name="0", stay_end=False):
         import os
         if not flags.Inside_Thread:
             if flags.pl == "1":
-                if stay_end:
-                    os.system(f"""osascript -e 'tell application "Terminal" to do script "python3 {flags.base_folder}/src/{file_name}.py"'""")
-                else:
-                    os.system(f"""osascript -e 'tell application "Terminal" to do script "python3 {flags.base_folder}/src/{file_name}.py"'""")
-                    os.system("""osascript -e 'tell application "Terminal" to quit"'""")
+                subprocess.run(f"""osascript -e 'tell application "Terminal" to do script "python3 {flags.base_folder}/src/{file_name}.py"'""", shell=True, capture_output=True, check=True, encoding="utf-8")
             elif flags.pl == "2":
                 if stay_end:
                     os.system(f"start cmd /k py  src/{file_name}.py")

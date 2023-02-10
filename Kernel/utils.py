@@ -1,5 +1,6 @@
 from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel.RendererKit import Renderer as RD
+from Kernel.AudioKit import Audio
 from random import shuffle, choice
 from Kernel import flags
 import os
@@ -150,6 +151,7 @@ def error_exit():
             _exit(1)
         else:
             RD.CommandSay("There Was An Error", "FAIL")
+            Audio.play('Kernel/AudioKit/src/Error.mp3')
             from os import _exit
             _exit(1)
             
