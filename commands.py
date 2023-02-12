@@ -50,7 +50,7 @@ try:
         if Command == "test":
             if MD == "9":
                 if not cmd_pl == "3":
-                    ThreadHandler.SecondaryTask(file_name="test")
+                    ThreadHandler.SecondaryTask(file_name="test", stay_end=True)
                 RD.CommandSay(answer="tested")
                 RD.CommandSay(answer="tested", color="WARNING")
                 RD.CommandSay(answer="tested", color="FAIL")
