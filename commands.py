@@ -321,6 +321,8 @@ try:
         
         if Command == "terminal":
             if flags.EnableIntSoft and flags.MODE == '9':
-                os.system('python3 test.py')
+                from apps import echo
+                echo.run()
+
 except BaseException:
     error_exit()

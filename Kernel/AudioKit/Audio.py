@@ -6,7 +6,7 @@ from Kernel import flags
 def play(file):
     try:
         if flags.EnableAudio:
-            subprocess.run(f'mpg12 {file}', shell=True, capture_output=True , check=True, encoding="utf-8")
+            subprocess.run(f'mpg123 {file}', shell=True, capture_output=True , check=True, encoding="utf-8")
     except:
         RD.CommandSay("AudioKit failed", 'FAIL')
         from Kernel.utils import edit_json
