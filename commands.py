@@ -16,8 +16,8 @@ try:
     Adding Modules From Different Folders
     '''
     try:
-        from src import Server
-        from src import client
+        from apps import Server
+        from apps import client
         flags.net = True
     except OSError:
         RD.CommandSay(answer="\nunfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable\n")
