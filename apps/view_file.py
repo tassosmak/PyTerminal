@@ -1,14 +1,4 @@
-"""
-Code browser example.
-
-Run with:
-
-    python code_browser.py PATH
-
-"""
-
 import sys
-
 from rich.syntax import Syntax
 from rich.traceback import Traceback
 
