@@ -29,7 +29,7 @@ def init():
                 with open('src/history.log', 'w+') as f:
                     now = datetime.datetime.now()
                     f.write(now.strftime("%Y-%m-%d %H:%M\n"))
-                
+
         if not cred.FTU == "0":
             continue_normal = True
         else:
@@ -44,9 +44,9 @@ def init():
         # _get_propiatery(True)
         if flags.GO_TO_FTU:
             _FTU_init(False)
-        flags.FTU = '2'
         flags.USERNAME = "Lets Keep It Private"
         flags.MODE = '9'
+        flags.FTU = '1'
         RD.CommandSay(answer=sys.version, color='OKGREEN')
         RD.CommandPush(message="Lets keep it private")
 
