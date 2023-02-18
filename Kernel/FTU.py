@@ -1,16 +1,17 @@
-from Kernel import flags
-from Kernel.RendererKit import Renderer as RD
-from Kernel import SNC
 from Kernel.utils import edit_json, _gen_safe_password, clear_screen
-from Kernel.CryptographyKit import EncryptPassword
-import os
 from Kernel.src import FTU_Installer as ftu_install
+from Kernel.CryptographyKit import EncryptPassword
+from Kernel.RendererKit import Renderer as RD
+from Kernel import flags
+from Kernel import SNC
+import os
 
 class _FTU_init:
     def __init__(self, edit_use=True):
         self.edit_use = edit_use
         SNC.guid(write=True)
-        edit_json(loc1='Internal-Software', loc2='Enable', content='0')
+        if self.edit_use:
+            edit_json(loc1='Internal-Software', loc2='Enable', content='0')
         #check_gui
         if not flags.pl == '1':
             edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
@@ -18,14 +19,14 @@ class _FTU_init:
 
         #use_configure
         RD.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
-        RD.CommandQuest(type='1', Button1='Server', Button2='Personal', msg='How Do You want to use this instanche?')
-        #ask_type = input("\n\nHow Do You want to use this instanche?\nPersonal Or Server")
+        RD.CommandQuest(type='1', Button1='Compact', Button2='Personal', msg='How Do You want to use this instanche?')
+        print(RD.Quest_result)
         if RD.Quest_result == 'Personal':
             ask_type = '1'
-        elif RD.Quest_result == 'Server':
+        elif RD.Quest_result == 'Compact':
             ask_type = '2'
-            RD.CommandQuest(type='3', msg='Type The ip address you want to send the commands')
-            edit_json(loc1="FTU", loc2="IP", content=RD.Quest_result)
+            edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
+            edit_json(loc1='UI', loc2='Enable-Audio', content='0')
         else:
             ask_type = '1'
         if self.edit_use:

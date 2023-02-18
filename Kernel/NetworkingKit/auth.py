@@ -8,7 +8,7 @@ import pyrad.packet
 
 DONE = False
 
-srv = Client(server="127.0.0.1", secret=b"Kah3choteereethiejeimaeziecumi", dict=Dictionary("dictionary"))
+srv = Client(server="127.0.0.1", secret=b"Kah3choteereethiejeimaeziecumi", dict=Dictionary("Kernel/NetworkingKit/dictionary"))
 
 req = srv.CreateAuthPacket(code=pyrad.packet.AccessRequest, User_Name="Tassos")
 

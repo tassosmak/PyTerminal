@@ -2,6 +2,7 @@ from Kernel.NotificationsKit import Alert, Buttons, Dialog, Icon
 from Kernel.RendererKit.HighlightKit import color_text
 from Kernel import flags
 import subprocess
+import sys
 import os
 
 class bcolors:
@@ -19,24 +20,14 @@ class bcolors:
     DARKCYAN = '\033[36m'
 
 
-
-
-
-
-
-
-
 def CommandPush(message, header=flags.Default_text):
-    if flags.pl == '1':
+    if flags.pl == '1' and flags.FTU == '2':
         command = f'''
         osascript -e 'display notification "{message}" with title "{header}"'
         '''
         os.system(command)
-
-
-
-
-
+    else:
+        CommandSay(message)
 
 
 def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, msg="Blank Request"):
@@ -76,13 +67,16 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
 
 
 def CommandSay(answer=0, color=''):
-    if color == "WARNING":
-        color_text.output(content=answer, args='Bold Yellow')
-    elif color == "FAIL":
-        color_text.output(content=answer, args='Bold Red')
-    elif color == "OKGREEN":
-        color_text.output(content=answer, args='Bold Green')
-    elif color == "PURPLE":
-        color_text.output(content=answer, args='Bold Purple')
+    if not flags.FTU == '2':
+        if color == "WARNING":
+            color_text.output(content=answer, args='Bold Yellow')
+        elif color == "FAIL":
+            color_text.output(content=answer, args='Bold Red')
+        elif color == "OKGREEN":
+            color_text.output(content=answer, args='Bold Green')
+        elif color == "PURPLE":
+            color_text.output(content=answer, args='Bold Purple')
+        else:
+            color_text.output(content=answer, args=color)
     else:
-        color_text.output(content=answer, args=color)
+        sys.stdout.write(answer)

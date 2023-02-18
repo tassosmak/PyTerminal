@@ -3,8 +3,8 @@ try:
     Adding Modules from The Kernel
     '''
     from Kernel.utils import edit_json, clear_screen, error_exit
-    from Kernel.AudioKit import Audio
     from Kernel.RendererKit import Renderer as RD
+    from Kernel.AudioKit import Audio
     from Kernel import ThreadHandler
     from Kernel import flags
     
