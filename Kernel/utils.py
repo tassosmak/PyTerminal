@@ -1,12 +1,12 @@
 from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel.RendererKit import Renderer as RD
-from Kernel.AudioKit import Audio
 from random import shuffle, choice
+from Kernel.AudioKit import Audio
 from Kernel import flags
-import os
 import platform
 import string
 import json
+import os
 
 def _reverse_key(text=''):
     str = ""
