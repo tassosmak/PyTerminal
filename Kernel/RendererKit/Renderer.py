@@ -2,7 +2,6 @@ from Kernel.NotificationsKit import Alert, Buttons, Dialog, Icon
 from Kernel.RendererKit.HighlightKit import color_text
 from Kernel import flags
 import subprocess
-import sys
 import os
 
 class bcolors:
@@ -79,4 +78,4 @@ def CommandSay(answer=0, color=''):
         else:
             color_text.output(content=answer, args=color)
     else:
-        sys.stdout.write(answer)
+        print(answer)
