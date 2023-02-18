@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 try:
     from Kernel.utils import args_help, Clear, set_flags
-    from Kernel import ThreadHandler as TH
     from Kernel.ErrorLoggingKit import Logger as logger
+    from Kernel import ThreadHandler as TH
     from Kernel import credentials as cred
     from Kernel.UserHandler import init
     from Kernel import flags
@@ -14,6 +14,7 @@ except:
         print('Kernel Error')
         from os import _exit
         _exit(1)
+
 from pathlib import Path
 import sys    
 if __name__ == '__main__':

@@ -1,5 +1,4 @@
 from Kernel.RendererKit import Renderer as RD
-from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel.LoginKit.LoginUI import Login
 from Kernel import credentials as cred
 from Kernel.utils import pl_finder
