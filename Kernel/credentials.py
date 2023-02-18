@@ -84,7 +84,7 @@ def _get_credentials(print_credentials=False):
     if Audio == "1":
         flags.EnableAudio = True
     if print_credentials:
-        RD.CommandSay(answer=("UI:", GUI))
+        RD.CommandSay(answer=("Audio:", GUI))
 
     Name = data['user_credentials']['Name']
     if print_credentials:

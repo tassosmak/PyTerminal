@@ -1,6 +1,5 @@
 # SNC short for : SerialNumberCheck
 
-from Kernel.RendererKit import Renderer as RD
 from Kernel import credentials as cred
 from Kernel.utils import edit_json
 from Kernel import flags
