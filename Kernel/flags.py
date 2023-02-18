@@ -99,7 +99,7 @@ CML =[
 "clear",
 "infostats",
 'show cmd',
-'terminal',
+'registry',
 ]
 
 MD2 = "!History isn't enabled! PyTerminal Beta"

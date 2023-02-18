@@ -251,42 +251,10 @@ try:
                 else:
                     RD.CommandSay("NetworkingKit Isn't Supported On Windown")
 
-
-
         if Command == "logout":
             clear_screen()
             flags.logout = True
                 
-                
-        if Command == "edit parameters":
-            if MD == "9":
-                ask_what_params = input('What parameters You Want to Edit\n1) GUI\n2) Use\n3) Aduio\nSelect:')
-                if ask_what_params == '1':
-                    ask_gui_params = input('Do You Want to Enable it or Disable it\nSelect')
-                    if ask_gui_params == 'enable' or ask_gui_params == 'Enable':
-                        edit_json(loc1='UI', loc2='Enable-AquaUI', content='1')
-                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
-                    elif ask_gui_params == 'disable' or ask_gui_params == 'Disable':
-                        edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
-                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
-                elif ask_what_params == '2':
-                    ask_use_params = input('How Do You Want To Use This Instanche?, Type "Server" or "Personal":')
-                    if ask_use_params == "Server":
-                        edit_json(loc1='FTU', loc2='Use', content='2')
-                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
-                    elif ask_use_params == 'Personal':
-                        edit_json(loc1='FTU', loc2='Use', content='1')
-                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
-                elif ask_what_params == '3':
-                    ask_audio_params = input('Do You Want to Enable it or Disable it\nSelect')
-                    if ask_audio_params == "Enable" or ask_audio_params == 'enable':
-                        edit_json(loc1='UI', loc2='Enable-Audio', content='1')
-                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
-                    elif ask_audio_params == 'Disable' or ask_audio_params == 'disable':
-                        edit_json(loc1='UI', loc2='Enable-Audio', content='0')
-                        RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
-
-
         if Command == 'chatbox':
             if not safe_md:
                 if flags.net:
@@ -319,10 +287,10 @@ try:
                 if flags.EnableIntSoft:
                     RD.CommandSay(flags.CML, color='BLUE')
         
-        if Command == "terminal":
+        if Command == "registry":
             if flags.EnableIntSoft and flags.MODE == '9':
-                from apps import echo
-                echo.run()
+                from Kernel import registry
+                registry.regedit()
 
 except BaseException:
     error_exit()
