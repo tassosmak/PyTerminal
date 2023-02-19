@@ -288,7 +288,7 @@ try:
                     RD.CommandSay(flags.CML, color='BLUE')
         
         if Command == "registry":
-            if flags.EnableIntSoft and flags.MODE == '9':
+            if flags.MODE == '9':
                 from Kernel import registry
                 registry.regedit()
 

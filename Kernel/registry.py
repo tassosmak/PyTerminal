@@ -3,7 +3,7 @@ from Kernel import flags, utils
 
 def regedit():
     
-    RD.CommandQuest(type='3', msg='What parameters You Want to Edit\n1) GUI\n2) Use\n3) Aduio\nSelect:')
+    RD.CommandQuest(type='3', msg=f'Registry Values \nGUI: {flags.EnableGUI}\nUse : {flags.FTU}\nAudio : {flags.EnableAudio}', header=f'{flags.Default_text} | Registry')
     
         #GUI
     if RD.Quest_result == '1':

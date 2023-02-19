@@ -85,7 +85,7 @@ def jump_mode():
             
 
 def set_flags():
-        ask_which = input('1)Userless Connection\n2)GO TO FTU\n3)Fully GUI\n4)Run-Threads Inside\nType Here:')
+        ask_which = input('\n1)Userless Connection\n2)GO TO FTU\n3)Fully GUI\n4)Run-Threads Inside\n\nType Here:')
         
         if ask_which == '1':
             ask_userless_state = input('Enable Or Disable?')
@@ -158,7 +158,7 @@ def error_exit():
 def clear_screen():
     if flags.pl == "1" or flags.pl == "3":
         os.system('clear')
-    else:
+    elif flags.pl == '3':
         os.system('cls')
 
 def pl_finder():

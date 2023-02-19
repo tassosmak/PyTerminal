@@ -29,7 +29,7 @@ def CommandPush(message, header=flags.Default_text):
         CommandSay(message)
 
 
-def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, msg="Blank Request"):
+def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, msg="Blank Request", header=flags.Default_text):
     global Quest_result
     Quest_result = ''
     if type == '1':
@@ -42,7 +42,7 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
     elif type == "2":
         if flags.EnableGUI:
             applescript = f"""
-            display dialog "{msg}" with title "{flags.Default_text}" with icon caution buttons "OK"
+            display dialog "{msg}" with title "{header}" with icon caution buttons "OK"
             """
 
             subprocess.call("osascript -e '{}'".format(applescript), shell=True)
@@ -53,7 +53,7 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
     elif type == '3':
         if flags.EnableGUI:
             buttons = Buttons(["Ok"])
-            the_dialog = Dialog(msg).with_title(flags.Default_text)
+            the_dialog = Dialog(msg).with_title(header)
             the_dialog.with_buttons(buttons)
             the_dialog.with_icon(quest_icon)
             the_dialog.with_input("Type Here:")

@@ -11,7 +11,7 @@ def CommandAsk(MD='0', safe_mode=False, Module=''):
     elif MD == "9" and flags.BuildReseted == False:
         #GUI
         if flags.Fully_GUI:
-            RD.CommandQuest(type='3', msg=f"{flags.MD9} | {flags.sys_detect.system} | {flags.sys_detect.machine} | Expreimental GUI") 
+            RD.CommandQuest(type='3', msg=f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} | Expreimental GUI") 
             Module(Command=RD.Quest_result.lower(), cmd_pl=flags.pl, MD=flags.MODE)
         #Non GUI
         else:
