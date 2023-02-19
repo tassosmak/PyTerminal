@@ -92,7 +92,6 @@ CML =[
 "view file",
 "gen password",
 "latest",
-"edit parameters",
 "talk",
 "check site status",
 "weather forecast",

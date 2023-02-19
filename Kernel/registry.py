@@ -19,7 +19,6 @@ def regedit():
     
         #USE
     elif RD.Quest_result == '2':
-        print(1)
         RD.CommandQuest(type='3', msg='How Do You Want To Use This Instanche?, Type Compact or Personal :')
         if RD.Quest_result == "Compact":
             utils.edit_json(loc1='FTU', loc2='Use', content='2')
