@@ -2,7 +2,7 @@ try:
     '''
     Adding Modules from The Kernel
     '''
-    from Kernel.utils import edit_json, clear_screen, error_exit
+    from Kernel.utils import clear_screen, error_exit
     from Kernel.RendererKit import Renderer as RD
     from Kernel.AudioKit import Audio
     from Kernel import ThreadHandler
@@ -291,6 +291,13 @@ try:
             if flags.MODE == '9':
                 from Kernel import registry
                 registry.regedit()
+        
+        if Command == 'browser':
+            if flags.ThreadActivated == False:
+                from apps import Browser
+                Browser.run()
+            else:
+              RD.CommandQuest(type='2', msg='Browser Cannot Run Inside Threading Environment', header=f'{flags.Default_text} Browser')
 
 except BaseException:
-    error_exit()
+    error_exit() 
