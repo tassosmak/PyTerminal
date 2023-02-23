@@ -3,6 +3,7 @@ from Kernel.RendererKit import Renderer as RD
 from random import shuffle, choice
 from Kernel.AudioKit import Audio
 from Kernel import flags
+import subprocess
 import platform
 import string
 import json
@@ -129,11 +130,12 @@ class Clear:
         clear_file = open("Kernel/ErrorLoggingKit/errors.log",'w')
         clear_file.close()
         if flags.pl == '1':
-            os.system('killall osascript')
+           clear_gui()
         
     def clear_history():
         clear_file = open("src/history.log",'w')
         clear_file.close()
+    
 
 def args_help():
     RD.CommandSay(answer=(flags.Default_text + '\nThose Are The Available Commands:'))
@@ -160,6 +162,15 @@ def clear_screen():
         os.system('clear')
     elif flags.pl == '3':
         os.system('cls')
+        
+def clear_gui():
+    if not flags.pl == '':
+        if flags.pl == '1':
+            try:
+                subprocess.run('killall osascript', shell=True, capture_output=True , check=True, encoding="utf-8")
+            except: pass
+    else:
+        RD.CommandSay('You have to run pl_finder to clear the gui', 'WARNING')
 
 def pl_finder():
     pl = platform.platform()

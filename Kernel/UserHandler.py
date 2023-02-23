@@ -1,3 +1,4 @@
+from Kernel.utils import error_exit, clear_gui
 from Kernel.RendererKit import Renderer as RD
 from Kernel.LoginKit.LoginUI import Login
 from Kernel import credentials as cred
@@ -11,6 +12,7 @@ import sys
 
 def init():
     pl_finder()
+    clear_gui()
     cred._get_credentials() # <-- if you want to print the credentials set the paramater to True
     if not flags.EnableIntSoft:
         Audio.play('Kernel/AudioKit/src/Boot.mp3')
@@ -61,5 +63,4 @@ def init():
         else:
             normal_init()
     except:
-        from Kernel.utils import error_exit
         error_exit()
