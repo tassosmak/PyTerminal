@@ -23,6 +23,16 @@ class Browser(App):
                             on_press=self.load_page,
                             style=Pack(width=50, padding_left=5),
                         ),
+                        Button(
+                            "Back",
+                            on_press=self.back_page,
+                            style=Pack(width=50, padding_left=5),
+                        ),
+                        Button(
+                            "Home",
+                            on_press=self.home_page,
+                            style=Pack(width=50, padding_left=5),
+                        )
                     ],
                     style=Pack(
                         direction=ROW,
@@ -42,18 +52,32 @@ class Browser(App):
         self.main_window.show()
 
     def load_page(self, widget):
+        global last
+        last = self.webview.url
         self.webview.url = self.url_input.value
+    
+    def back_page(self, widget):
+        try: 
+            self.webview.url = last
+        except:
+            pass
+    
+    def home_page(self, widget):
+        self.webview.url = "https://tassosmak.vercel.app/"
+        
+        
 
     def on_webview_loaded(self, widget):
         self.url_input.value = self.webview.url
 
 
+
 def main():
     return Browser("PyTerminal Broswer", "makro.pyterminal.browser")
 
-
-# if __name__ == "__main__":
-    # main().main_loop()
-
 def run():
+    main().main_loop()
+
+
+if __name__ == "__main__":
     main().main_loop()

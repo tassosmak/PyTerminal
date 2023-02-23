@@ -1,7 +1,7 @@
 from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel import flags
-import threading
 import subprocess
+import threading
 
 
 
