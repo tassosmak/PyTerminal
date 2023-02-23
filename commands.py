@@ -293,7 +293,7 @@ try:
                 registry.regedit()
         
         if Command == 'browser':
-            if flags.ThreadActivated == False:
+            if flags.ThreadActivated == False and safe_md == False:
                 from apps import Browser
                 Browser.run()
             else:

@@ -20,7 +20,6 @@ class _FTU_init:
         #use_configure
         RD.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
         RD.CommandQuest(type='1', Button1='Compact', Button2='Personal', msg='How Do You want to use this instanche?')
-        print(RD.Quest_result)
         if RD.Quest_result == 'Personal':
             ask_type = '1'
         elif RD.Quest_result == 'Compact':
