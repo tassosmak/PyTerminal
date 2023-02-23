@@ -2,7 +2,7 @@ try:
     '''
     Adding Modules from The Kernel
     '''
-    from Kernel.utils import clear_screen, error_exit
+    from Kernel.utils import clear_screen, Exit
     from Kernel.RendererKit import Renderer as RD
     from Kernel.AudioKit import Audio
     from Kernel import ThreadHandler
@@ -133,9 +133,9 @@ try:
             if MD == "1":
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
-                    os._exit(1)
+                    Exit.exit()
             elif MD == "2" or MD == "9" or MD == "3":
-                os._exit(1)
+                Exit.exit()
 
             
         if Command == "jump":
@@ -300,4 +300,4 @@ try:
               RD.CommandQuest(type='2', msg='Browser Cannot Run Inside Threading Environment', header=f'{flags.Default_text} Browser')
 
 except BaseException:
-    error_exit() 
+    Exit.error_exit() 

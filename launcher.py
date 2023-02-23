@@ -1,4 +1,4 @@
-from Kernel.utils import edit_json, jump_mode, error_exit
+from Kernel.utils import edit_json, jump_mode, Exit
 from Kernel.RendererKit import Renderer as RD
 from Kernel.UserHandler import init
 import ModeHandling as kernel
@@ -36,4 +36,4 @@ def boot():
         else:
             RD.CommandSay(answer='\n')
     except BaseException:
-        error_exit()
+        Exit.error_exit()

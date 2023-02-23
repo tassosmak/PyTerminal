@@ -1,4 +1,4 @@
-from Kernel.utils import error_exit, clear_gui
+from Kernel.utils import Exit, clear_gui
 from Kernel.RendererKit import Renderer as RD
 from Kernel.LoginKit.LoginUI import Login
 from Kernel import credentials as cred
@@ -63,4 +63,4 @@ def init():
         else:
             normal_init()
     except:
-        error_exit()
+        Exit.error_exit()

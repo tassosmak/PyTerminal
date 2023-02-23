@@ -2,6 +2,7 @@ from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel.RendererKit import Renderer as RD
 from random import shuffle, choice
 from Kernel.AudioKit import Audio
+from os import _exit
 from Kernel import flags
 import subprocess
 import platform
@@ -140,22 +141,23 @@ class Clear:
 def args_help():
     RD.CommandSay(answer=(flags.Default_text + '\nThose Are The Available Commands:'))
     RD.CommandSay(answer=flags.ArgsList, color='OKGREEN')
-    
-def error_exit():
-    if flags.MODE == "9" or flags.MODE == "3":
-        logger.log_error()
-        from os import _exit
-        _exit(1)
-    else:
-        if flags.EnableIntSoft:
-            logger.log_error("IntSoft Enabled")
-            from os import _exit
-            _exit(1)
+
+class Exit:
+    def error_exit():
+        if flags.MODE == "9" or flags.MODE == "3":
+            logger.log_error()
+            Exit.exit()
         else:
-            RD.CommandSay("There Was An Error", "FAIL")
-            Audio.play('Kernel/AudioKit/src/Error.mp3')
-            from os import _exit
-            _exit(1)
+            if flags.EnableIntSoft:
+                logger.log_error("IntSoft Enabled")
+                Exit.exit()
+            else:
+                RD.CommandSay("There Was An Error", "FAIL")
+                Audio.play('Kernel/AudioKit/src/Error.mp3')
+                Exit.exit()
+                
+    def exit():
+        os._exit(1)
             
 def clear_screen():
     if flags.pl == "1" or flags.pl == "3":
@@ -184,4 +186,4 @@ def pl_finder():
         flags.sys_detect = platform.uname()
         flags.pl = "3"
     else:
-        error_exit()
+        Exit.error_exit()
