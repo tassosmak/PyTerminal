@@ -22,12 +22,12 @@ def init():
         if not flags.EnableIntSoft:
             try:
                 with open('src/history.log', 'a') as f:
-                    f.write(get_time())
+                    f.write(f'\n{get_time()}')
             except FileNotFoundError:
                 import os
                 os.mkdir('src')
                 with open('src/history.log', 'w+') as f:
-                    f.write(get_time())
+                    f.write(f'\n{get_time()}')
 
         if not cred.FTU == "0":
             continue_normal = True
