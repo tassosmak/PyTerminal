@@ -73,7 +73,7 @@ try:
         
         
         if Command == "time":
-            RD.CommandSay(answer=get_time())
+            RD.CommandPush(f'The time is: {get_time(date=False)}')
 
         if Command == "del" or Command == "delete":
             if not safe_md:

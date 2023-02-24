@@ -174,9 +174,15 @@ def clear_gui():
     else:
         RD.CommandSay('You have to run pl_finder to clear the gui', 'WARNING')
 
-def get_time():
+def get_time(date=True, secs=False):
     now = datetime.datetime.now()
-    return now.strftime("%Y-%m-%d %H:%M:%S")
+    if date:
+        if secs:
+            return now.strftime("%Y-%m-%d %H:%M:%S")
+        else:
+          return now.strftime("%Y-%m-%d %H:%M")
+    else:
+        return now.strftime("%H:%M")
 
 def pl_finder():
     pl = platform.platform()
