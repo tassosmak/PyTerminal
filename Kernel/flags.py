@@ -98,6 +98,7 @@ CML =[
 "clear",
 "infostats",
 'show cmd',
+'show apps',
 'registry',
 'browser',
 ]

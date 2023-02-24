@@ -278,10 +278,12 @@ try:
                     RD.CommandSay(("Threading", flags.ThreadActivated))
                     RD.CommandSay(("Inside_Thread", flags.Inside_Thread))
         
-        if Command == "show cmd":
+        if Command == "show cmd" or Command == 'show apps':
             if not safe_md:
                 if flags.EnableIntSoft:
                     RD.CommandSay(flags.CML, color='BLUE')
+                else:
+                    RD.CommandSay(answer=os.listdir(flags.base_folder/'apps'))
         
         if Command == "registry":
             if flags.MODE == '9':
