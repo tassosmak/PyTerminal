@@ -218,7 +218,7 @@ try:
                     if cmd_pl == "1" or cmd_pl == "3":
                         ThreadHandler.SecondaryTask('top')
                 else:
-                    RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                    RD.CommandSay(answer="This Function isn't available within this mode", color="FAIL")
 
         if Command == "countdown":
             if not safe_md:
@@ -232,7 +232,7 @@ try:
                 os.system(f"ping {RD.Quest_result}")
                 
             else:
-                RD.CommandSay(answer="This Function isn't available within this mode", color="FALI")
+                RD.CommandSay(answer="This Function isn't available within this mode", color="FAIL")
 
 
         if Command == "devices":
@@ -291,11 +291,12 @@ try:
                 registry.regedit()
         
         if Command == 'browser':
-            if flags.ThreadActivated == False and safe_md == False:
-                from apps import Browser
-                Browser.run()
-            else:
-              RD.CommandQuest(type='2', msg='Browser Cannot Run Inside Threading Environment', header=f'{flags.Default_text} Browser')
+            if not safe_md:
+                if flags.ThreadActivated == False:
+                    from apps import Browser
+                    Browser.run()
+                else:
+                    RD.CommandQuest(type='2', msg='Browser Cannot Run Inside Threading Environment', header=f'{flags.Default_text} Browser')
 
 except BaseException:
     Exit.error_exit() 
