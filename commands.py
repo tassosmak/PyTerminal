@@ -2,13 +2,13 @@ try:
     '''
     Adding Modules from The Kernel
     '''
-    from Kernel.utils import clear_screen, Exit
+    from Kernel.utils import clear_screen, Exit, get_time
     from Kernel.RendererKit import Renderer as RD
     from Kernel.AudioKit import Audio
     from Kernel import ThreadHandler
     from Kernel import flags
     
-    import datetime
+    # import datetime
     import sys
     import os
 
@@ -42,7 +42,7 @@ try:
             LCommand = Command
 
         if Command == "ls":
-            if MD == "2" or MD == "9":
+            if MD == "9":
                 RD.CommandSay(answer=os.listdir(flags.base_folder))
             else:
                 RD.CommandSay(answer="This Function isn't available within this mode", color="WARNING")
@@ -57,9 +57,7 @@ try:
                 RD.CommandSay(answer="tested", color="OKGREEN")
                 RD.CommandSay(answer="tested", color="PURPLE")
                 RD.CommandSay(answer="tested", color="BLUE")
-                now = datetime.datetime.now()
-                RD.CommandPush(message=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
-                RD.CommandQuest(type='2', msg=f'Tested {now.strftime("%Y-%m-%d %H:%M:%S")}')
+                RD.CommandQuest(type='2', msg=f'Tested {get_time()}')
                 RD.CommandQuest(type='3', msg='Testing')
                 RD.CommandSay(answer=RD.Quest_result, color="WARNING")
                 RD.CommandQuest(type='1', msg="tested")
@@ -76,8 +74,7 @@ try:
         
         
         if Command == "time":
-            now = datetime.datetime.now()
-            RD.CommandSay(answer=now.strftime("%Y-%m-%d %H:%M:%S"))
+            RD.CommandSay(answer=get_time())
 
         if Command == "del" or Command == "delete":
             if not safe_md:

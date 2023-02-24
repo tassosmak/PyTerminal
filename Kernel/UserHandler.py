@@ -1,4 +1,4 @@
-from Kernel.utils import Exit, clear_gui
+from Kernel.utils import Exit, clear_gui, get_time
 from Kernel.RendererKit import Renderer as RD
 from Kernel.LoginKit.LoginUI import Login
 from Kernel import credentials as cred
@@ -6,7 +6,7 @@ from Kernel.utils import pl_finder
 from Kernel.AudioKit import Audio
 from Kernel.FTU import _FTU_init
 from Kernel import flags
-import datetime
+# import datetime
 import sys
 
 
@@ -22,14 +22,12 @@ def init():
         if not flags.EnableIntSoft:
             try:
                 with open('src/history.log', 'a') as f:
-                    now = datetime.datetime.now()
-                    f.write(now.strftime("%Y-%m-%d %H:%M\n"))
+                    f.write(get_time())
             except FileNotFoundError:
                 import os
                 os.mkdir('src')
                 with open('src/history.log', 'w+') as f:
-                    now = datetime.datetime.now()
-                    f.write(now.strftime("%Y-%m-%d %H:%M\n"))
+                    f.write(get_time())
 
         if not cred.FTU == "0":
             continue_normal = True

@@ -2,9 +2,9 @@ from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel.RendererKit import Renderer as RD
 from random import shuffle, choice
 from Kernel.AudioKit import Audio
-from os import _exit
 from Kernel import flags
 import subprocess
+import datetime
 import platform
 import string
 import json
@@ -173,6 +173,10 @@ def clear_gui():
             except: pass
     else:
         RD.CommandSay('You have to run pl_finder to clear the gui', 'WARNING')
+
+def get_time():
+    now = datetime.datetime.now()
+    return now.strftime("%Y-%m-%d %H:%M:%S")
 
 def pl_finder():
     pl = platform.platform()

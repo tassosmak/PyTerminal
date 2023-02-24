@@ -8,7 +8,7 @@ def log_error(message="NO_MSG"):
         from Kernel.ErrorLoggingKit.ErrorPreviewer import ErrorScreen
         from Kernel.RendererKit.HighlightKit.console import Console
         from Kernel.AudioKit import Audio
-        import datetime
+        from Kernel import utils
         import logging
         import os
         console = Console()
@@ -23,14 +23,12 @@ def log_error(message="NO_MSG"):
         logger.addHandler(fh)
 
         # Here Is The Actual Command That Types The Error :)
-        now = datetime.datetime.now()
-        logger.exception(f'\n{now.strftime("%Y-%m-%d %H:%M:%S")} {message}\nHere is the error good luck solving it :)')
+        logger.exception(f'\n{utils.get_time()} {message}\nHere is the error good luck solving it :)')
         ErrorScreen()
         if flags.EnableIntSoft:
             console.print_exception(show_locals=True)
         Audio.play('Kernel/AudioKit/src/Error.mp3')
     else:
         import sys
-        from Kernel import utils
         utils.clear_screen()
         sys.stdout.write('Error')

@@ -1,7 +1,7 @@
 try:
     if not __name__ == '__main__':
-        import commands as cmd
         from Kernel import Input_Output as IO
+        import commands as cmd
 
 
     def history():
@@ -20,5 +20,5 @@ try:
         else:
             raise IndexError
 except BaseException:
-    from Kernel.utils import error_exit
-    error_exit()
+    from Kernel.utils import Exit
+    Exit.error_exit()
