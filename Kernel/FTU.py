@@ -12,6 +12,7 @@ class _FTU_init:
         SNC.guid(write=True)
         if self.edit_use:
             edit_json(loc1='Internal-Software', loc2='Enable', content='0')
+            flags.EnableIntSoft == False
         #check_gui
         if not flags.pl == '1':
             edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
