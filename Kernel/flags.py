@@ -28,11 +28,12 @@ Flags End
 
 Dependecies = [
     'customtkinter',
-    'rich',
     'playwright',
-    'pyrad',
     'clipboard',
     'ffmpeg',
+    'pyrad',
+    'rich',
+    'toga',
 ]
 
 ModeList = [
