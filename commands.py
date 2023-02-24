@@ -8,7 +8,6 @@ try:
     from Kernel import ThreadHandler
     from Kernel import flags
     
-    # import datetime
     import sys
     import os
 
