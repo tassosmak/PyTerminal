@@ -125,7 +125,7 @@ def set_flags():
                 RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content='0')
 
-class Clear:
+class ClearFiles:
     def clear_error():
         pl_finder()
         clear_file = open("Kernel/ErrorLoggingKit/errors.log",'w')

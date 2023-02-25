@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 try:
-    from Kernel.utils import args_help, Clear, set_flags
+    from Kernel.utils import args_help, ClearFiles as Clear, set_flags
     from Kernel.ErrorLoggingKit import Logger as logger
     from Kernel import ThreadHandler as TH
     from Kernel import credentials as cred
