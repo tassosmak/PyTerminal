@@ -20,13 +20,13 @@ class bcolors:
 
 
 def CommandPush(message, header=flags.Default_text):
-    if flags.pl == '1' and flags.FTU == '1':
+    if flags.pl == '1' and flags.FTU == '1' and flags.EnableGUI == True:
         command = f'''
         osascript -e 'display notification "{message}" with title "{header}"'
         '''
         os.system(command)
     else:
-        CommandSay(message)
+        CommandSay(answer=(f'Notification: {message}'))
 
 
 def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, msg="Blank Request", header=flags.Default_text):

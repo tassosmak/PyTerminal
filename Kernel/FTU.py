@@ -21,10 +21,13 @@ class _FTU_init:
         #use_configure
         RD.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
         RD.CommandQuest(type='1', Button1='Compact', Button2='Personal', msg='How Do You want to use this instanche?')
-        if RD.Quest_result == 'Personal':
+        if RD.Quest_result == 'Personal' or RD.Quest_result == '1':
             ask_type = '1'
-        elif RD.Quest_result == 'Compact':
+        elif RD.Quest_result == 'Compact' or RD.Quest_result == '2':
             ask_type = '2'
+            flags.EnableAudio = False
+            flags.EnableGUI = False
+            flags.FTU = '2'
             edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
             edit_json(loc1='UI', loc2='Enable-Audio', content='0')
         else:
@@ -59,9 +62,9 @@ class _FTU_init:
                     
         #Mode_Configuration
         RD.CommandQuest(type='1', msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
-        if RD.Quest_result == 'The Advanced Mode':
+        if RD.Quest_result == 'The Advanced Mode' or RD.Quest_result == '2':
             ask_first_Mode = '2'
-        elif RD.Quest_result == 'The Basic Mode':
+        elif RD.Quest_result == 'The Basic Mode' or RD.Quest_result == '1':
             ask_first_Mode = '1'
         elif RD.Quest_result == '9':
             ask_first_Mode = '9'

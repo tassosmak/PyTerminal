@@ -4,9 +4,8 @@ try:
     '''
     from Kernel.utils import clear_screen, Exit, get_time
     from Kernel.RendererKit import Renderer as RD
+    from Kernel import ThreadHandler, flags
     from Kernel.AudioKit import Audio
-    from Kernel import ThreadHandler
-    from Kernel import flags
     
     import sys
     import os
