@@ -293,10 +293,13 @@ try:
         if Command == 'browser':
             if not safe_md:
                 if flags.ThreadActivated == False:
-                    from apps import Browser
-                    Browser.run()
+                    if flags.pl == '1':
+                        from apps import Browser
+                        Browser.run()
+                    else:
+                        RD.CommandSay(answer='Not Supported', color='WARNING')
                 else:
                     RD.CommandQuest(type='2', msg='Browser Cannot Run Inside Threading Environment', header=f'{flags.Default_text} Browser')
 
 except BaseException:
-    Exit.error_exit() 
+    Exit.error_exit()

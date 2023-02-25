@@ -162,7 +162,7 @@ class Exit:
 def clear_screen():
     if flags.pl == "1" or flags.pl == "3":
         os.system('clear')
-    elif flags.pl == '3':
+    elif flags.pl == '2':
         os.system('cls')
         
 def clear_gui():
