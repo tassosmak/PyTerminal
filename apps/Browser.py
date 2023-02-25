@@ -1,5 +1,5 @@
-from Kernel.RendererKit.toga import MainWindow, Box, Button, App, WebView, TextInput
-from Kernel.RendererKit.toga.style.pack import CENTER, COLUMN, ROW, Pack
+from src.toga import MainWindow, Box, Button, App, WebView, TextInput
+from src.toga.style.pack import CENTER, COLUMN, ROW, Pack
 
 
 class Browser(App):
