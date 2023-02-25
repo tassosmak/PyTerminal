@@ -102,6 +102,8 @@ CML =[
 'show apps',
 'registry',
 'browser',
+'help',
+'ofp',
 ]
 
 MD2 = "!History isn't enabled! PyTerminal Beta"

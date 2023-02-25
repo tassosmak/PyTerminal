@@ -1,5 +1,5 @@
 import string
-from random import random, shuffle, choice
+from random import shuffle, choice
 import Kernel.flags as flags
 
 def gen():

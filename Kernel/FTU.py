@@ -1,6 +1,7 @@
-from Kernel.utils import edit_json, _gen_safe_password, clear_screen
+from Kernel.CryptographyKit.utils import _gen_safe_password
 from Kernel.src import FTU_Installer as ftu_install
 from Kernel.CryptographyKit import EncryptPassword
+from Kernel.utils import edit_json, clear_screen
 from Kernel.RendererKit import Renderer as RD
 from Kernel import flags
 from Kernel import SNC

@@ -1,6 +1,6 @@
 import json
 import base64
-from Kernel.utils import _d_encrypt
+from Kernel.CryptographyKit.utils import _d_encrypt
 
 def decrypt_password(password):
     # Load the encrypted password and key from the file

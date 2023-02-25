@@ -278,11 +278,12 @@ try:
                     RD.CommandSay(("Threading", flags.ThreadActivated))
                     RD.CommandSay(("Inside_Thread", flags.Inside_Thread))
         
-        if Command == "show cmd" or Command == 'show apps':
+        if Command == "show cmd" or Command == 'show apps' or Command == 'help':
             if not safe_md:
                 if flags.EnableIntSoft:
                     RD.CommandSay(flags.CML, color='BLUE')
                 else:
+                    RD.CommandSay('Available Commands', 'OKGREEN')
                     RD.CommandSay(answer=os.listdir(flags.base_folder/'apps'))
         
         if Command == "registry":
@@ -295,7 +296,11 @@ try:
                     ThreadHandler.SecondaryTask('Browser')
                 else:
                     RD.CommandSay(answer='Not Supported', color='WARNING')
-
-
+        
+        if Command == 'ofp':
+            if not safe_md:
+                if flags.EnableIntSoft and flags.MODE == '9':
+                    ThreadHandler.SecondaryTask('OFP')
+                    
 except BaseException:
     Exit.error_exit()
