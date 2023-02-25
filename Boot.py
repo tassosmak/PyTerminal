@@ -4,7 +4,7 @@ try:
     from Kernel.ErrorLoggingKit import Logger as logger
     from Kernel import ThreadHandler as TH
     from Kernel import credentials as cred
-    from Kernel.UserHandler import init
+    from Kernel.UserHandler import loader
     from Kernel import flags
 except:
     try:
@@ -22,13 +22,13 @@ if __name__ == '__main__':
     
 def MainTask():
     #print("1 Main Threading")
-    init()
+    loader()
     while True:
         launcher.boot()
         
 def NoThread():
     flags.ThreadActivated = False
-    init()
+    loader()
     while True:
         launcher.boot()
         TH.SecondaryTask()
@@ -52,7 +52,9 @@ try:
                 set_flags()
         
         elif str(sys.argv[1]) == 'FakeLogin':
-            init()
+            from Kernel.LoginKit.LoginUI import Login
+            loader(False)
+            Login.Verify()
             
         elif str(sys.argv[1]) == 'NoThread':
             NoThread()

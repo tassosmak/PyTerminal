@@ -71,6 +71,7 @@ def _get_credentials(print_credentials=False):
     data = json.load(f)
 
     FTU = data['FTU']['Use']
+    flags.FTU = FTU
     if print_credentials:
         RD.CommandSay(answer=("FTU:", FTU))
     
@@ -126,8 +127,8 @@ def _get_credentials(print_credentials=False):
             RD.CommandSay("The Serial number of the computer doesn't match the doesn't match the serial number given", 'FAIL')
         utils.Clear.clear_error()
         utils.Clear.clear_history()
-        from Kernel import FTU as ft
-        ft._FTU_init()
+        from Kernel.FTU import _FTU_init
+        _FTU_init()
         flags.BuildReseted = True
     if print_credentials:
         RD.CommandSay(answer=("Serial:", SerialNum))

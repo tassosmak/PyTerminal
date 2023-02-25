@@ -1,6 +1,6 @@
 from Kernel.utils import edit_json, jump_mode, Exit
 from Kernel.RendererKit import Renderer as RD
-from Kernel.UserHandler import init
+from Kernel.UserHandler import loader
 import ModeHandling as kernel
 from Kernel import flags
 
@@ -18,7 +18,7 @@ def _run():
         if flags.jump:
             jump_mode()
         if flags.logout:
-            init()
+            loader()
             flags.logout = False
 
 
