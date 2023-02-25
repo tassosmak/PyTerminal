@@ -20,11 +20,11 @@ def regedit():
         #USE
     elif RD.Quest_result == '2':
         RD.CommandQuest(type='3', msg='How Do You Want To Use This Instanche?, Type Compact or Personal :')
-        if RD.Quest_result == "Compact":
+        if RD.Quest_result == "Compact" or RD.Quest_result == '2':
             utils.edit_json(loc1='FTU', loc2='Use', content='2')
             RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
             flags.FTU == '2'
-        elif RD.Quest_result == 'Personal':
+        elif RD.Quest_result == 'Personal' or RD.Quest_result == '1':
             utils.edit_json(loc1='FTU', loc2='Use', content='1')
             RD.CommandSay(answer='You Have to reboot to use the changes', color='WARNING')
             flags.FTU == '1'

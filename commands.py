@@ -6,6 +6,7 @@ try:
     from Kernel.RendererKit import Renderer as RD
     from Kernel import ThreadHandler, flags
     from Kernel.AudioKit import Audio
+    from Kernel.src import registry
     
     import sys
     import os
@@ -286,7 +287,6 @@ try:
         
         if Command == "registry":
             if flags.MODE == '9':
-                from Kernel import registry
                 registry.regedit()
         
         if Command == 'browser':
