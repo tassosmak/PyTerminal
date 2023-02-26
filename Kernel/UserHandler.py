@@ -1,11 +1,9 @@
-from Kernel.utils import Exit, clear_gui, get_time
+from Kernel.utils import Exit, clear_gui, get_time, pl_finder
+from Kernel import credentials as cred, flags
 from Kernel.RendererKit import Renderer as RD
 from Kernel.LoginKit.LoginUI import Login
-from Kernel import credentials as cred
-from Kernel.utils import pl_finder
 from Kernel.AudioKit import Audio
 from Kernel.FTU import _FTU_init
-from Kernel import flags
 import sys
 
 

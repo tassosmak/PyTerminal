@@ -1,22 +1,16 @@
-from Kernel.utils import edit_json, jump_mode, Exit
 from Kernel.RendererKit import Renderer as RD
 from Kernel.UserHandler import loader
+from Kernel import flags, utils
 import ModeHandling as kernel
-from Kernel import flags
 
 
 def _run():
         try:
             kernel.core(MODE=flags.MODE)
         except IndexError:
-            ask_new_md = input("it seems that the registered mode of user is corrupted\nwhat mode did you used\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n")
-            if ask_new_md == '9':
-                ask_new_md = '2'
-            flags.MODE = ask_new_md
-            edit_json(loc1='user_credentials', loc2='Mode', content=ask_new_md)
-            edit_json(loc1='Internal-Software', loc2='Enable', content='0')
+            utils.recover_mode()   
         if flags.jump:
-            jump_mode()
+            utils.jump_mode()
         if flags.logout:
             loader()
             flags.logout = False
@@ -36,4 +30,4 @@ def boot():
         else:
             RD.CommandSay(answer='\n')
     except BaseException:
-        Exit.error_exit()
+        utils.Exit.error_exit()

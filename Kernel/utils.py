@@ -139,6 +139,14 @@ def get_time(date=True, secs=False):
     else:
         return now.strftime("%H:%M")
 
+def recover_mode():
+    RD.CommandQuest(type='3', msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'{flags.Default_text} Mode Recovery')
+    if RD.Quest_result == '9':
+        RD.Quest_result = '2'
+    flags.MODE = RD.Quest_result
+    edit_json(loc1='user_credentials', loc2='Mode', content=flags.MODE)
+    edit_json(loc1='Internal-Software', loc2='Enable', content='0')
+
 def pl_finder():
     pl = platform.platform()
     if pl.startswith("macOS"):
