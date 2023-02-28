@@ -3,8 +3,7 @@ from Kernel.src import FTU_Installer as ftu_install
 from Kernel.CryptographyKit import EncryptPassword
 from Kernel.utils import edit_json, clear_screen
 from Kernel.RendererKit import Renderer as RD
-from Kernel import flags
-from Kernel import SNC
+from Kernel import flags, SNC
 import os
 
 class _FTU_init:
@@ -29,8 +28,9 @@ class _FTU_init:
             flags.EnableAudio = False
             flags.EnableGUI = False
             flags.FTU = '2'
-            edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
-            edit_json(loc1='UI', loc2='Enable-Audio', content='0')
+            if self.edit_use:
+                edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
+                edit_json(loc1='UI', loc2='Enable-Audio', content='0')
         else:
             ask_type = '1'
         if self.edit_use:
@@ -71,15 +71,31 @@ class _FTU_init:
             ask_first_Mode = '9'
         else:
             ask_first_Mode = '1'
-        edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)
+        if self.edit_use:
+            edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)
+        flags.MODE = ask_first_Mode
 
 
         #Install_Deperndices
         clear_screen()
         num = 0
-        while len(flags.Dependecies) > num:
-            ftu_install.install(flags.Dependecies[num])
-            num += 1
-        os.system('playwright install')
+        try:
+        
+            if flags.MODE == '9':
+                RD.CommandSay(answer='--Dependecies Install Start--\n', color='WARNING')
+                
+            
+            while len(flags.Dependecies) > num:
+                ftu_install.install(flags.Dependecies[num])
+                num += 1
+            os.system('playwright install')
+            
+            
+            if flags.MODE == '9':
+                RD.CommandSay(answer='\n--Dependecies Install End--\n', color='WARNING')
+        
+        except MemoryError:
+            RD.CommandQuest(type='3', msg='Error Occured While installing dependecies')
+        
         if not flags.MODE == "9":
             clear_screen()

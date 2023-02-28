@@ -6,7 +6,7 @@ from Kernel import flags, utils
 
 def _run():
         try:
-            MDH.core(flags.MODE)
+            MDH.core()
         except IndexError:
             utils.recover_mode()   
         if flags.jump:

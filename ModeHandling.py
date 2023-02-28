@@ -1,6 +1,6 @@
 try:
     if not __name__ == '__main__':
-        from Kernel import Input_Output as IO
+        from Kernel import Input_Output as IO, flags
         import commands as cmd
 
 
@@ -9,14 +9,14 @@ try:
             with open('src/history.log', 'a') as f:
                 f.write(str(f"{cmd.LCommand}\n"))
 
-    def core(MODE="0"):
-        if MODE == '1' or MODE == '2' or MODE == '3' or MODE == '9':
-            if not MODE == '3':
-                IO.CommandAsk(MD=MODE, Module=cmd.CommandList)
-                if MODE == '1' or MODE == '3':
+    def core():
+        if flags.MODE == '1' or flags.MODE == '2' or flags.MODE == '3' or flags.MODE == '9':
+            if not flags.MODE == '3':
+                IO.CommandAsk(MD=flags.MODE, Module=cmd.CommandList)
+                if flags.MODE == '1':
                     history()
             else:
-                IO.CommandAsk(MD=MODE, Module=cmd.CommandList, safe_mode=True)
+                IO.CommandAsk(MD=flags.MODE, Module=cmd.CommandList, safe_mode=True)
         else:
             raise IndexError
 except BaseException:
