@@ -1,5 +1,8 @@
 from Kernel.NotificationsKit import Alert, Buttons, Dialog, Icon
-from Kernel.RendererKit.HighlightKit import color_text
+
+try: from Kernel.RendererKit.HighlightKit import color_text 
+except: pass
+
 from Kernel import flags
 import subprocess
 import os
@@ -67,15 +70,17 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
 
 def CommandSay(answer=0, color=''):
     if not flags.FTU == '2':
-        if color == "WARNING":
-            color_text.output(content=answer, args='Bold Yellow')
-        elif color == "FAIL":
-            color_text.output(content=answer, args='Bold Red')
-        elif color == "OKGREEN":
-            color_text.output(content=answer, args='Bold Green')
-        elif color == "PURPLE":
-            color_text.output(content=answer, args='Bold Purple')
-        else:
-            color_text.output(content=answer, args=color)
+        try:
+            if color == "WARNING":
+                color_text.output(content=answer, args='Bold Yellow')
+            elif color == "FAIL":
+                color_text.output(content=answer, args='Bold Red')
+            elif color == "OKGREEN":
+                color_text.output(content=answer, args='Bold Green')
+            elif color == "PURPLE":
+                color_text.output(content=answer, args='Bold Purple')
+            else:
+                color_text.output(content=answer, args=color)
+        except: print(answer)
     else:
         print(answer)

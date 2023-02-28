@@ -63,5 +63,5 @@ try:
             args_help()            
     except IndexError:
         args_help()
-except BaseException:
+except:
     logger.log_error("boot.py")

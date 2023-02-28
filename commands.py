@@ -41,13 +41,13 @@ try:
             LCommand = Command
 
         if Command == "ls":
-            if MD == "9":
+            if flags.MODE == "9":
                 RD.CommandSay(answer=os.listdir(flags.base_folder))
             else:
                 RD.CommandSay(answer="This Function isn't available within this mode", color="WARNING")
 
         if Command == "test":
-            if MD == "9":
+            if flags.MODE == "9":
                 if not cmd_pl == "3":
                     ThreadHandler.SecondaryTask(file_name="test", stay_end=True)
                 RD.CommandSay(answer="tested")
@@ -77,7 +77,7 @@ try:
 
         if Command == "del" or Command == "delete":
             if not safe_md:
-                if MD == "2" or MD == '9':
+                if flags.MODE == "2" or flags.MODE == '9':
                     RD.CommandSay(answer=os.listdir(dir))
                     ask_del = input("what file you want to delete:")
                     try:
@@ -91,7 +91,7 @@ try:
 
         if Command == "create":
             if not safe_md:
-                if MD == "1":
+                if flags.MODE == "1":
                     RD.CommandQuest(type='3', msg="What the name of the file you want to create?")
                     try:
                         open(RD.Quest_result, "x")
@@ -100,7 +100,7 @@ try:
                         RD.CommandQuest(type='2', msg="This file already exist try again")
                     except UnboundLocalError:
                         RD.CommandQuest(type='2', msg="There was a Problem try again")
-                elif MD == "2" or MD == "9":
+                elif flags.MODE == "2" or flags.MODE == "9":
                         RD.CommandQuest(type='3', msg="What the name of the file you want to create?")
                         try:
                             open(RD.Quest_result, "x")
@@ -126,12 +126,13 @@ try:
 
 
         if Command == "exit":
-            if MD == "1":
+            if flags.MODE == "1":
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
                     Exit.exit()
-            elif MD == "2" or MD == "9" or MD == "3":
+            elif flags.MODE == "2" or flags.MODE == "9" or flags.MODE == "3":
                 Exit.exit()
+
 
             
         if Command == "jump":
@@ -141,9 +142,9 @@ try:
 
         if Command == "print md":
             if not safe_md:
-                RD.CommandSay(answer=MD)
+                RD.CommandSay(answer=flags.MODE)
             else:
-                RD.CommandSay("You Are in Safe-Mode", color='WARNING')
+                RD.CommandSay("You Are in Native-Mode", color='WARNING')
 
 
 
@@ -188,7 +189,7 @@ try:
         
         if Command == "edit file":
             if not safe_md:
-                if MD == "2" or MD == '9':           
+                if flags.MODE == "2" or flags.MODE == '9':           
                     if flags.pl == "1" or flags.pl == "3":
                         RD.CommandQuest(type='3', msg='Type the name of the file you want to edit')
                         if not RD.Quest_result in flags.file_list:
@@ -214,7 +215,7 @@ try:
 
         if Command == "activity monitor":
             if not safe_md:
-                if MD == "2" or MD == "9":
+                if flags.MODE == "2" or flags.MODE == "9":
                     if cmd_pl == "1" or cmd_pl == "3":
                         ThreadHandler.SecondaryTask('top')
                 else:
@@ -227,7 +228,7 @@ try:
             
         
         if Command == "check site status":
-            if MD == "2" or MD == "9":
+            if flags.MODE == "2" or flags.MODE == "9":
                 RD.CommandQuest(type='3', msg="type the site you want to check:\n")
                 os.system(f"ping {RD.Quest_result}")
                 
@@ -300,7 +301,8 @@ try:
         if Command == 'ofp':
             if not safe_md:
                 if flags.EnableIntSoft and flags.MODE == '9':
+                    RD.CommandSay('Check The Launced Window')
                     ThreadHandler.SecondaryTask('OFP')
                     
-except BaseException:
+except:
     Exit.error_exit()
