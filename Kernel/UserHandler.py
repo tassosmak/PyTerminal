@@ -25,7 +25,7 @@ def loader(run=True):
                 init()
         except:
             Exit.error_exit()
-        
+
         
 def init():
     continue_normal = False

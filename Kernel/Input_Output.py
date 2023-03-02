@@ -2,25 +2,25 @@ from Kernel import flags
 from Kernel.RendererKit import Renderer as RD
 
 
-def CommandAsk(MD='0', safe_mode=False, Module=''):
+def CommandAsk(Module=''):
     #MODE 2
-    if MD == "2":
-        Module(Command=input(f"{flags.MD2} | {flags.USERNAME.capitalize()} % ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
+    if flags.MODE == "2":
+        Module(Command=input(f"{flags.MD2} | {flags.USERNAME.capitalize()} % ").lower())
         
     #MODE 9
-    elif MD == "9" and flags.BuildReseted == False:
+    elif flags.MODE == "9" and flags.BuildReseted == False:
         #GUI
         if flags.Fully_GUI:
             RD.CommandQuest(type='3', msg=f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} | Expreimental GUI") 
-            Module(Command=RD.Quest_result.lower(), cmd_pl=flags.pl, MD=flags.MODE)
+            Module(Command=RD.Quest_result.lower())
         #Non GUI
         else:
-            Module(Command=input(f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
+            Module(Command=input(f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower())
             
     #Safe Mode
-    elif MD == "3":
-        Module(Command=input(flags.MD3).lower(), cmd_pl=flags.pl, safe_md=safe_mode, MD=flags.MODE)
+    elif flags.MODE == "3":
+        Module(Command=input(flags.MD3).lower(), safe_md=True)
         
     #MODE 1
     else:
-        Module(Command=input(f"{flags.Default_text} | {flags.USERNAME.capitalize()} $ ").lower(), cmd_pl=flags.pl, MD=flags.MODE)
+        Module(Command=input(f"{flags.Default_text} | {flags.USERNAME.capitalize()} $ ").lower())

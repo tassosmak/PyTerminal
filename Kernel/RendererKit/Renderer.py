@@ -3,7 +3,7 @@ from Kernel.NotificationsKit import Alert, Buttons, Dialog, Icon
 try: from Kernel.RendererKit.HighlightKit import color_text 
 except: pass
 
-from Kernel import flags
+from Kernel import flags, utils
 import subprocess
 import os
 
@@ -62,8 +62,16 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
             the_dialog.with_input("Type Here:")
 
             result = the_dialog.show()
-
-            Quest_result = result.text_returned  # => text entered in input
+            
+            if flags.Fully_GUI == False:
+                if not result.text_returned == 'exit':
+                    Quest_result = result.text_returned  # => text entered in input
+                else:
+                    utils.clear_gui()        
+            else:
+                Quest_result = result.text_returned
+                
+                
         else:
             Quest_result = input(f"{msg}:")
 

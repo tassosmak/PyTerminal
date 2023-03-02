@@ -19,7 +19,6 @@ def _run():
 
 def boot():
     try:
-        #print(UserH.UserMD)
         _run()
     except KeyboardInterrupt:
         if flags.EnableIntSoft:

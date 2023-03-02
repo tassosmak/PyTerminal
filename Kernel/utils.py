@@ -97,6 +97,7 @@ def args_help():
     RD.CommandSay(answer=(flags.Default_text + '\nThose Are The Available Commands:'))
     RD.CommandSay(answer=flags.ArgsList, color='OKGREEN')
 
+
 class Exit:
     def error_exit():
         if flags.MODE == "9" or flags.MODE == "3":
@@ -113,13 +114,15 @@ class Exit:
                 
     def exit():
         os._exit(1)
-            
+
+
 def clear_screen():
     if flags.pl == "1" or flags.pl == "3":
         os.system('clear')
     elif flags.pl == '2':
         os.system('cls')
-        
+
+
 def clear_gui():
     if not flags.pl == '':
         if flags.pl == '1':
@@ -128,6 +131,7 @@ def clear_gui():
             except: pass
     else:
         RD.CommandSay('You have to run pl_finder to clear the gui', 'WARNING')
+
 
 def get_time(date=True, secs=False):
     now = datetime.datetime.now()
@@ -146,6 +150,13 @@ def recover_mode():
     flags.MODE = RD.Quest_result
     edit_json(loc1='user_credentials', loc2='Mode', content=flags.MODE)
     edit_json(loc1='Internal-Software', loc2='Enable', content='0')
+
+
+def append_to_history(Command):
+    if not Command == '0':
+        with open('src/history.log', 'a') as f:
+            f.write(str(f"{Command}\n"))
+
 
 def pl_finder():
     pl = platform.platform()

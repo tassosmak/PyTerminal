@@ -15,15 +15,14 @@ try:
     Adding Modules From Different Folders
     '''
     try:
-        from apps import Server
-        from apps import client
+        from apps import Server, client
         flags.net = True
     except OSError:
         RD.CommandSay(answer="\nunfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable\n")
         flags.net = False
 
     
-    def CommandList(Command=0, cmd_pl=0, safe_md=False, MD=0):
+    def CommandList(Command=0, safe_md=False):
         global ask_recv, LCommand
         if not Command in flags.CML:
                 if not Command == '' :
@@ -48,7 +47,7 @@ try:
 
         if Command == "test":
             if flags.MODE == "9":
-                if not cmd_pl == "3":
+                if not flags.pl == "3":
                     ThreadHandler.SecondaryTask(file_name="test", stay_end=True)
                 RD.CommandSay(answer="tested")
                 RD.CommandSay(answer="tested", color="WARNING")
@@ -180,10 +179,10 @@ try:
             else:
                 RD.CommandQuest(type='3', msg='type the name of the file you want to view')
                 #ask_file = input("type the name of the file you want to view\n:")
-                if cmd_pl == "1" or cmd_pl == "3":
+                if flags.pl == "1" or flags.pl == "3":
                     if not RD.Quest_result in flags.file_list:
                         os.system(f"cat {RD.Quest_result}")
-                elif cmd_pl == "2":
+                elif flags.pl == "2":
                     if not RD.Quest_result in flags.file_list:
                         os.system(f"more {RD.Quest_result}")
         
@@ -216,7 +215,7 @@ try:
         if Command == "activity monitor":
             if not safe_md:
                 if flags.MODE == "2" or flags.MODE == "9":
-                    if cmd_pl == "1" or cmd_pl == "3":
+                    if flags.pl == "1" or flags.pl == "3":
                         ThreadHandler.SecondaryTask('top')
                 else:
                     RD.CommandSay(answer="This Function isn't available within this mode", color="FAIL")
@@ -238,7 +237,7 @@ try:
 
         if Command == "devices":
             if not safe_md:
-                if not cmd_pl == "2":
+                if not flags.pl == "2":
                     if flags.FTU == "2":
                         import Kernel.NetworkingKit.server
                     else:
@@ -246,7 +245,7 @@ try:
                         if Kernel.NetworkingKit.auth.DONE:
                             ThreadHandler.SecondaryTask(file_name="Handle-External-Devices")
                 else:
-                    RD.CommandSay("NetworkingKit Isn't Supported On Windown")
+                    RD.CommandSay("NetworkingKit Isn't Supported On Windows")
 
         if Command == "logout":
             clear_screen()
@@ -280,12 +279,11 @@ try:
                     RD.CommandSay(("Inside_Thread", flags.Inside_Thread))
         
         if Command == "show cmd" or Command == 'show apps' or Command == 'help':
-            if not safe_md:
-                if flags.EnableIntSoft:
-                    RD.CommandSay(flags.CML, color='BLUE')
-                else:
-                    RD.CommandSay('Available Commands', 'OKGREEN')
-                    RD.CommandSay(answer=os.listdir(flags.base_folder/'apps'))
+            if flags.EnableIntSoft:
+                RD.CommandSay(flags.CML, color='BLUE')
+            else:
+                RD.CommandSay('Available Commands', 'OKGREEN')
+                RD.CommandSay(answer=os.listdir(flags.base_folder/'apps'))
         
         if Command == "registry":
             if flags.MODE == '9':
@@ -303,6 +301,6 @@ try:
                 if flags.EnableIntSoft and flags.MODE == '9':
                     RD.CommandSay('Check The Launced Window')
                     ThreadHandler.SecondaryTask('OFP')
-                    
+
 except:
     Exit.error_exit()
