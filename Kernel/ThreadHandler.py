@@ -10,16 +10,16 @@ def SecondaryTask(file_name="0", stay_end=False):
         import os
         if not flags.Inside_Thread:
             if flags.pl == "1":
-                subprocess.run(f"""osascript -e 'tell application "Terminal" to do script "python3 {flags.base_folder}/apps/{file_name}.py"'""", shell=True, capture_output=True, check=True, encoding="utf-8")
+                subprocess.run(f"""osascript -e 'tell application "Terminal" to do script "python3 {flags.base_folder}/builtin/{file_name}.py"'""", shell=True, capture_output=True, check=True, encoding="utf-8")
             elif flags.pl == "2":
                 if stay_end:
-                    os.system(f"start cmd /k py  apps/{file_name}.py")
+                    os.system(f"start cmd /k py  builtin/{file_name}.py")
                 else:
-                    os.system(f"start cmd /c py  apps/{file_name}.py")
+                    os.system(f"start cmd /c py  builtin/{file_name}.py")
             else:
-                os.system(f"python3 {flags.base_folder}/apps/{file_name}.py")
+                os.system(f"python3 {flags.base_folder}/builtin/{file_name}.py")
         else:
-            os.system(f"python3 {flags.base_folder}/apps/{file_name}.py")
+            os.system(f"python3 {flags.base_folder}/builtin/{file_name}.py")
 
 def run(MainThread):
     try:

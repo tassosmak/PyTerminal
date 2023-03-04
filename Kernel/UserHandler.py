@@ -31,7 +31,7 @@ def init():
     continue_normal = False
     if not flags.EnableIntSoft:
         try:
-            with open('src/history.log', 'a') as f:
+            with open(f'{flags.base_folder}/src/history.log', 'a') as f:
                 f.write(f'\n{get_time()}')
         except FileNotFoundError:
             import os
@@ -51,7 +51,6 @@ def init():
         Login.Verify()
         
 def advanced_init():
-    # _get_propiatery(True)
     if flags.GO_TO_FTU:
         _FTU_init(False)
     flags.USERNAME = "Lets Keep It Private"

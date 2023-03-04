@@ -1,5 +1,5 @@
-from Kernel import flags
 from Kernel.RendererKit import Renderer as RD
+from Kernel import flags
 
 
 def CommandAsk(Module=''):

@@ -15,7 +15,6 @@ except:
         from os import _exit
         _exit(1)
 
-from pathlib import Path
 import sys    
 if __name__ == '__main__':
     import launcher
@@ -33,8 +32,7 @@ def NoThread():
         launcher.boot()
         TH.SecondaryTask()
         
-        
-flags.base_folder = Path(__file__).parent.resolve()
+
 try:
     try:
         if str(sys.argv[1]) == 'Run':

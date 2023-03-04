@@ -11,17 +11,6 @@ try:
     import sys
     import os
 
-    '''
-    Adding Modules From Different Folders
-    '''
-    try:
-        from apps import Server, client
-        flags.net = True
-    except OSError:
-        RD.CommandSay(answer="\nunfortunately due to many instanches running at the same time it's not possible to connect to the network\nso the browsing expirience is unavailable\n")
-        flags.net = False
-
-    
     def CommandList(Command=0, safe_md=False):
         global ask_recv, LCommand
         if not Command in flags.CML:
@@ -150,6 +139,7 @@ try:
         if Command == "talk":
             if not safe_md:
                 if flags.net:
+                    from Kernel.builtin import Server, client
                     RD.CommandQuest(type='1', msg='do you want to be host or reciever', Button1='Host', Button2='Talker')
                     #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
                     if RD.Quest_result == "Host":

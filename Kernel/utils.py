@@ -1,6 +1,6 @@
 from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel.RendererKit import Renderer as RD
-from Kernel.AudioKit import Audio
+from pathlib import Path
 from Kernel import flags
 import subprocess
 import datetime
@@ -158,7 +158,9 @@ def append_to_history(Command):
         with open('src/history.log', 'a') as f:
             f.write(str(f"{Command}\n"))
 
-
+def get_folder():
+    flags.base_folder = Path(__file__).parent.resolve()
+    
 def pl_finder():
     pl = platform.platform()
     if pl.startswith("macOS"):
