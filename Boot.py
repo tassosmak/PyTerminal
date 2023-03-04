@@ -9,7 +9,7 @@ try:
 except:
     try:
         from Kernel.ErrorLoggingKit import Logger as logger
-        logger.log_error('Boot.py')
+        logger.log_error('Kernel Error | Boot.py')
     except:
         print('Kernel Error')
         from os import _exit
