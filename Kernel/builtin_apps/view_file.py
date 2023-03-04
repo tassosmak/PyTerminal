@@ -1,18 +1,18 @@
-import sys
-from rich.syntax import Syntax
+from textual.widgets import DirectoryTree, Footer, Header, Static
+from textual.containers import Container, Vertical
+from textual.app import App, ComposeResult
 from rich.traceback import Traceback
+from rich.syntax import Syntax
+import sys
 
 from textual import events
-from textual.app import App, ComposeResult
-from textual.containers import Container, Vertical
 from textual.reactive import var
-from textual.widgets import DirectoryTree, Footer, Header, Static
 
 
 class CodeBrowser(App):
     """Textual code browser app."""
 
-    CSS_PATH = "/apps/src/view_file.css"
+    CSS_PATH = "src/view_file.css"
     BINDINGS = [
         ("f", "toggle_files", "Toggle Files"),
         ("q", "quit", "Quit"),

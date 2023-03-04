@@ -7,6 +7,8 @@ from Kernel import flags, utils
 import subprocess
 import os
 
+Quest_result = ''
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -79,13 +81,13 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
 def CommandSay(answer=0, color=''):
     if not flags.FTU == '2':
         try:
-            if color == "WARNING":
+            if "WARNING" in color: 
                 color_text.output(content=answer, args='Bold Yellow')
-            elif color == "FAIL":
+            elif "FAIL" in color:
                 color_text.output(content=answer, args='Bold Red')
-            elif color == "OKGREEN":
+            elif "OKGREEN" in color:
                 color_text.output(content=answer, args='Bold Green')
-            elif color == "PURPLE":
+            elif "PURPLE" in color:
                 color_text.output(content=answer, args='Bold Purple')
             else:
                 color_text.output(content=answer, args=color)

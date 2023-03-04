@@ -107,10 +107,10 @@ class Exit:
             if flags.EnableIntSoft:
                 logger.log_error("IntSoft Enabled")
                 Exit.exit()
-            else:
-                RD.CommandSay("There Was An Error", "FAIL")
-                Audio.play('Kernel/AudioKit/src/Error.mp3')
-                Exit.exit()
+            # else:
+                # RD.CommandSay("There Was An Error", "FAIL")
+                # Audio.play('Kernel/AudioKit/src/Error.mp3')
+                # Exit.exit()
                 
     def exit():
         os._exit(1)
@@ -144,7 +144,8 @@ def get_time(date=True, secs=False):
         return now.strftime("%H:%M")
 
 def recover_mode():
-    RD.CommandQuest(type='3', msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'{flags.Default_text} Mode Recovery')
+    while not RD.Quest_result in flags.ModeList:
+        RD.CommandQuest(type='3', msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'{flags.Default_text} Mode Recovery')
     if RD.Quest_result == '9':
         RD.Quest_result = '2'
     flags.MODE = RD.Quest_result
