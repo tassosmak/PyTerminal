@@ -273,7 +273,7 @@ try:
                 RD.CommandSay(flags.CML, color='BLUE')
             else:
                 RD.CommandSay('Available Commands', 'OKGREEN')
-                RD.CommandSay(answer=os.listdir(flags.base_folder/'apps'))
+                RD.CommandSay(answer=os.listdir(flags.base_folder/'builtin'))
         
         if Command == "registry":
             if flags.MODE == '9':
