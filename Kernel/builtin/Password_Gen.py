@@ -1,19 +1,27 @@
 from random import shuffle, choice
 import string
 
+
+from src import utils
+utils.add_depend()
+from Kernel.RendererKit import Renderer as RD
+from Kernel import flags
+flags.EnableGUI = True
+
 def gen():
     characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")
-    length = int(input("How long do you want your password to be:"))
+    RD.CommandQuest(type='3', msg="How long do you want your password to be")
+    length = int(RD.Quest_result)
     shuffle(characters)
     password = []
     for i in range(length):
         password.append(choice(characters))
     password_str = ''.join(str(e) for e in password)
-    print("".join(password))
-    save_ask = input("Would You like to export the password to a txt?\n if YES press y")
-    if save_ask == "y" or save_ask == "Y":
+    RD.CommandSay(answer=("".join(password)), color='OKGREEN')
+    RD.CommandQuest(type='1', msg="Would You like to export the password to a text file", Button1='No', Button2='Yes')
+    if RD.Quest_result == "Yes":
         f = open("password.txt", "w")
         f.write(password_str)
-        print('The File Is Saved')
+        RD.CommandSay('The File Is Saved', 'OKGREEN')
 
 gen()

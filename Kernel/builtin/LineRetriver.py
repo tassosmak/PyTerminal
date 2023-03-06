@@ -1,10 +1,14 @@
 from pathlib import Path
 
+from src import utils
+utils.add_depend()
+from Kernel.RendererKit import Renderer as RD
+
 try:
     import clipboard
 except ModuleNotFoundError:
     from sys import exit
-    print("Clipboard Module Is missing")
+    RD.CommandSay("Clipboard Module Is missing", 'WARNING')
     exit()
 
 line_to_copy="0"
@@ -17,4 +21,4 @@ def Lastlines():
 base_folder = Path(__file__).parent.resolve()
 Lastlines()
 clipboard.copy(str(line_to_copy))
-print("DONE")
+RD.CommandSay("DONE", 'OKGREEN')

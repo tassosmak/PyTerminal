@@ -19,6 +19,7 @@ def SecondaryTask(file_name="0", stay_end=False):
             else:
                 os.system(f"python3 {flags.base_folder}/builtin/{file_name}.py")
         else:
+            # os.system(f'cd {flags.base_folder} && ls')
             os.system(f"python3 {flags.base_folder}/builtin/{file_name}.py")
 
 def run(MainThread):
