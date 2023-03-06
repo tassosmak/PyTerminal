@@ -160,6 +160,7 @@ def append_to_history(Command):
 
 def get_folder():
     flags.base_folder = Path(__file__).parent.resolve()
+    return flags.base_folder
     
 def pl_finder():
     pl = platform.platform()
