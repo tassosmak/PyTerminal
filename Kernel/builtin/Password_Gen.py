@@ -3,7 +3,7 @@ import string
 
 
 from src import utils
-utils.add_depend()
+utils.add_depend(str(utils.sys.argv[1]))
 from Kernel.RendererKit import Renderer as RD
 from Kernel import flags
 flags.EnableGUI = True
