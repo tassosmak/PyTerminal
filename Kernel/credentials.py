@@ -94,9 +94,9 @@ def _get_credentials(print_credentials=False):
 
 
     Password = data['user_credentials']['Password']
-    Password = DecryptPassword.decrypt_password(password=Password)
     if print_credentials:
         RD.CommandSay(answer=("Password:", Password))
+    Password = DecryptPassword.decrypt_password(password=Password)
 
 
     Internal_Software = data['Internal-Software']['Enable']
@@ -109,8 +109,9 @@ def _get_credentials(print_credentials=False):
     except FileNotFoundError:
         flags.EnableIntSoft == False
     if print_credentials:
-        RD.CommandSay(answer=('Settings-Var', flags.EnableIntSoft))
-        RD.CommandSay(answer=("Intenal-Software", Internal_Software))
+        if flags.EnableIntSoft:
+            RD.CommandSay(answer=('Flags-Var', flags.EnableIntSoft))
+            RD.CommandSay(answer=("Intenal-Software", Internal_Software))
         
     Mode = data['user_credentials']['Mode']
     if flags.EnableIntSoft == False and Mode == '9':

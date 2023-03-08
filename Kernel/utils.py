@@ -170,7 +170,7 @@ def measure_time(func):
         t2 = time.time() -t1
         t2 = round(t2, 2)
         if flags.EnableIntSoft:
-            RD.CommandSay(answer=f'Time Passed: {t2} Seconds')
+            RD.CommandSay(answer=f'Time Passed: {t2} Seconds', color='PURPLE')
     return wrapper
     
 def pl_finder():

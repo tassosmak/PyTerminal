@@ -267,6 +267,11 @@ try:
                     RD.CommandSay(("Fully GUI", flags.Fully_GUI))
                     RD.CommandSay(("Threading", flags.ThreadActivated))
                     RD.CommandSay(("Inside_Thread", flags.Inside_Thread))
+                else:
+                    from Kernel import credentials as cred
+                    MODE = flags.MODE
+                    cred._get_credentials(True)
+                    flags.MODE = MODE
         
         if Command == "show cmd" or Command == 'show apps' or Command == 'help':
             if flags.EnableIntSoft:
