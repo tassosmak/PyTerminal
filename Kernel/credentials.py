@@ -1,7 +1,6 @@
 from Kernel.CryptographyKit import DecryptPassword
 from Kernel.RendererKit import Renderer as RD
-from Kernel import flags
-from Kernel import SNC
+from Kernel import utils, flags, SNC
 import json
 import os
 
@@ -28,14 +27,24 @@ def _get_propiatery(print_credentials=False):
         flags.GO_TO_FTU = True
     if print_credentials:
         RD.CommandSay(answer=("GO_TO_FTU:", GO_TO_FTU))
+        
     try:
         Fully_GUI = data['user_login']['Fully GUI']
     except KeyError:
         raise FileNotFoundError
-    if Fully_GUI == "1":
+    if Fully_GUI == "1" and flags.EnableGUI and flags.pl == '1':
         flags.Fully_GUI = True
     if print_credentials:
         RD.CommandSay(answer=("Fully_GUI:", Fully_GUI))
+    
+    try:
+        Inside_Thread = data['user_login']['Run-Threads Inside']
+    except KeyError:
+        raise FileNotFoundError
+    if Inside_Thread == "1":
+        flags.Inside_Thread = True
+    if print_credentials:
+        RD.CommandSay(answer=("Run-Threads Inside:", Inside_Thread))
     f.close()
 
     
@@ -47,6 +56,7 @@ FTU = 0
 GUI = 0
 SerialNum = 0
 def _get_credentials(print_credentials=False):
+    utils.get_folder()
     global Name, Password, Mode, FTU, GUI, SerialNum
     try:
         f = open('Info.json')
@@ -62,6 +72,7 @@ def _get_credentials(print_credentials=False):
     data = json.load(f)
 
     FTU = data['FTU']['Use']
+    flags.FTU = FTU
     if print_credentials:
         RD.CommandSay(answer=("FTU:", FTU))
     
@@ -70,6 +81,12 @@ def _get_credentials(print_credentials=False):
         flags.EnableGUI = True
     if print_credentials:
         RD.CommandSay(answer=("UI:", GUI))
+    
+    Audio = data['UI']['Enable-Audio']
+    if Audio == "1":
+        flags.EnableAudio = True
+    if print_credentials:
+        RD.CommandSay(answer=("Audio:", GUI))
 
     Name = data['user_credentials']['Name']
     if print_credentials:
@@ -109,9 +126,11 @@ def _get_credentials(print_credentials=False):
     except IndexError:
         if flags.EnableIntSoft:
             RD.CommandSay("The Serial number of the computer doesn't match the doesn't match the serial number given", 'FAIL')
-        from Kernel import FTU as ft
-        ft._FTU_init()
-        flags.Dont_Run_FTU_Again = True
+        utils.Clear.clear_error()
+        utils.Clear.clear_history()
+        from Kernel.FTU import _FTU_init
+        _FTU_init()
+        flags.BuildReseted = True
     if print_credentials:
         RD.CommandSay(answer=("Serial:", SerialNum))
     

@@ -1,6 +1,6 @@
 import json
 import base64
-from Kernel.utils import _d_encrypt
+from Kernel.CryptographyKit.utils import _d_encrypt
 
 def decrypt_password(password):
     # Load the encrypted password and key from the file
@@ -23,7 +23,7 @@ def ask_decrypt():
     except FileNotFoundError:
         from RendererKit import Renderer as RD
         from os import _exit
-        from UserHandlingKit.utils import edit_json
+        from Kernel.utils import edit_json
         RD.CommandSay(answer='You Dont Have the Privilages to Enter This Mode', color='FAIL')
         edit_json(loc1='Internal-Software', loc2='Enable', content='0')
         _exit(1)

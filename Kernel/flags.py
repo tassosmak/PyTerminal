@@ -3,19 +3,24 @@ Flags Start
 '''
 
 UserLess_Connection = False
-Dont_Run_FTU_Again = False
 ThreadActivated = True
 EnableIntSoft = False
+Inside_Thread = False
+BuildReseted = False
+EnableAudio = False
 Fully_GUI = False
 GO_TO_FTU = False
 EnableGUI = False
-sys_detect = 0
-USERNAME = 0
-PASSWORD = 0
+base_folder = ''
+sys_detect = ''
+logout = False
+USERNAME = ''
+PASSWORD = ''
+jump = False
 net = True
-MODE = 0
-FTU = 0
-pl = 0
+MODE = ''
+FTU = ''
+pl = ''
 
 '''
 Flags End
@@ -23,10 +28,12 @@ Flags End
 
 Dependecies = [
     'customtkinter',
-    'rich',
     'playwright',
-    'pyrad',
     'clipboard',
+    'ffmpeg',
+    'pyrad',
+    'rich',
+    'toga',
 ]
 
 ModeList = [
@@ -50,11 +57,12 @@ file_list = [
     'Kernel/NetworkingKit/server.py',
     'Kernel/RendererKit/Renderer.py',
     'Kernel/NetworkingKit/auth.py',
+    'Kernel/LoginKit/LoginUI.py',
     'Kernel/UserHandler.py',
     'Kernel/credentials.py',
+    'Kernel/registry.py',
     'MakroPropiatery.py',
     'Kernel/utils.py',
-    'UserHandler.py',
     'Kernel/FTU.py',
     'commands.py',
     'launcer.py',
@@ -86,13 +94,20 @@ CML =[
 "view file",
 "gen password",
 "latest",
-"edit parameters",
 "talk",
 "check site status",
 "weather forecast",
 "clear",
 "infostats",
-'show cmd'
+'show cmd',
+'show apps',
+'registry',
+'browser',
+'help',
+'ofp',
 ]
 
+MD2 = "!History isn't enabled! PyTerminal Beta"
+MD3 = "PyTerminal | Native-Mode $ "
+MD9 = "PyTerminal"
 Default_text = 'Makro PyTerminal Beta'

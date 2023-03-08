@@ -1,23 +1,16 @@
 try:
     if not __name__ == '__main__':
+        from Kernel import Input_Output as IO, flags, utils
         import commands as cmd
 
-
-    def history():
-        if not cmd.LCommand == '0':
-            with open('src/history.log', 'a') as f:
-                f.write(str(f"{cmd.LCommand}\n"))
-
-    def core(MODE="0", pl=0, username=0):
-        if MODE == '1' or MODE == '2' or MODE == '3' or MODE == '9':
-            if not MODE == '3':
-                cmd.CommandAsk(plt=pl, USNAME_PRINT=username, MD=MODE)
-                if MODE == '1' or MODE == '3':
-                    history()
-            else:
-                cmd.CommandAsk(plt=pl, MD=MODE, safe_mode=True)
+    def core():
+        if flags.MODE == '1' or flags.MODE == '2' or flags.MODE == '3' or flags.MODE == '9':
+            IO.CommandAsk(Module=cmd.CommandList)
+            if flags.MODE == '1':
+                utils.append_to_history(cmd.LCommand)
         else:
             raise IndexError
-except BaseException:
-    from Kernel.utils import error_exit
-    error_exit()
+
+except:
+    from Kernel.utils import Exit
+    Exit.error_exit()

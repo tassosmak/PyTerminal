@@ -1,16 +1,18 @@
-from Kernel.ErrorLoggingKit.ErrorPreviewer import ErrorScreen
-from Kernel.RendererKit.HighlightKit.console import Console
-from Kernel import flags
-import logging
-import os
-import datetime
-
 save_path = 'Kernel/ErrorLoggingKit'
-console = Console()
+fl_name = 'errors.log'
 
-def log_error(message="NO_MSG", fl_name="errors.log"):
-    if not message == "KeyboardInterrupt":
-        #Init The File
+def log_error(message="NO_MSG"):
+    #Init The File
+    from Kernel import flags
+    if flags.FTU == '1':
+        from Kernel.ErrorLoggingKit.ErrorPreviewer import ErrorScreen
+        from Kernel.RendererKit.HighlightKit.console import Console
+        from Kernel.AudioKit import Audio
+        from Kernel.utils import clear_screen, get_time
+        import logging
+        import os
+        console = Console()
+        
         logger = logging.getLogger('PyTerminal')
         logger.setLevel(logging.DEBUG)
 
@@ -21,8 +23,13 @@ def log_error(message="NO_MSG", fl_name="errors.log"):
         logger.addHandler(fh)
 
         # Here Is The Actual Command That Types The Error :)
-        now = datetime.datetime.now()
-        logger.exception(f'\n{now.strftime("%Y-%m-%d %H:%M:%S")} {message}\nHere is the error good luck solving it :)')
+        logger.exception(f'\n{get_time(secs=True)} {message}\nHere is the error good luck solving it :)')
         ErrorScreen()
         if flags.EnableIntSoft:
             console.print_exception(show_locals=True)
+        Audio.play('Kernel/AudioKit/src/Error.mp3')
+    else:
+        from Kernel.utils import clear_screen
+        import sys
+        clear_screen()
+        sys.stdout.write('Error')

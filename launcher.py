@@ -1,34 +1,24 @@
-if not __name__ == '__main__':
-    from Kernel.utils import edit_json, jump_mode, error_exit
-    from Kernel.UserHandler import init
-    import ModeHandling as kernel
-    import commands as cmd
+import ModeHandling as MDH #MDH for MODE HANDLING
 from Kernel.RendererKit import Renderer as RD
-from Kernel import flags
+from Kernel.UserHandler import loader
+from Kernel import flags, utils
 
-
+@utils.measure_time
 def _run():
         try:
-            kernel.core(MODE=flags.MODE, pl=flags.pl, username=flags.USERNAME)
+            MDH.core()
         except IndexError:
-            ask_new_md = input("it seems that the registered mode of user is corrupted\nwhat mode did you used\n1) The Basic Mode\n2)The Advanced Mode\nType below:\n")
-            if ask_new_md == '9':
-                ask_new_md = '2'
-            flags.MODE = ask_new_md
-            edit_json(loc1='user_credentials', loc2='Mode', content=ask_new_md)
-            edit_json(loc1='Internal-Software', loc2='Enable', content='0')
-        if cmd.jump:
-            jump_mode()
-            cmd.jump = False
-        if cmd.logout:
-            init()
-            cmd.logout = False
+            utils.recover_mode()   
+        if flags.jump:
+            utils.jump_mode()
+        if flags.logout:
+            loader()
+            flags.logout = False
 
 
 
 def boot():
     try:
-        #print(UserH.UserMD)
         _run()
     except KeyboardInterrupt:
         if flags.EnableIntSoft:
@@ -38,5 +28,5 @@ def boot():
             RD.CommandQuest(type='2', msg='EOFError')
         else:
             RD.CommandSay(answer='\n')
-    except BaseException:
-        error_exit()
+    except:
+        utils.Exit.error_exit()

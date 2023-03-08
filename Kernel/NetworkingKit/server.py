@@ -3,7 +3,7 @@ from __future__ import print_function
 from pyrad import dictionary, packet, server
 import logging
 
-logging.basicConfig(filename="pyrad.log", level="DEBUG",
+logging.basicConfig(filename="Kernel/NetworkingKit/pyrad.log", level="DEBUG",
                     format="%(asctime)s [%(levelname)-8s] %(message)s")
 
 
@@ -59,7 +59,7 @@ class FakeServer(server.Server):
 
 
 # create server and read dictionary
-srv = FakeServer(dict=dictionary.Dictionary("dictionary"), coa_enabled=True)
+srv = FakeServer(dict=dictionary.Dictionary("src/dictionary"), coa_enabled=True)
 
 # add clients (address, secret, name)
 srv.hosts["127.0.0.1"] = server.RemoteHost("127.0.0.1", b"Kah3choteereethiejeimaeziecumi", "localhost")
