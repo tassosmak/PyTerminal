@@ -6,6 +6,7 @@ import subprocess
 import datetime
 import platform
 import json
+import time
 import os
 
 def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
@@ -161,6 +162,15 @@ def append_to_history(Command):
 def get_folder():
     flags.base_folder = Path(__file__).parent.resolve()
     return flags.base_folder
+
+def measure_time(func):
+    def wrapper():
+        t1 = time.time()
+        func()
+        t2 = time.time() -t1
+        if flags.EnableIntSoft:
+            RD.CommandSay(answer=f'Time Passed: {t2}')
+    return wrapper
     
 def pl_finder():
     pl = platform.platform()

@@ -3,7 +3,7 @@ from Kernel.RendererKit import Renderer as RD
 from Kernel.UserHandler import loader
 from Kernel import flags, utils
 
-
+@utils.measure_time
 def _run():
         try:
             MDH.core()
