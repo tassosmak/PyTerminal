@@ -2,7 +2,7 @@ try:
     '''
     Adding Modules from The Kernel
     '''
-    from Kernel.utils import clear_screen, Exit, get_time
+    from Kernel.utils import Exit, SystemCalls, clear_screen
     from Kernel.RendererKit import Renderer as RD
     from Kernel import ThreadHandler, flags
     from Kernel.AudioKit import Audio
@@ -44,7 +44,7 @@ try:
                 RD.CommandSay(answer="tested", color="OKGREEN")
                 RD.CommandSay(answer="tested", color="PURPLE")
                 RD.CommandSay(answer="tested", color="BLUE")
-                RD.CommandQuest(type='2', msg=f'Tested {get_time()}')
+                RD.CommandQuest(type='2', msg=f'Tested {SystemCalls.get_time()}')
                 RD.CommandQuest(type='3', msg='Testing')
                 RD.CommandSay(answer=RD.Quest_result, color="WARNING")
                 RD.CommandQuest(type='1', msg="tested")
@@ -57,11 +57,11 @@ try:
                 RD.CommandSay(answer="tested")
         
         if Command == "about" or Command == "version": 
-            RD.CommandSay(answer="PyTerminal V.Beta by Makro Software")
+            RD.CommandSay(answer="PyTerminal V.Beta by Makro Software", color='OKGREEN')
         
         
         if Command == "time":
-            RD.CommandPush(f'The time is: {get_time(date=False)}')
+            RD.CommandPush(f'The time is: {SystemCalls.get_time(date=False)}')
 
         if Command == "del" or Command == "delete":
             if not safe_md:
@@ -228,6 +228,7 @@ try:
         if Command == "devices":
             if not safe_md:
                 if not flags.pl == "2":
+                    flags.FTU = '2'
                     if flags.FTU == "2":
                         import Kernel.NetworkingKit.server
                     else:

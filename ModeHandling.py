@@ -7,7 +7,7 @@ try:
         if flags.MODE == '1' or flags.MODE == '2' or flags.MODE == '3' or flags.MODE == '9':
             IO.CommandAsk(Module=cmd.CommandList)
             if flags.MODE == '1':
-                utils.append_to_history(cmd.LCommand)
+                utils.SystemCalls.append_to_history(cmd.LCommand)
         else:
             raise IndexError
 

@@ -56,7 +56,7 @@ FTU = 0
 GUI = 0
 SerialNum = 0
 def _get_credentials(print_credentials=False):
-    utils.get_folder()
+    utils.SystemCalls.get_folder()
     global Name, Password, Mode, FTU, GUI, SerialNum
     try:
         f = open('Info.json')

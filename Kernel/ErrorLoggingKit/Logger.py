@@ -8,7 +8,7 @@ def log_error(message="NO_MSG"):
         from Kernel.ErrorLoggingKit.ErrorPreviewer import ErrorScreen
         from Kernel.RendererKit.HighlightKit.console import Console
         from Kernel.AudioKit import Audio
-        from Kernel.utils import clear_screen, get_time
+        from Kernel.utils import clear_screen, SystemCalls
         import logging
         import os
         console = Console()
@@ -23,7 +23,7 @@ def log_error(message="NO_MSG"):
         logger.addHandler(fh)
 
         # Here Is The Actual Command That Types The Error :)
-        logger.exception(f'\n{get_time(secs=True)} {message}\nHere is the error good luck solving it :)')
+        logger.exception(f'\n{SystemCalls.get_time(secs=True)} {message}\nHere is the error good luck solving it :)')
         ErrorScreen()
         if flags.EnableIntSoft:
             console.print_exception(show_locals=True)

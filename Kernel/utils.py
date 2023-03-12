@@ -81,19 +81,6 @@ def set_flags():
                 RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content='0')
 
-class ClearFiles:
-    def clear_error():
-        pl_finder()
-        clear_file = open("Kernel/ErrorLoggingKit/errors.log",'w')
-        clear_file.close()
-        if flags.pl == '1':
-           clear_gui()
-        
-    def clear_history():
-        clear_file = open("src/history.log",'w')
-        clear_file.close()
-    
-
 def args_help():
     RD.CommandSay(answer=(flags.Default_text + '\nThose Are The Available Commands:'))
     RD.CommandSay(answer=flags.ArgsList, color='OKGREEN')
@@ -116,13 +103,59 @@ class Exit:
     def exit():
         os._exit(1)
 
+class SystemCalls:
+    
+    def get_time(date=True, secs=False):
+        now = datetime.datetime.now()
+        if date:
+            if secs:
+                return now.strftime("%Y-%m-%d %H:%M:%S")
+            else:
+                return now.strftime("%Y-%m-%d %H:%M")
+        else:
+            return now.strftime("%H:%M")
+
+    def get_folder():
+        flags.base_folder = Path(__file__).parent.resolve()
+        return flags.base_folder
+    
+    def measure_time(func):
+        def wrapper():
+            t1 = time.time()
+            func()
+            t2 = time.time() -t1
+            t2 = round(t2, 2)
+            if flags.EnableIntSoft:
+                RD.CommandSay(answer=f'Time Passed: {t2} Seconds', color='PURPLE')
+        return wrapper
+
+    def clear_error():
+        pl_finder()
+        clear_file = open("Kernel/ErrorLoggingKit/errors.log",'w')
+        clear_file.close()
+        if flags.pl == '1':
+           clear_gui()
+        
+    def clear_history():
+        try:
+            clear_file = open(f"{flags.base_folder}/src/history.log",'w')
+            clear_file.close()    
+        except FileNotFoundError:
+            SystemCalls.get_folder()
+            clear_file = open(f"{flags.base_folder}/src/history.log",'w')
+            clear_file.close()
+
+    def append_to_history(Command):
+        if not Command == '0':
+            with open(f'{flags.base_folder}/src/history.log', 'a') as f:
+                f.write(str(f"{Command}\n"))
+
 
 def clear_screen():
     if flags.pl == "1" or flags.pl == "3":
         os.system('clear')
     elif flags.pl == '2':
         os.system('cls')
-
 
 def clear_gui():
     if not flags.pl == '':
@@ -133,17 +166,6 @@ def clear_gui():
     else:
         RD.CommandSay('You have to run pl_finder to clear the gui', 'WARNING')
 
-
-def get_time(date=True, secs=False):
-    now = datetime.datetime.now()
-    if date:
-        if secs:
-            return now.strftime("%Y-%m-%d %H:%M:%S")
-        else:
-          return now.strftime("%Y-%m-%d %H:%M")
-    else:
-        return now.strftime("%H:%M")
-
 def recover_mode():
     while not RD.Quest_result in flags.ModeList:
         RD.CommandQuest(type='3', msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'{flags.Default_text} Mode Recovery')
@@ -153,26 +175,6 @@ def recover_mode():
     edit_json(loc1='user_credentials', loc2='Mode', content=flags.MODE)
     edit_json(loc1='Internal-Software', loc2='Enable', content='0')
 
-
-def append_to_history(Command):
-    if not Command == '0':
-        with open('src/history.log', 'a') as f:
-            f.write(str(f"{Command}\n"))
-
-def get_folder():
-    flags.base_folder = Path(__file__).parent.resolve()
-    return flags.base_folder
-
-def measure_time(func):
-    def wrapper():
-        t1 = time.time()
-        func()
-        t2 = time.time() -t1
-        t2 = round(t2, 2)
-        if flags.EnableIntSoft:
-            RD.CommandSay(answer=f'Time Passed: {t2} Seconds', color='PURPLE')
-    return wrapper
-    
 def pl_finder():
     pl = platform.platform()
     if pl.startswith("macOS"):

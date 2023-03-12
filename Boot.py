@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 try:
-    from Kernel.utils import args_help, ClearFiles as Clear, set_flags
+    from Kernel.utils import args_help, set_flags, SystemCalls
     from Kernel.ErrorLoggingKit import Logger as logger
     from Kernel import ThreadHandler as TH
     from Kernel import credentials as cred
@@ -38,10 +38,10 @@ try:
         if str(sys.argv[1]) == 'Run':
             TH.run(MainTask)
         elif str(sys.argv[1]) == 'ClearErrors':
-            Clear.clear_error()
+            SystemCalls.clear_error()
             
         elif str(sys.argv[1]) == 'ClearHistory':
-            Clear.clear_history()
+            SystemCalls.clear_history()
             
         elif str(sys.argv[1]) == "SetFlags":
             cred._get_credentials()

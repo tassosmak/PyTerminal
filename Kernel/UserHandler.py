@@ -1,4 +1,4 @@
-from Kernel.utils import Exit, clear_gui, get_time, pl_finder
+from Kernel.utils import Exit, clear_gui, SystemCalls, pl_finder
 from Kernel import credentials as cred, flags
 from Kernel.RendererKit import Renderer as RD
 from Kernel.LoginKit.LoginUI import Login
@@ -32,12 +32,12 @@ def init():
     if not flags.EnableIntSoft:
         try:
             with open(f'{flags.base_folder}/src/history.log', 'a') as f:
-                f.write(f'\n{get_time()}')
+                f.write(f'\n{SystemCalls.get_time()}')
         except FileNotFoundError:
             import os
             os.mkdir('src')
             with open('src/history.log', 'w+') as f:
-                f.write(f'\n{get_time()}')
+                f.write(f'\n{SystemCalls.get_time()}')
 
     if not cred.FTU == "0":
         continue_normal = True

@@ -16,7 +16,7 @@ def Lastlines():
         for line in (file.readlines() [-1:]):
             line_to_copy=line
 
-base_folder = utils.get_folder()
+base_folder = utils.SystemCalls.get_folder()
 Lastlines()
 clipboard.copy(str(line_to_copy))
 RD.CommandSay("DONE", 'OKGREEN')
