@@ -5,7 +5,7 @@ from Kernel import flags
 def CommandAsk(Module=''):
     #MODE 2
     if flags.MODE == "2":
-        Module(Command=input(f"{flags.MD2} | {flags.USERNAME.capitalize()} % ").lower())
+        Module(Command=input(f"{flags.MD2} | {RD.bcolors.OKBLUE}{flags.USERNAME.capitalize()}{RD.bcolors.WHITE} % ").lower())
         
     #MODE 9
     elif flags.MODE == "9" and flags.BuildReseted == False:

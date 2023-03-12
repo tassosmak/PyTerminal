@@ -11,16 +11,16 @@ EnableAudio = False
 Fully_GUI = False
 GO_TO_FTU = False
 EnableGUI = False
-base_folder = ''
-sys_detect = ''
+base_folder = str
+sys_detect = str
 logout = False
-USERNAME = ''
-PASSWORD = ''
+USERNAME = str
+PASSWORD = str
 jump = False
 net = True
-MODE = ''
-FTU = ''
-pl = ''
+MODE = str
+FTU = str
+pl = str
 
 '''
 Flags End
