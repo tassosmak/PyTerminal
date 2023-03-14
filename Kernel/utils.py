@@ -1,4 +1,5 @@
 from Kernel.ErrorLoggingKit import Logger as logger
+from Kernel.AudioKit import Audio
 from Kernel.RendererKit import Renderer as RD
 from pathlib import Path
 from Kernel import flags
@@ -21,22 +22,17 @@ def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
         f.truncate()
 
 def jump_mode():
+    ask_core = str
     if flags.Fully_GUI and flags.MODE == '9':
         RD.CommandQuest(type='3', msg="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
         ask_core = RD.Quest_result
     else:
-        RD.CommandSay(answer='there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode')
-        ask_core = input("select Mode")
-        if ask_core not in flags.ModeList:
-            while not ask_core in flags.ModeList:
-                RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
-                ask_core = input("select Mode")
-                if ask_core in flags.ModeList:
-                    if ask_core == '9' and flags.EnableIntSoft == False:
-                        ask_core = '2'
-        else:
+        while not ask_core in flags.ModeList:
+            RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
+            ask_core = input("Select Mode")
             if ask_core == '9' and flags.EnableIntSoft == False:
-                ask_core = '2'
+                    ask_core = '2'
+
     flags.MODE = ask_core
     flags.jump = False
     RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
@@ -95,10 +91,10 @@ class Exit:
             if flags.EnableIntSoft:
                 logger.log_error("IntSoft Enabled")
                 Exit.exit()
-            # else:
-                # RD.CommandSay("There Was An Error", "FAIL")
-                # Audio.play('Kernel/AudioKit/src/Error.mp3')
-                # Exit.exit()
+            else:
+                RD.CommandSay("There Was An Error", "FAIL")
+                Audio.play('Kernel/AudioKit/src/Error.mp3')
+                Exit.exit()
                 
     def exit():
         os._exit(1)
@@ -125,7 +121,7 @@ class SystemCalls:
             func()
             t2 = time.time() -t1
             t2 = round(t2, 2)
-            if flags.EnableIntSoft:
+            if flags.MODE == '9':
                 RD.CommandSay(answer=f'Time Passed: {t2} Seconds', color='PURPLE')
         return wrapper
 
@@ -150,6 +146,12 @@ class SystemCalls:
             with open(f'{flags.base_folder}/src/history.log', 'a') as f:
                 f.write(str(f"{Command}\n"))
 
+    def show_flags():
+        for name in flags.all_variables:
+            if not name.startswith('_'):
+                myvalue = eval(f'flags.{name}')
+                output = name, type(myvalue), myvalue
+                RD.CommandSay(answer=output, color='BLUE', legacy=True)
 
 def clear_screen():
     if flags.pl == "1" or flags.pl == "3":

@@ -105,9 +105,11 @@ CML =[
 'browser',
 'help',
 'ofp',
+'show args',
 ]
 
 MD2 = "!History isn't enabled! PyTerminal Beta"
 MD3 = "PyTerminal | Native-Mode $ "
 MD9 = "PyTerminal"
 Default_text = 'Makro PyTerminal Beta'
+all_variables = dir()

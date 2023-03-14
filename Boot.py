@@ -19,19 +19,12 @@ import sys
 if __name__ == '__main__':
     import launcher
     
-def MainTask():
-    #print("1 Main Threading")
+def MainTask(NoThread=False):
+    if NoThread:
+        flags.ThreadActivated = False
     loader()
     while True:
         launcher.boot()
-        
-def NoThread():
-    flags.ThreadActivated = False
-    loader()
-    while True:
-        launcher.boot()
-        TH.SecondaryTask()
-        
 
 try:
     try:
@@ -55,7 +48,7 @@ try:
             Login.Verify()
             
         elif str(sys.argv[1]) == 'NoThread':
-            NoThread()
+            MainTask(True)
             
         else:
             args_help()            

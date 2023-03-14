@@ -78,8 +78,8 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
             Quest_result = input(f"{msg}:")
 
 
-def CommandSay(answer=0, color=''):
-    if not flags.FTU == '2':
+def CommandSay(answer=0, color='', legacy=False):
+    if not flags.FTU == '2' or legacy == True:
         try:
             if "WARNING" in color: 
                 color_text.output(content=answer, args='Bold Yellow')
@@ -93,4 +93,16 @@ def CommandSay(answer=0, color=''):
                 color_text.output(content=answer, args=color)
         except: print(answer)
     else:
-        print(answer)
+        try:
+            if "WARNING" in color: 
+                print(f'{bcolors.WARNING}{answer}{bcolors.WHITE}')
+            elif "FAIL" in color:
+                print(f'{bcolors.FAIL}{answer}{bcolors.WHITE}')
+            elif "OKGREEN" in color:
+                print(f'{bcolors.OKGREEN}{answer}{bcolors.WHITE}')
+            elif "PURPLE" in color:
+                print(f'{bcolors.PURPLE}{answer}{bcolors.WHITE}')
+            else:
+                print(answer)
+        except:
+            print(answer)

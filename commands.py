@@ -297,6 +297,13 @@ try:
                 if flags.EnableIntSoft and flags.MODE == '9':
                     RD.CommandSay('Check The Launced Window')
                     ThreadHandler.SecondaryTask('OFP')
+                    
+        if Command == 'show args':
+            if not safe_md:
+                if flags.MODE == '9':
+                    clear_screen()
+                    SystemCalls.show_flags()
+            
 
 except:
     Exit.error_exit()
