@@ -11,7 +11,7 @@ try:
     import sys
     import os
 
-    def CommandList(Command=0, safe_md=False):
+    def CommandList(Command=str, safe_md=False):
         global ask_recv, LCommand
         if not Command in flags.CML:
                 if not Command == '' :
