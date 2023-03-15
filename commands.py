@@ -303,6 +303,10 @@ try:
                 if flags.MODE == '9':
                     clear_screen()
                     SystemCalls.show_flags()
+
+        if Command == 'converter':
+            if not safe_md:
+                ThreadHandler.SecondaryTask('temp_mesuare_converter')
             
 
 except:

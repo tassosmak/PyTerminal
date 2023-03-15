@@ -34,7 +34,7 @@ def CommandPush(message, header=flags.Default_text):
         CommandSay(answer=(f'Notification: {message}'))
 
 
-def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, msg="Blank Request", header=flags.Default_text):
+def CommandQuest(type='0', Button1='No', Button2='Yes', msg="Blank Request", header=flags.Default_text):
     global Quest_result
     Quest_result = ''
     if type == '1':
@@ -60,7 +60,7 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', quest_icon=Icon.NOTE, ms
             buttons = Buttons(["Ok"])
             the_dialog = Dialog(msg).with_title(header)
             the_dialog.with_buttons(buttons)
-            the_dialog.with_icon(quest_icon)
+            the_dialog.with_icon(Icon.NOTE)
             the_dialog.with_input("Type Here:")
 
             result = the_dialog.show()

@@ -34,3 +34,5 @@ src/history.log
 src/history.log
 Error_Logger/errors.log
 Kernel/src/history.log
+Kernel/flags.py
+MakroPropiatery.json

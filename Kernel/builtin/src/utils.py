@@ -1,6 +1,5 @@
 import sys
 
-
 def add_depend(path):
     substring = "Kernel"
     fix_path = ""
@@ -9,3 +8,5 @@ def add_depend(path):
         fix_path += element    
     
     sys.path.insert(0, fix_path)
+    from Kernel import UserHandler as UserH
+    UserH.loader(False)

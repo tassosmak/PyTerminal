@@ -106,6 +106,7 @@ CML =[
 'help',
 'ofp',
 'show args',
+'converter',
 ]
 
 MD2 = "!History isn't enabled! PyTerminal Beta"
