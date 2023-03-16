@@ -8,5 +8,7 @@ def add_depend(path):
         fix_path += element    
     
     sys.path.insert(0, fix_path)
-    from Kernel import UserHandler as UserH
-    UserH.loader(False)
+    from Kernel import credentials as cred, utils
+    utils.pl_finder()
+    cred._get_credentials()
+    

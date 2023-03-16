@@ -6,7 +6,7 @@ from Kernel.RendererKit import Renderer as RD
 from Kernel import flags, SNC
 import os
 
-class _FTU_init:
+class FTU_init:
     def __init__(self, edit_use=True):
         self.edit_use = edit_use
         SNC.guid(write=True)

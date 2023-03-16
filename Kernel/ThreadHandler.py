@@ -24,7 +24,7 @@ def SecondaryTask(file_name="0", stay_end=False):
 def run(MainThread):
     try:
         t1 = threading.Thread(target=MainThread, name='t1')
-        t2 = threading.Thread(target=SecondaryTask, name='t2')  
+        t2 = threading.Thread(target=SecondaryTask, name='t2')
         
         t1.start()
         t2.start()

@@ -3,7 +3,7 @@ from Kernel import credentials as cred, flags
 from Kernel.RendererKit import Renderer as RD
 from Kernel.LoginKit.LoginUI import Login
 from Kernel.AudioKit import Audio
-from Kernel.FTU import _FTU_init
+from Kernel.FTU import FTU_init
 import sys
 
 
@@ -43,7 +43,7 @@ def init():
         continue_normal = True
     else:
         if flags.BuildReseted == False:
-            _FTU_init()
+            FTU_init()
         cred._get_credentials()
         continue_normal = True
 
@@ -52,7 +52,7 @@ def init():
         
 def advanced_init():
     if flags.GO_TO_FTU:
-        _FTU_init(False)
+        FTU_init(False)
     flags.USERNAME = "Lets Keep It Private"
     flags.MODE = '9'
     flags.FTU = '1'

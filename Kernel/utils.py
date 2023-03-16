@@ -1,6 +1,6 @@
 from Kernel.ErrorLoggingKit import Logger as logger
-from Kernel.AudioKit import Audio
 from Kernel.RendererKit import Renderer as RD
+from Kernel.AudioKit import Audio
 from pathlib import Path
 from Kernel import flags
 import subprocess
@@ -10,7 +10,7 @@ import json
 import time
 import os
 
-def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
+def edit_json(file_name=f'Info.json', loc1="", loc2="", content=""):
     with open(file_name, 'r+') as f:
         data = json.load(f)
         if not loc2 == "":
@@ -78,12 +78,14 @@ def set_flags():
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content='0')
 
 def args_help():
-    RD.CommandSay(answer=(flags.Default_text + '\nThose Are The Available Commands:'))
+    # RD.CommandSay(answer=(flags.Default_text + '\nThose Are The Available Commands:'), color='BLUE')
+    RD.CommandSay(answer=f'{RD.bcolors.OKBLUE}{flags.Default_text}{RD.bcolors.WHITE}\nThose Are The Available Commands:', legacy=True)
     RD.CommandSay(answer=flags.ArgsList, color='OKGREEN')
 
 
 class Exit:
     def error_exit():
+        # pass
         if flags.MODE == "9" or flags.MODE == "3":
             logger.log_error()
             Exit.exit()
@@ -158,6 +160,7 @@ def clear_screen():
         os.system('clear')
     elif flags.pl == '2':
         os.system('cls')
+        
 
 def clear_gui():
     if not flags.pl == '':

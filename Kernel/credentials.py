@@ -59,7 +59,7 @@ def _get_credentials(print_credentials=False):
     utils.SystemCalls.get_folder()
     global Name, Password, Mode, FTU, GUI, SerialNum
     try:
-        f = open('Info.json')
+        f = open(f'{flags.base_folder}/../Info.json')
     except FileNotFoundError:
         try:
             from Kernel.src import Recover_Json
@@ -129,8 +129,8 @@ def _get_credentials(print_credentials=False):
             RD.CommandSay("The Serial number of the computer doesn't match the doesn't match the serial number given", 'FAIL')
         utils.Clear.clear_error()
         utils.Clear.clear_history()
-        from Kernel.FTU import _FTU_init
-        _FTU_init()
+        from Kernel.FTU import FTU_init
+        FTU_init()
         flags.BuildReseted = True
     if print_credentials:
         RD.CommandSay(answer=("Serial:", SerialNum))

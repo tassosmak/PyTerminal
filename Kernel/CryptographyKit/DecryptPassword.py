@@ -1,19 +1,16 @@
 import json
 import base64
+from Kernel import flags
 from Kernel.CryptographyKit.utils import _d_encrypt
 
 def decrypt_password(password):
-    # Load the encrypted password and key from the file
-    f = open("Info.json")
-    data = json.load(f)
-    Password = data['user_credentials']['Password']
+    
     
     # Decrypt the password using the key
-    decrypted_password = base64.b64decode(Password.encode()).decode()
-    # print(decrypted_password)
+    
+    decrypted_password = base64.b64decode(password.encode()).decode()
     decrypted_password = _d_encrypt(type='2', input_text=decrypted_password)
-    # print(decrypted_password)
-    f.close()
+    
     return decrypted_password
 
 def ask_decrypt():

@@ -1,4 +1,5 @@
 from random import shuffle, choice
+from Kernel import flags
 import string
 import json
 
