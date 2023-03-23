@@ -1,7 +1,7 @@
 from Kernel.utils import Exit, clear_gui, SystemCalls, pl_finder
 from Kernel import credentials as cred, flags
 from Kernel.RendererKit import Renderer as RD
-from Kernel.LoginKit.LoginUI import Login
+from Kernel.LoginKit.LoginUI import LoginHandler
 from Kernel.AudioKit import Audio
 from Kernel.FTU import FTU_init
 import sys
@@ -9,8 +9,8 @@ import sys
 
 def loader(run=True):
     cred._get_credentials() # <-- if you want to print the credentials set the paramater to True
-    pl_finder()
     clear_gui()
+    pl_finder()
     if not flags.EnableIntSoft:
         Audio.play('Kernel/AudioKit/src/Boot.mp3')
     if run:
@@ -48,7 +48,7 @@ def init():
         continue_normal = True
 
     if continue_normal:
-        Login.Verify()
+        LoginHandler.ask()
         
 def advanced_init():
     if flags.GO_TO_FTU:

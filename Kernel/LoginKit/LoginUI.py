@@ -2,12 +2,27 @@ from Kernel.RendererKit import Renderer as RD
 from Kernel import credentials as cred
 from Kernel import flags
 
+class LoginHandler():
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+        
+    def Verify(self):
+        correct_credentials = False        
+        while not correct_credentials:
+            if not self.username == "":
+                if self.username == cred.Name and self.password == cred.Password:
+                    flags.FTU = cred.FTU
+                    flags.USERNAME = self.username
+                    flags.PASSWORD = self.password
+                    welcome_msg = f"Welcome {flags.USERNAME.capitalize()}"
+                    RD.CommandPush(message=welcome_msg)
+                    RD.CommandSay(answer="Go Ahead")
+                    correct_credentials = True
+            else:
+                flags.MODE = "3"
+                correct_credentials = True
 
-
-
-
-class Login:
-    
     def ask(print_ask=False):
         if flags.Fully_GUI and flags.MODE == '9':
             RD.CommandQuest(type='3', msg='Enter Usename', header=f"{flags.Default_text} Login")
@@ -17,25 +32,8 @@ class Login:
         else:    
             ask_name = input("Enter Usename")
             ask_Password = input("\nEnter Password")
-        if print_ask:
-            RD.CommandSay(answer=ask_name)
-            RD.CommandSay(answer=ask_Password)
-        return ask_name, ask_Password
-
-    def Verify():
-        correct_credentials = False
-        
-        while not correct_credentials:
-            ask_name, ask_Password = Login.ask()
-            if not ask_name == "":
-                if ask_name == cred.Name and ask_Password == cred.Password:
-                    flags.FTU = cred.FTU
-                    flags.USERNAME = ask_name
-                    flags.PASSWORD = ask_Password
-                    welcome_msg = f"Welcome {flags.USERNAME.capitalize()}"
-                    RD.CommandPush(message=welcome_msg)
-                    RD.CommandSay(answer="Go Ahead")
-                    correct_credentials = True
-            else:
-                flags.MODE = "3"
-                correct_credentials = True
+        if print_ask and flags.EnableIntSoft == True:
+            RD.CommandSay(f'Typed Username: {ask_name}', 'WARNING')
+            RD.CommandSay(f'Typed Password: {ask_Password}', 'WARNING')
+        login = LoginHandler(ask_name, ask_Password)
+        login.Verify()
