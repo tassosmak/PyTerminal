@@ -7,13 +7,3 @@ def encrypt_password(password, save=True):
     if save:
         edit_json(loc1='user_credentials', loc2='Password', content=encrypted_password)
     return encrypted_password
-
-
-
-def main():
-    # Read the password and key from the user
-    password = input("Enter password: ")
-    key = input("Enter key: ")
-
-    # Encrypt the password and save it to the file
-    encrypt_password(password, key)

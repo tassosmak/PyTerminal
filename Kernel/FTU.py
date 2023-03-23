@@ -7,8 +7,11 @@ from Kernel import flags, SNC
 import os
 
 class FTU_init:
+    
     def __init__(self, edit_use=True):
         self.edit_use = edit_use
+        
+    def check(self):
         SNC.guid(write=True)
         if self.edit_use:
             edit_json(loc1='Internal-Software', loc2='Enable', content='0')
@@ -17,7 +20,8 @@ class FTU_init:
         if not flags.pl == '1':
             edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
             flags.EnableGUI = False
-
+            
+    def use_config(self):
         #use_configure
         RD.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
         RD.CommandQuest(type='1', Button1='Compact', Button2='Personal', msg='How Do You want to use this instanche?')
@@ -35,11 +39,12 @@ class FTU_init:
             ask_type = '1'
         if self.edit_use:
             edit_json(loc1="FTU", loc2="Use", content=ask_type)
-
+            
+    def username_password(self):
         #username_password configuration
         RD.CommandQuest(type='3', msg='What is your name')
         edit_json(loc1="user_credentials", loc2="Name", content=RD.Quest_result)
-        
+    
         correct_pswd_input = False
         while not correct_pswd_input:
             RD.CommandQuest(type='1', msg='Do You Want to to Use A safe Password', Button1='No', Button2='Yes')
@@ -56,7 +61,7 @@ class FTU_init:
                 # EncryptPassword.encrypt_password(password=RD.Quest_result)
                 EncryptPassword.encrypt_password(password=RD.Quest_result)
                 correct_pswd_input = True
-                    
+    def mode(self):
         #Mode_Configuration
         RD.CommandQuest(type='1', msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
         if RD.Quest_result == 'The Advanced Mode' or RD.Quest_result == '2':
@@ -71,6 +76,7 @@ class FTU_init:
             edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)
         flags.MODE = ask_first_Mode
 
+    def dependecies(self):
         #Install_Deperndices
         clear_screen()
         num = 0
@@ -88,3 +94,10 @@ class FTU_init:
         
         if not flags.MODE == "9":
             clear_screen()
+            
+    def run(self):
+        self.check()
+        self.use_config()
+        self.username_password()
+        self.mode()
+        self.dependecies()

@@ -43,16 +43,18 @@ def init():
         continue_normal = True
     else:
         if flags.BuildReseted == False:
-            FTU_init()
+            FTU = FTU_init()
+            FTU.run()
         cred._get_credentials()
         continue_normal = True
 
     if continue_normal:
-        LoginHandler.ask()
+        LoginHandler.run()
         
 def advanced_init():
     if flags.GO_TO_FTU:
-        FTU_init(False)
+        FTU = FTU_init(False)
+        FTU.run()
     flags.USERNAME = "Lets Keep It Private"
     flags.MODE = '9'
     flags.FTU = '1'

@@ -2,13 +2,13 @@ from Kernel.RendererKit import Renderer as RD
 from Kernel import credentials as cred, flags
 
 class LoginHandler():
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
-        
+    def __init__(self):
+        pass
+    
     def Verify(self):
-        correct_credentials = False        
+        correct_credentials = False
         while not correct_credentials:
+            self.username, self.password = self.ask()
             if not self.username == "":
                 if self.username == cred.Name and self.password == cred.Password:
                     flags.FTU = cred.FTU
@@ -22,7 +22,7 @@ class LoginHandler():
                 flags.MODE = "3"
                 correct_credentials = True
 
-    def ask(print_ask=False):
+    def ask(self, print_ask=False):
         if flags.Fully_GUI and flags.MODE == '9':
             RD.CommandQuest(type='3', msg='Enter Usename', header=f"{flags.Default_text} Login")
             ask_name = RD.Quest_result
@@ -34,5 +34,8 @@ class LoginHandler():
         if print_ask and flags.EnableIntSoft == True:
             RD.CommandSay(f'Typed Username: {ask_name}', 'WARNING')
             RD.CommandSay(f'Typed Password: {ask_Password}', 'WARNING')
-        login = LoginHandler(ask_name, ask_Password)
-        login.Verify()
+        return ask_name, ask_Password
+    
+    def run():
+        Login = LoginHandler()
+        Login.Verify()
