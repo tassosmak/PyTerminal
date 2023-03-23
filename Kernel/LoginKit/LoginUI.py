@@ -1,6 +1,5 @@
 from Kernel.RendererKit import Renderer as RD
-from Kernel import credentials as cred
-from Kernel import flags
+from Kernel import credentials as cred, flags
 
 class LoginHandler():
     def __init__(self, username, password):

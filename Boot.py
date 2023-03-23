@@ -43,9 +43,9 @@ try:
                 set_flags()
         
         elif str(sys.argv[1]) == 'FakeLogin':
-            from Kernel.LoginKit.LoginUI import Login
+            from Kernel.LoginKit.LoginUI import LoginHandler
             loader(False)
-            Login.Verify()
+            LoginHandler.ask()
             
         elif str(sys.argv[1]) == 'NoThread':
             MainTask(True)

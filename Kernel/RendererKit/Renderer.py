@@ -52,7 +52,6 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', msg="Blank Request", hea
 
             subprocess.call("osascript -e '{}'".format(applescript), shell=True)
         else:
-            # print(quest_msg)
             msg.removeprefix('( ) "" ')
             Quest_result = CommandSay(answer=msg, color='WARNING')
     elif type == '3':
