@@ -2,7 +2,7 @@ from Kernel.RendererKit import Renderer as RD
 from Kernel import flags
 
 
-def CommandAsk(Module=''):
+def CommandAsk(Module=str):
     #MODE 2
     if flags.MODE == "2":
         Module(Command=input(f"{flags.MD2} | {RD.bcolors.OKBLUE}{flags.USERNAME.capitalize()}{RD.bcolors.WHITE} % ").lower())
@@ -19,8 +19,8 @@ def CommandAsk(Module=''):
             
     #Safe Mode
     elif flags.MODE == "3":
-        Module(Command=input(flags.MD3).lower(), safe_md=True)
+        Module(Command=input(f'{RD.bcolors.WARNING}{flags.MD3}{RD.bcolors.WHITE}').lower(), safe_md=True)
         
     #MODE 1
     else:
-        Module(Command=input(f"{flags.Default_text} | {flags.USERNAME.capitalize()} $ ").lower())
+        Module(Command=input(f"{flags.Default_text} | {RD.bcolors.OKCYAN}{flags.USERNAME.capitalize()}{RD.bcolors.WHITE} $ ").lower())

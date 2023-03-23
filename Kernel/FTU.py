@@ -41,11 +41,8 @@ class FTU_init:
         edit_json(loc1="user_credentials", loc2="Name", content=RD.Quest_result)
         
         correct_pswd_input = False
-        
-        
         while not correct_pswd_input:
             RD.CommandQuest(type='1', msg='Do You Want to to Use A safe Password', Button1='No', Button2='Yes')
-            
             
             if RD.Quest_result == 'Yes':
                 pre_enc_pswd = _gen_safe_password()
@@ -53,8 +50,7 @@ class FTU_init:
                 EncryptPassword.encrypt_password(password=pre_enc_pswd)
                 RD.CommandQuest(type='2', msg=Password_msg)
                 correct_pswd_input = True
-            
-            
+                            
             else:
                 RD.CommandQuest(type='3', msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
                 # EncryptPassword.encrypt_password(password=RD.Quest_result)
@@ -75,25 +71,18 @@ class FTU_init:
             edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)
         flags.MODE = ask_first_Mode
 
-
         #Install_Deperndices
         clear_screen()
         num = 0
         try:
-        
             if flags.MODE == '9':
                 RD.CommandSay(answer='--Dependecies Install Start--\n', color='WARNING')
-                
-            
             while len(flags.Dependecies) > num:
                 ftu_install.install(flags.Dependecies[num])
                 num += 1
             os.system('playwright install')
-            
-            
             if flags.MODE == '9':
                 RD.CommandSay(answer='\n--Dependecies Install End--\n', color='WARNING')
-        
         except MemoryError:
             RD.CommandQuest(type='3', msg='Error Occured While installing dependecies')
         

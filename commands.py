@@ -13,7 +13,7 @@ try:
 
     def CommandList(Command=str, safe_md=False):
         global ask_recv, LCommand
-        if not Command in flags.CML:
+        if not Command in flags._CML:
                 if not Command == '' :
                     if flags.EnableIntSoft:
                         RD.CommandSay(f"This Commmand Isn't registered with The PyTerminal CML", "FAIL")
@@ -30,7 +30,7 @@ try:
 
         if Command == "ls":
             if flags.MODE == "9":
-                RD.CommandSay(answer=os.listdir(flags.base_folder))
+                RD.CommandSay(SystemCalls.get_fl_contents())
             else:
                 RD.CommandSay(answer="This Function isn't available within this mode", color="WARNING")
 
@@ -66,7 +66,7 @@ try:
         if Command == "del" or Command == "delete":
             if not safe_md:
                 if flags.MODE == "2" or flags.MODE == '9':
-                    RD.CommandSay(answer=os.listdir(dir))
+                    RD.CommandSay(SystemCalls.get_fl_contents())
                     ask_del = input("what file you want to delete:")
                     try:
                         RD.CommandSay(answer=ask_del)
@@ -174,7 +174,7 @@ try:
                         os.system(f"cat {RD.Quest_result}")
                 elif flags.pl == "2":
                     if not RD.Quest_result in flags.file_list:
-                        os.system(f"more {RD.Quest_result}")
+                        os.system(f"notepad {RD.Quest_result}")
         
         if Command == "edit file":
             if not safe_md:
@@ -228,7 +228,6 @@ try:
         if Command == "devices":
             if not safe_md:
                 if not flags.pl == "2":
-                    flags.FTU = '2'
                     if flags.FTU == "2":
                         import Kernel.NetworkingKit.server
                     else:
@@ -276,10 +275,10 @@ try:
         
         if Command == "show cmd" or Command == 'show apps' or Command == 'help':
             if flags.EnableIntSoft:
-                RD.CommandSay(flags.CML, color='BLUE')
+                RD.CommandSay(flags._CML, color='BLUE')
             else:
                 RD.CommandSay('Available Commands', 'OKGREEN')
-                RD.CommandSay(answer=os.listdir(flags.base_folder/'builtin'))
+                RD.CommandSay(answer=SystemCalls.get_fl_contents())
         
         if Command == "registry":
             if flags.MODE == '9':
@@ -298,7 +297,7 @@ try:
                     RD.CommandSay('Check The Launced Window')
                     ThreadHandler.SecondaryTask('OFP')
                     
-        if Command == 'show args':
+        if Command == 'show flags':
             if not safe_md:
                 if flags.MODE == '9':
                     clear_screen()

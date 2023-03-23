@@ -72,7 +72,7 @@ file_list = [
     'Boot.py',
 ]
 
-CML =[
+_CML =[
 "test",
 "about",
 "ABOUT",
@@ -105,7 +105,7 @@ CML =[
 'browser',
 'help',
 'ofp',
-'show args',
+'show flags',
 'converter',
 ]
 

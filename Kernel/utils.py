@@ -117,14 +117,18 @@ class SystemCalls:
         flags.base_folder = Path(__file__).parent.resolve()
         return flags.base_folder
     
+    def get_fl_contents():
+        fl_contents = os.listdir(flags.base_folder)
+        return fl_contents
+    
     def measure_time(func):
         def wrapper():
-            t1 = time.time()
+            pre = time.time()
             func()
-            t2 = time.time() -t1
-            t2 = round(t2, 2)
+            after = time.time() -pre
+            after = round(after, 2)
             if flags.MODE == '9':
-                RD.CommandSay(answer=f'Time Passed: {t2} Seconds', color='PURPLE')
+                RD.CommandSay(answer=f'Time Passed: {after} Seconds', color='PURPLE')
         return wrapper
 
     def clear_error():
@@ -149,10 +153,10 @@ class SystemCalls:
                 f.write(str(f"{Command}\n"))
 
     def show_flags():
-        for name in flags.all_variables:
-            if not name.startswith('_'):
-                myvalue = eval(f'flags.{name}')
-                output = name, type(myvalue), myvalue
+        for arg in flags.all_variables:
+            if not arg.startswith('_'):
+                value = eval(f'flags.{arg}')
+                output = arg, type(value), value
                 RD.CommandSay(answer=output, color='BLUE', legacy=True)
 
 def clear_screen():
