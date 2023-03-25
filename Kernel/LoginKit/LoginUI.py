@@ -6,8 +6,8 @@ class LoginHandler():
         pass
     
     def Verify(self):
-        correct_credentials = False
-        while not correct_credentials:
+        self.correct_credentials = False
+        while not self.correct_credentials:
             self.username, self.password = self.ask()
             if not self.username == "":
                 if self.username == cred.Name and self.password == cred.Password:
@@ -17,10 +17,10 @@ class LoginHandler():
                     welcome_msg = f"Welcome {flags.USERNAME.capitalize()}"
                     RD.CommandPush(message=welcome_msg)
                     RD.CommandSay(answer="Go Ahead")
-                    correct_credentials = True
+                    self.correct_credentials = True
             else:
                 flags.MODE = "3"
-                correct_credentials = True
+                self.correct_credentials = True
 
     def ask(self, print_ask=False):
         if flags.Fully_GUI and flags.MODE == '9':
