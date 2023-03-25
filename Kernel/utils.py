@@ -170,7 +170,7 @@ def clear_screen():
         
 
 def clear_gui():
-    if not flags.pl == '':
+    if not flags.pl == str:
         if flags.pl == '1':
             try:
                 subprocess.run('killall osascript', shell=True, capture_output=True , check=True, encoding="utf-8")

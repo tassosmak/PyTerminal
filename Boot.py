@@ -15,7 +15,7 @@ except:
         from os import _exit
         _exit(1)
 
-import sys    
+import sys
 if __name__ == '__main__':
     import launcher
     
