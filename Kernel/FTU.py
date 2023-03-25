@@ -12,7 +12,8 @@ class FTU_init:
         self.edit_use = edit_use
         
     def check(self):
-        SNC.guid(write=True)
+        snc = SNC.snc(True)
+        snc.guid()
         if self.edit_use:
             edit_json(loc1='Internal-Software', loc2='Enable', content='0')
             flags.EnableIntSoft == False

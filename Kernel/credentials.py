@@ -123,14 +123,16 @@ def _get_credentials(print_credentials=False):
         
     SerialNum = data['user_credentials']['Serial']
     try:
-        SNC.guid()
+        snc = SNC.snc()
+        snc.guid()
     except IndexError:
         if flags.EnableIntSoft:
             RD.CommandSay("The Serial number of the computer doesn't match the doesn't match the serial number given", 'FAIL')
-        utils.Clear.clear_error()
-        utils.Clear.clear_history()
+        utils.SystemCalls.clear_error()
+        utils.SystemCalls.clear_history()
         from Kernel.FTU import FTU_init
-        FTU_init()
+        FTU = FTU_init(True)
+        FTU.run()
         flags.BuildReseted = True
     if print_credentials:
         RD.CommandSay(answer=("Serial:", SerialNum))

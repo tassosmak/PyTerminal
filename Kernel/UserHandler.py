@@ -8,9 +8,9 @@ import sys
 
 
 def loader(run=True):
-    cred._get_credentials() # <-- if you want to print the credentials set the paramater to True
-    clear_gui()
     pl_finder()
+    clear_gui()
+    cred._get_credentials() # <-- if you want to print the credentials set the paramater to True
     if not flags.EnableIntSoft:
         Audio.play('Kernel/AudioKit/src/Boot.mp3')
     if run:
