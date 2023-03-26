@@ -32,6 +32,11 @@ class Browser(App):
                             "Home",
                             on_press=self.home_page,
                             style=Pack(width=50, padding_left=5),
+                        ),
+                        Button(
+                            "Google",
+                            on_press=self.google_page,
+                            style=Pack(width=55, padding_left=5),
                         )
                     ],
                     style=Pack(
@@ -65,7 +70,8 @@ class Browser(App):
     def home_page(self, widget):
         self.webview.url = "https://tassosmak.vercel.app/"
         
-        
+    def google_page(self, widget):
+        self.webview.url = "https://google.com/"
 
     def on_webview_loaded(self, widget):
         self.url_input.value = self.webview.url
