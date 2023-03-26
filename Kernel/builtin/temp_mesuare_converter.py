@@ -16,10 +16,10 @@ def temp_convert():
     o_convention = "Celsius"
   else:
       RD.CommandQuest(type='2', msg="Input proper convention")
-  output = f'The temperature in {o_convention}, {result}'
+  output = f'The temperature in {o_convention} is {result}'
   RD.CommandPush(message=output)
 
-def measure_convert():
+def distance_convert():
   RD.CommandQuest(type='3', msg='Enter Distance In feet:')
   d_ft = int(RD.Quest_result)
   d_inches = d_ft * 12
@@ -33,7 +33,7 @@ def measure_convert():
   RD.CommandPush(output)
 
 RD.CommandQuest(type='1', Button1='Temp', Button2='Distance', msg='What Do You Want To Convert')
-if RD.Quest_result == 'Temp':
+if RD.Quest_result.lower() == 'temp':
   temp_convert()
-elif RD.Quest_result == 'Distance':
-  measure_convert()
+elif RD.Quest_result.lower() == 'distance':
+  distance_convert()

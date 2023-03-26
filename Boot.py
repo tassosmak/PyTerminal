@@ -45,7 +45,7 @@ try:
         elif str(sys.argv[1]) == 'FakeLogin':
             from Kernel.LoginKit.LoginUI import LoginHandler
             loader(False)
-            LoginHandler.ask()
+            LoginHandler.run()
             
         elif str(sys.argv[1]) == 'NoThread':
             MainTask(True)

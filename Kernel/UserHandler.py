@@ -34,8 +34,8 @@ def init():
             with open(f'{flags.base_folder}/src/history.log', 'a') as f:
                 f.write(f'\n{SystemCalls.get_time()}')
         except FileNotFoundError:
-            import os
-            os.mkdir('src')
+            from os import mkdir
+            mkdir(f'{flags.base_folder}/src')
             with open('src/history.log', 'w+') as f:
                 f.write(f'\n{SystemCalls.get_time()}')
 

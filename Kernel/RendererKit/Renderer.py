@@ -42,8 +42,10 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', msg="Blank Request", hea
                 al = Alert(msg).with_buttons(Buttons([Button1, Button2,])).show()
 
                 Quest_result = al.button_returned
+                return Quest_result
         else:
             Quest_result = input(f'{msg}, Type "{Button1}" or "{Button2}":')
+            return Quest_result
     elif type == "2":
         if flags.EnableGUI:
             applescript = f"""
@@ -71,7 +73,7 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', msg="Blank Request", hea
                     utils.clear_gui()        
             else:
                 Quest_result = result.text_returned
-                
+            return Quest_result
                 
         else:
             Quest_result = input(f"{msg}:")

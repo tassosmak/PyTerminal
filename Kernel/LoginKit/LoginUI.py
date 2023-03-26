@@ -24,10 +24,8 @@ class LoginHandler():
 
     def ask(self, print_ask=False):
         if flags.Fully_GUI and flags.MODE == '9':
-            RD.CommandQuest(type='3', msg='Enter Usename', header=f"{flags.Default_text} Login")
-            ask_name = RD.Quest_result
-            RD.CommandQuest(type='3', msg='Enter Password', header=f"{flags.Default_text} Login")
-            ask_Password = RD.Quest_result
+            ask_name = RD.CommandQuest(type='3', msg='Enter Usename', header=f"{flags.Default_text} Login")
+            ask_Password = RD.CommandQuest(type='3', msg='Enter Password', header=f"{flags.Default_text} Login")
         else:    
             ask_name = input("Enter Usename")
             ask_Password = input("\nEnter Password")
