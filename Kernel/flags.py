@@ -27,13 +27,14 @@ Flags End
 '''
 
 Dependecies = [
-    'customtkinter',
-    'playwright',
-    'clipboard',
+    'ply',
     'ffmpeg',
-    'pyrad',
     'rich',
     'toga',
+    'pyrad',
+    'clipboard',
+    'customtkinter',
+    'playwright',
 ]
 
 ModeList = [
@@ -107,6 +108,7 @@ _CML =[
 'ofp',
 'show flags',
 'converter',
+'calculator',
 ]
 
 MD2 = "!History isn't enabled! PyTerminal Beta"

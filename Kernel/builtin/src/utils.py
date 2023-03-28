@@ -10,4 +10,5 @@ def add_depend(path):
     sys.path.insert(0, fix_path)
     from Kernel import credentials as cred, utils
     utils.pl_finder()
+    utils.clear_screen()
     cred._get_credentials()

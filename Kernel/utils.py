@@ -24,8 +24,7 @@ def edit_json(file_name=f'Info.json', loc1="", loc2="", content=""):
 def jump_mode():
     ask_core = str
     if flags.Fully_GUI and flags.MODE == '9':
-        RD.CommandQuest(type='3', msg="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
-        ask_core = RD.Quest_result
+        ask_core = RD.CommandQuest(type='1', msg="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode", Button1='1', Button2='2')
     else:
         while not ask_core in flags.ModeList:
             try:
@@ -39,7 +38,6 @@ def jump_mode():
     flags.MODE = ask_core
     flags.jump = False
     RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
-            
 
 def set_flags():
         ask_which = input('\n1)Userless Connection\n2)GO TO FTU\n3)Fully GUI\n4)Run-Threads Inside\n\nType Here:')
@@ -152,8 +150,9 @@ class SystemCalls:
 
     def append_to_history(Command):
         if not Command == '0':
-            with open(f'{flags.base_folder}/src/history.log', 'a') as f:
-                f.write(str(f"{Command}\n"))
+            if not 'jump' in Command:
+                with open(f'{flags.base_folder}/src/history.log', 'a') as f:
+                    f.write(str(f"{Command}\n"))
 
     def show_flags():
         for arg in flags.all_variables:
