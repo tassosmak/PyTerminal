@@ -26,6 +26,8 @@ class bcolors:
 
 def CommandPush(message, header=flags.Default_text):
     if flags.pl == '1' and flags.FTU == '1' and flags.EnableGUI == True:
+        if not header==flags.Default_text:
+            header=f'{flags.Default_text} {header}'
         command = f'''
         osascript -e 'display notification "{message}" with title "{header}"'
         '''

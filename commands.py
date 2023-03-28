@@ -38,6 +38,7 @@ try:
             if flags.MODE == "9":
                 if not flags.pl == "3":
                     ThreadHandler.SecondaryTask(file_name="test", stay_end=True)
+                RD.CommandPush(message='tested', header='tested')
                 RD.CommandSay(answer="tested")
                 RD.CommandSay(answer="tested", color="WARNING")
                 RD.CommandSay(answer="tested", color="FAIL")

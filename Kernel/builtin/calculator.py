@@ -87,4 +87,4 @@ def evaluate_expression(expression):
         return result
 
 operation = evaluate_expression(RD.CommandQuest(type='3', msg='Type Your Mathematic Operation'))
-RD.CommandPush(f'Your Result Is {operation}')
+RD.CommandPush(f'Your Result Is {operation}', 'Calculator')

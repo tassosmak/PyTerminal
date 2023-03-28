@@ -21,4 +21,4 @@ RD.CommandQuest(type='1', msg="Would You like to export the password to a text f
 if RD.Quest_result == "Yes":
     with open(f"{flags.base_folder}/../password.txt", "w") as f:
         f.write(password_str)
-    RD.CommandPush('The File Is Saved')
+    RD.CommandPush('The File Is Saved', 'Password Generator')
