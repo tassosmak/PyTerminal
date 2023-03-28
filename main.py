@@ -5,7 +5,7 @@ cmd = commands
 
 def ask():
     global ask_core
-    print("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
+    print("there are 2 Modes on this terminal             1) The Basic Mode,     2) The Advanced Mode")
     ask_core = input("select Mode")
 
 ask()
