@@ -21,24 +21,6 @@ def edit_json(file_name=f'Info.json', loc1="", loc2="", content=""):
         json.dump(data, f, indent=4)
         f.truncate()
 
-def jump_mode():
-    ask_core = str
-    if flags.Fully_GUI and flags.MODE == '9':
-        ask_core = RD.CommandQuest(type='1', msg="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode", Button1='1', Button2='2')
-    else:
-        while not ask_core in flags.ModeList:
-            try:
-                RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
-                ask_core = input("Select Mode")
-                if ask_core == '9' and flags.EnableIntSoft == False:
-                        ask_core = '2'
-            except EOFError:
-                continue
-
-    flags.MODE = ask_core
-    flags.jump = False
-    RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
-
 def set_flags():
         ask_which = input('\n1)Userless Connection\n2)GO TO FTU\n3)Fully GUI\n4)Run-Threads Inside\n\nType Here:')
         
@@ -176,15 +158,34 @@ def clear_gui():
             except: pass
     else:
         RD.CommandSay('You have to run pl_finder to clear the gui', 'WARNING')
+        
+class ModeHandling:
+    def recover_mode():
+        while not RD.Quest_result in flags.ModeList:
+            RD.CommandQuest(type='3', msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'{flags.Default_text} Mode Recovery')
+        if RD.Quest_result == '9':
+            RD.Quest_result = '2'
+        flags.MODE = RD.Quest_result
+        edit_json(loc1='user_credentials', loc2='Mode', content=flags.MODE)
+        edit_json(loc1='Internal-Software', loc2='Enable', content='0')
+        
+    def jump_mode():
+        ask_core = str
+        if flags.Fully_GUI and flags.MODE == '9':
+            ask_core = RD.CommandQuest(type='1', msg="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode", Button1='1', Button2='2')
+        else:
+            while not ask_core in flags.ModeList:
+                try:
+                    RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
+                    ask_core = input("Select Mode")
+                    if ask_core == '9' and flags.EnableIntSoft == False:
+                            ask_core = '2'
+                except EOFError:
+                    continue
 
-def recover_mode():
-    while not RD.Quest_result in flags.ModeList:
-        RD.CommandQuest(type='3', msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'{flags.Default_text} Mode Recovery')
-    if RD.Quest_result == '9':
-        RD.Quest_result = '2'
-    flags.MODE = RD.Quest_result
-    edit_json(loc1='user_credentials', loc2='Mode', content=flags.MODE)
-    edit_json(loc1='Internal-Software', loc2='Enable', content='0')
+        flags.MODE = ask_core
+        flags.jump = False
+        RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
 
 def pl_finder():
     pl = platform.platform()

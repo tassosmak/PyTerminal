@@ -32,4 +32,4 @@ def run(MainThread):
             t1.join()
             t2.join()
     except BaseException:
-        logger.log_error("boot.py")
+        logger.log_error("ThreadHandler.py")

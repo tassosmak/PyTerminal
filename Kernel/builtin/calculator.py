@@ -2,89 +2,127 @@ from src.utils import add_depend, sys
 add_depend(sys.argv[1])
 from Kernel.RendererKit import Renderer as RD
 
-import ply.lex as lex
-import ply.yacc as yacc
+# Define a dictionary to store variables and their values
+variables = {}
 
-# Define the tokens
-tokens = (
-    'NUMBER',
-    'PLUS',
-    'MINUS',
-    'TIMES',
-    'DIVIDE',
-    'LPAREN',
-    'RPAREN',
-)
+# Define a dictionary to store user-defined functions
+functions = {}
 
-# Define the regular expressions for the tokens
-t_PLUS = r'\+'
-t_MINUS = r'-'
-t_TIMES = r'\*'
-t_DIVIDE = r'/'
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
+# Define a list to store the history of calculations
+history = []
 
-# Define how to handle the NUMBER token
-def t_NUMBER(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
+def calculate(expression):
+    """
+    Evaluate an arithmetic expression and return the result.
+    """
+    # Evaluate variables and functions
+    expression = evaluate_variables(expression)
+    expression = evaluate_functions(expression)
 
-# Define how to handle whitespace
-t_ignore = ' \t'
+    # Evaluate the expression
+    try:
+        result = eval(expression, variables)
+    except ZeroDivisionError:
+        result = 'Infinity'
+    except Exception as e:
+        result = 'Error: ' + str(e)
 
-# Define how to handle errors
-def t_error(t):
-    RD.CommandSay(f"Illegal character '{t.value[0]}'")
-    t.lexer.skip(1)
+    # Save the result to the history
+    history.append(expression + ' = ' + str(result))
 
-# Define the grammar
-def p_expression(p):
-    '''
-    expression : expression PLUS expression
-               | expression MINUS expression
-               | expression TIMES expression
-               | expression DIVIDE expression
-    '''
-    if p[2] == '+':
-        p[0] = p[1] + p[3]
-    elif p[2] == '-':
-        p[0] = p[1] - p[3]
-    elif p[2] == '*':
-        p[0] = p[1] * p[3]
-    elif p[2] == '/':
-        if p[3] == 0:
-            p[0] = None
-        else:
-            p[0] = p[1] / p[3]
+    return result
 
+def evaluate_variables(expression):
+    """
+    Replace variables in an expression with their values.
+    """
+    for var in variables:
+        expression = expression.replace(var, str(variables[var]))
+    return expression
 
-def p_expression_number(p):
-    '''
-    expression : NUMBER
-    '''
-    p[0] = p[1]
+def evaluate_functions(expression):
+    """
+    Replace function calls in an expression with their results.
+    """
+    for func in functions:
+        while func in expression:
+            start = expression.index(func)
+            end = start + len(func)
+            depth = 0
+            for i, c in enumerate(expression[end:]):
+                if c == '(':
+                    depth += 1
+                elif c == ')':
+                    if depth == 0:
+                        arg = expression[end:end+i]
+                        result = str(functions[func](arg))
+                        expression = expression[:start] + result + expression[end+i+1:]
+                        break
+                    else:
+                        depth -= 1
+    return expression
 
-def p_expression_parentheses(p):
-    '''
-    expression : LPAREN expression RPAREN
-    '''
-    p[0] = p[2]
+def parse_assignment(expression):
+    """
+    Parse an assignment expression of the form "var = expression".
+    """
+    try:
+        var, expression = expression.split('=')
+        var = var.strip()
+        expression = expression.strip()
+        result = calculate(expression)
+        variables[var] = result
+        return var + ' = ' + str(result)
+    except:
+        return 'Error: Invalid assignment'
 
-def p_error(p):
-    RD.CommandSay("Syntax error")
+def parse_function(expression):
+    """
+    Parse a function definition expression of the form "def func(arg) = expression".
+    """
+    try:
+        name, args = expression.split('(')
+        args = args.strip(')').split(',')
+        expression = args.pop().strip()
+        name = name[4:].strip()
+        args = [a.strip() for a in args]
+        functions[name] = lambda x: calculate(expression, dict(zip(args, x.split(','))))
+        return 'Defined function: ' + name
+    except:
+        return 'Error: Invalid function definition'
 
-# Build the lexer and parser
-lexer = lex.lex()
-parser = yacc.yacc()
-
-# Define a function to evaluate the input expression
-def evaluate_expression(expression):
-    result = parser.parse(expression, lexer=lexer)
-    if result is None:
-        return "Error: division by zero"
+def parse_expression(expression):
+    """
+    Parse an expression and return the result.
+    """
+    if '=' in expression:
+        return parse_assignment(expression)
+    elif expression.startswith('def '):
+        return parse_function(expression)
     else:
-        return result
+        return str(calculate(expression))
 
-operation = evaluate_expression(RD.CommandQuest(type='3', msg='Type Your Mathematic Operation'))
-RD.CommandPush(f'Your Result Is {operation}', 'Calculator')
+def print_history():
+    """
+    Print the history of calculations.
+    """
+    for h in history:
+        RD.CommandQuest(type='2', msg=h)
+
+# Define the main loop
+while True:
+    # Get input from the user
+    expression = RD.CommandQuest(type='3', msg='Enter Your Operation', header='Calculator')
+    
+    # Exit the program if the user types "exit"
+    if expression == 'exit':
+        break
+
+    # Print the history if the user types "history"
+    if expression == 'history':
+        print_history()
+        continue
+
+    # Parse and evaluate the expression
+    result = parse_expression(expression)
+    RD.CommandPush(f'Your Result Is {result}', 'Calculator')

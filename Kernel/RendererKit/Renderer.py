@@ -44,23 +44,23 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', msg="Blank Request", hea
                 al = Alert(msg).with_buttons(Buttons([Button1, Button2,])).show()
 
                 Quest_result = al.button_returned
-                return Quest_result
         else:
             Quest_result = input(f'{msg}, Type "{Button1}" or "{Button2}":')
-            return Quest_result
     elif type == "2":
         if flags.EnableGUI:
-            applescript = f"""
-            display dialog "{msg}" with title "{header}" with icon caution buttons "OK"
+            script = f"""
+            display dialog "{msg}" with title "{header}" with icon note buttons "OK"
             """
 
-            subprocess.call("osascript -e '{}'".format(applescript), shell=True)
+            subprocess.call("osascript -e '{}'".format(script), shell=True)
         else:
             msg.removeprefix('( ) "" ')
             Quest_result = CommandSay(answer=msg, color='WARNING')
     elif type == '3':
         if flags.EnableGUI:
             buttons = Buttons(["Ok"])
+            if not header==flags.Default_text:
+                header=f'{flags.Default_text} {header}'
             the_dialog = Dialog(msg).with_title(header)
             the_dialog.with_buttons(buttons)
             the_dialog.with_icon(Icon.NOTE)
@@ -69,16 +69,14 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', msg="Blank Request", hea
             result = the_dialog.show()
             
             if flags.Fully_GUI == False:
-                if not result.text_returned == 'exit':
-                    Quest_result = result.text_returned  # => text entered in input
-                else:
-                    utils.clear_gui()        
-            else:
-                Quest_result = result.text_returned
-            return Quest_result
+                if result.text_returned == 'exit':
+                    utils.clear_gui()
+            
+            Quest_result = result.text_returned  # => text entered in input
                 
         else:
             Quest_result = input(f"{msg}:")
+    return Quest_result
 
 
 def CommandSay(answer=0, color='', legacy=False):
