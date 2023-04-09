@@ -119,9 +119,8 @@ try:
                 ask_exit = input("Are you sure. if yes press 'Y' and hit return")
                 if ask_exit == "Y" or ask_exit == "y":
                     Exit.exit()
-            elif flags.MODE == "2" or flags.MODE == "9" or flags.MODE == "3":
+            else:
                 Exit.exit()
-
 
             
         if Command == "jump":
