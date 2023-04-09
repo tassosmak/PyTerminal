@@ -43,6 +43,11 @@ ModeList = [
     '9'
 ]
 
+FtuList = [
+    '1',
+    '2'
+]
+
 ArgsList = [
     "Run",
     "ClearErrors",
@@ -115,5 +120,6 @@ _CML =[
 MD2 = "!History isn't enabled! PyTerminal Beta"
 MD3 = "PyTerminal | Native-Mode $ "
 MD9 = "PyTerminal"
-Default_text = 'Makro PyTerminal Beta'
+Default_text = 'Makro PyTerminal'
+Version = f'{Default_text} V.1'
 all_variables = dir()

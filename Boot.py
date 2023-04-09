@@ -7,13 +7,9 @@ try:
     from Kernel.UserHandler import loader
     from Kernel import flags
 except:
-    try:
-        from Kernel.ErrorLoggingKit import Logger as logger
-        logger.log_error('Kernel Error | Boot.py')
-    except:
-        print('Kernel Error')
-        from os import _exit
-        _exit(1)
+    print('Kernel Error')
+    from os import _exit
+    _exit(1)
 
 import sys
 if __name__ == '__main__':

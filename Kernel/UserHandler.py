@@ -39,7 +39,7 @@ def init():
             with open('src/history.log', 'w+') as f:
                 f.write(f'\n{SystemCalls.get_time()}')
 
-    if not cred.FTU == "0":
+    if cred.FTU in flags.FtuList:
         continue_normal = True
     else:
         if flags.BuildReseted == False:

@@ -58,7 +58,7 @@ try:
                 RD.CommandSay(answer="tested")
         
         if Command == "about" or Command == "version": 
-            RD.CommandSay(answer="PyTerminal V.Beta by Makro Software", color='OKGREEN')
+            RD.CommandSay(answer=flags.Version, color='OKGREEN')
         
         
         if Command == "time":
@@ -314,4 +314,7 @@ try:
             
 
 except:
-    Exit.error_exit()
+    try:
+        from Kernel.utils import Exit
+        Exit.error_exit()
+    except: pass
