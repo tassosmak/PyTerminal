@@ -9,7 +9,7 @@ try:
 except:
     print('Kernel Error')
     from os import _exit
-    _exit(1)
+    _exit(0)
 
 import sys
 if __name__ == '__main__':
