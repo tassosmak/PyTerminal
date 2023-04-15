@@ -48,7 +48,7 @@ try:
             
         else:
             args_help()            
-    except IndexError:
+    except IndexError: #An IndexError will happen if the user doesn't give any prompt and run's the file by it self
         args_help()
 except:
     logger.log_error("boot.py")
