@@ -36,3 +36,5 @@ Error_Logger/errors.log
 Kernel/src/history.log
 Kernel/flags.py
 MakroPropiatery.json
+Info.json
+MakroPropiatery.json

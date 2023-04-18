@@ -58,7 +58,7 @@ try:
                 RD.CommandSay(answer="tested")
         
         if Command == "about" or Command == "version": 
-            RD.CommandSay(answer=flags.Version, color='OKGREEN')
+            RD.CommandPush(flags.Version)
         
         
         if Command == "time":
