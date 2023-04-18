@@ -11,8 +11,7 @@ with open(f'{dir}/../../Info.json', 'w') as recover:
         "Serial": ""
     },
     "FTU": {
-        "Use": "",
-        "IP": "0.0.0.0"
+        "Use": ""
     },
     "Internal-Software": {
         "Enable": "0"
