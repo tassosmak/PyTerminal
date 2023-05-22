@@ -310,6 +310,10 @@ try:
         if Command == 'calculator':
             if not safe_md:
                 ThreadHandler.SecondaryTask('calculator')
+        
+        if Command == 'stocks':
+            if not safe_md:
+                ThreadHandler.SecondaryTask('stock_viewer')
             
 
 except:

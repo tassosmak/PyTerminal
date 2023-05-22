@@ -33,6 +33,7 @@ Dependecies = [
     'toga',
     'pyrad',
     'clipboard',
+    'yfinance',
     'customtkinter',
     'playwright',
 ]
@@ -115,6 +116,7 @@ _CML =[
 'show flags',
 'converter',
 'calculator',
+'stocks',
 ]
 
 MD2 = "!History isn't enabled! PyTerminal Beta"

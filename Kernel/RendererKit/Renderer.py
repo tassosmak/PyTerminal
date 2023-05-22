@@ -48,6 +48,8 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', msg="Blank Request", hea
             Quest_result = input(f'{msg}, Type "{Button1}" or "{Button2}":')
     elif type == "2":
         if flags.EnableGUI:
+            if not header==flags.Default_text:
+                header=f'{flags.Default_text} {header}'
             script = f"""
             display dialog "{msg}" with title "{header}" with icon note buttons "OK"
             """
