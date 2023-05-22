@@ -305,7 +305,7 @@ try:
 
         if Command == 'converter':
             if not safe_md:
-                ThreadHandler.SecondaryTask('temp_mesuare_converter')
+                ThreadHandler.SecondaryTask('temp_mesuare_converter', stay_end=True)
         
         if Command == 'calculator':
             if not safe_md:

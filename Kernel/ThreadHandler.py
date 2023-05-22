@@ -13,9 +13,9 @@ def SecondaryTask(file_name="0", stay_end=False):
                 subprocess.run(f"""osascript -e 'tell application "Terminal" to do script "python3 {str(flags.base_folder)}/builtin/{file_name}.py {str(flags.base_folder)}"'""", shell=True, capture_output=True, check=True, encoding="utf-8")
             elif flags.pl == "2":
                 if stay_end:
-                    os.system(f"start cmd /k py  builtin/{file_name}.py {str(flags.base_folder)}")
+                    os.system(f"start cmd /k py  {flags.base_folder}/builtin/{file_name}.py {str(flags.base_folder)}")
                 else:
-                    os.system(f"start cmd /c py  builtin/{file_name}.py {str(flags.base_folder)}")
+                    os.system(f"start cmd /c py  {flags.base_folder}/builtin/{file_name}.py {str(flags.base_folder)}")
             else:
                 os.system(f"python3 {flags.base_folder}/builtin/{file_name}.py {str(flags.base_folder)}")
         else:
