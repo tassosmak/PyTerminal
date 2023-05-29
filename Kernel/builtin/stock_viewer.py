@@ -10,4 +10,5 @@ if not Stock.lower() == 'exit':
     market_price = ticker['regularMarketOpen']
     previous_close_price = ticker['regularMarketPreviousClose']
 
-    RD.CommandQuest(type='2', msg=f'Market Price: {market_price}\nPrevious Close Price: {previous_close_price}', header=f'Stock Viewer | Selected Stock: {Stock}')
+
+    RD.CommandQuest(type='2', msg=f'Open Price: {market_price}\nPrevious Close Price: {previous_close_price}', header=f'Stock Viewer | Selected Stock: {Stock}')
