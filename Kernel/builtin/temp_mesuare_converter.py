@@ -15,12 +15,12 @@ def temp_convert():
     result = int(round((degree - 32) * 5 / 9))
     o_convention = "Celsius"
   else:
-      RD.CommandQuest(type='2', msg="Input proper convention")
+      RD.CommandQuest(msg="Input proper convention").Info()
   output = f'The temperature in {o_convention} is {result}'
   RD.CommandPush(message=output)
 
 def distance_convert():
-  RD.CommandQuest(type='3', msg='Enter Distance In feet:')
+  RD.CommandQuest(msg='Enter Distance In feet:').Input()
   d_ft = int(RD.Quest_result)
   d_inches = d_ft * 12
   d_yards = d_ft / 3.0
@@ -32,7 +32,7 @@ def distance_convert():
   output = f'The distance in inches is {d_inches} inches\nThe distance in yards is {d_yards} yards\nThe distance in miles is {d_miles} miles'
   RD.CommandPush(output)
 
-RD.CommandQuest(type='1', Button1='Temp', Button2='Distance', msg='What Do You Want To Convert')
+RD.CommandQuest(Button1='Temp', Button2='Distance', msg='What Do You Want To Convert').Choice()
 if RD.Quest_result.lower() == 'temp':
   temp_convert()
 elif RD.Quest_result.lower() == 'distance':

@@ -163,7 +163,7 @@ class ModeHandling:
     def recover_mode():
         flags.EnableIntSoft == False
         while not RD.Quest_result in flags.ModeList:
-            RD.CommandQuest(type='3', msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'Mode Recovery')
+            RD.CommandQuest(msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'Mode Recovery').Input()
         if RD.Quest_result == '9':
             RD.Quest_result = '2'
         flags.MODE = RD.Quest_result
@@ -173,7 +173,7 @@ class ModeHandling:
     def jump_mode():
         ask_core = str
         if flags.Fully_GUI and flags.MODE == '9':
-            ask_core = RD.CommandQuest(type='1', msg="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode", Button1='1', Button2='2')
+            ask_core = RD.CommandQuest(msg="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode", Button1='1', Button2='2').Choice()
         else:
             while not ask_core in flags.ModeList:
                 try:

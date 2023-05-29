@@ -45,10 +45,10 @@ try:
                 RD.CommandSay(answer="tested", color="OKGREEN")
                 RD.CommandSay(answer="tested", color="PURPLE")
                 RD.CommandSay(answer="tested", color="BLUE")
-                RD.CommandQuest(type='2', msg=f'Tested {SystemCalls.get_time()}')
-                RD.CommandQuest(type='3', msg='Testing')
+                RD.CommandQuest(msg=f'Tested {SystemCalls.get_time()}').Info()
+                RD.CommandQuest(msg='Testing').Input()
                 RD.CommandSay(answer=RD.Quest_result, color="WARNING")
-                RD.CommandQuest(type='1', msg="tested")
+                RD.CommandQuest(msg="tested").Choice()
                 if RD.Quest_result == 'Yes':
                     RD.CommandSay(answer='Positive answer', color='WARNING')
                 else:
@@ -74,36 +74,36 @@ try:
                         os.remove(ask_del)
                         RD.CommandSay(answer="DONE", color="OKGREEN")
                     except FileNotFoundError:
-                        RD.CommandQuest(type='2', msg="This file doesn't exist")
+                        RD.CommandQuest(msg="This file doesn't exist").Info()
                 else:
-                    RD.CommandQuest(type='2', msg="This Function isn't available within this mode")
+                    RD.CommandQuest(msg="This Function isn't available within this mode").Info()
 
         if Command == "create":
             if not safe_md:
                 if flags.MODE == "1":
-                    RD.CommandQuest(type='3', msg="What the name of the file you want to create?")
+                    RD.CommandQuest(msg="What the name of the file you want to create?").Input()
                     try:
                         open(RD.Quest_result, "x")
                         RD.CommandSay(answer="DONE", color="OKGREEN")
                     except FileExistsError:
-                        RD.CommandQuest(type='2', msg="This file already exist try again")
+                        RD.CommandQuest(msg="This file already exist try again").Info()
                     except UnboundLocalError:
-                        RD.CommandQuest(type='2', msg="There was a Problem try again")
+                        RD.CommandQuest(msg="There was a Problem try again").Info()
                 elif flags.MODE == "2" or flags.MODE == "9":
-                        RD.CommandQuest(type='3', msg="What the name of the file you want to create?")
+                        RD.CommandQuest(msg="What the name of the file you want to create?").Input()
                         try:
                             open(RD.Quest_result, "x")
                             RD.CommandSay(answer="DONE", color="OKGREEN")
                             ask_name = RD.Quest_result
                         except FileExistsError:
-                            RD.CommandQuest(type='1', msg="This file already exist do you want to delete it. if yes type 'Y'", Button1='No', Button2='Yes')
+                            RD.CommandQuest(msg="This file already exist do you want to delete it. if yes type 'Y'", Button1='No', Button2='Yes').Choice()
                             if RD.Quest_result == "Yes" or RD.Quest_result == "yes":
                                 os.remove(ask_name)
                                 RD.CommandSay(answer="DONE", color="OKGREEN")
                         except UnboundLocalError:
                                 pass
                 else:
-                    RD.CommandQuest(type='2', msg="This Function isn't available within this mode")
+                    RD.CommandQuest(msg="This Function isn't available within this mode").Info()
 
         if Command == "latest":
             ThreadHandler.SecondaryTask(file_name="LineRetriver")
@@ -140,13 +140,13 @@ try:
             if not safe_md:
                 if flags.net:
                     from Kernel.builtin import Server, client
-                    RD.CommandQuest(type='1', msg='do you want to be host or reciever', Button1='Host', Button2='Talker')
+                    RD.CommandQuest(msg='do you want to be host or reciever', Button1='Host', Button2='Talker').Info()
                     #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
                     if RD.Quest_result == "Host":
                         Server.chat()
                     elif RD.Quest_result == "Talker":
                         #ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
-                        RD.CommandQuest(type='3', msg='To Which IP you want to talk to Type Below!')
+                        RD.CommandQuest(msg='To Which IP you want to talk to Type Below!').Input()
                         ask_recv = str(RD.Quest_result)
                         try: 
                             client.Chat(IP=ask_recv)
@@ -167,7 +167,7 @@ try:
             if flags.EnableIntSoft and flags.pl == '1':
                 ThreadHandler.SecondaryTask('view_file')
             else:
-                RD.CommandQuest(type='3', msg='type the name of the file you want to view')
+                RD.CommandQuest(msg='type the name of the file you want to view').Input()
                 #ask_file = input("type the name of the file you want to view\n:")
                 if flags.pl == "1" or flags.pl == "3":
                     if not RD.Quest_result in flags.file_list:
@@ -180,7 +180,7 @@ try:
             if not safe_md:
                 if flags.MODE == "2" or flags.MODE == '9':           
                     if flags.pl == "1" or flags.pl == "3":
-                        RD.CommandQuest(type='3', msg='Type the name of the file you want to edit')
+                        RD.CommandQuest(msg='Type the name of the file you want to edit').Input()
                         if not RD.Quest_result in flags.file_list:
                             #ask_file = input("type the name of the file you want to edit\n:")
                             if RD.Quest_result.endswith(".py"):
@@ -188,7 +188,7 @@ try:
                             else:
                                 os.system(f"nano {RD.Quest_result}")
                     elif flags.pl == "2":
-                        RD.CommandQuest(type='3', msg='Type the name of the file you want to edit')
+                        RD.CommandQuest(msg='Type the name of the file you want to edit').Input()
                         if not RD.Quest_result in flags.file_list:
                             os.system(f'notepad {RD.Quest_result}')
                 else:
@@ -218,7 +218,7 @@ try:
         
         if Command == "check site status":
             if flags.MODE == "2" or flags.MODE == "9":
-                RD.CommandQuest(type='3', msg="type the site you want to check:\n")
+                RD.CommandQuest(msg="type the site you want to check:\n").Input()
                 os.system(f"ping {RD.Quest_result}")
                 
             else:

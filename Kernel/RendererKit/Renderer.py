@@ -36,34 +36,48 @@ def CommandPush(message, header=flags.Default_text):
         CommandSay(answer=(f'Notification: {message}'))
 
 
-def CommandQuest(type='0', Button1='No', Button2='Yes', msg="Blank Request", header=flags.Default_text):
-    global Quest_result
+class CommandQuest:
     Quest_result = ''
-    if type == '1':
+    
+    def __init__(self, Button1='No', Button2='Yes', msg="Blank Request", header=flags.Default_text):
+        self.Button1 = Button1
+        self.Button2 = Button2
+        self.msg = msg
+        self.header = header
+    
+    
+    def Choice(self):
+        global Quest_result
         if flags.EnableGUI:
-                al = Alert(msg).with_buttons(Buttons([Button1, Button2,])).show()
+                al = Alert(self.msg).with_buttons(Buttons([self.Button1, self.Button2,])).show()
 
                 Quest_result = al.button_returned
         else:
-            Quest_result = input(f'{msg}, Type "{Button1}" or "{Button2}":')
-    elif type == "2":
+            Quest_result = input(f'{self.msg}, Type "{self.Button1}" or "{self.Button2}":')
+        return Quest_result
+            
+    def Info(self):
+        global Quest_result
         if flags.EnableGUI:
-            if not header==flags.Default_text:
-                header=f'{flags.Default_text} {header}'
+            if not self.header==flags.Default_text:
+                self.header=f'{flags.Default_text} {self.header}'
             script = f"""
-            display dialog "{msg}" with title "{header}" with icon note buttons "OK"
+            display dialog "{self.msg}" with title "{self.header}" with icon note buttons "OK"
             """
 
             subprocess.call("osascript -e '{}'".format(script), shell=True)
         else:
-            msg.removeprefix('( ) "" ')
-            Quest_result = CommandSay(answer=msg, color='WARNING')
-    elif type == '3':
+            self.msg.removeprefix('( ) "" ')
+            Quest_result = CommandSay(answer=self.msg, color='WARNING')
+            return Quest_result
+            
+    def Input(self):
+        global Quest_result
         if flags.EnableGUI:
             buttons = Buttons(["Ok"])
-            if not header==flags.Default_text:
-                header=f'{flags.Default_text} {header}'
-            the_dialog = Dialog(msg).with_title(header)
+            if not self.header==flags.Default_text:
+                self.header=f'{flags.Default_text} {self.header}'
+            the_dialog = Dialog(self.msg).with_title(self.header)
             the_dialog.with_buttons(buttons)
             the_dialog.with_icon(Icon.NOTE)
             the_dialog.with_input("Type Here:")
@@ -77,8 +91,8 @@ def CommandQuest(type='0', Button1='No', Button2='Yes', msg="Blank Request", hea
             Quest_result = result.text_returned  # => text entered in input
                 
         else:
-            Quest_result = input(f"{msg}:")
-    return Quest_result
+            Quest_result = input(f"{self.msg}:")
+        return Quest_result
 
 
 def CommandSay(answer=0, color='', legacy=False):

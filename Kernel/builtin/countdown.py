@@ -3,7 +3,7 @@ utils.add_depend(str(utils.sys.argv[1]))
 from Kernel.RendererKit import Renderer as RD
 import time
 
-RD.CommandQuest(type='3', msg="Enter the time in seconds")
+RD.CommandQuest(msg="Enter the time in seconds").Input()
 t = int(RD.Quest_result)
 while t:
     mins, secs = divmod(t, 60)
