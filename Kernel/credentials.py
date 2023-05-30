@@ -131,8 +131,7 @@ def _get_credentials(print_credentials=False):
         utils.SystemCalls.clear_error()
         utils.SystemCalls.clear_history()
         from Kernel.FTU import FTU_init
-        FTU = FTU_init(True)
-        FTU.run()
+        FTU_init(True).run()
         flags.BuildReseted = True
     if print_credentials:
         RD.CommandSay(answer=("Serial:", SerialNum))
