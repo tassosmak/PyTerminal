@@ -56,8 +56,6 @@ class CommandShow:
     def Info(self):
         global Quest_result
         if flags.EnableGUI:
-            if not self.header==flags.Default_text:
-                self.header=f'{flags.Default_text} {self.header}'
             script = f"""
             display dialog "{self.msg}" with title "{self.header}" with icon note buttons "OK"
             """
@@ -72,8 +70,6 @@ class CommandShow:
         global Quest_result
         if flags.EnableGUI:
             buttons = Buttons(["Ok"])
-            if not self.header==flags.Default_text:
-                self.header=f'{flags.Default_text} {self.header}'
             the_dialog = Dialog(self.msg).with_title(self.header)
             the_dialog.with_buttons(buttons)
             the_dialog.with_icon(Icon.NOTE)
