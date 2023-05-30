@@ -24,8 +24,8 @@ class FTU_init:
             
     def use_config(self):
         #use_configure
-        RD.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
-        RD.CommandQuest(Button1='Compact', Button2='Personal', msg='How Do You want to use this instanche?').Choice()
+        RD.CommandShow(msg="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n").Show()
+        RD.CommandShow(msg='How Do You want to use this instanche?').Choice(Button1='Compact', Button2='Personal')
         if RD.Quest_result == 'Personal' or RD.Quest_result == '1':
             ask_type = '1'
         elif RD.Quest_result == 'Compact' or RD.Quest_result == '2':
@@ -43,28 +43,28 @@ class FTU_init:
             
     def username_password(self):
         #username_password configuration
-        RD.CommandQuest(msg='What is your name').Input()
+        RD.CommandShow(msg='What is your name').Input()
         edit_json(loc1="user_credentials", loc2="Name", content=RD.Quest_result)
     
         correct_pswd_input = False
         while not correct_pswd_input:
-            RD.CommandQuest(msg='Do You Want to to Use A safe Password', Button1='No', Button2='Yes').Choice()
+            RD.CommandShow(msg='Do You Want to to Use A safe Password').Choice(Button1='No', Button2='Yes')
             
             if RD.Quest_result == 'Yes':
                 pre_enc_pswd = _gen_safe_password()
                 Password_msg= f'YOUR PASSWORD IS {pre_enc_pswd} KEEP IT SAFE'
                 EncryptPassword.encrypt_password(password=pre_enc_pswd)
-                RD.CommandQuest(msg=Password_msg).Info()
+                RD.CommandShow(msg=Password_msg).Info()
                 correct_pswd_input = True
                             
             else:
-                RD.CommandQuest(msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters').Input()
+                RD.CommandShow(msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters').Input()
                 # EncryptPassword.encrypt_password(password=RD.Quest_result)
                 EncryptPassword.encrypt_password(password=RD.Quest_result)
                 correct_pswd_input = True
     def mode(self):
         #Mode_Configuration
-        RD.CommandQuest(msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode').Choice()
+        RD.CommandShow(msg='there are 2 Modes on this terminal').Choice(Button1='The Advanced Mode', Button2='The Basic Mode')
         if RD.Quest_result == 'The Advanced Mode' or RD.Quest_result == '2':
             ask_first_Mode = '2'
         elif RD.Quest_result == 'The Basic Mode' or RD.Quest_result == '1':
@@ -83,15 +83,15 @@ class FTU_init:
         num = 0
         try:
             if flags.MODE == '9':
-                RD.CommandSay(answer='--Dependecies Install Start--\n', color='WARNING')
+                RD.CommandShow('--Dependecies Install Start--\n').Show(color='WARNING')
             while len(flags.Dependecies) > num:
                 ftu_install.install(flags.Dependecies[num])
                 num += 1
             os.system('playwright install')
             if flags.MODE == '9':
-                RD.CommandSay(answer='\n--Dependecies Install End--\n', color='WARNING')
+                RD.CommandShow('\n--Dependecies Install End--\n').Show('WARNING')
         except MemoryError:
-            RD.CommandQuest(msg='Error Occured While installing dependecies').Input()
+            RD.CommandShow(msg='Error Occured While installing dependecies').Input()
         
         if not flags.MODE == "9":
             clear_screen()

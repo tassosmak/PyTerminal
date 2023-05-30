@@ -1,5 +1,5 @@
 from src import utils
 utils.add_depend(str(utils.sys.argv[1]))
-from Kernel.RendererKit.Renderer import CommandSay
+from Kernel.RendererKit.Renderer import CommandShow
 
-CommandSay(answer='tested', color='OKGREEN')
+CommandShow('tested').Show('OKGREEN')

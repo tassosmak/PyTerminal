@@ -23,11 +23,11 @@ def boot():
         _run()
     except KeyboardInterrupt:
         if flags.EnableIntSoft:
-            RD.CommandQuest(msg='KeyboardInterrupt').Info()
+            RD.CommandShow(msg='KeyboardInterrupt').Info()
     except EOFError:
         if flags.EnableIntSoft:
-            RD.CommandQuest(msg='EOFError').Info()
+            RD.CommandShow(msg='EOFError').Info()
         else:
-            RD.CommandSay(answer='\n')
+            RD.CommandShow('\n').Show()
     except:
         Exit.error_exit()

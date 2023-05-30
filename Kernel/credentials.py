@@ -17,7 +17,7 @@ def _get_propiatery(print_credentials=False):
     if UserLess_Connection == "1":
         flags.UserLess_Connection = True
     if print_credentials:
-        RD.CommandSay(answer=("UserLess Connection:", UserLess_Connection))
+        RD.CommandShow(msg=("UserLess Connection:", UserLess_Connection)).Show()
 
     try:
         GO_TO_FTU = data['user_login']['GO TO FTU']
@@ -26,7 +26,7 @@ def _get_propiatery(print_credentials=False):
     if GO_TO_FTU == "1":
         flags.GO_TO_FTU = True
     if print_credentials:
-        RD.CommandSay(answer=("GO_TO_FTU:", GO_TO_FTU))
+        RD.CommandShow(msg=("GO_TO_FTU:", GO_TO_FTU)).Show()
         
     try:
         Fully_GUI = data['user_login']['Fully GUI']
@@ -35,7 +35,7 @@ def _get_propiatery(print_credentials=False):
     if Fully_GUI == "1" and flags.EnableGUI and flags.pl == '1':
         flags.Fully_GUI = True
     if print_credentials:
-        RD.CommandSay(answer=("Fully_GUI:", Fully_GUI))
+        RD.CommandShow(msg=("Fully_GUI:", Fully_GUI)).Show()
     
     try:
         Inside_Thread = data['user_login']['Run-Threads Inside']
@@ -44,7 +44,7 @@ def _get_propiatery(print_credentials=False):
     if Inside_Thread == "1":
         flags.Inside_Thread = True
     if print_credentials:
-        RD.CommandSay(answer=("Run-Threads Inside:", Inside_Thread))
+        RD.CommandShow(msg=("Run-Threads Inside:", Inside_Thread)).Show()
     f.close()
 
     
@@ -64,7 +64,7 @@ def _get_credentials(print_credentials=False):
         try:
             from Kernel.src import Recover_Json
         except ImportError:
-            RD.CommandSay(answer='This Installation is corrupted install a new one', color='FAIL')
+            RD.CommandShow(msg='This Installation is corrupted install a new one').Show('FAIL')
             os._exit(1)
         f = open('Info.json')
 
@@ -74,28 +74,28 @@ def _get_credentials(print_credentials=False):
     FTU = data['FTU']['Use']
     flags.FTU = FTU
     if print_credentials:
-        RD.CommandSay(answer=("FTU:", FTU))
+        RD.CommandShow(msg=("FTU:", FTU)).Show()
     
     GUI = data['UI']['Enable-AquaUI']
     if GUI == "1":
         flags.EnableGUI = True
     if print_credentials:
-        RD.CommandSay(answer=("UI:", GUI))
+        RD.CommandShow(msg=("UI:", GUI)).Show()
     
     Audio = data['UI']['Enable-Audio']
     if Audio == "1":
         flags.EnableAudio = True
     if print_credentials:
-        RD.CommandSay(answer=("Audio:", GUI))
+        RD.CommandShow(msg=("Audio:", GUI)).Show()
 
     Name = data['user_credentials']['Name']
     if print_credentials:
-        RD.CommandSay(answer=("Name:", Name))
+        RD.CommandShow(msg=("Name:", Name)).Show()
 
 
     Password = data['user_credentials']['Password']
     if print_credentials:
-        RD.CommandSay(answer=("Password:", Password))
+        RD.CommandShow(msg=("Password:", Password)).Show()
     Password = DecryptPassword.decrypt_password(password=Password)
 
 
@@ -110,8 +110,8 @@ def _get_credentials(print_credentials=False):
         flags.EnableIntSoft == False
     if print_credentials:
         if flags.EnableIntSoft:
-            RD.CommandSay(answer=('Flags-Var', flags.EnableIntSoft))
-            RD.CommandSay(answer=("Intenal-Software", Internal_Software))
+            RD.CommandShow(msg=('Flags-Var', flags.EnableIntSoft)).Show()
+            RD.CommandShow(msg=("Intenal-Software", Internal_Software)).Show()
         
     Mode = data['user_credentials']['Mode']
     if flags.EnableIntSoft == False and Mode == '9':
@@ -119,7 +119,7 @@ def _get_credentials(print_credentials=False):
     else:
         flags.MODE = Mode
     if print_credentials:
-        RD.CommandSay(answer=("Mode:", Mode))
+        RD.CommandShow(msg=("Mode:", Mode)).Show()
         
     SerialNum = data['user_credentials']['Serial']
     try:
@@ -127,14 +127,14 @@ def _get_credentials(print_credentials=False):
         snc.guid()
     except IndexError:
         if flags.EnableIntSoft:
-            RD.CommandSay("The Serial number of the computer doesn't match the serial number given", 'FAIL')
+            RD.CommandShow("The Serial number of the computer doesn't match the serial number given").Show('FAIL')
         utils.SystemCalls.clear_error()
         utils.SystemCalls.clear_history()
         from Kernel.FTU import FTU_init
         FTU_init(True).run()
         flags.BuildReseted = True
     if print_credentials:
-        RD.CommandSay(answer=("Serial:", SerialNum))
+        RD.CommandShow(msg=("Serial:", SerialNum)).Show()
     
         
     f.close()

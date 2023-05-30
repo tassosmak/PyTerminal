@@ -24,36 +24,33 @@ class bcolors:
     DARKCYAN = '\033[36m'
 
 
-def CommandPush(message, header=flags.Default_text):
-    if flags.pl == '1' and flags.FTU == '1' and flags.EnableGUI == True:
-        if not header==flags.Default_text:
-            header=f'{flags.Default_text} {header}'
-        command = f'''
-        osascript -e 'display notification "{message}" with title "{header}"'
-        '''
-        os.system(command)
-    else:
-        CommandSay(answer=(f'Notification: {message}'))
-
-
-class CommandQuest:
+class CommandShow:
     Quest_result = ''
     
-    def __init__(self, Button1='No', Button2='Yes', msg="Blank Request", header=flags.Default_text):
-        self.Button1 = Button1
-        self.Button2 = Button2
-        self.msg = msg
+    def __init__(self, msg="Blank Request", header=flags.Default_text):
+        if not header==flags.Default_text:
+                header=f'{flags.Default_text} {header}'
         self.header = header
+        self.msg = msg
     
     
-    def Choice(self):
+    def Push(self):
+        if flags.pl == '1' and flags.FTU == '1' and flags.EnableGUI == True:
+            command = f'''
+            osascript -e 'display notification "{self.msg}" with title "{self.header}"'
+            '''
+            os.system(command)
+        else:
+            CommandShow(f'Notification: {self.msg}').Show()
+    
+    def Choice(self, Button1='No', Button2='Yes'):
         global Quest_result
         if flags.EnableGUI:
-                al = Alert(self.msg).with_buttons(Buttons([self.Button1, self.Button2,])).show()
+                al = Alert(self.msg).with_buttons(Buttons([Button1, Button2,])).show()
 
                 Quest_result = al.button_returned
         else:
-            Quest_result = input(f'{self.msg}, Type "{self.Button1}" or "{self.Button2}":')
+            Quest_result = input(f'{self.msg}, Type "{Button1}" or "{Button2}":')
         return Quest_result
             
     def Info(self):
@@ -68,7 +65,7 @@ class CommandQuest:
             subprocess.call("osascript -e '{}'".format(script), shell=True)
         else:
             self.msg.removeprefix('( ) "" ')
-            Quest_result = CommandSay(answer=self.msg, color='WARNING')
+            Quest_result = CommandShow(msg=self.msg).Show(color='WARNING')
             return Quest_result
             
     def Input(self):
@@ -95,31 +92,31 @@ class CommandQuest:
         return Quest_result
 
 
-def CommandSay(answer=0, color='', legacy=False):
-    if not flags.FTU == '2' or legacy == True:
-        try:
-            if "WARNING" in color: 
-                color_text.output(content=answer, args='Bold Yellow')
-            elif "FAIL" in color:
-                color_text.output(content=answer, args='Bold Red')
-            elif "OKGREEN" in color:
-                color_text.output(content=answer, args='Bold Green')
-            elif "PURPLE" in color:
-                color_text.output(content=answer, args='Bold Purple')
-            else:
-                color_text.output(content=answer, args=color)
-        except: print(answer)
-    else:
-        try:
-            if "WARNING" in color: 
-                print(f'{bcolors.WARNING}{answer}{bcolors.WHITE}')
-            elif "FAIL" in color:
-                print(f'{bcolors.FAIL}{answer}{bcolors.WHITE}')
-            elif "OKGREEN" in color:
-                print(f'{bcolors.OKGREEN}{answer}{bcolors.WHITE}')
-            elif "PURPLE" in color:
-                print(f'{bcolors.PURPLE}{answer}{bcolors.WHITE}')
-            else:
-                print(answer)
-        except:
-            print(answer)
+    def Show(self, color='', legacy=False):
+        if not flags.FTU == '2' or legacy == True:
+            try:
+                if "WARNING" in color: 
+                    color_text.output(content=self.msg, args='Bold Yellow')
+                elif "FAIL" in color:
+                    color_text.output(content=self.msg, args='Bold Red')
+                elif "OKGREEN" in color:
+                    color_text.output(content=self.msg, args='Bold Green')
+                elif "PURPLE" in color:
+                    color_text.output(content=self.msg, args='Bold Purple')
+                else:
+                    color_text.output(content=self.msg, args=color)
+            except: print(self.msg)
+        else:
+            try:
+                if "WARNING" in color: 
+                    print(f'{bcolors.WARNING}{ self.msg}{bcolors.WHITE}')
+                elif "FAIL" in color:
+                    print(f'{bcolors.FAIL}{ self.msg}{bcolors.WHITE}')
+                elif "OKGREEN" in color:
+                    print(f'{bcolors.OKGREEN}{ self.msg}{bcolors.WHITE}')
+                elif "PURPLE" in color:
+                    print(f'{bcolors.PURPLE}{ self.msg}{bcolors.WHITE}')
+                else:
+                    print(self.msg)
+            except:
+                print(self.msg)

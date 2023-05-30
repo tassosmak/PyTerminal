@@ -28,42 +28,42 @@ def set_flags():
             ask_userless_state = input('Enable Or Disable?')
             if ask_userless_state == 'Enable' or ask_userless_state == 'enable':
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content='1')
-                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
             elif ask_userless_state == 'Disable' or ask_userless_state == 'disable':
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content='0')
-                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
 
         elif ask_which == '2':
             ask_ftu_state = input('Enable Or Disable?')
             if ask_ftu_state == 'Enable' or ask_ftu_state == 'enable':
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='1')
-                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
             elif ask_ftu_state == 'Disable' or ask_ftu_state == 'disable':
-                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='0')
                 
         elif ask_which == '3':
             ask_Fully_GUI_state = input('Enable Or Disable?')
             if ask_Fully_GUI_state == 'Enable' or ask_Fully_GUI_state == 'enable':
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Fully GUI', content='1')
-                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
             elif ask_Fully_GUI_state == 'Disable' or ask_Fully_GUI_state == 'disable':
-                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Fully GUI', content='0')
         
         elif ask_which == '4':
             ask_Inside_Thread = input('Enable Or Disable?')
             if ask_Inside_Thread == 'Enable' or ask_Inside_Thread == 'enable':
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content='1')
-                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
             elif ask_Inside_Thread == 'Disable' or ask_Inside_Thread == 'disable':
-                RD.CommandSay('You have to run PyTerminal again for changes to make effect', color='OKGREEN')
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content='0')
 
 def args_help():
     # RD.CommandSay(answer=(flags.Default_text + '\nThose Are The Available Commands:'), color='BLUE')
-    RD.CommandSay(answer=f'{RD.bcolors.OKBLUE}{flags.Default_text}{RD.bcolors.WHITE}\nThose Are The Available Commands:', legacy=True)
-    RD.CommandSay(answer=flags.ArgsList, color='OKGREEN')
+    RD.CommandShow(msg=f'{RD.bcolors.OKBLUE}{flags.Default_text}{RD.bcolors.WHITE}\nThose Are The Available Commands:').Show(legacy=True)
+    RD.CommandShow(answer=flags.ArgsList).Show("OKGREEN")
 
 
 class Exit:
@@ -77,7 +77,7 @@ class Exit:
                 logger.log_error("IntSoft Enabled")
                 Exit.exit()
             else:
-                RD.CommandSay("There Was An Error", "FAIL")
+                RD.CommandShow("There Was An Error").Show('FAIL')
                 Audio.play('Kernel/AudioKit/src/Error.mp3')
                 Exit.exit()
                 
@@ -111,7 +111,7 @@ class SystemCalls:
             after = time.time() -pre
             after = round(after, 2)
             if flags.MODE == '9':
-                RD.CommandSay(answer=f'Time Passed: {after} Seconds', color='PURPLE')
+                RD.CommandShow(msg=f'Time Passed: {after} Seconds').Show('PURPLE')
         return wrapper
 
     def clear_error():
@@ -141,7 +141,7 @@ class SystemCalls:
             if not arg.startswith('_'):
                 value = eval(f'flags.{arg}')
                 output = arg, type(value), value
-                RD.CommandSay(answer=output, color='BLUE', legacy=True)
+                RD.CommandShow(msg=output).Show(color='BLUE', legacy=True)
 
 def clear_screen():
     if flags.pl == "1" or flags.pl == "3":
@@ -157,13 +157,13 @@ def clear_gui():
                 subprocess.run('killall osascript', shell=True, capture_output=True , check=True, encoding="utf-8")
             except: pass
     else:
-        RD.CommandSay('You have to run pl_finder to clear the gui', 'WARNING')
+        RD.CommandShow('You have to run pl_finder to clear the gui').Show('WARNING')
         
 class ModeHandling:
     def recover_mode():
         flags.EnableIntSoft == False
         while not RD.Quest_result in flags.ModeList:
-            RD.CommandQuest(msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'Mode Recovery').Input()
+            RD.CommandShow(msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'Mode Recovery').Input()
         if RD.Quest_result == '9':
             RD.Quest_result = '2'
         flags.MODE = RD.Quest_result
@@ -173,11 +173,11 @@ class ModeHandling:
     def jump_mode():
         ask_core = str
         if flags.Fully_GUI and flags.MODE == '9':
-            ask_core = RD.CommandQuest(msg="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode", Button1='1', Button2='2').Choice()
+            ask_core = RD.CommandShow(msg="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode").Choice(Button1='1', Button2='2')
         else:
             while not ask_core in flags.ModeList:
                 try:
-                    RD.CommandSay(answer="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode")
+                    RD.CommandShow("there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode").Show()
                     ask_core = input("Select Mode")
                     if ask_core == '9' and flags.EnableIntSoft == False:
                             ask_core = '2'
@@ -186,7 +186,7 @@ class ModeHandling:
 
         flags.MODE = ask_core
         flags.jump = False
-        RD.CommandSay(answer="this is only for the current sension\nthe next time it will be restored\nto the previous state", color="WARNING")
+        RD.CommandShow("this is only for the current sension\nthe next time it will be restored\nto the previous state").Show('WARNING')
 
 def pl_finder():
     pl = platform.platform()

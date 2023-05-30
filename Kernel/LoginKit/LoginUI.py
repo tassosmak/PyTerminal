@@ -15,8 +15,8 @@ class LoginHandler():
                     flags.USERNAME = self.username
                     flags.PASSWORD = self.password
                     welcome_msg = f"Welcome {flags.USERNAME.capitalize()}"
-                    RD.CommandPush(message=welcome_msg)
-                    RD.CommandSay(answer="Go Ahead")
+                    RD.CommandShow(welcome_msg).Push()
+                    RD.CommandShow("Go Ahead").Show()
                     self.correct_credentials = True
             else:
                 flags.MODE = "3"
@@ -24,14 +24,14 @@ class LoginHandler():
 
     def ask(self, print_ask=False):
         if flags.Fully_GUI and flags.MODE == '9':
-            ask_name = RD.CommandQuest(msg='Enter Usename', header=f"{flags.Default_text} Login").Input()
-            ask_Password = RD.CommandQuest(msg='Enter Password', header=f"{flags.Default_text} Login").Input()
+            ask_name = RD.CommandShow(msg='Enter Usename', header=f"{flags.Default_text} Login").Input()
+            ask_Password = RD.CommandShow(msg='Enter Password', header=f"{flags.Default_text} Login").Input()
         else:    
             ask_name = input("Enter Usename")
             ask_Password = input("\nEnter Password")
         if print_ask and flags.EnableIntSoft == True:
-            RD.CommandSay(f'Typed Username: {ask_name}', 'WARNING')
-            RD.CommandSay(f'Typed Password: {ask_Password}', 'WARNING')
+            RD.CommandShow(f'Typed Username: {ask_name}').Show('WARNING')
+            RD.CommandShow(f'Typed Password: {ask_Password}').Show('WARNING')
         return ask_name, ask_Password
     
     def run():

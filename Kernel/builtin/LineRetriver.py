@@ -6,7 +6,7 @@ from Kernel import utils
 try:
     import clipboard
 except ModuleNotFoundError:
-    RD.CommandSay("Clipboard Module Is missing", 'WARNING')
+    RD.CommandShow("Clipboard Module Is missing").Show('WARNING')
     utils.Exit.exit()
 
 line_to_copy="0"
@@ -19,4 +19,4 @@ def Lastlines():
 base_folder = utils.SystemCalls.get_folder()
 Lastlines()
 clipboard.copy(str(line_to_copy))
-RD.CommandSay("DONE", 'OKGREEN')
+RD.CommandShow("DONE").Show('OKGREEN')

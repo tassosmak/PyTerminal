@@ -16,11 +16,11 @@ try:
         if not Command in flags._CML:
                 if not Command == '' :
                     if flags.EnableIntSoft:
-                        RD.CommandSay(f"This Commmand Isn't registered with The PyTerminal CML", "FAIL")
+                        RD.CommandShow(f"This Commmand Isn't registered with The PyTerminal CML").Show("FAIL")
                         LCommand = '0'
                         return
                     else:
-                        RD.CommandSay(f'Command {Command} Does Not Exist', 'WARNING')
+                        RD.CommandShow(f'Command {Command} Does Not Exist').Show('WARNING')
                         LCommand = '0'
                         return
                 else:
@@ -30,80 +30,78 @@ try:
 
         if Command == "ls":
             if flags.MODE == "9":
-                RD.CommandSay(SystemCalls.get_fl_contents())
+                RD.CommandShow(SystemCalls.get_fl_contents())
             else:
-                RD.CommandSay(answer="This Function isn't available within this mode", color="WARNING")
+                RD.CommandShow("This Function isn't available within this mode").Show("WARNING")
 
         if Command == "test":
             if flags.MODE == "9":
                 if not flags.pl == "3":
                     ThreadHandler.SecondaryTask(file_name="test", stay_end=True)
-                RD.CommandPush(message='tested', header='tested')
-                RD.CommandSay(answer="tested")
-                RD.CommandSay(answer="tested", color="WARNING")
-                RD.CommandSay(answer="tested", color="FAIL")
-                RD.CommandSay(answer="tested", color="OKGREEN")
-                RD.CommandSay(answer="tested", color="PURPLE")
-                RD.CommandSay(answer="tested", color="BLUE")
-                RD.CommandQuest(msg=f'Tested {SystemCalls.get_time()}').Info()
-                RD.CommandQuest(msg='Testing').Input()
-                RD.CommandSay(answer=RD.Quest_result, color="WARNING")
-                RD.CommandQuest(msg="tested").Choice()
-                if RD.Quest_result == 'Yes':
-                    RD.CommandSay(answer='Positive answer', color='WARNING')
+                RD.CommandShow('tested','tested').Push()
+                RD.CommandShow(msg="tested").Show()
+                RD.CommandShow(msg="tested").Show("WARNING")
+                RD.CommandShow(msg="tested").Show('FAIL')
+                RD.CommandShow(msg="tested").Show('OKBLUE')
+                RD.CommandShow(msg="tested").Show('PURPLE')
+                RD.CommandShow(msg="tested").Show('BLUE')
+                RD.CommandShow(msg=f'Tested {SystemCalls.get_time()}').Info()
+                RD.CommandShow(msg=RD.CommandShow(msg='Testing').Input()).Show(color="WARNING")
+                if RD.CommandShow(msg="tested").Choice() == 'Yes':
+                    RD.CommandShow(msg='Positive msg').Show(color='WARNING')
                 else:
-                    RD.CommandSay(answer='Negative answer', color='WARNING')
+                    RD.CommandShow(msg='Negative msg').Show('WARNING')
                 Audio.play('Kernel/AudioKit/src/Boot.mp3')
             else:
-                RD.CommandSay(answer="tested")
+                RD.CommandShow(msg="tested")
         
         if Command == "about" or Command == "version": 
-            RD.CommandPush(flags.Version)
+            RD.CommandShow(flags.Version).Push()
         
         
         if Command == "time":
-            RD.CommandPush(f'The time is: {SystemCalls.get_time(date=False)}')
+            RD.CommandShow(f'The time is: {SystemCalls.get_time(date=False)}').Push()
 
         if Command == "del" or Command == "delete":
             if not safe_md:
                 if flags.MODE == "2" or flags.MODE == '9':
-                    RD.CommandSay(SystemCalls.get_fl_contents())
+                    RD.CommandShow(SystemCalls.get_fl_contents())
                     ask_del = input("what file you want to delete:")
                     try:
-                        RD.CommandSay(answer=ask_del)
+                        RD.CommandShow(msg=ask_del)
                         os.remove(ask_del)
-                        RD.CommandSay(answer="DONE", color="OKGREEN")
+                        RD.CommandShow(msg="DONE").Show(color="OKGREEN")
                     except FileNotFoundError:
-                        RD.CommandQuest(msg="This file doesn't exist").Info()
+                        RD.CommandShow(msg="This file doesn't exist").Info()
                 else:
-                    RD.CommandQuest(msg="This Function isn't available within this mode").Info()
+                    RD.CommandShow(msg="This Function isn't available within this mode").Info()
 
         if Command == "create":
             if not safe_md:
                 if flags.MODE == "1":
-                    RD.CommandQuest(msg="What the name of the file you want to create?").Input()
+                    RD.CommandShow(msg="What the name of the file you want to create?").Input()
                     try:
                         open(RD.Quest_result, "x")
-                        RD.CommandSay(answer="DONE", color="OKGREEN")
+                        RD.CommandShow(msg="DONE").Show(color="OKGREEN")
                     except FileExistsError:
-                        RD.CommandQuest(msg="This file already exist try again").Info()
+                        RD.CommandShow(msg="This file already exist try again").Info()
                     except UnboundLocalError:
-                        RD.CommandQuest(msg="There was a Problem try again").Info()
+                        RD.CommandShow(msg="There was a Problem try again").Info()
                 elif flags.MODE == "2" or flags.MODE == "9":
-                        RD.CommandQuest(msg="What the name of the file you want to create?").Input()
+                        RD.CommandShow(msg="What the name of the file you want to create?").Input()
                         try:
                             open(RD.Quest_result, "x")
-                            RD.CommandSay(answer="DONE", color="OKGREEN")
+                            RD.CommandShow(msg="DONE").Info(color="OKGREEN")
                             ask_name = RD.Quest_result
                         except FileExistsError:
-                            RD.CommandQuest(msg="This file already exist do you want to delete it. if yes type 'Y'", Button1='No', Button2='Yes').Choice()
+                            RD.CommandShow(msg="This file already exist do you want to delete it. if yes type 'Y'").Choice()
                             if RD.Quest_result == "Yes" or RD.Quest_result == "yes":
                                 os.remove(ask_name)
-                                RD.CommandSay(answer="DONE", color="OKGREEN")
+                                RD.CommandShow(msg="DONE").Info(color="OKGREEN")
                         except UnboundLocalError:
                                 pass
                 else:
-                    RD.CommandQuest(msg="This Function isn't available within this mode").Info()
+                    RD.CommandShow(msg="This Function isn't available within this mode").Info()
 
         if Command == "latest":
             ThreadHandler.SecondaryTask(file_name="LineRetriver")
@@ -130,9 +128,9 @@ try:
 
         if Command == "print md":
             if not safe_md:
-                RD.CommandSay(answer=flags.MODE)
+                RD.CommandShow(msg=flags.MODE)
             else:
-                RD.CommandSay("You Are in Native-Mode", color='WARNING')
+                RD.CommandShow("You Are in Native-Mode", color='WARNING')
 
 
 
@@ -140,23 +138,23 @@ try:
             if not safe_md:
                 if flags.net:
                     from Kernel.builtin import Server, client
-                    RD.CommandQuest(msg='do you want to be host or reciever', Button1='Host', Button2='Talker').Info()
+                    RD.CommandShow(msg='do you want to be host or reciever').Choice(Button1='Host', Button2='Talker')
                     #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
                     if RD.Quest_result == "Host":
                         Server.chat()
                     elif RD.Quest_result == "Talker":
                         #ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
-                        RD.CommandQuest(msg='To Which IP you want to talk to Type Below!').Input()
+                        RD.CommandShow(msg='To Which IP you want to talk to Type Below!').Input()
                         ask_recv = str(RD.Quest_result)
                         try: 
                             client.Chat(IP=ask_recv)
                         except:
                             if not RD.Quest_result == '':
-                               RD.CommandSay(answer="This User is Unavilable at the moment\ntry again later", color="WARNING")
+                               RD.CommandShow(msg="This User is Unavilable at the moment\ntry again later").Show(color="WARNING")
                             else:
                                pass 
                 else:
-                    RD.CommandSay(answer="You Are in Safe Mode you can't connect to the internet right now")
+                    RD.CommandShow(msg="You Are in Safe Mode you can't connect to the internet right now").Show()
 
 
 
@@ -167,7 +165,7 @@ try:
             if flags.EnableIntSoft and flags.pl == '1':
                 ThreadHandler.SecondaryTask('view_file')
             else:
-                RD.CommandQuest(msg='type the name of the file you want to view').Input()
+                RD.CommandShow(msg='type the name of the file you want to view').Input()
                 #ask_file = input("type the name of the file you want to view\n:")
                 if flags.pl == "1" or flags.pl == "3":
                     if not RD.Quest_result in flags.file_list:
@@ -180,7 +178,7 @@ try:
             if not safe_md:
                 if flags.MODE == "2" or flags.MODE == '9':           
                     if flags.pl == "1" or flags.pl == "3":
-                        RD.CommandQuest(msg='Type the name of the file you want to edit').Input()
+                        RD.CommandShow(msg='Type the name of the file you want to edit').Input()
                         if not RD.Quest_result in flags.file_list:
                             #ask_file = input("type the name of the file you want to edit\n:")
                             if RD.Quest_result.endswith(".py"):
@@ -188,19 +186,19 @@ try:
                             else:
                                 os.system(f"nano {RD.Quest_result}")
                     elif flags.pl == "2":
-                        RD.CommandQuest(msg='Type the name of the file you want to edit').Input()
+                        RD.CommandShow(msg='Type the name of the file you want to edit').Input()
                         if not RD.Quest_result in flags.file_list:
                             os.system(f'notepad {RD.Quest_result}')
                 else:
-                    RD.CommandSay(answer="This Function isn't available within this mode", color="FAIL")
+                    RD.CommandShow(msg="This Function isn't available within this mode").Show(color="FAIL")
         
         if Command == "weather forecast":
             if not safe_md:
                 if flags.net:
                     os.system("curl wttr.in/")
-                    RD.CommandSay(answer="This is a fork from @igor_chubin", color="UNDERLINE") 
+                    RD.CommandShow(msg="This is a fork from @igor_chubin").Show(color="UNDERLINE") 
                 else:
-                    RD.CommandSay(answer="You Are in Safe Mode so you can't connect to the internet right now")
+                    RD.CommandShow(msg="You Are in Safe Mode so you can't connect to the internet right now").Show()
 
         if Command == "activity monitor":
             if not safe_md:
@@ -208,7 +206,7 @@ try:
                     if flags.pl == "1" or flags.pl == "3":
                         ThreadHandler.SecondaryTask('top')
                 else:
-                    RD.CommandSay(answer="This Function isn't available within this mode", color="FAIL")
+                    RD.CommandShow(msg="This Function isn't available within this mode").Show(color="FAIL")
 
         if Command == "countdown":
             if not safe_md:
@@ -218,11 +216,11 @@ try:
         
         if Command == "check site status":
             if flags.MODE == "2" or flags.MODE == "9":
-                RD.CommandQuest(msg="type the site you want to check:\n").Input()
+                RD.CommandShow(msg="type the site you want to check:\n").Input()
                 os.system(f"ping {RD.Quest_result}")
                 
             else:
-                RD.CommandSay(answer="This Function isn't available within this mode", color="FAIL")
+                RD.CommandShow(msg="This Function isn't available within this mode").Show('FAIL')
 
 
         if Command == "devices":
@@ -235,7 +233,7 @@ try:
                         if Kernel.NetworkingKit.auth.DONE:
                             ThreadHandler.SecondaryTask(file_name="Handle-External-Devices")
                 else:
-                    RD.CommandSay("NetworkingKit Isn't Supported On Windows")
+                    RD.CommandShow("NetworkingKit Isn't Supported On Windows").Show()
 
         if Command == "logout":
             clear_screen()
@@ -255,18 +253,18 @@ try:
             if not safe_md:
                 if flags.EnableIntSoft:
                     clear_screen()
-                    RD.CommandSay(answer=flags.Default_text, color='PURPLE')
-                    RD.CommandSay('')
-                    RD.CommandSay(answer=sys.version, color='OKGREEN')
-                    RD.CommandSay('')
-                    RD.CommandSay(answer=("Platform ID: " + flags.pl), color='BLUE')
-                    RD.CommandSay(answer=("Username: " + flags.USERNAME), color='BLUE')
-                    RD.CommandSay(answer="\nFlags Below:", color='Bold Green')
-                    RD.CommandSay(("UserLess Connection", flags.UserLess_Connection))
-                    RD.CommandSay(("GO TO FTU", flags.GO_TO_FTU))
-                    RD.CommandSay(("Fully GUI", flags.Fully_GUI))
-                    RD.CommandSay(("Threading", flags.ThreadActivated))
-                    RD.CommandSay(("Inside_Thread", flags.Inside_Thread))
+                    RD.CommandShow(msg=flags.Default_text).Show('PURPLE')
+                    RD.CommandShow('').Show()
+                    RD.CommandShow(msg=sys.version, color='OKGREEN')
+                    RD.CommandShow('').Show()
+                    RD.CommandShow(msg=("Platform ID: " + flags.pl)).Show(color='BLUE')
+                    RD.CommandShow(msg=("Username: " + flags.USERNAME)).Show('BLUE')
+                    RD.CommandShow(msg="\nFlags Below:").Show('Bold Green')
+                    RD.CommandShow(("UserLess Connection", flags.UserLess_Connection)).Show()
+                    RD.CommandShow(("GO TO FTU", flags.GO_TO_FTU)).Show()
+                    RD.CommandShow(("Fully GUI", flags.Fully_GUI)).Show()
+                    RD.CommandShow(("Threading", flags.ThreadActivated)).Show()
+                    RD.CommandShow(("Inside_Thread", flags.Inside_Thread)).Show()
                 else:
                     from Kernel import credentials as cred
                     MODE = flags.MODE
@@ -275,10 +273,10 @@ try:
         
         if Command == "show cmd" or Command == 'show apps' or Command == 'help':
             if flags.EnableIntSoft:
-                RD.CommandSay(flags._CML, color='BLUE')
+                RD.CommandShow(flags._CML).Show('BLUE')
             else:
-                RD.CommandSay('Available Commands', 'OKGREEN')
-                RD.CommandSay(answer=SystemCalls.get_fl_contents())
+                RD.CommandShow('Available Commands').Show('OKGREEN')
+                RD.CommandShow(msg=SystemCalls.get_fl_contents()).Show()
         
         if Command == "registry":
             if flags.MODE == '9':
@@ -289,12 +287,12 @@ try:
                 if flags.pl == '1':
                     ThreadHandler.SecondaryTask('Browser')
                 else:
-                    RD.CommandSay(answer='Not Supported', color='WARNING')
+                    RD.CommandShow(msg='Not Supported').Show('WARNING')
         
         if Command == 'ofp':
             if not safe_md:
                 if flags.EnableIntSoft and flags.MODE == '9':
-                    RD.CommandSay('Check The Launced Window')
+                    RD.CommandShow('Check The Launced Window').Show()
                     ThreadHandler.SecondaryTask('OFP')
                     
         if Command == 'show flags':

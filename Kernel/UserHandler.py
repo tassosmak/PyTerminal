@@ -58,5 +58,5 @@ def advanced_init():
     flags.USERNAME = "Lets Keep It Private"
     flags.MODE = '9'
     flags.FTU = '1'
-    RD.CommandSay(answer=sys.version, color='OKGREEN')
-    RD.CommandPush(message="Lets keep it private")
+    RD.CommandShow(sys.version).Show('GREEN')
+    RD.CommandShow(msg="Lets keep it private").Push()
