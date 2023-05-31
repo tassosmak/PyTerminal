@@ -11,4 +11,4 @@ while t:
     print(timer, end="\r")
     time.sleep(1)
     t -= 1
-RD.CommandShow('Your Countdown Has Ended' 'Countdown').Push()
+RD.CommandShow('Your Countdown Has Ended', 'Countdown').Push()

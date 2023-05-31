@@ -1,17 +1,17 @@
-try:
-    '''
+'''
     Adding Modules from The Kernel
-    '''
-    from Kernel.utils import Exit, SystemCalls, clear_screen
-    from Kernel.RendererKit import Renderer as RD
-    from Kernel import ThreadHandler, flags
-    from Kernel.AudioKit import Audio
-    from Kernel.src import registry
-    
-    import sys
-    import os
+'''
+from Kernel.utils import SystemCalls, clear_screen, Exit
+from Kernel.RendererKit import Renderer as RD
+from Kernel import ThreadHandler, flags
+from Kernel.AudioKit import Audio
+from Kernel.src import registry
 
-    def CommandList(Command=str, safe_md=False):
+import sys
+import os
+
+def CommandList(Command=str, safe_md=False):
+    try:
         global ask_recv, LCommand
         if not Command in flags._CML:
                 if not Command == '' :
@@ -30,7 +30,7 @@ try:
 
         if Command == "ls":
             if flags.MODE == "9":
-                RD.CommandShow(SystemCalls.get_fl_contents())
+                RD.CommandShow(SystemCalls.get_fl_contents()).Show()
             else:
                 RD.CommandShow("This Function isn't available within this mode").Show("WARNING")
 
@@ -150,9 +150,8 @@ try:
                             client.Chat(IP=ask_recv)
                         except:
                             if not RD.Quest_result == '':
-                               RD.CommandShow(msg="This User is Unavilable at the moment\ntry again later").Show(color="WARNING")
-                            else:
-                               pass 
+                                RD.CommandShow(msg="This User is Unavilable at the moment\ntry again later").Show(color="WARNING")
+                            else: pass 
                 else:
                     RD.CommandShow(msg="You Are in Safe Mode you can't connect to the internet right now").Show()
 
@@ -255,7 +254,7 @@ try:
                     clear_screen()
                     RD.CommandShow(msg=flags.Default_text).Show('PURPLE')
                     RD.CommandShow('').Show()
-                    RD.CommandShow(msg=sys.version, color='OKGREEN')
+                    RD.CommandShow(msg=sys.version).Show('OKGREEN')
                     RD.CommandShow('').Show()
                     RD.CommandShow(msg=("Platform ID: " + flags.pl)).Show(color='BLUE')
                     RD.CommandShow(msg=("Username: " + flags.USERNAME)).Show('BLUE')
@@ -312,10 +311,10 @@ try:
         if Command == 'stocks':
             if not safe_md:
                 ThreadHandler.SecondaryTask('stock_viewer')
-            
+        
 
-except:
-    try:
-        from Kernel.utils import Exit
-        Exit.error_exit()
-    except: pass
+    except:
+        try:
+            from Kernel.utils import Exit as Eexit
+            Eexit.error_exit()
+        except: pass
