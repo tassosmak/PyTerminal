@@ -13,20 +13,24 @@ import os
 def CommandList(Command=str, safe_md=False):
     try:
         global ask_recv, LCommand
-        if not Command in flags._CML:
-                if not Command == '' :
-                    if flags.EnableIntSoft:
-                        RD.CommandShow(f"This Commmand Isn't registered with The PyTerminal CML").Show("FAIL")
-                        LCommand = '0'
-                        return
-                    else:
-                        RD.CommandShow(f'Command {Command} Does Not Exist').Show('WARNING')
-                        LCommand = '0'
-                        return
-                else:
-                    LCommand = '0'
+        if flags.EnableIntSoft and flags.Run_Straight_Builtin and flags.MODE == '9':
+            ThreadHandler.SecondaryTask(Command)
+            return
         else:
-            LCommand = Command
+            if not Command in flags._CML:
+                    if not Command == '' :
+                        if flags.EnableIntSoft:
+                            RD.CommandShow(f"This Commmand Isn't registered with The PyTerminal CML").Show("FAIL")
+                            LCommand = '0'
+                            return
+                        else:
+                            RD.CommandShow(f'Command {Command} Does Not Exist').Show('WARNING')
+                            LCommand = '0'
+                            return
+                    else:
+                        LCommand = '0'
+            else:
+                LCommand = Command
 
         if Command == "ls":
             if flags.MODE == "9":

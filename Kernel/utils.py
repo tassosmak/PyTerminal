@@ -22,7 +22,7 @@ def edit_json(file_name=f'Info.json', loc1="", loc2="", content=""):
         f.truncate()
 
 def set_flags():
-        ask_which = input('\n1)Userless Connection\n2)GO TO FTU\n3)Fully GUI\n4)Run-Threads Inside\n\nType Here:')
+        ask_which = input('\n1)Userless Connection\n2)GO TO FTU\n3)Fully GUI\n4)Run-Threads Inside\n5)Run-Straight-Builtin\n\nType Here:')
         
         if ask_which == '1':
             ask_userless_state = input('Enable Or Disable?')
@@ -59,11 +59,20 @@ def set_flags():
             elif ask_Inside_Thread == 'Disable' or ask_Inside_Thread == 'disable':
                 RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content='0')
+                
+        elif ask_which == '5':
+            ask_Run_Straight_Builtin = input('Enable Or Disable?')
+            if ask_Run_Straight_Builtin == 'Enable' or ask_Run_Straight_Builtin == 'enable':
+                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Straight-Builtin', content='1')
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
+            elif ask_Run_Straight_Builtin == 'Disable' or ask_Run_Straight_Builtin == 'disable':
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
+                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Straight-Builtin', content='0')
 
 def args_help():
-    # RD.CommandSay(answer=(flags.Default_text + '\nThose Are The Available Commands:'), color='BLUE')
+    # RD.CommandSay(msg=(flags.Default_text + '\nThose Are The Available Commands:'), color='BLUE')
     RD.CommandShow(msg=f'{RD.bcolors.OKBLUE}{flags.Default_text}{RD.bcolors.WHITE}\nThose Are The Available Commands:').Show(legacy=True)
-    RD.CommandShow(answer=flags.ArgsList).Show("OKGREEN")
+    RD.CommandShow(msg=flags.ArgsList).Show("OKGREEN")
 
 
 class Exit:

@@ -45,6 +45,15 @@ def _get_propiatery(print_credentials=False):
         flags.Inside_Thread = True
     if print_credentials:
         RD.CommandShow(msg=("Run-Threads Inside:", Inside_Thread)).Show()
+    
+    try:
+        Run_Straight_Builtin = data['user_login']['Run-Straight-Builtin']
+    except KeyError:
+        raise FileNotFoundError
+    if Run_Straight_Builtin == "1":
+        flags.Run_Straight_Builtin = True
+    if print_credentials:
+        RD.CommandShow(msg=("Run_Straight_Builtin:", Run_Straight_Builtin)).Show()
     f.close()
 
     
