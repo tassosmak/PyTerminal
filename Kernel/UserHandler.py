@@ -17,7 +17,7 @@ def loader(run=True):
         try:
             if flags.EnableIntSoft:
                 cred._get_propiatery(True)
-                if flags.UserLess_Connection == True or flags.GO_TO_FTU == True:
+                if flags.UserLess_Connection or flags.GO_TO_FTU:
                     advanced_init()
                 else:
                     init()

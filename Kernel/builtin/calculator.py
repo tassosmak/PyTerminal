@@ -107,12 +107,12 @@ def print_history():
     Print the history of calculations.
     """
     for h in history:
-        RD.CommandQuest(msg=h).Info()
+        RD.CommandShow(msg=h).Info()
 
 # Define the main loop
 while True:
     # Get input from the user
-    expression = RD.CommandQuest(msg='Enter Your Operation', header='Calculator').Input()
+    expression = RD.CommandShow(msg='Enter Your Operation', header='Calculator').Input()
     
     # Exit the program if the user types "exit"
     if expression == 'exit':
@@ -125,4 +125,4 @@ while True:
 
     # Parse and evaluate the expression
     result = parse_expression(expression)
-    RD.CommandPush(f'Your Result Is {result}', 'Calculator')
+    RD.CommandShow(f'Your Result Is {result}', 'Calculator').Push()

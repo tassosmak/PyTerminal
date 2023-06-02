@@ -1,5 +1,5 @@
 '''
-    Adding Modules from The Kernel
+Adding Modules from The Kernel
 '''
 from Kernel.utils import SystemCalls, clear_screen, Exit
 from Kernel.RendererKit import Renderer as RD
@@ -55,7 +55,7 @@ def CommandList(Command=str, safe_md=False):
             else:
                 RD.CommandShow(msg="tested")
         
-        if Command == "about" or Command == "version": 
+        if Command == "about" or Command == "version":
             RD.CommandShow(flags.Version).Push()
         
         
