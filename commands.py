@@ -57,7 +57,7 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg='Negative msg').Show('WARNING')
                 Audio.play('Kernel/AudioKit/src/Boot.mp3')
             else:
-                RD.CommandShow(msg="tested")
+                RD.CommandShow("tested").Show()
         
         if Command == "about" or Command == "version":
             RD.CommandShow(flags.Version).Push()
@@ -82,7 +82,20 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == "create":
             if not safe_md:
-                if flags.MODE == "1":
+                if not flags.MODE == '1':
+                        RD.CommandShow(msg="What the name of the file you want to create?").Input()
+                        ask_name = RD.Quest_result
+                        try:
+                            open(ask_name, "x")
+                            RD.CommandShow(msg="DONE").Info()
+                        except FileExistsError:
+                            RD.CommandShow(msg="This file already exist do you want to delete it?").Choice()
+                            if "yes" in RD.Quest_result.lower():
+                                os.remove(f'{flags.base_folder}/../{ask_name}')
+                                RD.CommandShow(msg="DONE").Info()
+                        except UnboundLocalError:
+                                pass
+                else:
                     RD.CommandShow(msg="What the name of the file you want to create?").Input()
                     try:
                         open(RD.Quest_result, "x")
@@ -91,24 +104,10 @@ def CommandList(Command=str, safe_md=False):
                         RD.CommandShow(msg="This file already exist try again").Info()
                     except UnboundLocalError:
                         RD.CommandShow(msg="There was a Problem try again").Info()
-                elif flags.MODE == "2" or flags.MODE == "9":
-                        RD.CommandShow(msg="What the name of the file you want to create?").Input()
-                        try:
-                            open(RD.Quest_result, "x")
-                            RD.CommandShow(msg="DONE").Info(color="OKGREEN")
-                            ask_name = RD.Quest_result
-                        except FileExistsError:
-                            RD.CommandShow(msg="This file already exist do you want to delete it. if yes type 'Y'").Choice()
-                            if RD.Quest_result == "Yes" or RD.Quest_result == "yes":
-                                os.remove(ask_name)
-                                RD.CommandShow(msg="DONE").Info(color="OKGREEN")
-                        except UnboundLocalError:
-                                pass
-                else:
-                    RD.CommandShow(msg="This Function isn't available within this mode").Info()
 
         if Command == "latest":
-            ThreadHandler.SecondaryTask(file_name="LineRetriver")
+            if not safe_md:
+                ThreadHandler.SecondaryTask(file_name="LineRetriver")
             
 
         if Command == "gen password":
@@ -219,7 +218,7 @@ def CommandList(Command=str, safe_md=False):
         
         if Command == "check site status":
             if flags.MODE == "2" or flags.MODE == "9":
-                RD.CommandShow(msg="type the site you want to check:\n").Input()
+                RD.CommandShow("Type The Adress Of The Site You Want To Check", 'Down Detecter').Input()
                 os.system(f"ping {RD.Quest_result}")
                 
             else:
@@ -247,7 +246,7 @@ def CommandList(Command=str, safe_md=False):
                 if flags.net:
                     ThreadHandler.SecondaryTask('chatgpt')
         if Command == 'chatbox install':
-            if not safe_md:
+            if not safe_md: 
                 if flags.net:
                     os.system('python3 src/chatgpt.py install')
                     clear_screen()
@@ -269,9 +268,9 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(("Threading", flags.ThreadActivated)).Show()
                     RD.CommandShow(("Inside_Thread", flags.Inside_Thread)).Show()
                 else:
-                    from Kernel import credentials as cred
+                    from Kernel.credentials import _get_credentials
                     MODE = flags.MODE
-                    cred._get_credentials(True)
+                    _get_credentials(True)
                     flags.MODE = MODE
         
         if Command == "show cmd" or Command == 'show apps' or Command == 'help':
@@ -317,8 +316,4 @@ def CommandList(Command=str, safe_md=False):
                 ThreadHandler.SecondaryTask('stock_viewer')
         
 
-    except:
-        try:
-            from Kernel.utils import Exit as Eexit
-            Eexit.error_exit()
-        except: pass
+    except: Exit.error_exit()

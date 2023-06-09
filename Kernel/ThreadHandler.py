@@ -31,5 +31,5 @@ def run(MainThread):
         while True:
             t1.join()
             t2.join()
-    except BaseException:
+    except:
         logger.log_error("ThreadHandler.py")

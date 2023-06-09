@@ -24,7 +24,7 @@ class FTU_init:
             
     def use_config(self):
         #use_configure
-        RD.CommandShow(msg="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n").Show()
+        RD.CommandShow(msg=f"Welcome To {flags.Version} By Anastasios Makrostergios\nDon't Wory it an one time only message ;)\n").Show('OKGREEN')
         RD.CommandShow(msg='How Do You want to use this instanche?').Choice(Button1='Compact', Button2='Personal')
         if RD.Quest_result == 'Personal' or RD.Quest_result == '1':
             ask_type = '1'
