@@ -25,6 +25,16 @@ class bcolors:
 
 
 class CommandShow:
+    '''
+    PyTerminal Rendering Library
+    
+    Push: Notification
+    Choice: Dialog With Two Options
+    Info: Dialog just for Info-Warning's
+    Input: Dialog Where The User Types Text
+    Show: Works like a print just with colors
+    '''
+    
     Quest_result = ''
     
     def __init__(self, msg="Blank Request", header=flags.Default_text):
