@@ -1,3 +1,4 @@
+"""PyTerminal Cryptography Library"""
 from Kernel.CryptographyKit.utils import _d_encrypt, edit_json
 import base64
 

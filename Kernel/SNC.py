@@ -1,3 +1,4 @@
+"""PyTerminal SNC(SerialNumberCheck) Library"""
 # SNC short for : SerialNumberCheck
 
 from Kernel import credentials as cred

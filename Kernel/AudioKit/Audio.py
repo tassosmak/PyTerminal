@@ -1,3 +1,4 @@
+"""PyTerminal Audio Library"""
 # to fix errors type this ffmpeg -i !original_file! !new_file!
 from Kernel.RendererKit import Renderer as RD
 from Kernel import flags

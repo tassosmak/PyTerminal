@@ -1,3 +1,7 @@
+"""
+PyTerminal Rendering Library
+"""
+
 from Kernel.NotificationsKit import Alert, Buttons, Dialog, Icon
 
 try: from Kernel.RendererKit.HighlightKit import color_text 
@@ -6,10 +10,6 @@ except: pass
 from Kernel import flags, utils
 import subprocess
 import os
-
-f'''
-PyTerminal Rendering Library
-'''
 
 Quest_result = ''
 
@@ -32,11 +32,11 @@ class CommandShow:
     '''
     PyTerminal Rendering Library
     
-    Push: Notification
-    Choice: Dialog With Two Options
-    Info: Dialog just for Info-Warning's
-    Input: Dialog Where The User Types Text
-    Show: Works like a print just with colors
+    - Push: Notification
+    - Choice: Dialog With Two Options
+    - Info: Dialog just for Info-Warning's
+    - Input: Dialog Where The User Types Text
+    - Show: Works like a print just with colors
     '''
     
     Quest_result = ''
