@@ -1,5 +1,5 @@
 '''
-Adding Modules from The Kernel
+The Commnand List
 '''
 from Kernel.utils import SystemCalls, clear_screen, Exit
 from Kernel.RendererKit import Renderer as RD
