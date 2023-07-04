@@ -1,7 +1,8 @@
 '''
 The Commnand List
 '''
-from Kernel.utils import SystemCalls, clear_screen, Exit
+from Kernel.utils import clear_screen, Exit
+from Kernel.SystemCalls import SystemCalls
 from Kernel.RendererKit import Renderer as RD
 from Kernel import ThreadHandler, flags
 from Kernel.AudioKit import Audio

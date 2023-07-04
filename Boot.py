@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 try:
-    from Kernel.utils import args_help, set_flags, SystemCalls
     from Kernel.ErrorLoggingKit import Logger as logger
+    from Kernel.utils import args_help, set_flags
+    from Kernel.SystemCalls import SystemCalls
     from Kernel import ThreadHandler as TH
     from Kernel import credentials as cred
     from Kernel.UserHandler import loader

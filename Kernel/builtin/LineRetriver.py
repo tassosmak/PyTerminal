@@ -1,6 +1,7 @@
 from src import utils
 utils.add_depend(str(utils.sys.argv[1]))
 from Kernel.RendererKit import Renderer as RD
+from Kernel.SystemCalls import SystemCalls
 from Kernel import utils
 
 try:
@@ -16,7 +17,7 @@ def Lastlines():
         for line in (file.readlines() [-1:]):
             line_to_copy=line
 
-base_folder = utils.SystemCalls.get_folder()
+base_folder = SystemCalls.get_folder()
 Lastlines()
 clipboard.copy(str(line_to_copy))
 RD.CommandShow("DONE").Show('OKGREEN')

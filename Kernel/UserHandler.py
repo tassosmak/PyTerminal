@@ -1,4 +1,5 @@
-from Kernel.utils import Exit, clear_gui, SystemCalls, pl_finder
+from Kernel.utils import Exit, clear_gui, pl_finder
+from Kernel.SystemCalls import SystemCalls
 from Kernel import credentials as cred, flags
 from Kernel.RendererKit import Renderer as RD
 from Kernel.LoginKit.LoginUI import LoginHandler

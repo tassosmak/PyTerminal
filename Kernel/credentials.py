@@ -1,4 +1,5 @@
 from Kernel.RendererKit import Renderer as RD
+from Kernel.SystemCalls import SystemCalls
 from Kernel import utils, flags, SNC
 import json
 import os
@@ -64,7 +65,7 @@ FTU = 0
 GUI = 0
 SerialNum = 0
 def _get_credentials(print_credentials=False):
-    utils.SystemCalls.get_folder()
+    SystemCalls.get_folder()
     global Name, Password, Mode, FTU, GUI, SerialNum
     try:
         f = open(f'{flags.base_folder}/../Info.json')

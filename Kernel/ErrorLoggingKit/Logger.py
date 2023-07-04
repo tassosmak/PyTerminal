@@ -7,7 +7,8 @@ def log_error(message="NO_MSG"):
     if flags.FTU == '1':
         from Kernel.ErrorLoggingKit.ErrorPreviewer import ErrorScreen
         from Kernel.RendererKit.HighlightKit.console import Console
-        from Kernel.utils import clear_screen, SystemCalls
+        from Kernel.SystemCalls import SystemCalls
+        from Kernel.utils import clear_screen
         from Kernel.AudioKit import Audio
         import logging
         import os

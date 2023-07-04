@@ -1,6 +1,6 @@
+from Kernel.CryptographyKit import EncryptPassword
 from Kernel.RendererKit import Renderer as RD
 from Kernel import credentials as cred, flags
-from Kernel.CryptographyKit import EncryptPassword
 
 class LoginHandler():
     def __init__(self):

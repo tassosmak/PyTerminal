@@ -1,6 +1,7 @@
-from Kernel.utils import ModeHandling as MoDeH, Exit, SystemCalls
+from Kernel.utils import ModeHandling as MoDeH, Exit
 import ModeHandling as MDH #MDH for MODE HANDLING
 from Kernel.RendererKit import Renderer as RD
+from Kernel.SystemCalls import SystemCalls
 from Kernel.UserHandler import loader
 from Kernel import flags
 
