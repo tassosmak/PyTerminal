@@ -45,6 +45,10 @@ try:
             
         elif str(sys.argv[1]) == 'NoThread':
             MainTask(True)
+        
+        elif str(sys.argv[1]) == 'ForgotPassword':
+            cred._get_credentials()
+            SystemCalls.show_pswd()
             
         else:
             args_help()            

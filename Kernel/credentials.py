@@ -102,6 +102,7 @@ def _get_credentials(print_credentials=False):
 
 
     Password = data['user_credentials']['Password']
+    flags.PASSWORD = Password
     if print_credentials:
         if flags.EnableIntSoft:
             RD.CommandShow(msg=("Password:", Password)).Show()

@@ -92,8 +92,11 @@ class Exit:
                 
     def exit():
         os._exit(1)
-
 class SystemCalls:
+    '''
+    Main API
+    ========
+    '''
     
     def get_time(date=True, secs=False):
         now = datetime.datetime.now()
@@ -151,6 +154,15 @@ class SystemCalls:
                 value = eval(f'flags.{arg}')
                 output = arg, type(value), value
                 RD.CommandShow(msg=output).Show(color='BLUE', legacy=True)
+    
+    def show_pswd():
+        #This Idiot Forgot His Password
+        if flags.EnableIntSoft:
+            try: 
+                from Kernel.CryptographyKit import DecryptPassword
+                RD.CommandShow(DecryptPassword.decrypt_password(flags.PASSWORD)).Show('BLUE', True)
+            except ImportError: args_help()
+        
 
 def clear_screen():
     if flags.pl == "1" or flags.pl == "3":
