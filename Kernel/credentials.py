@@ -139,8 +139,8 @@ def _get_credentials(print_credentials=False):
     except IndexError:
         if flags.EnableIntSoft:
             RD.CommandShow("The Serial number of the computer doesn't match the serial number given").Show('FAIL')
-        utils.SystemCalls.clear_error()
-        utils.SystemCalls.clear_history()
+        SystemCalls.clear_error()
+        SystemCalls.clear_history()
         from Kernel.FTU import FTU_init
         FTU_init(True).run()
         flags.BuildReseted = True
