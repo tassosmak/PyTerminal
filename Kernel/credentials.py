@@ -1,4 +1,3 @@
-from Kernel.CryptographyKit import DecryptPassword
 from Kernel.RendererKit import Renderer as RD
 from Kernel import utils, flags, SNC
 import json
@@ -104,8 +103,9 @@ def _get_credentials(print_credentials=False):
 
     Password = data['user_credentials']['Password']
     if print_credentials:
-        RD.CommandShow(msg=("Password:", Password)).Show()
-    Password = DecryptPassword.decrypt_password(password=Password)
+        if flags.EnableIntSoft:
+            RD.CommandShow(msg=("Password:", Password)).Show()
+    # Password = DecryptPassword.decrypt_password(password=Password)
 
 
     Internal_Software = data['Internal-Software']['Enable']

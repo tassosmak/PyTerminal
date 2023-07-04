@@ -1,5 +1,6 @@
 from Kernel.RendererKit import Renderer as RD
 from Kernel import credentials as cred, flags
+from Kernel.CryptographyKit import EncryptPassword
 
 class LoginHandler():
     def __init__(self):
@@ -28,7 +29,7 @@ class LoginHandler():
             ask_Password = RD.CommandShow(msg='Enter Password', header=f"{flags.Default_text} Login").Input()
         else:    
             ask_name = input("Enter Usename")
-            ask_Password = input("\nEnter Password")
+            ask_Password = EncryptPassword.encrypt_password(input("\nEnter Password"), save=False)
         if print_ask and flags.EnableIntSoft == True:
             RD.CommandShow(f'Typed Username: {ask_name}').Show('WARNING')
             RD.CommandShow(f'Typed Password: {ask_Password}').Show('WARNING')
