@@ -68,12 +68,12 @@ class SystemCalls:
             if not arg.startswith('_'):
                 value = eval(f'flags.{arg}')
                 output = arg, type(value), value
-                RD.CommandShow(msg=output).Show(color='BLUE', legacy=True)
+                RD.CommandShow(msg=output).Show(color='BLUE')
     
     def show_pswd():
         #This Idiot Forgot His Password
         if flags.EnableIntSoft:
             try: 
                 from Kernel.CryptographyKit import DecryptPassword
-                RD.CommandShow(DecryptPassword.decrypt_password(flags.PASSWORD)).Show('BLUE', True)
+                RD.CommandShow(DecryptPassword.decrypt_password(flags.PASSWORD)).Show('BLUE')
             except ImportError: args_help()

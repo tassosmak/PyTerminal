@@ -3,7 +3,6 @@ try:
     from Kernel.ErrorLoggingKit import Logger as logger
     from Kernel.utils import args_help, set_flags
     from Kernel.SystemCalls import SystemCalls
-    import Kernel.src.CallGraph as CallGraph
     from Kernel import ThreadHandler as TH
     from Kernel import credentials as cred
     from Kernel.UserHandler import loader
@@ -45,7 +44,7 @@ try:
             
         elif str(sys.argv[1]) == 'NoThread':
             flags.ThreadActivated = False
-            CallGraph.call_graph_filtered(MainTask)
+            MainTask()
         
         elif str(sys.argv[1]) == 'ForgotPassword':
             cred._get_credentials()
