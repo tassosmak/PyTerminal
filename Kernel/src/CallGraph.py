@@ -9,7 +9,7 @@ custom_include=None
 """A call graph generator filtered"""
 def Grapher(func):
     def wrapper():
-        if flags.EnableIntSoft:
+        if flags.EnableIntSoft and '1' in flags.FTU:
             config = Config()
             config.trace_filter = GlobbingFilter(include=custom_include)
             graphviz = GraphvizOutput(output_file=output_png)
