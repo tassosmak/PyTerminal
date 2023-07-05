@@ -6,6 +6,7 @@ import Kernel.src.CallGraph as CallGraph
 from Kernel.UserHandler import loader
 from Kernel import flags
 
+@CallGraph.Grapher
 @SystemCalls.measure_time
 def _run():
         try:
@@ -22,7 +23,7 @@ def _run():
 
 def boot():
     try:
-        CallGraph.call_graph_filtered(function_=_run)
+        _run()
     except KeyboardInterrupt:
         if flags.EnableIntSoft:
             RD.CommandShow(msg='KeyboardInterrupt').Info()

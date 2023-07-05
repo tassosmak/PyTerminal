@@ -1,6 +1,5 @@
 from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel.RendererKit import Renderer as RD
-# from Kernel.SystemCalls import SystemCalls
 from Kernel.AudioKit import Audio
 from Kernel import flags
 import subprocess
