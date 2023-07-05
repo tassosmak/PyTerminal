@@ -19,7 +19,7 @@ def edit_json(file_name=f'Info.json', loc1="", loc2="", content=""):
         f.truncate()
 
 def set_flags():
-        ask_which = input('\n1)Userless Connection\n2)GO TO FTU\n3)Fully GUI\n4)Run-Threads Inside\n5)Run-Straight-Builtin\n\nType Here:')
+        ask_which = input('\n1)Userless Connection\n2)GO TO FTU\n3)Fully GUI\n4)Run-Threads Inside\n5)Run-Straight-Builtin\n6)Create_Graph\n\nType Here:')
         
         if ask_which == '1':
             ask_userless_state = input('Enable Or Disable?')
@@ -65,6 +65,15 @@ def set_flags():
             elif ask_Run_Straight_Builtin == 'Disable' or ask_Run_Straight_Builtin == 'disable':
                 RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
                 edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Straight-Builtin', content='0')
+
+        elif ask_which == '6':
+            ask_Create_Graph = input('Enable Or Disable?')
+            if ask_Create_Graph == 'Enable' or ask_Create_Graph == 'enable':
+                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Create_Graph', content='1')
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
+            elif ask_Create_Graph == 'Disable' or ask_Create_Graph == 'disable':
+                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
+                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Create_Graph', content='0')
 
 def args_help():
     # RD.CommandSay(msg=(flags.Default_text + '\nThose Are The Available Commands:'), color='BLUE')

@@ -1,6 +1,6 @@
 from Kernel.RendererKit import Renderer as RD
 from Kernel.SystemCalls import SystemCalls
-from Kernel import utils, flags, SNC
+from Kernel import flags, SNC
 import json
 import os
 
@@ -54,6 +54,16 @@ def _get_propiatery(print_credentials=False):
         flags.Run_Straight_Builtin = True
     if print_credentials:
         RD.CommandShow(msg=("Run_Straight_Builtin:", Run_Straight_Builtin)).Show()
+    
+    try:
+        Create_Graph = data['user_login']['Create_Graph']
+    except KeyError:
+        raise FileNotFoundError
+    if Create_Graph == "1":
+        flags.Create_Graph = True
+    if print_credentials:
+        RD.CommandShow(msg=("Create_Graph:", Create_Graph)).Show()
+
     f.close()
 
     

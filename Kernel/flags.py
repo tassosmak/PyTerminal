@@ -8,6 +8,7 @@ ThreadActivated = True
 EnableIntSoft = False
 Inside_Thread = False
 BuildReseted = False
+Create_Graph = False
 EnableAudio = False
 Fully_GUI = False
 GO_TO_FTU = False

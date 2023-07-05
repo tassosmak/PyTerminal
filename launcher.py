@@ -2,11 +2,10 @@ from Kernel.utils import ModeHandling as MoDeH, Exit
 import ModeHandling as MDH #MDH for MODE HANDLING
 from Kernel.RendererKit import Renderer as RD
 from Kernel.SystemCalls import SystemCalls
-import Kernel.src.CallGraph as CallGraph
 from Kernel.UserHandler import loader
 from Kernel import flags
 
-@CallGraph.Grapher
+@SystemCalls.Grapher
 @SystemCalls.measure_time
 def _run():
         try:

@@ -4,13 +4,16 @@ Main API
 PyTerminal System Calls
 '''
 
+from pycallgraph2 import GlobbingFilter, PyCallGraph, Config
+from Kernel.utils import pl_finder, clear_gui, args_help
+from pycallgraph2.output import GraphvizOutput
 from Kernel.RendererKit import Renderer as RD
 from pathlib import Path
 from Kernel import flags
-from Kernel.utils import pl_finder, clear_gui, args_help
 import datetime
 import time
 import os
+
 
 class SystemCalls:   
     def get_time(date=True, secs=False):
@@ -39,6 +42,21 @@ class SystemCalls:
             after = round(after, 2)
             if flags.MODE == '9':
                 RD.CommandShow(msg=f'Time Passed: {after} Seconds').Show('PURPLE')
+        return wrapper
+
+    """A Call Tree Graph Generator"""
+    def Grapher(func):
+        output_png="Kernel/src/CallGraph.png"
+        custom_include=None
+        def wrapper():
+            if flags.Create_Graph and '1' in flags.FTU:
+                config = Config()
+                config.trace_filter = GlobbingFilter(include=custom_include)
+                graphviz = GraphvizOutput(output_file=output_png)
+                with PyCallGraph(output=graphviz, config=config):
+                            func()
+            else:
+                func()
         return wrapper
 
     def clear_error():
@@ -71,7 +89,7 @@ class SystemCalls:
                 RD.CommandShow(msg=output).Show(color='BLUE')
     
     def show_pswd():
-        #This Idiot Forgot His Password
+        """This Idiot Forgot His Password"""
         if flags.EnableIntSoft:
             try: 
                 from Kernel.CryptographyKit import DecryptPassword
