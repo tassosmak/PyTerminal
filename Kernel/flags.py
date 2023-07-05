@@ -37,6 +37,7 @@ Dependecies = [
     'yfinance',
     'customtkinter',
     'playwright',
+    'pycallgraph2',
 ]
 
 ModeList = [

@@ -2,6 +2,7 @@ from Kernel.utils import ModeHandling as MoDeH, Exit
 import ModeHandling as MDH #MDH for MODE HANDLING
 from Kernel.RendererKit import Renderer as RD
 from Kernel.SystemCalls import SystemCalls
+import Kernel.src.CallGraph as CallGraph
 from Kernel.UserHandler import loader
 from Kernel import flags
 
@@ -21,7 +22,7 @@ def _run():
 
 def boot():
     try:
-        _run()
+        CallGraph.call_graph_filtered(function_=_run)
     except KeyboardInterrupt:
         if flags.EnableIntSoft:
             RD.CommandShow(msg='KeyboardInterrupt').Info()

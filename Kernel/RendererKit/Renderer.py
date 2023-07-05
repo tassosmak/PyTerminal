@@ -103,7 +103,7 @@ class CommandShow:
 
 
     def Show(self, color='', legacy=False):
-        if not flags.FTU == '2' or legacy == True:
+        if legacy == False and flags.FTU =='1':
             try:
                 if "WARNING" in color: 
                     color_text.output(content=self.msg, args='Bold Yellow')

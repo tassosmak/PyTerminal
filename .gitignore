@@ -14,6 +14,7 @@ __pycache__/Server.cpython-39.pyc
 Kernel/ErrorLoggingKit/errors.log
 Kernel/CryptographyKit/DecryptPassword.py
 Kernel/src/history.log
+Kernel/src/CallGraph.png
 MakroPropiatery.json
 __pycache__
 .DS_Store
