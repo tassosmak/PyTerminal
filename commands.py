@@ -132,9 +132,9 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == "print md":
             if not safe_md:
-                RD.CommandShow(msg=flags.MODE)
+                RD.CommandShow(msg=flags.MODE).Show()
             else:
-                RD.CommandShow("You Are in Native-Mode", color='WARNING')
+                RD.CommandShow("You Are in Native-Mode", color='WARNING').Show()
 
 
 
