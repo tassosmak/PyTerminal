@@ -53,3 +53,21 @@ def _gen_safe_password(length=8):
     # if save:
         # _d_encrypt(type='1', input_text=final_password)
     return final_password
+
+
+#NT --> New Technology | Start
+def liststr(l: list):
+  string = ""
+  for i in l:
+    string += str(i)
+
+  return string
+
+def toBinary(text, encoding='utf-8', errors='surrogatepass'):
+    bits = bin(int.from_bytes(text.encode(encoding, errors), 'big'))[2:]
+    return bits.zfill(8 * ((len(bits) + 7) // 8))
+
+def binarystring(bits, encoding='utf-8', errors='surrogatepass'):
+    n = int(bits, 2)
+    return n.to_bytes((n.bit_length() + 7) // 8, 'big').decode(encoding, errors) or '\0'
+#NT --> New Technology | End

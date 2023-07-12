@@ -1,8 +1,8 @@
 from Kernel.utils import Exit, clear_gui, pl_finder
-from Kernel.SystemCalls import SystemCalls
-from Kernel import credentials as cred, flags
-from Kernel.RendererKit import Renderer as RD
 from Kernel.LoginKit.LoginUI import LoginHandler
+from Kernel.RendererKit import Renderer as RD
+from Kernel import credentials as cred, flags
+from Kernel.SystemCalls import SystemCalls
 from Kernel.AudioKit import Audio
 from Kernel.FTU import FTU_init
 import sys
