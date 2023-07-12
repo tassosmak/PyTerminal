@@ -11,7 +11,7 @@ import sys
 def loader(run=True):
     pl_finder()
     clear_gui()
-    cred._get_credentials() # <-- if you want to print the credentials set the paramater to True
+    cred.get_credentials() # <-- if you want to print the credentials set the paramater to True
     if not flags.EnableIntSoft:
         Audio.play('Kernel/AudioKit/src/Boot.mp3')
     if run:
@@ -46,7 +46,7 @@ def init():
         if flags.BuildReseted == False:
             FTU = FTU_init()
             FTU.run()
-        cred._get_credentials()
+        cred.get_credentials()
         continue_normal = True
 
     if continue_normal:

@@ -32,7 +32,7 @@ try:
             SystemCalls.clear_history()
             
         elif str(sys.argv[1]) == "SetFlags":
-            cred._get_credentials()
+            loader(False)
             if flags.EnableIntSoft:    
                 cred._get_propiatery(True)
                 set_flags()
@@ -47,7 +47,7 @@ try:
             MainTask()
         
         elif str(sys.argv[1]) == 'ForgotPassword':
-            cred._get_credentials()
+            loader(False)
             SystemCalls.show_pswd()
             
         else:

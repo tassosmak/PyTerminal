@@ -269,9 +269,9 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(("Threading", flags.ThreadActivated)).Show()
                     RD.CommandShow(("Inside_Thread", flags.Inside_Thread)).Show()
                 else:
-                    from Kernel.credentials import _get_credentials
+                    from Kernel.credentials import get_credentials
                     MODE = flags.MODE
-                    _get_credentials(True)
+                    get_credentials(True)
                     flags.MODE = MODE
         
         if Command == "show cmd" or Command == 'show apps' or Command == 'help':

@@ -6,6 +6,10 @@ from Kernel.utils import edit_json
 from Kernel import flags
 import subprocess
 
+class PlatformError(Exception):
+    pass
+
+
 class snc:
     def __init__(self, write=False):
         self.write = write
@@ -34,7 +38,7 @@ class snc:
                 self.cmd = "ioreg -d2 -c IOPlatformExpertDevice | awk -F\\\" '/IOPlatformUUID/{print $(NF-1)}'"
                 self.run()
 
-        if flags.pl == '2':
+        elif flags.pl == '2':
             if self.write:
                 self.cmd = 'wmic csproduct get uuid'
                 edit_json(loc1='user_credentials',loc2='Serial', content=self.run())
@@ -42,10 +46,12 @@ class snc:
                 self.cmd = 'wmic csproduct get uuid'
                 self.run()
 
-        if flags.pl == '3':
+        elif flags.pl == '3':
             if self.write:
                 self.cmd = 'cat /var/lib/dbus/machine-id'
                 edit_json(loc1='user_credentials',loc2='Serial', content=self.run())
             else:
                 self.cmd = 'cat /var/lib/dbus/machine-id'
                 self.run()
+        else:
+            raise PlatformError

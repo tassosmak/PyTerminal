@@ -63,6 +63,15 @@ def _get_propiatery(print_credentials=False):
         flags.Create_Graph = True
     if print_credentials:
         RD.CommandShow(msg=("Create_Graph:", Create_Graph)).Show()
+        
+    try:
+        Runtime_Tracer = data['user_login']['Runtime_Tracer']
+    except KeyError:
+        raise FileNotFoundError
+    if Runtime_Tracer == "1":
+        flags.Runtime_Tracer = True
+    if print_credentials:
+        RD.CommandShow(msg=("Runtime_Tracer:", Runtime_Tracer)).Show()
 
     f.close()
 
@@ -74,7 +83,7 @@ Mode = 0
 FTU = 0
 GUI = 0
 SerialNum = 0
-def _get_credentials(print_credentials=False):
+def get_credentials(print_credentials=False):
     SystemCalls.get_folder()
     global Name, Password, Mode, FTU, GUI, SerialNum
     try:

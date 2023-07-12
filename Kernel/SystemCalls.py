@@ -36,12 +36,14 @@ class SystemCalls:
     
     def measure_time(func):
         def wrapper():
-            pre = time.time()
-            func()
-            after = time.time() -pre
-            after = round(after, 2)
-            if flags.MODE == '9':
-                RD.CommandShow(msg=f'Time Passed: {after} Seconds').Show('PURPLE')
+            if flags.Runtime_Tracer:
+                pre = time.time()
+                func()
+                after = time.time() -pre
+                after = round(after, 2)
+                if flags.MODE == '9':
+                    RD.CommandShow(msg=f'Time Passed: {after} Seconds').Show('PURPLE')
+            else: func()
         return wrapper
 
     """A Call Tree Graph Generator"""
