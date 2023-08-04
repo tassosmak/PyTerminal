@@ -4,9 +4,7 @@ Main API
 PyTerminal System Calls
 '''
 
-from pycallgraph2 import GlobbingFilter, PyCallGraph, Config
 from Kernel.utils import pl_finder, clear_gui, args_help
-from pycallgraph2.output import GraphvizOutput
 from Kernel.RendererKit import Renderer as RD
 from pathlib import Path
 from Kernel import flags
@@ -52,6 +50,8 @@ class SystemCalls:
         custom_include=None
         def wrapper():
             if flags.Create_Graph and '1' in flags.FTU:
+                from pycallgraph2 import GlobbingFilter, PyCallGraph, Config
+                from pycallgraph2.output import GraphvizOutput
                 config = Config()
                 config.trace_filter = GlobbingFilter(include=custom_include)
                 graphviz = GraphvizOutput(output_file=output_png)
