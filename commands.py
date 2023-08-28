@@ -315,6 +315,10 @@ def CommandList(Command=str, safe_md=False):
         if Command == 'stocks':
             if not safe_md:
                 ThreadHandler.SecondaryTask('stock_viewer')
+                
+        if Command == 'most used commands':
+            if not safe_md:
+                SystemCalls.most_used_commands()
         
 
     except: Exit.error_exit()
