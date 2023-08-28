@@ -97,3 +97,11 @@ class SystemCalls:
                 from Kernel.CryptographyKit import DecryptPassword
                 RD.CommandShow(DecryptPassword.decrypt_password(flags.PASSWORD)).Show('BLUE')
             except ImportError: args_help()
+            
+    def most_used_commands():
+        with open("Kernel/src/history.log", "r") as file:
+            data = file.read()
+            for i in flags._CML:
+                occurrences = data.count(i)
+
+                RD.CommandShow(f"{i}: {occurrences}").Show(color='BLUE')

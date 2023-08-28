@@ -87,7 +87,6 @@ file_list = [
 _CML =[
 "test",
 "about",
-"ABOUT",
 "time",
 "exit",
 "version",
