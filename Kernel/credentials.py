@@ -126,7 +126,6 @@ def get_credentials(print_credentials=False):
     if print_credentials:
         if flags.EnableIntSoft:
             RD.CommandShow(msg=("Password:", Password)).Show()
-    # Password = DecryptPassword.decrypt_password(password=Password)
 
 
     Internal_Software = data['Internal-Software']['Enable']

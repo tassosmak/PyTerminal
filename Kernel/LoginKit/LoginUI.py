@@ -1,4 +1,4 @@
-from Kernel.CryptographyKit import EncryptPassword
+from Kernel.CryptographyKit import EncryptPassword, DecryptPassword
 from Kernel.RendererKit import Renderer as RD
 from Kernel import credentials as cred, flags
 
@@ -32,7 +32,7 @@ class LoginHandler():
             ask_Password = EncryptPassword.encrypt_password(input("\nEnter Password"), save=False)
         if print_ask and flags.EnableIntSoft == True:
             RD.CommandShow(f'Typed Username: {ask_name}').Show('WARNING')
-            RD.CommandShow(f'Typed Password: {ask_Password}').Show('WARNING')
+            RD.CommandShow(f'Typed Password: {DecryptPassword.decrypt_password(ask_Password)}').Show('WARNING')
         return ask_name, ask_Password
     
     def run():
