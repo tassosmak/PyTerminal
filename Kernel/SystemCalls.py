@@ -9,6 +9,7 @@ from Kernel.RendererKit import Renderer as RD
 from pathlib import Path
 from Kernel import flags
 import datetime
+import signal
 import time
 import os
 
@@ -105,3 +106,24 @@ class SystemCalls:
                 occurrences = data.count(i)
 
                 RD.CommandShow(f"{i}: {occurrences}").Show(color='BLUE')
+                
+
+class TimeoutException(Exception):   # Custom exception class
+    pass
+
+def break_after(seconds=5):
+    def timeout_handler(signum, frame):   # Custom signal handler
+        raise TimeoutException
+    def function(function):
+        def wrapper(*args, **kwargs):
+            signal.signal(signal.SIGALRM, timeout_handler)
+            signal.alarm(seconds)
+            try:
+                res = function(*args, **kwargs)
+                signal.alarm(0)      # Clear alarm
+                return res
+            except TimeoutException:
+                RD.CommandShow(f'Timeou reached | Function name: {function.__name__}').Show('YELLOW')
+            return
+        return wrapper
+    return function

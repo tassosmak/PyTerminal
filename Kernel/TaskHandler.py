@@ -1,9 +1,5 @@
-from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel import flags
 import subprocess
-import threading
-
-
 
 def SecondaryTask(file_name="0", stay_end=False):
     if not file_name=='0':
@@ -20,16 +16,3 @@ def SecondaryTask(file_name="0", stay_end=False):
                 os.system(f"python3 {flags.base_folder}/builtin/{file_name}.py {str(flags.base_folder)}")
         else:
             os.system(f"python3 {flags.base_folder}/builtin/{file_name}.py {str(flags.base_folder)}")
-
-def run(MainThread):
-    try:
-        t1 = threading.Thread(target=MainThread, name='t1')
-        t2 = threading.Thread(target=SecondaryTask, name='t2')
-        
-        t1.start()
-        t2.start()
-        while True:
-            t1.join()
-            t2.join()
-    except:
-        logger.log_error("ThreadHandler.py")

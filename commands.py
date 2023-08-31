@@ -1,10 +1,11 @@
 '''
 The Commnand List
 '''
+from Kernel.NotificationsKit import PushSender
 from Kernel.RendererKit import Renderer as RD
 from Kernel.utils import clear_screen, Exit
 from Kernel.SystemCalls import SystemCalls
-from Kernel import ThreadHandler, flags
+from Kernel import TaskHandler, flags
 from Kernel.AudioKit import Audio
 from Kernel.src import registry
 
@@ -15,7 +16,7 @@ def CommandList(Command=str, safe_md=False):
     try:
         global ask_recv, LCommand
         if flags.EnableIntSoft and flags.Run_Straight_Builtin and flags.MODE == '9':
-            ThreadHandler.SecondaryTask(Command)
+            TaskHandler.SecondaryTask(Command)
             return
         else:
             if not Command in flags._CML:
@@ -42,7 +43,8 @@ def CommandList(Command=str, safe_md=False):
         if Command == "test":
             if flags.MODE == "9":
                 if not flags.pl == "3":
-                    ThreadHandler.SecondaryTask(file_name="test", stay_end=True)
+                    TaskHandler.SecondaryTask(file_name="test", stay_end=True)
+                PushSender.Sender('Testing')
                 RD.CommandShow('tested','tested').Push()
                 RD.CommandShow(msg="tested").Show()
                 RD.CommandShow(msg="tested").Show("WARNING")
@@ -108,12 +110,12 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == "latest":
             if not safe_md:
-                ThreadHandler.SecondaryTask(file_name="LineRetriver")
+                TaskHandler.SecondaryTask(file_name="LineRetriver")
             
 
         if Command == "gen password":
             if not safe_md:
-                ThreadHandler.SecondaryTask(file_name="Password_Gen")
+                TaskHandler.SecondaryTask(file_name="Password_Gen")
 
 
         if Command == "exit":
@@ -166,7 +168,7 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == "view file":
             if flags.EnableIntSoft and flags.pl == '1':
-                ThreadHandler.SecondaryTask('view_file')
+                TaskHandler.SecondaryTask('view_file')
             else:
                 RD.CommandShow(msg='type the name of the file you want to view').Input()
                 #ask_file = input("type the name of the file you want to view\n:")
@@ -207,13 +209,13 @@ def CommandList(Command=str, safe_md=False):
             if not safe_md:
                 if flags.MODE == "2" or flags.MODE == "9":
                     if flags.pl == "1" or flags.pl == "3":
-                        ThreadHandler.SecondaryTask('top')
+                        TaskHandler.SecondaryTask('top')
                 else:
                     RD.CommandShow(msg="This Function isn't available within this mode").Show(color="FAIL")
 
         if Command == "countdown":
             if not safe_md:
-                ThreadHandler.SecondaryTask(file_name="countdown")
+                TaskHandler.SecondaryTask(file_name="countdown")
                 
             
         
@@ -234,7 +236,7 @@ def CommandList(Command=str, safe_md=False):
                     else:
                         import Kernel.NetworkingKit.auth
                         if Kernel.NetworkingKit.auth.DONE:
-                            ThreadHandler.SecondaryTask(file_name="Handle-External-Devices")
+                            TaskHandler.SecondaryTask(file_name="Handle-External-Devices")
                 else:
                     RD.CommandShow("NetworkingKit Isn't Supported On Windows").Show()
 
@@ -245,7 +247,7 @@ def CommandList(Command=str, safe_md=False):
         if Command == 'chatbox':
             if not safe_md:
                 if flags.net:
-                    ThreadHandler.SecondaryTask('chatgpt')
+                    TaskHandler.SecondaryTask('chatgpt')
         if Command == 'chatbox install':
             if not safe_md: 
                 if flags.net:
@@ -288,7 +290,7 @@ def CommandList(Command=str, safe_md=False):
         if Command == 'browser':
             if not safe_md:
                 if flags.pl == '1':
-                    ThreadHandler.SecondaryTask('Browser')
+                    TaskHandler.SecondaryTask('Browser')
                 else:
                     RD.CommandShow(msg='Not Supported').Show('WARNING')
         
@@ -296,7 +298,7 @@ def CommandList(Command=str, safe_md=False):
             if not safe_md:
                 if flags.EnableIntSoft and flags.MODE == '9':
                     RD.CommandShow('Check The Launced Window').Show()
-                    ThreadHandler.SecondaryTask('OFP')
+                    TaskHandler.SecondaryTask('OFP')
                     
         if Command == 'show flags':
             if not safe_md:
@@ -306,15 +308,15 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == 'converter':
             if not safe_md:
-                ThreadHandler.SecondaryTask('temp_mesuare_converter', stay_end=True)
+                TaskHandler.SecondaryTask('temp_mesuare_converter', stay_end=True)
         
         if Command == 'calculator':
             if not safe_md:
-                ThreadHandler.SecondaryTask('calculator')
+                TaskHandler.SecondaryTask('calculator')
         
         if Command == 'stocks':
             if not safe_md:
-                ThreadHandler.SecondaryTask('stock_viewer')
+                TaskHandler.SecondaryTask('stock_viewer')
                 
         if Command == 'most used commands':
             if not safe_md:

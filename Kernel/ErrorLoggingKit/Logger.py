@@ -11,6 +11,7 @@ def log_error(message="NO_MSG"):
         from Kernel.utils import clear_screen
         from Kernel.AudioKit import Audio
         import logging
+        import Kernel.NotificationsKit.PushSender as PushSender
         import os
         console = Console()
         
@@ -25,6 +26,8 @@ def log_error(message="NO_MSG"):
 
         # Here Is The Actual Command That Types The Error :)
         logger.exception(f'\n{SystemCalls.get_time(secs=True)} {message}\nHere is the error good luck solving it :)')
+        
+        PushSender.Sender("Error Check The Logs")
         ErrorScreen()
         if flags.EnableIntSoft:
             console.print_exception(show_locals=True)

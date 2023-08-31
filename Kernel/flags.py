@@ -40,6 +40,7 @@ Dependecies = [
     'customtkinter',
     'playwright',
     'pycallgraph2',
+    'ntfpy',
 ]
 
 ModeList = [
