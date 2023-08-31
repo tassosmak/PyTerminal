@@ -27,7 +27,7 @@ def log_error(message="NO_MSG"):
         # Here Is The Actual Command That Types The Error :)
         logger.exception(f'\n{SystemCalls.get_time(secs=True)} {message}\nHere is the error good luck solving it :)')
         
-        PushSender.Sender("Error Check The Logs")
+        # PushSender.Sender("Error Check The Logs")
         ErrorScreen()
         if flags.EnableIntSoft:
             console.print_exception(show_locals=True)

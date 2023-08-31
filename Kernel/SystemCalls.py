@@ -123,7 +123,8 @@ def break_after(seconds=5):
                 signal.alarm(0)      # Clear alarm
                 return res
             except TimeoutException:
-                RD.CommandShow(f'Timeou reached | Function name: {function.__name__}').Show('YELLOW')
+                if flags.EnableIntSoft:
+                    RD.CommandShow(f'Timeou reached | Function name: {function.__name__}').Show('YELLOW')
             return
         return wrapper
     return function

@@ -3,7 +3,6 @@ try:
     from Kernel.ErrorLoggingKit import Logger as logger
     from Kernel.utils import args_help, set_flags
     from Kernel.SystemCalls import SystemCalls
-    from Kernel import TaskHandler as TH
     from Kernel import credentials as cred
     from Kernel.UserHandler import loader
     from Kernel import flags
@@ -25,7 +24,6 @@ try:
     try:
         if str(sys.argv[1]) == 'Run':
             MainTask()
-            TH.run()
         elif str(sys.argv[1]) == 'ClearErrors':
             SystemCalls.clear_error()
             

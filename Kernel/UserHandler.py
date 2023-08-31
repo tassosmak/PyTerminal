@@ -25,6 +25,10 @@ def loader(run=True):
                     init()
             else:
                 init()
+        except KeyboardInterrupt:
+            RD.CommandShow('\n').Show()
+            flags.USERNAME = ''
+            flags.MODE = '3'
         except:
             Exit.error_exit()
 
