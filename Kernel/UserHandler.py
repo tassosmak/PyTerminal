@@ -56,8 +56,6 @@ def init():
 
     if continue_normal:
         LoginHandler.run()
-        if flags.EnableIntSoft:
-            PushSender.Sender(f'Login Detected | Username: {flags.USERNAME}')
         
 def advanced_init():
     if flags.GO_TO_FTU:

@@ -7,16 +7,19 @@ def log_error(message="NO_MSG"):
     if flags.FTU == '1':
         from Kernel.ErrorLoggingKit.ErrorPreviewer import ErrorScreen
         from Kernel.RendererKit.HighlightKit.console import Console
+        import Kernel.NotificationsKit.PushSender as PushSender
         from Kernel.SystemCalls import SystemCalls
         from Kernel.utils import clear_screen
         from Kernel.AudioKit import Audio
+        from io import StringIO
         import logging
-        import Kernel.NotificationsKit.PushSender as PushSender
         import os
+
+        log_stream = StringIO()
+        logging.basicConfig(stream=log_stream, level=logging.DEBUG)
         console = Console()
         
         logger = logging.getLogger('PyTerminal')
-        logger.setLevel(logging.DEBUG)
 
 
         # create file handler which logs even debug messages
@@ -27,11 +30,18 @@ def log_error(message="NO_MSG"):
         # Here Is The Actual Command That Types The Error :)
         logger.exception(f'\n{SystemCalls.get_time(secs=True)} {message}\nHere is the error good luck solving it :)')
         
-        # PushSender.Sender("Error Check The Logs")
+        
+        if flags.EnableIntSoft:
+            PushSender.Sender(log_stream.getvalue())
+        
+        
         ErrorScreen()
+        
+        
         if flags.EnableIntSoft:
             console.print_exception(show_locals=True)
-        Audio.play('Kernel/AudioKit/src/Error.mp3')
+        else:
+            Audio.play('Kernel/AudioKit/src/Error.mp3')
     else:
         from Kernel.utils import clear_screen
         import sys
