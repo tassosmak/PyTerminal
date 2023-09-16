@@ -3,7 +3,8 @@ from Kernel.src import FTU_Installer as ftu_install
 from Kernel.CryptographyKit import EncryptPassword
 from Kernel.utils import edit_json, clear_screen
 from Kernel.RendererKit import Renderer as RD
-from Kernel import flags, SNC
+from Kernel import flags, SNC, utils
+from Kernel import Authenticator
 import os
 
 class FTU_init:
@@ -97,8 +98,11 @@ class FTU_init:
             clear_screen()
             
     def run(self):
-        self.check()
-        self.use_config()
-        self.username_password()
-        self.mode()
-        self.dependecies()
+        if Authenticator.authe(RD.CommandShow('Enter Your License Key:').Input()):
+            self.check()
+            self.use_config()
+            self.username_password()
+            self.mode()
+            self.dependecies()
+        else:
+            utils.Exit.exit()
