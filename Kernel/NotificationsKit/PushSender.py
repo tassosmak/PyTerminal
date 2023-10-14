@@ -6,7 +6,7 @@ from Kernel import flags
 
 @break_after(3)
 def Sender(content):
-    server = NTFYServer("http://100.65.44.143:8080")
+    server = NTFYServer("http://192.168.1.63:80")
     user = NTFYUser("tassosmak", "8596")
     client = NTFYClient(server, "PyTerminal_Information_System", user)
     action = NTFYViewAction("Github Link", "https://www.github.com/tassosmak/pyterminal")
