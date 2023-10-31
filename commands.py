@@ -321,6 +321,10 @@ def CommandList(Command=str, safe_md=False):
         if Command == 'most used commands':
             if not safe_md:
                 SystemCalls.most_used_commands()
+                
+        if Command == 'fake_error':
+            if flags.EnableIntSoft:
+                raise KeyError
         
 
     except: Exit.error_exit()

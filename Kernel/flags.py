@@ -122,6 +122,7 @@ _CML =[
 'calculator',
 'stocks',
 'most used commands',
+'fake_error',
 ]
 
 MD2 = "!History isn't enabled! PyTerminal Beta"
