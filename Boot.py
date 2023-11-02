@@ -41,10 +41,6 @@ try:
             from Kernel.LoginKit.LoginUI import LoginHandler
             loader(False)
             LoginHandler.run()
-            
-        elif str(sys.argv[1]) == 'NoThread':
-            flags.ThreadActivated = False
-            MainTask()
         
         elif str(sys.argv[1]) == 'ForgotPassword':
             loader(False)

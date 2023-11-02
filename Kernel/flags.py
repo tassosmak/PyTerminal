@@ -4,7 +4,6 @@ Flags Start
 
 Run_Straight_Builtin = False
 UserLess_Connection = False
-ThreadActivated = True
 Runtime_Tracer = False
 EnableIntSoft = False
 Inside_Thread = False

@@ -268,7 +268,6 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(("UserLess Connection", flags.UserLess_Connection)).Show()
                     RD.CommandShow(("GO TO FTU", flags.GO_TO_FTU)).Show()
                     RD.CommandShow(("Fully GUI", flags.Fully_GUI)).Show()
-                    RD.CommandShow(("Threading", flags.ThreadActivated)).Show()
                     RD.CommandShow(("Inside_Thread", flags.Inside_Thread)).Show()
                 else:
                     from Kernel.credentials import get_credentials
