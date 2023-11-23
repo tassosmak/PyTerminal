@@ -91,7 +91,7 @@ class FTU_init:
             if flags.MODE == '9':
                 RD.CommandShow('\n--Dependecies Install End--\n').Show('WARNING')
         except MemoryError:
-            RD.CommandShow(msg='Error Occured While installing dependecies').Input()
+            RD.CommandShow(msg='Error Occured While installing dependecies').Show()
         
         if not flags.MODE == "9":
             clear_screen()
