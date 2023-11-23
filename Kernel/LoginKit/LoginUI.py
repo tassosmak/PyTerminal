@@ -1,7 +1,8 @@
-from Kernel.CryptographyKit import EncryptPassword, DecryptPassword, utils
+from Kernel.CryptographyKit import EncryptPassword, utils
 from Kernel.NotificationsKit import PushSender
 from Kernel.RendererKit import Renderer as RD
 from Kernel import credentials as cred, flags
+import maskpass
 
 class LoginHandler():
     def __init__(self):
@@ -32,27 +33,33 @@ class LoginHandler():
             ask_Password = RD.CommandShow(msg='Enter Password', header="Login").Input()
         else:    
             ask_name = input("Enter Usename")
-            ask_Password = EncryptPassword.encrypt_password(input("\nEnter Password"), save=False)
+            ask_Password = EncryptPassword.encrypt_password(maskpass.askpass("\nEnter Password"), save=False)
         if print_ask and flags.EnableIntSoft == True:
             RD.CommandShow(f'Typed Username: {ask_name}').Show('WARNING')
-            RD.CommandShow(f'Typed Password: {DecryptPassword.decrypt_password(ask_Password)}').Show('WARNING')
+            # RD.CommandShow(f'Typed Password: {DecryptPassword.decrypt_password(ask_Password)}').Show('WARNING')
         return ask_name, ask_Password
     
     def two_step_verification(self):
-        self.verified = False
-        self.code = utils._gen_safe_password(4)
-        PushSender.Sender(self.code)
-        while not self.verified:
-            # self.ask_code = RD.CommandShow('We Have Send A code to your Phone').Input()
-            self.ask_code = input('We Have Send A code to your Phone')
-            if self.ask_code == self.code:
-                self.verified = True
+        def check_platform():
+            if flags.pl == '2':
+                RD.CommandShow("The Development Environment isn't supported on Windows\nYou Will be moved down to the Advanced Mode").Push()
+                flags.EnableIntSoft = False
+                return False
+        if check_platform() == True:
+            self.verified = False
+            self.code = utils._gen_safe_password(4)
+            PushSender.Sender(self.code)
+            while not self.verified:
+                # self.ask_code = RD.CommandShow('We Have Send A code to your Phone').Input()
+                self.ask_code = input('We Have Send A code to your Phone')
+                if self.ask_code == self.code:
+                    self.verified = True
     
 
         
     def run():
         Login = LoginHandler()
         Login.Verify()
-        if flags.EnableIntSoft:
-            Login.two_step_verification()
+        # if flags.EnableIntSoft:
+            # Login.two_step_verification()
         Login.welcome_prompt()

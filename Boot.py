@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-try:
-    from Kernel.ErrorLoggingKit import Logger as logger
-    from Kernel.utils import args_help, set_flags
-    from Kernel.SystemCalls import SystemCalls
-    from Kernel import credentials as cred
-    from Kernel.UserHandler import loader
-    from Kernel import flags
-except:
-    print('Kernel Error')
-    from os import _exit
-    _exit(0)
+# try:
+from Kernel.ErrorLoggingKit import Logger as logger
+from Kernel.utils import args_help, set_flags
+from Kernel.SystemCalls import SystemCalls
+from Kernel import credentials as cred
+from Kernel.UserHandler import loader
+from Kernel import flags
+# except:
+# print('Kernel Error')
+# from os import _exit
+# _exit(0)
 
 import sys
 if __name__ == '__main__':

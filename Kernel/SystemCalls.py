@@ -116,15 +116,17 @@ def break_after(seconds=5):
         raise TimeoutException
     def function(function):
         def wrapper(*args, **kwargs):
-            signal.signal(signal.SIGALRM, timeout_handler)
-            signal.alarm(seconds)
-            try:
-                res = function(*args, **kwargs)
-                signal.alarm(0)      # Clear alarm
-                return res
-            except TimeoutException:
-                if flags.EnableIntSoft:
-                    RD.CommandShow(f'Timeou reached | Function name: {function.__name__}').Show('YELLOW')
-            return
+            if flags.pl == '1' or flags.pl =='3': 
+                signal.signal(signal.SIGALRM, timeout_handler)
+                signal.alarm(seconds)
+                try:
+                    res = function(*args, **kwargs)
+                    signal.alarm(0)      # Clear alarm
+                    return res
+                except TimeoutException:
+                    if flags.EnableIntSoft:
+                        RD.CommandShow(f'Timeou reached | Function name: {function.__name__}').Show('YELLOW')
+                return
+            else: return function
         return wrapper
     return function

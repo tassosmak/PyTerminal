@@ -7,11 +7,14 @@ from Kernel.NotificationsKit import Alert, Buttons, Dialog, Icon
 try: from Kernel.RendererKit.HighlightKit import color_text 
 except: pass
 
+from winotify import Notification
+import easygui, ctypes
 from Kernel import flags, utils
 import subprocess
 import os
 
 Quest_result = ''
+
 
 class bcolors:
     HEADER = '\033[95m'
@@ -46,6 +49,7 @@ class CommandShow:
                 header=f'{flags.Default_text} {header}'
         self.header = header
         self.msg = msg
+        
     
     
     def Push(self):
@@ -53,16 +57,34 @@ class CommandShow:
             command = f'''
             osascript -e 'display notification "{self.msg}" with title "{self.header}"'
             '''
+
             os.system(command)
+        
+        elif flags.pl == '2' and flags.FTU == '1' and flags.EnableGUI == True:
+            
+            toast = Notification(app_id="Python3",
+                     title=flags.Default_text,
+                     msg=self.msg,
+                     icon=f"{flags.base_folder}/src/python.png")
+
+            toast.show()
+        
         else:
             CommandShow(f'Notification: {self.msg}').Show()
+
     
     def Choice(self, Button1='No', Button2='Yes'):
         global Quest_result
         if flags.EnableGUI:
-                al = Alert(self.msg).with_buttons(Buttons([Button1, Button2,])).show()
+                if flags.pl == '1':
+                    al = Alert(self.msg).with_buttons(Buttons([Button1, Button2,])).show()
 
-                Quest_result = al.button_returned
+                    Quest_result = al.button_returned
+                elif flags.pl == "2":
+                    def Mbox():
+                        return ctypes.windll.user32.MessageBoxW(0, self.msg, flags.Default_text, 1)
+                    Quest_result = Mbox()
+
         else:
             Quest_result = input(f'{self.msg}, Type "{Button1}" or "{Button2}":')
         return Quest_result
@@ -70,11 +92,14 @@ class CommandShow:
     def Info(self):
         global Quest_result
         if flags.EnableGUI:
-            script = f"""
-            display dialog "{self.msg}" with title "{self.header}" with icon note buttons "OK"
-            """
+            if flags.pl == '1':
+                script = f"""
+                display dialog "{self.msg}" with title "{self.header}" with icon note buttons "OK"
+                """
 
-            subprocess.call("osascript -e '{}'".format(script), shell=True)
+                subprocess.call("osascript -e '{}'".format(script), shell=True)
+            elif flags.pl == '2':
+                ctypes.windll.user32.MessageBoxW(0, self.msg, flags.Default_text, 1)
         else:
             self.msg.removeprefix('( ) "" ')
             Quest_result = CommandShow(msg=self.msg).Show(color='WARNING')
@@ -83,20 +108,22 @@ class CommandShow:
     def Input(self):
         global Quest_result
         if flags.EnableGUI:
-            buttons = Buttons(["Ok"])
-            the_dialog = Dialog(self.msg).with_title(self.header)
-            the_dialog.with_buttons(buttons)
-            the_dialog.with_icon(Icon.NOTE)
-            the_dialog.with_input("Type Here:")
+            if flags.pl == '1':
+                buttons = Buttons(["Ok"])
+                the_dialog = Dialog(self.msg).with_title(self.header)
+                the_dialog.with_buttons(buttons)
+                the_dialog.with_icon(Icon.NOTE)
+                the_dialog.with_input("Type Here:")
 
-            result = the_dialog.show()
-            
-            if flags.Fully_GUI == False:
-                if result.text_returned == 'exit':
-                    utils.clear_gui()
-            
-            Quest_result = result.text_returned  # => text entered in input
+                result = the_dialog.show()
                 
+                if flags.Fully_GUI == False:
+                    if result.text_returned == 'exit':
+                        utils.clear_gui()
+                
+                Quest_result = result.text_returned  # => text entered in input
+            elif flags.pl == '2':
+                Quest_result = easygui.enterbox(msg=self.msg, title=flags.Default_text)
         else:
             Quest_result = input(f"{self.msg}:")
         return Quest_result
