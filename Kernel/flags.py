@@ -40,6 +40,9 @@ Dependecies = [
     'playwright',
     'pycallgraph2',
     'ntfpy',
+    'winotify',
+    'maskpass',
+    'easygui'
 ]
 
 ModeList = [
