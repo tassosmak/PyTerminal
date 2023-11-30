@@ -4,13 +4,13 @@ PyTerminal Rendering Library
 
 from Kernel.NotificationsKit import Alert, Buttons, Dialog, Icon
 
+from Kernel import flags, utils
 try: 
     from Kernel.RendererKit.HighlightKit import color_text
     if flags.pl == '2':
         from winotify import Notification
         import easygui, ctypes
 except: pass
-from Kernel import flags, utils
 
 import subprocess
 import os
