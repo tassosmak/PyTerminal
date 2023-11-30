@@ -1,8 +1,7 @@
+from Kernel import credentials as cred, flags, InputManagerKit
 from Kernel.CryptographyKit import EncryptPassword, utils
 from Kernel.NotificationsKit import PushSender
 from Kernel.RendererKit import Renderer as RD
-from Kernel import credentials as cred, flags
-import maskpass
 
 class LoginHandler():
     def __init__(self):
@@ -33,7 +32,7 @@ class LoginHandler():
             ask_Password = RD.CommandShow(msg='Enter Password', header="Login").Input()
         else:    
             ask_name = input("Enter Usename")
-            ask_Password = EncryptPassword.encrypt_password(maskpass.askpass("\nEnter Password"), save=False)
+            ask_Password = EncryptPassword.encrypt_password(InputManagerKit.askpass("\nEnter Password"), save=False)
         if print_ask and flags.EnableIntSoft == True:
             RD.CommandShow(f'Typed Username: {ask_name}').Show('WARNING')
             # RD.CommandShow(f'Typed Password: {DecryptPassword.decrypt_password(ask_Password)}').Show('WARNING')
