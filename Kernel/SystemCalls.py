@@ -92,7 +92,7 @@ class SystemCalls:
                 output = arg, type(value), value
                 RD.CommandShow(msg=output).Show(color='BLUE')
                 result.append(output)
-        return result
+        return str(result)
     
     def show_pswd():
         """This Idiot Forgot His Password"""

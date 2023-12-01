@@ -303,7 +303,7 @@ def CommandList(Command=str, safe_md=False):
             if not safe_md:
                 if flags.MODE == '9':
                     clear_screen()
-                    Sender(str(SystemCalls.show_flags()))
+                    Sender(SystemCalls.show_flags())
 
         if Command == 'converter':
             if not safe_md:
