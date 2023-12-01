@@ -15,3 +15,4 @@ def Sender(content):
     message.title = flags.Default_text
     # message.addTag("warning")
     client.send_message(message)
+    return content

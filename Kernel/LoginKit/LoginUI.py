@@ -59,6 +59,6 @@ class LoginHandler():
     def run():
         Login = LoginHandler()
         Login.Verify()
-        # if flags.EnableIntSoft:
-            # Login.two_step_verification()
+        if flags.EnableIntSoft:
+            Login.two_step_verification()
         Login.welcome_prompt()

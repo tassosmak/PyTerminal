@@ -14,7 +14,8 @@ def CommandAsk(Module=str):
             Module(Command=input(f"{RD.bcolors.WARNING}Run-Straight-Builtin Enabled{RD.bcolors.WHITE} | {flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower())
         elif flags.Fully_GUI:
             RD.CommandShow(msg=f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} | Expreimental GUI").Input()
-            Module(Command=RD.Quest_result.lower())
+            try: Module(Command=RD.Quest_result.lower())
+            except AttributeError: RD.CommandShow('\n').Show()
         #Non GUI
         else:
             Module(Command=input(f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower())

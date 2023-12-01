@@ -1,7 +1,7 @@
 '''
 The Commnand List
 '''
-from Kernel.NotificationsKit import PushSender
+from Kernel.NotificationsKit.PushSender import Sender
 from Kernel.RendererKit import Renderer as RD
 from Kernel.utils import clear_screen, Exit
 from Kernel.SystemCalls import SystemCalls
@@ -44,7 +44,7 @@ def CommandList(Command=str, safe_md=False):
             if flags.MODE == "9":
                 if not flags.pl == "3":
                     TaskHandler.SecondaryTask(file_name="test", stay_end=True)
-                PushSender.Sender('Testing')
+                Sender('Testing')
                 RD.CommandShow('tested','tested').Push()
                 RD.CommandShow(msg="tested").Show()
                 RD.CommandShow(msg="tested").Show("WARNING")
@@ -303,7 +303,7 @@ def CommandList(Command=str, safe_md=False):
             if not safe_md:
                 if flags.MODE == '9':
                     clear_screen()
-                    SystemCalls.show_flags()
+                    Sender(str(SystemCalls.show_flags()))
 
         if Command == 'converter':
             if not safe_md:

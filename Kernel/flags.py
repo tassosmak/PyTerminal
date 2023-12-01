@@ -78,12 +78,12 @@ file_list = [
     'MakroPropiatery.py',
     'Kernel/utils.py',
     'Kernel/FTU.py',
+    'pyterminal.py',
     'commands.py',
     'launcer.py',
     'Kernel.py',
     'Info.json',
     'pyrad.log',
-    'Boot.py',
 ]
 
 #CML for CommandList

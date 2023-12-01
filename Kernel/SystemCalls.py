@@ -85,11 +85,14 @@ class SystemCalls:
                     f.write(str(f"{Command}\n"))
 
     def show_flags():
+        result = []
         for arg in flags.all_variables:
             if not arg.startswith('_'):
                 value = eval(f'flags.{arg}')
                 output = arg, type(value), value
                 RD.CommandShow(msg=output).Show(color='BLUE')
+                result.append(output)
+        return result
     
     def show_pswd():
         """This Idiot Forgot His Password"""
