@@ -126,7 +126,7 @@ def clear_gui():
         
 class ModeHandling:
     def recover_mode():
-        flags.EnableIntSoft == False
+        flags.EnableIntSoft = False
         while not RD.Quest_result in flags.ModeList:
             RD.CommandShow(msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'Mode Recovery').Input()
         if RD.Quest_result == '9':
