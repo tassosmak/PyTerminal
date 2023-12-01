@@ -39,12 +39,7 @@ class LoginHandler():
         return ask_name, ask_Password
     
     def two_step_verification(self):
-        def check_platform():
-            if flags.pl == '2':
-                RD.CommandShow("The Development Environment isn't supported on Windows\nYou Will be moved down to the Advanced Mode").Push()
-                flags.EnableIntSoft = False
-                return False
-        if check_platform() == True:
+        if not flags.pl == '2':
             self.verified = False
             self.code = utils._gen_safe_password(4)
             PushSender.Sender(self.code)
@@ -53,6 +48,9 @@ class LoginHandler():
                 self.ask_code = input('We Have Send A code to your Phone')
                 if self.ask_code == self.code:
                     self.verified = True
+        else: 
+            RD.CommandShow("Development Mode isn't supported on Windows").Show('WARNING')
+            flags.EnableIntSoft = False
     
 
         
