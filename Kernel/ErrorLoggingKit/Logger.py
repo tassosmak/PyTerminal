@@ -7,7 +7,7 @@ def log_error(message="NO_MSG"):
     if flags.FTU == '1':
         from Kernel.ErrorLoggingKit.ErrorPreviewer import ErrorScreen
         from Kernel.RendererKit.HighlightKit.console import Console
-        import Kernel.NotificationsKit.PushSender as PushSender
+        from Kernel.NotificationsKit.PushSender import Notifications
         from Kernel.SystemCalls import SystemCalls
         from Kernel.utils import clear_screen
         from Kernel.AudioKit import Audio
@@ -32,7 +32,7 @@ def log_error(message="NO_MSG"):
         
         
         if flags.EnableIntSoft:
-            PushSender.Sender(log_stream.getvalue())
+            Notifications().Sender(log_stream.getvalue())
         
         
         ErrorScreen()

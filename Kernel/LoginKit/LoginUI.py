@@ -1,7 +1,7 @@
-from Kernel import credentials as cred, flags, InputManagerKit, utils
+from Kernel import credentials as cred, flags, InputManagerKit
 from Kernel.CryptographyKit import EncryptPassword
 from Kernel.RendererKit import Renderer as RD
-from Kernel.NotificationsKit.PushSender import Code_Sender
+from Kernel.NotificationsKit.PushSender import Notifications
 
 class LoginHandler():
     def __init__(self):
@@ -41,7 +41,7 @@ class LoginHandler():
     def two_step_verification(self):
         self.verified = False
         if not flags.pl == '2':
-            self.code = Code_Sender()
+            self.code = Notifications().Code_Sender()
             while not self.verified:
                 # self.ask_code = RD.CommandShow('We Have Send A code to your Phone').Input()
                 self.ask_code = input('We Have Send A code to your Phone')
