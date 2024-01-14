@@ -148,13 +148,13 @@ class CommandShow:
         else:
             try:
                 if "WARNING" in color: 
-                    print(f'{bcolors.WARNING}{ self.msg}{bcolors.WHITE}')
+                    print(f'{bcolors.WARNING}{self.msg}{bcolors.WHITE}')
                 elif "FAIL" in color:
-                    print(f'{bcolors.FAIL}{ self.msg}{bcolors.WHITE}')
+                    print(f'{bcolors.FAIL}{self.msg}{bcolors.WHITE}')
                 elif "OKGREEN" in color:
-                    print(f'{bcolors.OKGREEN}{ self.msg}{bcolors.WHITE}')
+                    print(f'{bcolors.OKGREEN}{self.msg}{bcolors.WHITE}')
                 elif "PURPLE" in color:
-                    print(f'{bcolors.PURPLE}{ self.msg}{bcolors.WHITE}')
+                    print(f'{bcolors.PURPLE}{self.msg}{bcolors.WHITE}')
                 else:
                     print(self.msg)
             except:
