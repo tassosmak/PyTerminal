@@ -50,7 +50,7 @@ class FTU_init:
         while not correct_pswd_input:
             RD.CommandShow(msg='Do You Want to to Use A safe Password').Choice(Button1='No', Button2='Yes')
             
-            if RD.Quest_result == 'Yes':
+            if RD.Quest_result.lower() == 'yes':
                 pre_enc_pswd = _gen_safe_password()
                 Password_msg= f'YOUR PASSWORD IS {pre_enc_pswd} KEEP IT SAFE'
                 EncryptPassword.encrypt_password(password=pre_enc_pswd)
