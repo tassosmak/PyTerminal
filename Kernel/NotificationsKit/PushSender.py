@@ -1,4 +1,4 @@
-from ntfpy import NTFYServer, NTFYUser, NTFYClient, NTFYPushMessage, NTFYViewAction
+from Kernel.NotificationsKit.ntfpy import NTFYServer, NTFYUser, NTFYClient, NTFYPushMessage, NTFYViewAction
 from Kernel.SystemCalls import break_after
 from Kernel import flags
 from Kernel.CryptographyKit import utils
@@ -19,7 +19,7 @@ class Notifications():
         self.message = NTFYPushMessage(content)
         self.message.addAction(self.action)
         self.message.title = flags.Default_text
-        # message.addTag("warning")
+        # self.message.addTag("warning")
         self.client.send_message(self.message)
         return content
 
