@@ -7,7 +7,8 @@ from Kernel.UserHandler import loader
 from Kernel import flags
 import launcher
 
-from sys import argv    
+from sys import argv
+flags.Runtype='local'
 def MainTask():
     loader()
     while True:

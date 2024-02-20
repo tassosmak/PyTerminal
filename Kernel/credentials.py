@@ -1,3 +1,4 @@
+from Kernel.NotificationsKit.PushSender import Notifications
 from Kernel.RendererKit import Renderer as RD
 from Kernel.SystemCalls import SystemCalls
 from Kernel import flags, SNC
@@ -155,6 +156,8 @@ def get_credentials(print_credentials=False):
         snc = SNC.snc()
         snc.guid()
     except IndexError:
+        notif = Notifications()
+        notif.Sender("The Serial number of the computer doesn't match the serial number given")
         if flags.EnableIntSoft:
             RD.CommandShow("The Serial number of the computer doesn't match the serial number given").Show('FAIL')
         SystemCalls.clear_error()

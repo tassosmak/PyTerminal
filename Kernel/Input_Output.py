@@ -2,11 +2,13 @@ from Kernel.RendererKit import Renderer as RD
 from Kernel import flags
 
 
-def CommandAsk(Module=str):
+def CommandAsk(Module=str, command=str):
     #MODE 2
     if flags.MODE == "2":
-        Module(Command=input(f"{flags.MD2} | {RD.bcolors.OKBLUE}{flags.USERNAME.capitalize()}{RD.bcolors.WHITE} % ").lower())
-        
+        if flags.Runtype == 'local':
+            Module(Command=input(f"{flags.MD2} | {RD.bcolors.OKBLUE}{flags.USERNAME.capitalize()}{RD.bcolors.WHITE} % ").lower())
+        elif flags.Runtype == 'gui':
+            Module(Command=command)
     #MODE 9
     elif flags.MODE == "9" and flags.BuildReseted == False:
         #GUI
@@ -18,7 +20,10 @@ def CommandAsk(Module=str):
             except AttributeError: RD.CommandShow('\n').Show()
         #Non GUI
         else:
-            Module(Command=input(f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower())
+            if flags.Runtype == 'local':
+                Module(Command=input(f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower())
+            elif flags.Runtype == 'gui':
+                Module(Command=command)#(f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} % ").lower())
             
     #Safe Mode
     elif flags.MODE == "3":
