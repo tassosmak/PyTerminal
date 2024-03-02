@@ -2,10 +2,9 @@ from flet import Page, Text, Switch, TextField, ElevatedButton, Text, app
 from Kernel import flags, UserHandler
 from Kernel import Input_Output as IO
 import commands as cmd
-flags.Runtype='gui'
 
-UserHandler.loader(False)
-flags.MODE = '9'
+
+
 async def main(page=Page):
     page.horizontal_alignment = "center"
     page.vertical_alignment = "spaceBetween"
@@ -17,6 +16,7 @@ async def main(page=Page):
         # commands.CommandList(text.value)
         IO.CommandAsk(Module=cmd.CommandList, command=text.value)
         page.update_async()
+        print(page.on_close)
 
     def always_on_top_changed(e):
         page.window_always_on_top = always_on_top.value
@@ -46,5 +46,15 @@ async def main(page=Page):
             button,
             def_text,
             )
+    # if page.on_close:
+        # flags.Runtype = 'local'
     
-app(target=main)
+def open_window():
+    app(target=main)
+    
+if __name__ == '__main__':
+    flags.Runtype='gui'
+    UserHandler.loader(False)
+    flags.MODE = '9'
+    app(main)
+    

@@ -61,11 +61,11 @@ def CommandList(Command=str, safe_md=False):
                 Audio.play('Kernel/AudioKit/src/Boot.mp3')
             else:
                 RD.CommandShow("tested").Show()
-        
+
         if Command == "about" or Command == "version":
             RD.CommandShow(flags.Version).Push()
-        
-        
+
+
         if Command == "time":
             RD.CommandShow(f'The time is: {SystemCalls.get_time(date=False)}').Push()
 
@@ -111,7 +111,7 @@ def CommandList(Command=str, safe_md=False):
         if Command == "latest":
             if not safe_md:
                 TaskHandler.SecondaryTask(file_name="LineRetriver")
-            
+
 
         if Command == "gen password":
             if not safe_md:
@@ -126,7 +126,7 @@ def CommandList(Command=str, safe_md=False):
             else:
                 Exit.exit()
 
-            
+
         if Command == "jump":
             if not safe_md:
                 flags.jump = True
@@ -152,12 +152,12 @@ def CommandList(Command=str, safe_md=False):
                         #ask_recv = input("To Which IP you want to talk to\nType Below!\n:")
                         RD.CommandShow(msg='To Which IP you want to talk to Type Below!').Input()
                         ask_recv = str(RD.Quest_result)
-                        try: 
+                        try:
                             client.Chat(IP=ask_recv)
                         except:
                             if not RD.Quest_result == '':
                                 RD.CommandShow(msg="This User is Unavilable at the moment\ntry again later").Show(color="WARNING")
-                            else: pass 
+                            else: pass
                 else:
                     RD.CommandShow(msg="You Are in Safe Mode you can't connect to the internet right now").Show()
 
@@ -178,10 +178,10 @@ def CommandList(Command=str, safe_md=False):
                 elif flags.pl == "2":
                     if not RD.Quest_result in flags.file_list:
                         os.system(f"notepad {RD.Quest_result}")
-        
+
         if Command == "edit file":
             if not safe_md:
-                if flags.MODE == "2" or flags.MODE == '9':           
+                if flags.MODE == "2" or flags.MODE == '9':
                     if flags.pl == "1" or flags.pl == "3":
                         RD.CommandShow(msg='Type the name of the file you want to edit').Input()
                         if not RD.Quest_result in flags.file_list:
@@ -196,12 +196,12 @@ def CommandList(Command=str, safe_md=False):
                             os.system(f'notepad {RD.Quest_result}')
                 else:
                     RD.CommandShow(msg="This Function isn't available within this mode").Show(color="FAIL")
-        
+
         if Command == "weather forecast":
             if not safe_md:
                 if flags.net:
                     os.system("curl wttr.in/")
-                    RD.CommandShow(msg="This is a fork from @igor_chubin").Show(color="UNDERLINE") 
+                    RD.CommandShow(msg="This is a fork from @igor_chubin").Show(color="UNDERLINE")
                 else:
                     RD.CommandShow(msg="You Are in Safe Mode so you can't connect to the internet right now").Show()
 
@@ -216,14 +216,14 @@ def CommandList(Command=str, safe_md=False):
         if Command == "countdown":
             if not safe_md:
                 TaskHandler.SecondaryTask(file_name="countdown")
-                
-            
-        
+
+
+
         if Command == "check site status":
             if flags.MODE == "2" or flags.MODE == "9":
                 RD.CommandShow("Type The Adress Of The Site You Want To Check", 'Down Detecter').Input()
                 os.system(f"ping {RD.Quest_result}")
-                
+
             else:
                 RD.CommandShow(msg="This Function isn't available within this mode").Show('FAIL')
 
@@ -243,17 +243,17 @@ def CommandList(Command=str, safe_md=False):
         if Command == "logout":
             clear_screen()
             flags.logout = True
-                
+
         if Command == 'chatbox':
             if not safe_md:
                 if flags.net:
                     TaskHandler.SecondaryTask('chatgpt')
         if Command == 'chatbox install':
-            if not safe_md: 
+            if not safe_md:
                 if flags.net:
                     os.system('python3 src/chatgpt.py install')
                     clear_screen()
-        
+
         if Command == 'infostats':
             if not safe_md:
                 if flags.EnableIntSoft:
@@ -274,31 +274,31 @@ def CommandList(Command=str, safe_md=False):
                     MODE = flags.MODE
                     get_credentials(True)
                     flags.MODE = MODE
-        
+
         if Command == "show cmd" or Command == 'show apps' or Command == 'help':
             if flags.EnableIntSoft:
                 RD.CommandShow(flags._CML).Show('BLUE')
             else:
                 RD.CommandShow('Available Commands').Show('OKGREEN')
                 RD.CommandShow(msg=SystemCalls.get_fl_contents()).Show()
-        
+
         if Command == "registry":
             if flags.MODE == '9':
                 registry.regedit()
-        
+
         if Command == 'browser':
             if not safe_md:
                 if flags.pl == '1':
                     TaskHandler.SecondaryTask('Browser')
                 else:
                     RD.CommandShow(msg='Not Supported').Show('WARNING')
-        
+
         if Command == 'ofp':
             if not safe_md:
                 if flags.EnableIntSoft and flags.MODE == '9':
                     RD.CommandShow('Check The Launced Window').Show()
                     TaskHandler.SecondaryTask('OFP')
-                    
+
         if Command == 'show flags':
             if not safe_md:
                 if flags.MODE == '9':
@@ -308,22 +308,33 @@ def CommandList(Command=str, safe_md=False):
         if Command == 'converter':
             if not safe_md:
                 TaskHandler.SecondaryTask('temp_mesuare_converter', stay_end=True)
-        
+
         if Command == 'calculator':
             if not safe_md:
                 TaskHandler.SecondaryTask('calculator')
-        
+
         if Command == 'stocks':
             if not safe_md:
                 TaskHandler.SecondaryTask('stock_viewer')
-                
+
         if Command == 'most used commands':
             if not safe_md:
                 SystemCalls.most_used_commands()
-                
+
         if Command == 'fake_error':
             if flags.EnableIntSoft:
                 raise KeyError
-        
+
+        if Command == 'toquel':
+            import webbrowser
+            Notifications().Sender('Mannn You Got Somee taste in music🤝')
+            webbrowser.open_new('https://www.youtube.com/watch?v=iz-xxDJNCA4')
+
+        if Command == "gui":
+            if flags.EnableIntSoft:
+                flags.Runtype = 'gui'
+                import gui
+                gui.open_window()
+
 
     except: Exit.error_exit()
