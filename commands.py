@@ -326,15 +326,17 @@ def CommandList(Command=str, safe_md=False):
                 raise KeyError
 
         if Command == 'toquel':
-            import webbrowser
-            Notifications().Sender('Mannn You Got Somee taste in music🤝')
-            webbrowser.open_new('https://www.youtube.com/watch?v=iz-xxDJNCA4')
+            if flags.EnableIntSoft and flags.MODE == '9':
+                import webbrowser
+                Notifications().Sender('Mannn You Got Somee taste in music🤝')
+                webbrowser.open_new('https://www.youtube.com/watch?v=iz-xxDJNCA4')
 
         if Command == "gui":
-            if flags.EnableIntSoft:
-                flags.Runtype = 'gui'
-                import gui
-                gui.open_window()
+            if flags.Runtype == 'local':
+                if flags.EnableIntSoft:
+                    flags.Runtype = 'gui'
+                    import main
+                    main.open_window()
 
 
     except: Exit.error_exit()

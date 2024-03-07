@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from Kernel.ErrorLoggingKit import Logger as logger
-import gui
+import main
 from Kernel.utils import args_help, set_flags
 from Kernel.SystemCalls import SystemCalls
 from Kernel import credentials as cred
@@ -37,7 +37,7 @@ try:
             flags.Runtype='gui'
             if flags.EnableIntSoft:
                 cred._get_propiatery(True)
-                gui.open_window()
+                main.open_window()
 
         elif str(argv[1]) == 'FakeLogin':
             from Kernel.LoginKit.LoginUI import LoginHandler

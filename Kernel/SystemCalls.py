@@ -84,13 +84,14 @@ class SystemCalls:
                 with open(f'{flags.base_folder}/src/history.log', 'a') as f:
                     f.write(str(f"{Command}\n"))
 
-    def show_flags():
+    def show_flags(print=True):
         result = []
         for arg in flags.all_variables:
             if not arg.startswith('_'):
                 value = eval(f'flags.{arg}')
                 output = arg, type(value), value
-                RD.CommandShow(msg=output).Show(color='BLUE')
+                if print:
+                    RD.CommandShow(msg=output).Show(color='BLUE')
                 result.append(output)
         return str(result)
     
