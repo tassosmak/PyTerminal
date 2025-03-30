@@ -22,67 +22,32 @@ def set_flags():
         ask_which = input('\n1)Userless Connection\n2)GO TO FTU\n3)Fully GUI\n4)Run-Threads Inside\n5)Run-Straight-Builtin\n6)Create_Graph\n7)Runtime_Tracer\n\nType Here:')
         
         if ask_which == '1':
-            ask_userless_state = input('Enable Or Disable?')
-            if ask_userless_state == 'Enable' or ask_userless_state == 'enable':
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content='1')
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-            elif ask_userless_state == 'Disable' or ask_userless_state == 'disable':
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content='0')
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
+            flags.UserLess_Connection = not flags.UserLess_Connection
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content=flags.UserLess_Connection)
 
         elif ask_which == '2':
-            ask_ftu_state = input('Enable Or Disable?')
-            if ask_ftu_state == 'Enable' or ask_ftu_state == 'enable':
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='1')
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-            elif ask_ftu_state == 'Disable' or ask_ftu_state == 'disable':
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content='0')
+            flags.GO_TO_FTU = not flags.GO_TO_FTU
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content=flags.GO_TO_FTU)
                 
         elif ask_which == '3':
-            ask_Fully_GUI_state = input('Enable Or Disable?')
-            if ask_Fully_GUI_state == 'Enable' or ask_Fully_GUI_state == 'enable':
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Fully GUI', content='1')
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-            elif ask_Fully_GUI_state == 'Disable' or ask_Fully_GUI_state == 'disable':
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Fully GUI', content='0')
+            flags.Fully_GUI = not flags.Fully_GUI
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Fully GUI', content=flags.Fully_GUI)
         
         elif ask_which == '4':
-            ask_Inside_Thread = input('Enable Or Disable?')
-            if ask_Inside_Thread == 'Enable' or ask_Inside_Thread == 'enable':
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content='1')
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-            elif ask_Inside_Thread == 'Disable' or ask_Inside_Thread == 'disable':
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content='0')
-                
+            flags.Inside_Thread = not flags.Inside_Thread
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content=flags.Inside_Thread)
+  
         elif ask_which == '5':
-            ask_Run_Straight_Builtin = input('Enable Or Disable?')
-            if ask_Run_Straight_Builtin == 'Enable' or ask_Run_Straight_Builtin == 'enable':
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Straight-Builtin', content='1')
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-            elif ask_Run_Straight_Builtin == 'Disable' or ask_Run_Straight_Builtin == 'disable':
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Straight-Builtin', content='0')
+            flags.Run_Straight_Builtin = not flags.Run_Straight_Builtin
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Straight-Builtin', content=flags.Run_Straight_Builtin)
 
         elif ask_which == '6':
-            ask_Create_Graph = input('Enable Or Disable?')
-            if ask_Create_Graph == 'Enable' or ask_Create_Graph == 'enable':
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Create_Graph', content='1')
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-            elif ask_Create_Graph == 'Disable' or ask_Create_Graph == 'disable':
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Create_Graph', content='0')
+            flags.Create_Graph = not flags.Create_Graph
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Create_Graph', content=flags.Create_Graph)
                 
         elif ask_which == '7':
-            ask_Runtime_Tracer = input('Enable Or Disable?')
-            if ask_Runtime_Tracer == 'Enable' or ask_Runtime_Tracer == 'enable':
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Runtime_Tracer', content='1')
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-            elif ask_Runtime_Tracer == 'Disable' or ask_Runtime_Tracer == 'disable':
-                RD.CommandShow('You have to run PyTerminal again for changes to make effect').Show('OKGREEN')
-                edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Runtime_Tracer', content='0')
+            flags.Runtime_Tracer = not flags.Runtime_Tracer
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Runtime_Tracer', content=flags.Runtime_Tracer)
 
 def args_help():
     # RD.CommandSay(msg=(flags.Default_text + '\nThose Are The Available Commands:'), color='BLUE')

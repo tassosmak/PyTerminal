@@ -18,7 +18,6 @@ def MainTask():
 try:
     try:
         if str(argv[1]) == 'Run':
-            # pass
             MainTask()
         elif str(argv[1]) == 'ClearErrors':
             SystemCalls.clear_error()
