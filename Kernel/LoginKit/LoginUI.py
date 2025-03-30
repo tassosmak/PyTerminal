@@ -29,7 +29,7 @@ class LoginHandler():
     def ask(self, print_ask=False):
         if flags.Fully_GUI and flags.MODE == '9':
             ask_name = RD.CommandShow(msg='Enter Usename', header="Login").Input()
-            ask_Password = RD.CommandShow(msg='Enter Password', header="Login").Input()
+            ask_Password = EncryptPassword.encrypt_password(RD.CommandShow(msg='Enter Password', header="Login").Input(), save=False)
         else:    
             ask_name = input("Enter Usename")
             ask_Password = EncryptPassword.encrypt_password(InputManagerKit.askpass("\nEnter Password"), save=False)
@@ -43,10 +43,13 @@ class LoginHandler():
         if not flags.pl == '2':
             self.code = Notifications().Code_Sender()
             while not self.verified:
-                # self.ask_code = RD.CommandShow('We Have Send A code to your Phone').Input()
-                self.ask_code = input('We Have Send A code to your Phone')
-                if self.ask_code == self.code:
-                    self.verified = True
+                if flags.Fully_GUI and flags.MODE == '9':
+                    self.ask_code = RD.CommandShow('We Have Send A code to your Phone').Input()
+                    if self.ask_code == self.code:
+                        self.verified = True
+                else:
+                    self.ask_code = input('We Have Send A code to your Phone')
+
         else: 
             RD.CommandShow("Development Mode isn't supported on Windows").Show('WARNING')
             flags.EnableIntSoft = False
