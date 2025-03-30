@@ -23,7 +23,7 @@ async def main(page=Page):
         page.update_async()
         textbox.value = ''
         
-    textbox = TextField(label="Input Box", adaptive=True)
+    textbox = TextField(label="Input Box")
     page.on_keyboard_event = on_keyboard
     
     
