@@ -15,8 +15,6 @@ def _get_propiatery(print_credentials=False):
         UserLess_Connection = data['user_login']['UserLess Connection']
     except KeyError:
         raise FileNotFoundError
-    # if UserLess_Connection == "1":
-    #     flags.UserLess_Connection = True
     flags.UserLess_Connection = UserLess_Connection
     if print_credentials:
         RD.CommandShow(msg=("UserLess Connection:", UserLess_Connection)).Show()

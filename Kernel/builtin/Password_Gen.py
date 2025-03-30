@@ -22,3 +22,6 @@ if 'yes' in RD.Quest_result.lower():
     with open(f"{flags.base_folder}/../password.txt", "w") as f:
         f.write(password_str)
     RD.CommandShow('The File Is Saved', 'Password Generator').Push()
+    from subprocess import call 
+    file_to_show = f"{flags.base_folder}/../Password.txt"
+    call(["open", "-R", file_to_show])
