@@ -49,7 +49,8 @@ class LoginHandler():
                         self.verified = True
                 else:
                     self.ask_code = input('We Have Send A code to your Phone')
-
+                    if self.ask_code == self.code:
+                        self.verified = True
         else: 
             RD.CommandShow("Development Mode isn't supported on Windows").Show('WARNING')
             flags.EnableIntSoft = False
