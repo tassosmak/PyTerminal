@@ -108,7 +108,6 @@ class SystemCalls:
             data = file.read()
             for i in flags._CML:
                 occurrences = data.count(i)
-
                 RD.CommandShow(f"{i}: {occurrences}").Show(color='BLUE')
                 
 
