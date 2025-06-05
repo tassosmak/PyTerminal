@@ -73,10 +73,8 @@ def CommandList(Command=str, safe_md=False):
             if not safe_md:
                 if flags.MODE == "2" or flags.MODE == '9':
                     RD.CommandShow(SystemCalls.get_fl_contents())
-                    ask_del = input("what file you want to delete:")
                     try:
-                        RD.CommandShow(msg=ask_del)
-                        os.remove(ask_del)
+                        os.remove(RD.CommandShow(msg="what file you want to delete:").Input())
                         RD.CommandShow(msg="DONE").Show(color="OKGREEN")
                     except FileNotFoundError:
                         RD.CommandShow(msg="This file doesn't exist").Info()
