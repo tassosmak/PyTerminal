@@ -1,3 +1,4 @@
+__pycache__
 __pycache__/UserHandler.cpython-310.pyc
 __pycache__/commands.cpython-310.pyc
 __pycache__/commands.cpython-310.pyc
@@ -11,12 +12,11 @@ __pycache__/Kernel.cpython-310.pyc
 __pycache__/Kernel.cpython-310.pyc
 __pycache__/client.cpython-39.pyc
 __pycache__/Server.cpython-39.pyc
+Kernel/CryptographyKit/decrypt.py
 Kernel/ErrorLoggingKit/errors.log
-Kernel/CryptographyKit/DecryptPassword.py
-Kernel/src/history.log
 Kernel/src/CallGraph.png
+Kernel/src/history.log
 MakroPropiatery.json
-__pycache__
+Password.txt
 .DS_Store
 Info.json
-Password.txt
