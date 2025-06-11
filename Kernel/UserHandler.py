@@ -3,7 +3,6 @@ from Kernel.LoginKit.LoginUI import LoginHandler
 from Kernel.RendererKit import Renderer as RD
 from Kernel import credentials as cred, flags
 from Kernel.SystemCalls import SystemCalls
-from Kernel.NotificationsKit import PushSender
 from Kernel.AudioKit import Audio
 from Kernel.FTU import FTU_init
 import sys
