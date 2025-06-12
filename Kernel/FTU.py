@@ -26,9 +26,9 @@ class FTU_init:
         #use_configure
         RD.CommandShow(msg=f"Welcome To {flags.Version} By Anastasios Makrostergios\nDon't Wory it an one time only message ;)\n").Show('OKGREEN')
         RD.CommandShow(msg='How Do You want to use this instanche?').Choice(Button1='Compact', Button2='Personal')
-        if RD.Quest_result == 'Personal' or RD.Quest_result == '1':
+        if RD.Quest_result == 'Full' or RD.Quest_result == '1':
             ask_type = '1'
-        elif RD.Quest_result == 'Compact' or RD.Quest_result == '2':
+        elif RD.Quest_result == 'Minimum' or RD.Quest_result == '2':
             ask_type = '2'
             flags.EnableAudio = False
             flags.EnableGUI = False
@@ -48,7 +48,7 @@ class FTU_init:
     
         correct_pswd_input = False
         while not correct_pswd_input:
-            RD.CommandShow(msg='Do You Want to to Use A safe Password').Choice(Button1='No', Button2='Yes')
+            RD.CommandShow(msg='Do you want us to create a password for you?').Choice(Button1='No', Button2='Yes')
             
             if RD.Quest_result.lower() == 'yes':
                 pre_enc_pswd = _gen_safe_password()
