@@ -85,7 +85,12 @@ class FTU_init:
             if flags.MODE == '9':
                 RD.CommandShow('--Dependecies Install Start--\n').Show(color='WARNING')
             while len(flags.Dependecies) > num:
-                ftu_install.install(flags.Dependecies[num])
+                utils.progress_bar(
+                    module=ftu_install.install,
+                    arg1=flags.Dependecies[num],
+                    arg2=flags.EnableIntSoft,
+                    description=f'Dependecy Installer Num.{num} {flags.Dependecies[num]}'
+                )
                 num += 1
             os.system('playwright install')
             if flags.MODE == '9':

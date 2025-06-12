@@ -2,6 +2,7 @@ from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel.RendererKit import Renderer as RD
 from Kernel.AudioKit import Audio
 from Kernel import flags
+from tqdm import tqdm
 import subprocess
 import platform
 import json
@@ -78,7 +79,13 @@ def clear_screen():
         os.system('clear')
     elif flags.pl == '2':
         os.system('cls')
-        
+
+def progress_bar(module=str, arg1=str, arg2=str, description=flags.Default_text):
+    if not description==flags.Default_text:
+                description=f'{flags.Default_text} | {description}'
+    for i in tqdm(arg1, desc=description):
+        module(arg1, arg2)
+
 
 def clear_gui():
     if not flags.pl == str:
