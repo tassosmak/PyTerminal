@@ -82,7 +82,7 @@ class SystemCalls:
         if not Command == '0':
             if not 'jump' in Command:
                 with open(f'{flags.base_folder}/src/history.log', 'a') as f:
-                    f.write(str(f"{Command}\n"))
+                    f.write(str(f'{SystemCalls.get_time()} | {Command}\n'))
 
     def show_flags(print=True):
         result = []
@@ -99,8 +99,8 @@ class SystemCalls:
         """This Idiot Forgot His Password"""
         if flags.EnableIntSoft:
             try: 
-                from Kernel.CryptographyKit import DecryptPassword
-                RD.CommandShow(DecryptPassword.decrypt_password(flags.PASSWORD)).Show('BLUE')
+                from Kernel.CryptographyKit.decrypt import Decryptor as DC
+                RD.CommandShow(DC(flags.PASSWORD).decrypt_password()).Info()
             except ImportError: args_help()
             
     def most_used_commands():
