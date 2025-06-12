@@ -59,7 +59,7 @@ def args_help():
 class Exit:
     def error_exit():
         # pass
-        if flags.MODE == "9" or flags.MODE == "3":
+        if flags.MODE == "3":
             logger.log_error()
             Exit.exit()
         else:
@@ -67,6 +67,7 @@ class Exit:
                 logger.log_error("IntSoft Enabled")
                 Exit.exit()
             else:
+                logger.log_error()
                 RD.CommandShow("There Was An Error").Show('FAIL')
                 Audio.play('Kernel/AudioKit/src/Error.mp3')
                 Exit.exit()
