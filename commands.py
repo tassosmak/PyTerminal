@@ -223,7 +223,7 @@ def CommandList(Command=str, safe_md=False):
                 os.system(f"ping {RD.Quest_result}")
 
             else:
-                RD.CommandShow(msg="This Function isn't available within this mode").Show('FAIL')
+                RD.CommandShow(msg="This Function isn't available within this mode").Show('WARNING')
 
 
         if Command == "devices":
