@@ -4,7 +4,7 @@ from Kernel.CryptographyKit import EncryptPassword
 from Kernel.utils import edit_json, clear_screen
 from Kernel.RendererKit import Renderer as RD
 from Kernel import flags, SNC, utils
-import os
+import os, re
 
 class FTU_init:
     
@@ -24,8 +24,9 @@ class FTU_init:
             
     def use_config(self):
         #use_configure
+        utils.clear_screen()
         RD.CommandShow(msg=f"Welcome To {flags.Version} By Anastasios Makrostergios\nDon't Wory it an one time only message ;)\n").Show('OKGREEN')
-        RD.CommandShow(msg='How Do You want to use this instanche?').Choice(Button1='Compact', Button2='Personal')
+        RD.CommandShow(msg='How Do You want to use this instanche?').Choice(Button1='Minimum', Button2='Full')
         if RD.Quest_result == 'Full' or RD.Quest_result == '1':
             ask_type = '1'
         elif RD.Quest_result == 'Minimum' or RD.Quest_result == '2':
@@ -58,8 +59,12 @@ class FTU_init:
                 correct_pswd_input = True
                             
             else:
-                RD.CommandShow(msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters').Input()
-                # EncryptPassword.encrypt_password(password=RD.Quest_result)
+                RD.CommandShow(msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Special Charachters').Input()
+                
+                #remove spaces and special characters
+                RD.Quest_result.replace(' ', '')
+                RD.Quest_result = re.sub(r'[^a-zA-Z0-9]', '', RD.Quest_result)
+
                 EncryptPassword.encrypt_password(password=RD.Quest_result)
                 correct_pswd_input = True
     def mode(self):

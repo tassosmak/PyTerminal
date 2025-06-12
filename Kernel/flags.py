@@ -29,7 +29,6 @@ Flags End
 '''
 
 Dependecies = [
-    'tqdm',
     'ply',
     'ffmpeg',
     'rich',

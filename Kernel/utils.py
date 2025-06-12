@@ -2,11 +2,11 @@ from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel.RendererKit import Renderer as RD
 from Kernel.AudioKit import Audio
 from Kernel import flags
-from tqdm import tqdm
 import subprocess
 import platform
 import json
 import os
+from Kernel.RendererKit.ProgressBarKit import tqdm
 
 def edit_json(file_name=f'Info.json', loc1="", loc2="", content=""):
     with open(file_name, 'r+') as f:
