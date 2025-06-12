@@ -80,7 +80,7 @@ def clear_screen():
     elif flags.pl == '2':
         os.system('cls')
 
-def progress_bar(module=str, arg1=str, arg2=str, description=flags.Default_text):
+def progress_bar(module=str, arg1=str, arg2=str, description=str):
     if not description==flags.Default_text:
                 description=f'{flags.Default_text} | {description}'
     for i in tqdm(arg1, desc=description):
