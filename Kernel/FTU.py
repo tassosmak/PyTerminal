@@ -93,6 +93,7 @@ class FTU_init:
                 )
                 num += 1
             os.system('playwright install')
+            RD.CommandShow(msg='All Dependecies Installed Successfully').Push()
             if flags.MODE == '9':
                 RD.CommandShow('\n--Dependecies Install End--\n').Show('WARNING')
         except MemoryError:
