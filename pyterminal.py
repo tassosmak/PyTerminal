@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 from Kernel.ErrorLoggingKit import Logger as logger
-import main
 from Kernel.utils import args_help, set_flags
 from Kernel.SystemCalls import SystemCalls
 from Kernel import credentials as cred
@@ -33,8 +32,9 @@ try:
 
         elif str(argv[1]) == "GUI":
             loader(False)
-            flags.Runtype='gui'
             if flags.EnableIntSoft:
+                flags.Runtype='gui'
+                import main
                 cred._get_propiatery(True)
                 main.open_window()
 

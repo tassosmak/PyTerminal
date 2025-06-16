@@ -127,6 +127,7 @@ _CML =[
 'fake_error',
 'toquel',
 'gui',
+'plugins'
 ]
 
 MD2 = "!History isn't enabled! PyTerminal Beta"
