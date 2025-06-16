@@ -99,7 +99,7 @@ class CommandShow:
                 display dialog "{self.msg}" with title "{self.header}" with icon note buttons "OK"
                 """
 
-                subprocess.call("osascript -e '{}'".format(script), shell=True)
+                subprocess.call("osascript -e '{}'".format(script), shell=True, stdout=subprocess.DEVNULL)
             elif flags.pl == '2':
                 ctypes.windll.user32.MessageBoxW(0, self.msg, flags.Default_text, 1)
         else:
