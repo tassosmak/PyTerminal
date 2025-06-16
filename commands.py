@@ -339,7 +339,7 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == 'plugins':
             if not safe_md:
-                RD.CommandShow(SystemCalls.get_fl_contents()).Show('BLUE')
+                RD.CommandShow(SystemCalls.get_fl_contents('builtin')).Show('BLUE')
                 RD.CommandShow('What plugin you want to load?').Input()
                 TaskHandler.SecondaryTask(RD.Quest_result)
 

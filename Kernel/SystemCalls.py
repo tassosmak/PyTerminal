@@ -29,8 +29,10 @@ class SystemCalls:
         flags.base_folder = Path(__file__).parent.resolve()
         return flags.base_folder
     
-    def get_fl_contents():
-        fl_contents = os.listdir(flags.base_folder)
+    def get_fl_contents(path=flags.base_folder):
+        if not path==flags.base_folder:
+                path=f'{flags.base_folder}/{path}'
+        fl_contents = os.listdir(path)
         return fl_contents
     
     def measure_time(func):
