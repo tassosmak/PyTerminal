@@ -13,63 +13,44 @@ def _get_propiatery(print_credentials=False):
     data = json.load(f)
     try:
         UserLess_Connection = data['user_login']['UserLess Connection']
-    except KeyError:
-        raise FileNotFoundError
-    flags.UserLess_Connection = UserLess_Connection
-    if print_credentials:
-        RD.CommandShow(msg=("UserLess Connection:", UserLess_Connection)).Show()
+        flags.UserLess_Connection = UserLess_Connection
+        if print_credentials:
+            RD.CommandShow(msg=("UserLess Connection:", UserLess_Connection)).Show()
 
-
-    try:
         GO_TO_FTU = data['user_login']['GO TO FTU']
-    except KeyError:
-        raise FileNotFoundError
-    flags.GO_TO_FTU = GO_TO_FTU
-    if print_credentials:
-        RD.CommandShow(msg=("GO_TO_FTU:", GO_TO_FTU)).Show()
-        
-    try:
+        flags.GO_TO_FTU = GO_TO_FTU
+        if print_credentials:
+            RD.CommandShow(msg=("GO_TO_FTU:", GO_TO_FTU)).Show()
+
         Fully_GUI = data['user_login']['Fully GUI']
-    except KeyError:
-        raise FileNotFoundError
-    if flags.EnableGUI and flags.pl == '1':
-        flags.Fully_GUI = Fully_GUI
-    else:
-        flags.Fully_GUI = False
-    if print_credentials:
-        RD.CommandShow(msg=("Fully_GUI:", Fully_GUI)).Show()
-    
-    try:
-        Inside_Thread = data['user_login']['Run-Threads Inside']
-    except KeyError:
-        raise FileNotFoundError
-    flags.Inside_Thread = Inside_Thread
-    if print_credentials:
-        RD.CommandShow(msg=("Run-Threads Inside:", Inside_Thread)).Show()
-    
-    try:
-        Run_Straight_Builtin = data['user_login']['Run-Straight-Builtin']
-    except KeyError:
-        raise FileNotFoundError
-    flags.Run_Straight_Builtin = Run_Straight_Builtin
-    if print_credentials:
-        RD.CommandShow(msg=("Run_Straight_Builtin:", Run_Straight_Builtin)).Show()
-    
-    try:
-        Create_Graph = data['user_login']['Create_Graph']
-    except KeyError:
-        raise FileNotFoundError
-    flags.Create_Graph = Create_Graph
-    if print_credentials:
-        RD.CommandShow(msg=("Create_Graph:", Create_Graph)).Show()
+        if flags.EnableGUI and flags.pl == '1':
+            flags.Fully_GUI = Fully_GUI
+        else:
+            flags.Fully_GUI = False
+        if print_credentials:
+            RD.CommandShow(msg=("Fully_GUI:", Fully_GUI)).Show()
         
-    try:
+        Inside_Thread = data['user_login']['Run-Threads Inside']
+        flags.Inside_Thread = Inside_Thread
+        if print_credentials:
+            RD.CommandShow(msg=("Run-Threads Inside:", Inside_Thread)).Show()
+        
+        Run_Straight_Builtin = data['user_login']['Run-Straight-Builtin']
+        flags.Run_Straight_Builtin = Run_Straight_Builtin
+        if print_credentials:
+            RD.CommandShow(msg=("Run_Straight_Builtin:", Run_Straight_Builtin)).Show()
+        
+        Create_Graph = data['user_login']['Create_Graph']
+        flags.Create_Graph = Create_Graph
+        if print_credentials:
+            RD.CommandShow(msg=("Create_Graph:", Create_Graph)).Show()
+            
         Runtime_Tracer = data['user_login']['Runtime_Tracer']
+        flags.Runtime_Tracer = Runtime_Tracer
+        if print_credentials:
+            RD.CommandShow(msg=("Runtime_Tracer:", Runtime_Tracer)).Show()
     except KeyError:
         raise FileNotFoundError
-    flags.Runtime_Tracer = Runtime_Tracer
-    if print_credentials:
-        RD.CommandShow(msg=("Runtime_Tracer:", Runtime_Tracer)).Show()
 
     f.close()
 
