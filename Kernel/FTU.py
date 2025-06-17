@@ -18,7 +18,7 @@ class FTU_init:
             edit_json(loc1='Internal-Software', loc2='Enable', content='0')
             flags.EnableIntSoft == False
         #check_gui
-        if flags.pl == '3':
+        if not flags.pl == '1':
             edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
             flags.EnableGUI = False
             

@@ -84,7 +84,7 @@ def get_credentials(print_credentials=False):
         RD.CommandShow(msg=("FTU:", FTU)).Show()
     
     GUI = data['UI']['Enable-AquaUI']
-    if GUI == "1":
+    if GUI == "1" and flags.pl == '1':
         flags.EnableGUI = True
     if print_credentials:
         RD.CommandShow(msg=("UI:", GUI)).Show()

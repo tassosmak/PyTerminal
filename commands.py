@@ -348,9 +348,7 @@ def CommandList(Command=str, safe_md=False):
                         plugin_exist = True
                     else:
                         clear_screen()
-                        RD.CommandShow("This Plugin Doesn't Exist").Info()
-                        import time
-                        time.sleep(7)
+                        RD.CommandShow("This Plugin Doesn't Exist").Show('WARNING')
 
 
     except: Exit.error_exit()
