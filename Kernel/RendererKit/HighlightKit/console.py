@@ -1743,7 +1743,7 @@ class Console:
                 in to something that can be JSON encoded. Defaults to None.
             sort_keys (bool, optional): Sort dictionary keys. Defaults to False.
         """
-        from rich.json import JSON
+        from Kernel.RendererKit.HighlightKit.json import JSON
 
         if json is None:
             json_renderable = JSON.from_data(
@@ -2013,8 +2013,8 @@ class Console:
                                 )
 
                         if use_legacy_windows_render:
-                            from rich._win32_console import LegacyWindowsTerm
-                            from rich._windows_renderer import legacy_windows_render
+                            from Kernel.RendererKit.HighlightKit._win32_console import LegacyWindowsTerm
+                            from Kernel.RendererKit.HighlightKit._windows_renderer import legacy_windows_render
 
                             buffer = self._buffer[:]
                             if self.no_color and self._color_system:
@@ -2298,7 +2298,7 @@ class Console:
                 ids). If not set, this defaults to a computed value based on the recorded content.
         """
 
-        from rich.cells import cell_len
+        from Kernel.RendererKit.HighlightKit.cells import cell_len
 
         style_cache: Dict[Style, str] = {}
 

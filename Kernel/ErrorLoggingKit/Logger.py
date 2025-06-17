@@ -45,5 +45,5 @@ def log_error(message="NO_MSG"):
     else:
         from Kernel.utils import clear_screen
         import sys
-        clear_screen()
+        # clear_screen()
         sys.stdout.write('Error')

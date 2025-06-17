@@ -1,8 +1,8 @@
 from textual.widgets import DirectoryTree, Footer, Header, Static
 from textual.containers import Container, Vertical
 from textual.app import App, ComposeResult
-from rich.traceback import Traceback
-from rich.syntax import Syntax
+from Kernel.RendererKit.HighlightKit.traceback import Traceback
+from Kernel.RendererKit.HighlightKit.syntax import Syntax
 import sys
 
 from textual import events

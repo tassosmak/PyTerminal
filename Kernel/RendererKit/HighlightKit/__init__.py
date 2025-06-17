@@ -43,7 +43,7 @@ def reconfigure(*args: Any, **kwargs: Any) -> None:
         *args (Any): Positional arguments for the replacement :class:`~rich.console.Console`.
         **kwargs (Any): Keyword arguments for the replacement :class:`~rich.console.Console`.
     """
-    from rich.console import Console
+    from Kernel.RendererKit.HighlightKit.console import Console
 
     new_console = Console(*args, **kwargs)
     _console = get_console()
@@ -153,7 +153,7 @@ def inspect(
         value (bool, optional): Pretty print value. Defaults to True.
     """
     _console = console or get_console()
-    from rich._inspect import Inspect
+    from Kernel.RendererKit.HighlightKit._inspect import Inspect
 
     # Special case for inspect(inspect)
     is_inspect = obj is inspect

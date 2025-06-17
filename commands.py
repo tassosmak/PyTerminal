@@ -339,9 +339,18 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == 'plugins':
             if not safe_md:
-                RD.CommandShow(SystemCalls.get_fl_contents('builtin')).Show('BLUE')
-                RD.CommandShow('What plugin you want to load?').Input()
-                TaskHandler.SecondaryTask(RD.Quest_result)
+                plugin_exist = False
+                while not plugin_exist:
+                    RD.CommandShow(SystemCalls.get_fl_contents('builtin')).Show('BLUE')
+                    RD.CommandShow('What plugin you want to load?').Input()
+                    if os.path.isfile(f'{flags.base_folder}/builtin/{RD.Quest_result}.py'):
+                        TaskHandler.SecondaryTask(RD.Quest_result)
+                        plugin_exist = True
+                    else:
+                        clear_screen()
+                        RD.CommandShow("This Plugin Doesn't Exist").Info()
+                        import time
+                        time.sleep(7)
 
 
     except: Exit.error_exit()

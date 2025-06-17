@@ -10,7 +10,7 @@ from __future__ import absolute_import
 
 from warnings import warn
 
-from rich.progress import (
+from Kernel.RendererKit.HighlightKit.progress import (
     BarColumn, Progress, ProgressColumn, Text, TimeElapsedColumn, TimeRemainingColumn, filesize)
 
 from .std import TqdmExperimentalWarning

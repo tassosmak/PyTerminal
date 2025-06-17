@@ -17,8 +17,8 @@ else:
     import readline
 
 from playwright.sync_api import sync_playwright
-from rich.console import Console
-from rich.markdown import Markdown
+from Kernel.RendererKit.HighlightKit.console import Console
+from Kernel.RendererKit.HighlightKit.markdown import Markdown
 
 console = Console()
 

@@ -5,10 +5,10 @@ import sys
 import time
 from dataclasses import dataclass
 
-from rich import box
-from rich.console import Console
-from rich.live import Live
-from rich.table import Table
+from Kernel.RendererKit.HighlightKit import box
+from Kernel.RendererKit.HighlightKit.console import Console
+from Kernel.RendererKit.HighlightKit.live import Live
+from Kernel.RendererKit.HighlightKit.table import Table
 
 if sys.version_info >= (3, 8):
     from typing import Literal
