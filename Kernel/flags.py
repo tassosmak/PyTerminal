@@ -42,7 +42,8 @@ Dependecies = [
     'ntfpy',
     'winotify',
     'maskpass',
-    'easygui'
+    'easygui',
+    'pygments'
 ]
 
 ModeList = [
