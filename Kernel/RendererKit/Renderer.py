@@ -8,7 +8,6 @@ from Kernel import flags, utils
 try: 
     from Kernel.RendererKit.HighlightKit import color_text
     if flags.pl == '2':
-        from winotify import Notification
         import easygui, ctypes
 except: pass
 
@@ -63,7 +62,7 @@ class CommandShow:
             os.system(command)
         
         elif flags.pl == '2' and flags.FTU == '1' and flags.EnableGUI == True:
-            
+            from winotify import Notification    
             toast = Notification(app_id="Python3",
                      title=flags.Default_text,
                      msg=self.msg,
