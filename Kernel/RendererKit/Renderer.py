@@ -72,7 +72,7 @@ class CommandShow:
             toast.show()
         
         else:
-            CommandShow(f'Notification: {self.msg}').Show()
+            CommandShow(f'Notification: {self.msg}').Show('OKGREEN')
 
     
     def Choice(self, Button1='No', Button2='Yes'):
