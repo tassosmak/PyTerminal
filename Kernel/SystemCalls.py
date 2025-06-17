@@ -29,15 +29,20 @@ class SystemCalls:
         flags.base_folder = Path(__file__).parent.resolve()
         return flags.base_folder
     
-    def get_fl_contents(path=flags.base_folder):
-        if not path==flags.base_folder:
+    def get_fl_content(path=flags.base_folder):
+        if path != flags.base_folder:
             if flags.pl == '1' or flags.pl == '3':
-                path=f'{flags.base_folder}/{path}'
+                path = f'{flags.base_folder}/{path}'
             else:
-                path=f'{flags.base_folder}\\{path}'
-        fl_contents = os.listdir(path)
-        return fl_contents
-    
+                path = f'{flags.base_folder}\\{path}'
+        # List all .py files and remove the .py extension
+        py_files = [
+            os.path.splitext(f)[0]
+            for f in os.listdir(path)
+            if f.endswith(".py") and os.path.isfile(os.path.join(path, f))
+        ]
+        return py_files
+        
     def measure_time(func):
         def wrapper():
             if flags.Runtime_Tracer:

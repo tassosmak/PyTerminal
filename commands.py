@@ -278,7 +278,7 @@ def CommandList(Command=str, safe_md=False):
                 RD.CommandShow(flags._CML).Show('BLUE')
             else:
                 RD.CommandShow('Available Commands').Show('OKGREEN')
-                RD.CommandShow(msg=SystemCalls.get_fl_contents()).Show()
+                RD.CommandShow(msg=SystemCalls.get_fl_content('Builtin')).Show()
 
         if Command == "registry":
             if flags.MODE == '9':
@@ -341,7 +341,7 @@ def CommandList(Command=str, safe_md=False):
             if not safe_md:
                 plugin_exist = False
                 while not plugin_exist:
-                    RD.CommandShow(SystemCalls.get_fl_contents('builtin')).Show('BLUE')
+                    RD.CommandShow(SystemCalls.get_fl_content('Builtin')).Show('BLUE')
                     RD.CommandShow('What plugin you want to load?').Input()
                     if os.path.isfile(f'{flags.base_folder}/builtin/{RD.Quest_result}.py'):
                         TaskHandler.SecondaryTask(RD.Quest_result)
