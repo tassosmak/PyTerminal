@@ -55,7 +55,8 @@ class CommandShow:
         if flags.pl == '1' and flags.FTU == '1' and flags.EnableGUI == True:
             command = f'''
             osascript -e 'display notification "{self.msg}" with title "{self.header}"'
-            '''        
+            '''
+            os.system(command)
         else:
             CommandShow(f'Notification: {self.msg}').Show('OKGREEN')
 
