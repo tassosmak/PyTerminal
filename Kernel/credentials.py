@@ -8,8 +8,10 @@ import os
 
 def _get_propiatery(print_credentials=False):
     global UserLess_Connection, GO_TO_FTU, Fully_GUI
-    f = open('MakroPropiatery.json')
-
+    try:
+        f = open('MakroPropiatery.json')
+    except FileNotFoundError:
+        return False
     data = json.load(f)
     try:
         UserLess_Connection = data['user_login']['UserLess Connection']
@@ -49,34 +51,29 @@ def _get_propiatery(print_credentials=False):
         flags.Runtime_Tracer = Runtime_Tracer
         if print_credentials:
             RD.CommandShow(msg=("Runtime_Tracer:", Runtime_Tracer)).Show()
+            
+        flags.EnableIntSoft = True
+        f.close()
+        return True
     except KeyError:
         raise FileNotFoundError
 
-    f.close()
 
     
-    
+
 Name = 0
 Password = 0
 Mode = 0
 FTU = 0
 GUI = 0
 SerialNum = 0
-def get_credentials(print_credentials=False):
+def get_credentials(print_credentials=False, path=None):
     SystemCalls.get_folder()
     global Name, Password, Mode, FTU, GUI, SerialNum
-    try:
-        f = open(f'{flags.base_folder}/../Info.json')
-    except FileNotFoundError:
-        try:
-            from Kernel.src import Recover_Json
-        except ImportError:
-            RD.CommandShow(msg='This Installation is corrupted install a new one').Show('FAIL')
-            os._exit(1)
-        f = open('Info.json')
-
-
+    
+    f = open(path)
     data = json.load(f)
+
 
     FTU = data['FTU']['Use']
     flags.FTU = FTU
@@ -110,7 +107,8 @@ def get_credentials(print_credentials=False):
 
     Internal_Software = data['Internal-Software']['Enable']
     try:
-        _get_propiatery()
+        from Kernel.credentials import _get_propiatery
+        _get_propiatery(True)
         if Internal_Software == "1":
             flags.EnableIntSoft = True
         else: 
@@ -133,7 +131,7 @@ def get_credentials(print_credentials=False):
     SerialNum = data['user_credentials']['Serial']
     try:
         snc = SNC.snc()
-        snc.guid()
+        snc.guid(Name)
     except IndexError:
         notif = Notifications()
         notif.Sender("The Serial number of the computer doesn't match the serial number given")

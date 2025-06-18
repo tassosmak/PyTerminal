@@ -8,6 +8,7 @@ from Kernel.SystemCalls import SystemCalls
 from Kernel import TaskHandler, flags
 from Kernel.AudioKit import Audio
 from Kernel.src import registry
+from Kernel import utils
 
 import sys
 import os
@@ -349,6 +350,69 @@ def CommandList(Command=str, safe_md=False):
                     else:
                         clear_screen()
                         RD.CommandShow("This Plugin Doesn't Exist").Show('WARNING')
+        
+        if Command == 'create user':
+            if not safe_md:
+                flags.newuser = True
+
+        if Command == 'remove user':
+            if not safe_md:
+                if not flags.MODE == '1' :
+                    RD.CommandShow('Type the username you want to remove').Input()
+                    if os.path.isfile(f'{flags.base_folder}/users/{RD.Quest_result}.json'):
+                        os.remove(f'{flags.base_folder}/users/{RD.Quest_result}.json')
+                        RD.CommandShow(msg=f'User {RD.Quest_result} Removed Successfully').Show('OKGREEN')
+                    else:
+                        RD.CommandShow(msg='This User Does Not Exist').Show('WARNING')
+                else:
+                    RD.CommandShow(msg='This Function is not available in this mode').Show('WARNING')
+        
+        if Command == 'change account type':
+            if not safe_md:
+                RD.CommandShow(msg='there are 2 Modes on this terminal').Choice(Button1='The Advanced Mode', Button2='The Basic Mode')
+                if RD.Quest_result == 'The Advanced Mode' or RD.Quest_result == '2':
+                    ask_Mode = '2'
+                elif RD.Quest_result == 'The Basic Mode' or RD.Quest_result == '1':
+                    ask_Mode = '1'
+                elif RD.Quest_result == '9':
+                    ask_Mode = '9'
+                else:
+                    ask_Mode = '1'
+                RD.Quest_result = ask_Mode
+                if RD.Quest_result in flags.ModeList:
+                    utils.edit_user_config(
+                        username=flags.USERNAME,
+                        Loc1='user_credentials',
+                        Loc2='Mode',
+                        Content=RD.Quest_result
+                    )
+                    RD.CommandShow(msg=f'Account Type Changed Successfully').Show('OKGREEN')
+                else:
+                    RD.CommandShow(msg='This Type Does Not Exist').Show('WARNING')
+
+
+        if Command == 'change password':
+            if not safe_md:
+                if not flags.UserLess_Connection:
+                    from test import LoginHandler
+                    lgh = LoginHandler()
+                    enc_password = lgh.ask_password()
+                    if enc_password == flags.PASSWORD:
+                        from Kernel.utils import edit_user_config
+                        RD.CommandShow('Type your new password').Input()
+                        RD.CommandShow(f'Your new password is: {RD.Quest_result}').Info()
+                        from Kernel.CryptographyKit import EncryptPassword as encrypt
+                        edit_user_config(
+                            username=flags.USERNAME,
+                            Loc1='user_credentials',
+                            Loc2='Password',
+                            Content=encrypt.encrypt_password(password=RD.Quest_result, save=False)
+                        )
+                        RD.CommandShow(msg='Password Changed Successfully').Show('OKGREEN')
+                else:
+                    RD.CommandShow(msg='You Are in UserLess Mode').Show('WARNING')
+                    
+                    
 
 
     except: Exit.error_exit()

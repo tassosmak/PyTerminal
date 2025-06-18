@@ -18,6 +18,23 @@ def edit_json(file_name=f'Info.json', loc1="", loc2="", content=""):
         f.seek(0)
         json.dump(data, f, indent=4)
         f.truncate()
+        
+def edit_user_config(username=str, Loc1=str, Loc2=str, Content=str):
+    """Edit User Config File"""
+    
+    try: 
+        f = open(f'{flags.base_folder}/users/{username}.json', 'r')
+        f.close()
+    except FileNotFoundError:
+        open(f'{flags.base_folder}/users/{username}.json', 'w+').close()
+        from Kernel.src import Recover_Json
+        Recover_Json.gen_file(username)
+    edit_json(
+        file_name=f'{flags.base_folder}/users/{username}.json',
+        loc1=Loc1,
+        loc2=Loc2,
+        content=Content 
+        )
 
 def set_flags():
         ask_which = input('\n1)Userless Connection\n2)GO TO FTU\n3)Fully GUI\n4)Run-Threads Inside\n5)Run-Straight-Builtin\n6)Create_Graph\n7)Runtime_Tracer\n\nType Here:')
@@ -98,6 +115,7 @@ def clear_gui():
         RD.CommandShow('You have to run pl_finder to clear the gui').Show('WARNING')
         
 class ModeHandling:
+    #Deprecated
     def recover_mode():
         flags.EnableIntSoft = False
         while not RD.Quest_result in flags.ModeList:

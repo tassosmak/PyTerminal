@@ -2,6 +2,7 @@ from Kernel.utils import ModeHandling as MoDeH, Exit
 import ModeHandling as MDH #MDH for MODE HANDLING
 from Kernel.RendererKit import Renderer as RD
 from Kernel.SystemCalls import SystemCalls
+from Kernel.FTU import FTU_init as FTU
 from Kernel.UserHandler import loader
 from Kernel import flags
 
@@ -17,6 +18,9 @@ def _run():
         if flags.logout:
             loader()
             flags.logout = False
+        if flags.newuser:
+            FTU().run()
+            flags.newuser = False
 
 
 

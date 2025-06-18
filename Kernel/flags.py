@@ -15,6 +15,7 @@ GO_TO_FTU = False
 EnableGUI = False
 base_folder = str
 sys_detect = str
+newuser = False
 logout = False
 USERNAME = str
 PASSWORD = str
@@ -128,7 +129,11 @@ _CML =[
 'fake_error',
 'toquel',
 'gui',
-'plugins'
+'plugins',
+'create user',
+'remove user',
+'change account type',
+'change password',
 ]
 
 MD2 = "!History isn't enabled! PyTerminal Beta"

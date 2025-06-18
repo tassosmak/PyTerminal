@@ -9,7 +9,6 @@ def log_error(message="NO_MSG"):
         from Kernel.RendererKit.HighlightKit.console import Console
         from Kernel.NotificationsKit.PushSender import Notifications
         from Kernel.SystemCalls import SystemCalls
-        from Kernel.utils import clear_screen
         from Kernel.AudioKit import Audio
         from io import StringIO
         import logging
@@ -43,7 +42,4 @@ def log_error(message="NO_MSG"):
         else:
             Audio.play('Kernel/AudioKit/src/Error.mp3')
     else:
-        from Kernel.utils import clear_screen
-        import sys
-        # clear_screen()
-        sys.stdout.write('Error')
+        print('Error')

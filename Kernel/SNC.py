@@ -1,8 +1,8 @@
 """PyTerminal SNC(SerialNumberCheck) Library"""
 # SNC short for : SerialNumberCheck
 
+from Kernel.utils import edit_json, edit_user_config
 from Kernel import credentials as cred
-from Kernel.utils import edit_json
 from Kernel import flags
 import subprocess
 
@@ -29,11 +29,11 @@ class snc:
             except:
                 return None
 
-    def guid(self):
+    def guid(self, USERNAME):
         if flags.pl == '1':
             if self.write == True:
                 self.cmd = "ioreg -d2 -c IOPlatformExpertDevice | awk -F\\\" '/IOPlatformUUID/{print $(NF-1)}'"
-                edit_json(loc1='user_credentials',loc2='Serial', content=self.run())
+                edit_user_config(username=USERNAME, Loc1='user_credentials', Loc2='Serial', Content=self.run())
             else:
                 self.cmd = "ioreg -d2 -c IOPlatformExpertDevice | awk -F\\\" '/IOPlatformUUID/{print $(NF-1)}'"
                 self.run()
