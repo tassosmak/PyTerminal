@@ -42,6 +42,8 @@ def init():
 
         
 def advanced_init():
+    if flags.pl == '1':
+        flags.EnableGUI = True
     if flags.GO_TO_FTU:
         FTU = FTU_init(False)
         FTU.run()

@@ -37,7 +37,7 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == "ls":
             if flags.MODE == "9":
-                RD.CommandShow(SystemCalls.get_fl_contents()).Show()
+                RD.CommandShow(SystemCalls.get_fl_content(flags.base_folder)).Show()
             else:
                 RD.CommandShow("This Function isn't available within this mode").Show("WARNING")
 
