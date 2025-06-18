@@ -397,15 +397,13 @@ def CommandList(Command=str, safe_md=False):
         if Command == 'change password':
             if not safe_md:
                 if not flags.UserLess_Connection:
-                    from test import LoginHandler
-                    lgh = LoginHandler()
+                    from Kernel.LoginKit.LoginUI import LoginHandler as lgh
                     enc_password = lgh.ask_password()
                     if enc_password == flags.PASSWORD:
-                        from Kernel.utils import edit_user_config
                         RD.CommandShow('Type your new password').Input()
                         RD.CommandShow(f'Your new password is: {RD.Quest_result}').Info()
                         from Kernel.CryptographyKit import EncryptPassword as encrypt
-                        edit_user_config(
+                        utils.edit_user_config(
                             username=flags.USERNAME,
                             Loc1='user_credentials',
                             Loc2='Password',
