@@ -360,8 +360,11 @@ def CommandList(Command=str, safe_md=False):
                 if not flags.MODE == '1' :
                     RD.CommandShow('Type the username you want to remove').Input()
                     if os.path.isfile(f'{flags.base_folder}/users/{RD.Quest_result}.json'):
-                        os.remove(f'{flags.base_folder}/users/{RD.Quest_result}.json')
-                        RD.CommandShow(msg=f'User {RD.Quest_result} Removed Successfully').Show('OKGREEN')
+                        if not RD.Quest_result == flags.USERNAME:
+                            os.remove(f'{flags.base_folder}/users/{RD.Quest_result}.json')
+                            RD.CommandShow(msg=f'User {RD.Quest_result} Removed Successfully').Show('OKGREEN')
+                        else:
+                            RD.CommandShow(msg='You Can Not Remove Yourself!').Info()
                     else:
                         RD.CommandShow(msg='This User Does Not Exist').Show('WARNING')
                 else:
