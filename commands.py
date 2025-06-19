@@ -279,7 +279,7 @@ def CommandList(Command=str, safe_md=False):
                 RD.CommandShow(flags._CML).Show('BLUE')
             else:
                 RD.CommandShow('Available Commands').Show('OKGREEN')
-                RD.CommandShow(msg=SystemCalls.get_fl_content('Builtin')).Show('BLUE')
+                RD.CommandShow(msg=SystemCalls.get_fl_content('builtin')).Show('BLUE')
 
         if Command == "registry":
             if flags.MODE == '9':
