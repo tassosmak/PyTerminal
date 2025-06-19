@@ -4,7 +4,7 @@ fl_name = 'errors.log'
 def log_error(message="NO_MSG"):
     #Init The File
     from Kernel import flags
-    if flags.FTU == '1':
+    if not flags.FTU == '2':
         from Kernel.ErrorLoggingKit.ErrorPreviewer import ErrorScreen
         from Kernel.RendererKit.HighlightKit.console import Console
         from Kernel.NotificationsKit.PushSender import Notifications
