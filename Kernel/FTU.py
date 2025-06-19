@@ -14,7 +14,39 @@ class FTU_init:
         self.username = str
         self.password = str
         self.mode_config = str
-
+    
+    def pre_use(self):
+        if self.edit_use:
+            # open(f'{flags.base_folder}/users/Default.json', 'w+').close()
+            # from Kernel.src import Recover_Json
+            # Recover_Json.gen_file('Default')
+            self.username = 'Default'
+            edit_user_config(
+                username=self.username,
+                Loc1='FTU',
+                Loc2='Use',
+                Content= '1'
+                    )
+            edit_user_config(
+                username=self.username,
+                Loc1='user_credentials',
+                Loc2='Name',
+                Content= 'Default'
+                    )
+            edit_user_config(
+                        username=self.username,
+                        Loc1='user_credentials',
+                        Loc2='Password',
+                        Content= 'erydtaiajcjdhcnaberyr1erydtaerydtauicnajdja1uicnajdjauicnajdjaerydtaiajcjdhcnaberyr1erydta1erydtaiajcjdhcnaberyruicnajdjaafsuid'
+                    )
+            edit_user_config(
+                        username=self.username,
+                        Loc1='user_credentials',
+                        Loc2='Mode',
+                        Content= '2'
+                    )
+            snc = SNC.snc(self.edit_use)
+            snc.guid(self.username)
                 
     def use_config(self):
         #use_configure
@@ -150,6 +182,7 @@ class FTU_init:
 
 
     def run(self):
+        self.pre_use()
         self.use_config()
         self.username_password()
         self.check()

@@ -8,7 +8,8 @@ def add_depend(path):
         fix_path += element    
     
     sys.path.insert(0, fix_path)
+
     from Kernel import credentials as cred, utils
     utils.pl_finder()
     utils.clear_screen()
-    cred.get_credentials()
+    cred.get_credentials(False, f'{path}/users/Default.json')
