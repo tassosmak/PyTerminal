@@ -20,7 +20,7 @@ class FTU_init:
             # open(f'{flags.base_folder}/users/Default.json', 'w+').close()
             # from Kernel.src import Recover_Json
             # Recover_Json.gen_file('Default')
-            self.username = 'Default'
+            self.username = 'default'
             edit_user_config(
                 username=self.username,
                 Loc1='FTU',
@@ -31,7 +31,7 @@ class FTU_init:
                 username=self.username,
                 Loc1='user_credentials',
                 Loc2='Name',
-                Content= 'Default'
+                Content= 'default'
                     )
             edit_user_config(
                         username=self.username,
@@ -85,7 +85,15 @@ class FTU_init:
             
     def username_password(self):
         #username_password configuration
-        RD.CommandShow(msg='What is your name').Input()
+        correct_username_input = False
+        while not correct_username_input:
+            RD.CommandShow(msg='What is your name').Input()
+            if not RD.Quest_result in flags.ForbidenUsername:
+                self.username = self.username.lower()
+                correct_username_input = True
+            else:
+                RD.CommandShow('this username is not allowed').Info()
+            
         self.username = RD.Quest_result
         flags.USERNAME = self.username
     
@@ -207,7 +215,22 @@ class FTU_init:
                     from Kernel.src import Recover_Json
                     Recover_Json.gen_file(self.username)
 
-
+    def post_use(self):
+        if flags.EnableGUI:
+            edit_user_config(
+                username='default',
+                Loc1='UI',
+                Loc2='Enable-AquaUI',
+                Content= '1'
+            )
+        if flags.EnableAudio:
+            edit_user_config(
+                username='default',
+                Loc1='UI',
+                Loc2='Enable-Audio',
+                Content= '1'
+                )
+                  
     def run(self):
         self.pre_use()
         self.use_config()
@@ -215,4 +238,5 @@ class FTU_init:
         self.check()
         self.mode()
         self.apply_config()
+        self.post_use()
         # self.dependecies()

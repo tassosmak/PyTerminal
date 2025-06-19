@@ -52,7 +52,7 @@ def _get_propiatery(print_credentials=False):
         if print_credentials:
             RD.CommandShow(msg=("Runtime_Tracer:", Runtime_Tracer)).Show()
             
-        flags.EnableIntSoft = True
+
         f.close()
         return True
     except KeyError:

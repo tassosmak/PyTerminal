@@ -65,6 +65,10 @@ ArgsList = [
     "FakeLogin"
 ]
 
+ForbidenUsername = [
+    'default'
+]
+
 
 file_list = [
     'Kernel/CryptographyKit/DecryptPassword.py',
