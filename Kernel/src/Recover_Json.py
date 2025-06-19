@@ -18,7 +18,7 @@ def gen_file(username=str):
             "Enable": "0"
         },
         "UI": {
-            "Enable-AquaUI": "1",
-            "Enable-Audio": "1"
+            "Enable-AquaUI": "",
+            "Enable-Audio": ""
         }
     }''')

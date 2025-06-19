@@ -45,6 +45,18 @@ class FTU_init:
                         Loc2='Mode',
                         Content= '2'
                     )
+            edit_user_config(
+                        username=self.username,
+                        Loc1='UI',
+                        Loc2='Enable-AquaUI',
+                        Content= '0'
+                    )
+            edit_user_config(
+                        username=self.username,
+                        Loc1='UI',
+                        Loc2='Enable-Audio',
+                        Content= '0'
+                    )
             snc = SNC.snc(self.edit_use)
             snc.guid(self.username)
                 
@@ -174,6 +186,21 @@ class FTU_init:
                         Loc2='Mode',
                         Content= self.mode_config
                     )
+                    
+                    if flags.EnableGUI:
+                        edit_user_config(
+                            username=self.username,
+                            Loc1='UI',
+                            Loc2='Enable-AquaUI',
+                            Content= '1'
+                        )
+                    if flags.EnableAudio:
+                        edit_user_config(
+                            username=self.username,
+                            Loc1='UI',
+                            Loc2='Enable-Audio',
+                            Content= '1'
+                        )
                     apply_done = True
                 else:
                     open(f'{flags.base_folder}/users/{self.username}.json', 'w+').close()
