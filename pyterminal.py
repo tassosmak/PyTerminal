@@ -39,7 +39,7 @@ try:
                 main.open_window()
 
         elif str(argv[1]) == 'FakeLogin':
-            from Kernel.LoginKit.LoginUI import LoginHandler
+            from Kernel.LoginKit.login_handler import LoginHandler
             loader(False)
             LoginHandler.run()
 

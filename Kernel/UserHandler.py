@@ -1,4 +1,4 @@
-from Kernel.LoginKit.LoginUI import LoginHandler
+from Kernel.LoginKit.login_handler import LoginHandler
 from Kernel.RendererKit import Renderer as RD
 from Kernel import credentials as cred, flags
 from Kernel.utils import clear_gui, pl_finder
