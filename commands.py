@@ -382,24 +382,21 @@ def CommandList(Command=str, safe_md=False):
                     ask_Mode = '9'
                 else:
                     ask_Mode = '1'
-                RD.Quest_result = ask_Mode
-                if RD.Quest_result in flags.ModeList:
-                    utils.edit_user_config(
-                        username=flags.USERNAME,
-                        Loc1='user_credentials',
-                        Loc2='Mode',
-                        Content=RD.Quest_result
-                    )
-                    RD.CommandShow(msg=f'Account Type Changed Successfully').Show('OKGREEN')
-                else:
-                    RD.CommandShow(msg='This Type Does Not Exist').Show('WARNING')
+                utils.edit_user_config(
+                    username=flags.USERNAME,
+                    Loc1='user_credentials',
+                    Loc2='Mode',
+                    Content=ask_Mode
+                )
+                RD.CommandShow(msg=f'Account Type Changed Successfully').Show('OKGREEN')
+
 
 
         if Command == 'change password':
             if not safe_md:
                 if not flags.UserLess_Connection:
-                    from Kernel.LoginKit.user_store import LoginHandlerUserStore as lgh
-                    enc_password = lgh.ask_password()
+                    from Kernel.LoginKit.LoginUI import LoginHandlerUserStore as lgh
+                    enc_password = lgh().ask_password()
                     if enc_password == flags.PASSWORD:
                         RD.CommandShow('Type your new password').Input()
                         RD.CommandShow(f'Your new password is: {RD.Quest_result}').Info()

@@ -146,6 +146,7 @@ MD2 = "!History isn't enabled! PyTerminal Beta"
 MD3 = "PyTerminal | Native-Mode $ "
 MD9 = "PyTerminal"
 Default_text = 'Makro PyTerminal'
+UserPath = f'{base_folder}/users/{USERNAME}.json'
 Runtype = 'local'
 Version = f'{Default_text} V.1'
 all_variables = dir()

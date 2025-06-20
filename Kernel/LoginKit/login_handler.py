@@ -1,5 +1,5 @@
 from Kernel.LoginKit.two_step_verification import TwoStepVerification
-from Kernel.LoginKit.user_store import LoginHandlerUserStore
+from Kernel.LoginKit.LoginUI import LoginHandlerUserStore
 from Kernel.RendererKit import Renderer as RD
 from Kernel import flags
 
