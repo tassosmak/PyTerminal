@@ -24,11 +24,14 @@ def loader(run=True):
             if run:
                 LoginHandler.run()
                 init()
+            else:
+                cred.get_credentials(False, 'default')
     else:
         if run:
             LoginHandler.run()
             init()
-
+        else:
+            cred.get_credentials(False, 'default')
         
 def init():
     try:
