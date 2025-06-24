@@ -12,7 +12,7 @@ class KernelReloader:
 
     def __init__(self):
         self.package = 'Kernel'
-        self.kernel_path = Path(flags.base_folder) / 'Kernel'
+        self.kernel_path = flags.base_folder
         self.exclude = {'KernelReloader', '__init__'}
         self.modules = self._find_modules()
 
