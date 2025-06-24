@@ -1,68 +1,132 @@
 from Kernel.CryptographyKit.utils import _gen_safe_password
 from Kernel.src import FTU_Installer as ftu_install
 from Kernel.CryptographyKit import EncryptPassword
-from Kernel.utils import edit_json, clear_screen
+from Kernel.utils import clear_screen, edit_user_config
 from Kernel.RendererKit import Renderer as RD
-from Kernel import flags, SNC
-import os
+from Kernel import flags, SNC, utils
+import os, re
 
-class _FTU_init:
+class FTU_init:
+    
     def __init__(self, edit_use=True):
         self.edit_use = edit_use
-        SNC.guid(write=True)
+        self.type_config = str
+        self.username = str
+        self.password = str
+        self.mode_config = str
+    
+    def pre_use(self):
         if self.edit_use:
-            edit_json(loc1='Internal-Software', loc2='Enable', content='0')
-            flags.EnableIntSoft == False
-        #check_gui
-        if not flags.pl == '1':
-            edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
-            flags.EnableGUI = False
-
+            # open(f'{flags.base_folder}/users/Default.json', 'w+').close()
+            # from Kernel.src import Recover_Json
+            # Recover_Json.gen_file('Default')
+            self.username = 'default'
+            edit_user_config(
+                username=self.username,
+                Loc1='FTU',
+                Loc2='Use',
+                Content= '1'
+                    )
+            edit_user_config(
+                username=self.username,
+                Loc1='user_credentials',
+                Loc2='Name',
+                Content= 'default'
+                    )
+            edit_user_config(
+                        username=self.username,
+                        Loc1='user_credentials',
+                        Loc2='Password',
+                        Content= 'erydtaiajcjdhcnaberyr1erydtaerydtauicnajdja1uicnajdjauicnajdjaerydtaiajcjdhcnaberyr1erydta1erydtaiajcjdhcnaberyruicnajdjaafsuid'
+                    )
+            edit_user_config(
+                        username=self.username,
+                        Loc1='user_credentials',
+                        Loc2='Mode',
+                        Content= '2'
+                    )
+            edit_user_config(
+                        username=self.username,
+                        Loc1='UI',
+                        Loc2='Enable-AquaUI',
+                        Content= '0'
+                    )
+            edit_user_config(
+                        username=self.username,
+                        Loc1='UI',
+                        Loc2='Enable-Audio',
+                        Content= '0'
+                    )
+            snc = SNC.snc(self.edit_use)
+            snc.guid(self.username)
+                
+    def use_config(self):
         #use_configure
-        RD.CommandSay(answer="Welcome To PyTerminal By Tassos Makrostergios\nDon't Wory it an one time only message ;)\n")
-        RD.CommandQuest(type='1', Button1='Compact', Button2='Personal', msg='How Do You want to use this instanche?')
-        if RD.Quest_result == 'Personal' or RD.Quest_result == '1':
+        utils.clear_screen()
+        RD.CommandShow(msg=f"Welcome To {flags.Version} By Anastasios Makrostergios\nDon't Wory it an one time only message ;)\n").Show('OKGREEN')
+        RD.CommandShow(msg='How Do You want to use this instanche?').Choice(Button1='Minimum', Button2='Full')
+        if RD.Quest_result.lower() == 'full' or RD.Quest_result == '1':
             ask_type = '1'
-        elif RD.Quest_result == 'Compact' or RD.Quest_result == '2':
+            if self.edit_use:
+                if flags.pl == '1':
+                    flags.EnableGUI = True
+                    flags.EnableAudio = True
+        elif RD.Quest_result.lower() == 'minimum' or RD.Quest_result == '2':
             ask_type = '2'
             flags.EnableAudio = False
             flags.EnableGUI = False
             flags.FTU = '2'
-            if self.edit_use:
-                edit_json(loc1='UI', loc2='Enable-AquaUI', content='0')
-                edit_json(loc1='UI', loc2='Enable-Audio', content='0')
+
         else:
             ask_type = '1'
         if self.edit_use:
-            edit_json(loc1="FTU", loc2="Use", content=ask_type)
-
+            self.type_config = ask_type
+        flags.FTU = ask_type
+            
+    def username_password(self):
         #username_password configuration
-        RD.CommandQuest(type='3', msg='What is your name')
-        edit_json(loc1="user_credentials", loc2="Name", content=RD.Quest_result)
-        
+        correct_username_input = False
+        while not correct_username_input:
+            RD.CommandShow(msg='What is your name').Input()
+            if not RD.Quest_result in flags.ForbidenUsername:
+                self.username = self.username.lower()
+                correct_username_input = True
+            else:
+                RD.CommandShow('this username is not allowed').Info()
+            
+        self.username = RD.Quest_result
+        flags.USERNAME = self.username
+    
         correct_pswd_input = False
-        
-        
         while not correct_pswd_input:
-            RD.CommandQuest(type='1', msg='Do You Want to to Use A safe Password', Button1='No', Button2='Yes')
+            RD.CommandShow(msg='Do you want us to create a password for you?').Choice(Button1='No', Button2='Yes')
             
-            
-            if RD.Quest_result == 'Yes':
+            if RD.Quest_result.lower() == 'yes':
                 pre_enc_pswd = _gen_safe_password()
                 Password_msg= f'YOUR PASSWORD IS {pre_enc_pswd} KEEP IT SAFE'
                 EncryptPassword.encrypt_password(password=pre_enc_pswd)
-                RD.CommandQuest(type='2', msg=Password_msg)
+                RD.CommandShow(msg=Password_msg).Info()
                 correct_pswd_input = True
-            
-            
+                            
             else:
-                RD.CommandQuest(type='3', msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Charachters')
-                # EncryptPassword.encrypt_password(password=RD.Quest_result)
-                EncryptPassword.encrypt_password(password=RD.Quest_result)
+                RD.CommandShow(msg='Type a Password Only Numbers Can Be Entered, No Spaces Or Special Charachters').Input()
+                
+                #remove spaces and special characters
+                RD.Quest_result.replace(' ', '')
+                RD.Quest_result = re.sub(r'[^a-zA-Z0-9]', '', RD.Quest_result)
+
+                self.password = EncryptPassword.encrypt_password(password=RD.Quest_result, save=False)
                 correct_pswd_input = True
-                    
+        flags.PASSWORD = self.password
+                
+    def check(self):
+        snc = SNC.snc(self.edit_use)
+        snc.guid(self.username)
+
+                
+    def mode(self):
         #Mode_Configuration
-        RD.CommandQuest(type='1', msg='there are 2 Modes on this terminal', Button1='The Advanced Mode', Button2='The Basic Mode')
+        RD.CommandShow(msg='there are 2 Modes on this terminal').Choice(Button1='The Advanced Mode', Button2='The Basic Mode')
         if RD.Quest_result == 'The Advanced Mode' or RD.Quest_result == '2':
             ask_first_Mode = '2'
         elif RD.Quest_result == 'The Basic Mode' or RD.Quest_result == '1':
@@ -72,30 +136,107 @@ class _FTU_init:
         else:
             ask_first_Mode = '1'
         if self.edit_use:
-            edit_json(loc1="user_credentials", loc2="Mode", content=ask_first_Mode)
+            self.mode_config = ask_first_Mode
         flags.MODE = ask_first_Mode
 
-
+    def dependecies(self):
         #Install_Deperndices
-        clear_screen()
-        num = 0
-        try:
-        
-            if flags.MODE == '9':
-                RD.CommandSay(answer='--Dependecies Install Start--\n', color='WARNING')
-                
-            
-            while len(flags.Dependecies) > num:
-                ftu_install.install(flags.Dependecies[num])
-                num += 1
-            os.system('playwright install')
-            
-            
-            if flags.MODE == '9':
-                RD.CommandSay(answer='\n--Dependecies Install End--\n', color='WARNING')
-        
-        except MemoryError:
-            RD.CommandQuest(type='3', msg='Error Occured While installing dependecies')
-        
-        if not flags.MODE == "9":
+        if self.edit_use:
             clear_screen()
+            num = 0
+            try:
+                if flags.MODE == '9':
+                    RD.CommandShow('--Dependecies Install Start--\n').Show(color='WARNING')
+                while len(flags.Dependecies) > num:
+                    utils.progress_bar(
+                        module=ftu_install.install,
+                        arg1=flags.Dependecies[num],
+                        arg2=flags.EnableIntSoft,
+                        description=f'Dependecy Installer Num.{num} {flags.Dependecies[num]}'
+                    )
+                    num += 1
+                os.system('playwright install')
+                RD.CommandShow(msg='All Dependecies Installed Successfully').Push()
+                if flags.MODE == '9':
+                    RD.CommandShow('\n--Dependecies Install End--\n').Show('WARNING')
+            except MemoryError:
+                RD.CommandShow(msg='Error Occured While installing dependecies').Show()
+            
+            if not flags.MODE == "9":
+                clear_screen()
+    
+    def apply_config(self):
+        if self.edit_use:
+            apply_done = False
+            while not apply_done:
+                if os.path.isfile(f'{flags.base_folder}/users/{self.username}.json'):
+                    edit_user_config(
+                        username=self.username,
+                        Loc1='FTU',
+                        Loc2='Use',
+                        Content= self.type_config
+                    )
+                    edit_user_config(
+                        username=self.username,
+                        Loc1='user_credentials',
+                        Loc2='Name',
+                        Content= self.username
+                    ),
+                    edit_user_config(
+                        username=self.username,
+                        Loc1='user_credentials',
+                        Loc2='Password',
+                        Content= self.password
+                    ),
+                    edit_user_config(
+                        username=self.username,
+                        Loc1='user_credentials',
+                        Loc2='Mode',
+                        Content= self.mode_config
+                    )
+                    
+                    if flags.EnableGUI:
+                        edit_user_config(
+                            username=self.username,
+                            Loc1='UI',
+                            Loc2='Enable-AquaUI',
+                            Content= '1'
+                        )
+                    if flags.EnableAudio:
+                        edit_user_config(
+                            username=self.username,
+                            Loc1='UI',
+                            Loc2='Enable-Audio',
+                            Content= '1'
+                        )
+                    apply_done = True
+                else:
+                    open(f'{flags.base_folder}/users/{self.username}.json', 'w+').close()
+                    from Kernel.src import Recover_Json
+                    Recover_Json.gen_file(self.username)
+
+    def post_use(self):
+        if flags.EnableGUI:
+            edit_user_config(
+                username='default',
+                Loc1='UI',
+                Loc2='Enable-AquaUI',
+                Content= '1'
+            )
+        if flags.EnableAudio:
+            edit_user_config(
+                username='default',
+                Loc1='UI',
+                Loc2='Enable-Audio',
+                Content= '1'
+                )
+                  
+    def run(self):
+        self.pre_use()
+        self.use_config()
+        self.username_password()
+        self.check()
+        self.mode()
+        self.apply_config()
+        self.post_use()
+        # self.dependecies()

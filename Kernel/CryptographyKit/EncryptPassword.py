@@ -1,19 +1,15 @@
-from Kernel.CryptographyKit.utils import _d_encrypt, edit_json
-import base64
+"""PyTerminal Cryptography Library"""
+from Kernel.CryptographyKit.utils import edit_json, toBinary
+
+def _encode(string):
+  encoded = toBinary(string)
+  encoded = encoded.replace('00','erydta').replace("01","uicnajdja").replace("10","afsuid").replace("11","iajcjdhcnaberyr")
+  return encoded
+
 
 def encrypt_password(password, save=True):
     # Encrypt the password using a key
-    encrypted_password = base64.b64encode(_d_encrypt(type='1', input_text=password).encode()).decode()
+    encrypted_password = _encode(password)
     if save:
         edit_json(loc1='user_credentials', loc2='Password', content=encrypted_password)
     return encrypted_password
-
-
-
-def main():
-    # Read the password and key from the user
-    password = input("Enter password: ")
-    key = input("Enter key: ")
-
-    # Encrypt the password and save it to the file
-    encrypt_password(password, key)

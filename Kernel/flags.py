@@ -2,44 +2,60 @@
 Flags Start
 '''
 
+Run_Straight_Builtin = False
 UserLess_Connection = False
-ThreadActivated = True
+Runtime_Tracer = False
 EnableIntSoft = False
 Inside_Thread = False
 BuildReseted = False
+Create_Graph = False
 EnableAudio = False
 Fully_GUI = False
 GO_TO_FTU = False
 EnableGUI = False
-base_folder = ''
-sys_detect = ''
+base_folder = str
+sys_detect = str
+newuser = False
 logout = False
-USERNAME = ''
-PASSWORD = ''
+USERNAME = str
+PASSWORD = str
 jump = False
 net = True
-MODE = ''
-FTU = ''
-pl = ''
+MODE = str
+FTU = str
+pl = str
 
 '''
 Flags End
 '''
 
 Dependecies = [
-    'customtkinter',
-    'playwright',
-    'clipboard',
+    'ply',
     'ffmpeg',
-    'pyrad',
     'rich',
     'toga',
+    'pyrad',
+    'clipboard',
+    'yfinance',
+    'customtkinter',
+    'playwright',
+    'pycallgraph2',
+    'ntfpy',
+    'winotify',
+    'maskpass',
+    'easygui',
+    'pygments'
 ]
 
 ModeList = [
     '1',
     '2',
     '9'
+]
+
+FtuList = [
+    '1',
+    '2'
 ]
 
 ArgsList = [
@@ -49,33 +65,39 @@ ArgsList = [
     "FakeLogin"
 ]
 
+ForbidenUsername = [
+    'default'
+]
+
 
 file_list = [
     'Kernel/CryptographyKit/DecryptPassword.py',
     'Kernel/CryptographyKit/EncryptPassword.py',
+    'Kernel/LoginKit/two_step_verification.py',
     'Kernel/RendererKit/WindowRenderer.py',
+    'Kernel/LoginKit/login_handler.py',
     'Kernel/NetworkingKit/server.py',
     'Kernel/RendererKit/Renderer.py',
+    'Kernel/LoginKit/user_store.py',
     'Kernel/NetworkingKit/auth.py',
-    'Kernel/LoginKit/LoginUI.py',
     'Kernel/UserHandler.py',
     'Kernel/credentials.py',
     'Kernel/registry.py',
     'MakroPropiatery.py',
     'Kernel/utils.py',
     'Kernel/FTU.py',
+    'pyterminal.py',
     'commands.py',
     'launcer.py',
     'Kernel.py',
     'Info.json',
     'pyrad.log',
-    'Boot.py',
 ]
 
-CML =[
+#CML for CommandList
+_CML =[
 "test",
 "about",
-"ABOUT",
 "time",
 "exit",
 "version",
@@ -85,10 +107,6 @@ CML =[
 "del",
 "print md",
 "countdown",
-"devices",
-"chatbox",
-"chatbox install",
-"activity monitor",
 "create",
 "edit file",
 "view file",
@@ -98,16 +116,40 @@ CML =[
 "check site status",
 "weather forecast",
 "clear",
-"infostats",
 'show cmd',
 'show apps',
-'registry',
 'browser',
 'help',
-'ofp',
+'converter',
+'calculator',
+'stocks',
+'most used commands',
+'toquel',
+'plugins',
+'create user',
+'remove user',
+'change account type',
+'change password',
+]
+
+ACML = [
+"activity monitor",
+"chatbox install",
+"fake_error",
+"show flags",
+"infostats",
+"registry",
+"devices",
+"chatbox",
+"ofp",
+"gui",
 ]
 
 MD2 = "!History isn't enabled! PyTerminal Beta"
 MD3 = "PyTerminal | Native-Mode $ "
 MD9 = "PyTerminal"
-Default_text = 'Makro PyTerminal Beta'
+Default_text = 'Makro PyTerminal'
+UserPath = f'{base_folder}/users/{USERNAME}.json'
+Runtype = 'local'
+Version = f'{Default_text} V.1'
+all_variables = dir()

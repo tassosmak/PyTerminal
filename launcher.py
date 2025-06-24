@@ -1,19 +1,26 @@
+from Kernel.utils import ModeHandling as MoDeH, Exit
 import ModeHandling as MDH #MDH for MODE HANDLING
 from Kernel.RendererKit import Renderer as RD
+from Kernel.SystemCalls import SystemCalls
+from Kernel.FTU import FTU_init as FTU
 from Kernel.UserHandler import loader
-from Kernel import flags, utils
+from Kernel import flags
 
-@utils.measure_time
+@SystemCalls.Grapher
+@SystemCalls.measure_time
 def _run():
         try:
             MDH.core()
         except IndexError:
-            utils.recover_mode()   
+            MoDeH.recover_mode()
         if flags.jump:
-            utils.jump_mode()
+            MoDeH.jump_mode()
         if flags.logout:
             loader()
             flags.logout = False
+        if flags.newuser:
+            FTU().run()
+            flags.newuser = False
 
 
 
@@ -22,11 +29,11 @@ def boot():
         _run()
     except KeyboardInterrupt:
         if flags.EnableIntSoft:
-            RD.CommandQuest(type='2', msg='KeyboardInterrupt')
+            RD.CommandShow(msg='KeyboardInterrupt').Info()
     except EOFError:
         if flags.EnableIntSoft:
-            RD.CommandQuest(type='2', msg='EOFError')
+            RD.CommandShow(msg='EOFError').Info()
         else:
-            RD.CommandSay(answer='\n')
+            RD.CommandShow('\n').Show()
     except:
-        utils.Exit.error_exit()
+        Exit.error_exit()

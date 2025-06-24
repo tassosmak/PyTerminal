@@ -1,0 +1,115 @@
+
+2025-06-23 12:10:58 NO_MSG
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 274, in CommandList
+    get_credentials(True)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/credentials.py", line 74, in get_credentials
+    f = open(path)
+TypeError: expected str, bytes or os.PathLike object, not NoneType
+
+2025-06-23 12:50:23 IntSoft Enabled
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/commands.py", line 299, in CommandList
+    TaskHandler.SecondaryTask('OFP')
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/TaskHandler.py", line 9, in SecondaryTask
+    subprocess.run(f"""osascript -e 'tell application "Terminal" to do script "python3 {str(flags.base_folder)}/builtin/{file_name}.py {str(flags.base_folder)}"'""", shell=False, capture_output=True, check=True, encoding="utf-8")
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.9/subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.9/subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.9/subprocess.py", line 1821, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'osascript -e \'tell application "Terminal" to do script "python3 /Users/tassosmakro/PyProjects/PyTerminal/Kernel/builtin/OFP.py /Users/tassosmakro/PyProjects/PyTerminal/Kernel"\''
+
+2025-06-23 12:50:49 BootHandler
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/pyterminal.py", line 20, in <module>
+    MainTask()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/pyterminal.py", line 13, in MainTask
+    loader()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/UserHandler.py", line 25, in loader
+    LoginHandler.run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/LoginKit/login_handler.py", line 30, in run
+    Login.Verify_User_Exists()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/LoginKit/login_handler.py", line 22, in Verify_User_Exists
+    self.user_store.Verify_User_Exists()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/LoginKit/LoginUI.py", line 41, in Verify_User_Exists
+    password = self.ask_password()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/LoginKit/LoginUI.py", line 24, in ask_password
+    ask_Password = EncryptPassword.encrypt_password(InputManagerKit.askpass("\nType Password: "), save=False)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/InputManagerKit/methods/without_pynput.py", line 55, in askpass
+    raise KeyboardInterrupt
+KeyboardInterrupt
+
+2025-06-24 15:23:16 Error in askpass function
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/InputManagerKit/methods/without_pynput.py", line 56, in askpass
+    raise KeyboardInterrupt
+KeyboardInterrupt
+
+2025-06-24 15:24:03 BootHandler
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/pyterminal.py", line 20, in <module>
+    MainTask()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/pyterminal.py", line 13, in MainTask
+    loader()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/UserHandler.py", line 32, in loader
+    LoginHandler.run()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/LoginKit/login_handler.py", line 30, in run
+    Login.Verify_User_Exists()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/LoginKit/login_handler.py", line 22, in Verify_User_Exists
+    self.user_store.Verify_User_Exists()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/LoginKit/LoginUI.py", line 33, in Verify_User_Exists
+    username = self.ask_username()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/LoginKit/LoginUI.py", line 14, in ask_username
+    ask_name = input("Type Username: ")
+KeyboardInterrupt
+
+2025-06-24 15:25:31 BootHandler
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/pyterminal.py", line 31, in <module>
+    set_flags()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/utils.py", line 44, in set_flags
+    edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content=flags.UserLess_Connection)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/utils.py", line 12, in edit_json
+    with open(file_name, 'r+') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'MakroPropiatery.json'
+
+2025-06-24 15:31:10 BootHandler
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/pyterminal.py", line 31, in <module>
+    set_flags()
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/utils.py", line 44, in set_flags
+    edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content=flags.UserLess_Connection)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/utils.py", line 12, in edit_json
+    with open(file_name, 'r+') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'MakroPropiatery.json'
+
+2025-06-24 15:31:19 BootHandler
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/pyterminal.py", line 28, in <module>
+    loader(False)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/UserHandler.py", line 17, in loader
+    if cred._get_propiatery():
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/credentials.py", line 16, in _get_propiatery
+    data = json.load(f)
+UnboundLocalError: local variable 'f' referenced before assignment
+
+2025-06-24 15:32:28 BootHandler
+Here is the error good luck solving it :)
+Traceback (most recent call last):
+  File "/Users/tassosmakro/PyProjects/PyTerminal/pyterminal.py", line 28, in <module>
+    loader(False)
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/UserHandler.py", line 17, in loader
+    if cred._get_propiatery():
+  File "/Users/tassosmakro/PyProjects/PyTerminal/Kernel/credentials.py", line 18, in _get_propiatery
+    UserLess_Connection = data['user_login']['UserLess Connection']
+UnboundLocalError: local variable 'data' referenced before assignment

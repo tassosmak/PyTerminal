@@ -1,41 +1,50 @@
+from Kernel import credentials as cred, flags, InputManagerKit
+from Kernel.CryptographyKit import EncryptPassword
 from Kernel.RendererKit import Renderer as RD
-from Kernel import credentials as cred
-from Kernel import flags
+from Kernel.FTU import FTU_init as FTU
+
+import os
 
 
-
-
-
-class Login:
-    
-    def ask(print_ask=False):
+class LoginHandlerUserStore:
+    def ask_username(self, print_ask=False):
         if flags.Fully_GUI and flags.MODE == '9':
-            RD.CommandQuest(type='3', msg='Enter Usename', header=f"{flags.Default_text} Login")
-            ask_name = RD.Quest_result
-            RD.CommandQuest(type='3', msg='Enter Password', header=f"{flags.Default_text} Login")
-            ask_Password = RD.Quest_result
-        else:    
-            ask_name = input("Enter Usename")
-            ask_Password = input("\nEnter Password")
-        if print_ask:
-            RD.CommandSay(answer=ask_name)
-            RD.CommandSay(answer=ask_Password)
-        return ask_name, ask_Password
+            ask_name = RD.CommandShow(msg='Type Username: ', header="Login").Input()
+        else:
+            ask_name = input("Type Username: ")
+        if print_ask and flags.EnableIntSoft == True:
+            RD.CommandShow(f'Typed Username: {ask_name}').Show('WARNING')
+        return ask_name
 
-    def Verify():
-        correct_credentials = False
-        
-        while not correct_credentials:
-            ask_name, ask_Password = Login.ask()
-            if not ask_name == "":
-                if ask_name == cred.Name and ask_Password == cred.Password:
-                    flags.FTU = cred.FTU
-                    flags.USERNAME = ask_name
-                    flags.PASSWORD = ask_Password
-                    welcome_msg = f"Welcome {flags.USERNAME.capitalize()}"
-                    RD.CommandPush(message=welcome_msg)
-                    RD.CommandSay(answer="Go Ahead")
+    def ask_password(self, print_ask=False):
+        if flags.Fully_GUI and flags.MODE == '9':
+            ask_Password = EncryptPassword.encrypt_password(
+                RD.CommandShow(msg='Type Password:', header="Login").Input(), save=False)
+        else:
+            ask_Password = EncryptPassword.encrypt_password(InputManagerKit.askpass("\nType Password: "), save=False)
+        if print_ask and flags.EnableIntSoft == True:
+            RD.CommandShow(f'Typed Password: {EncryptPassword.decrypt_password(ask_Password)}').Show('WARNING')
+        return ask_Password
+
+    def Verify_User_Exists(self):
+        if os.path.exists(f'{flags.base_folder}/users/'):
+            correct_credentials = False
+            while not correct_credentials:
+                username = self.ask_username()
+                path = f'{flags.base_folder}/users/{username}.json'
+                if username != "":
+                    if username not in flags.ForbidenUsername:
+                        if os.path.isfile(path):
+                            cred.get_credentials(False, path)
+                            if username == cred.Name:
+                                flags.USERNAME = username
+                                password = self.ask_password()
+                                if password == cred.Password:
+                                    flags.PASSWORD = password
+                                    correct_credentials = True
+                else:
+                    flags.MODE = "3"
                     correct_credentials = True
-            else:
-                flags.MODE = "3"
-                correct_credentials = True
+        else:
+            os.makedirs(f'{flags.base_folder}/users')
+            FTU(edit_use=True).run()
