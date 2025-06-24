@@ -145,7 +145,7 @@ def CommandList(Command=str, safe_md=False):
         if Command == "talk":
             if not safe_md:
                 if flags.net:
-                    from Kernel.builtin import Server, client
+                    from Kernel.plugins import Server, client
                     RD.CommandShow(msg='do you want to be host or reciever').Choice(Button1='Host', Button2='Talker')
                     #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
                     if RD.Quest_result == "Host":
@@ -345,9 +345,9 @@ def CommandList(Command=str, safe_md=False):
             if not safe_md:
                 plugin_exist = False
                 while not plugin_exist:
-                    RD.CommandShow(SystemCalls.get_fl_content('builtin')).Show('BLUE')
+                    RD.CommandShow(SystemCalls.get_fl_content('plugins')).Show('BLUE')
                     if not RD.CommandShow('What plugin you want to load?').Input() == 'exit':
-                        if os.path.isfile(f'{flags.base_folder}/builtin/{RD.Quest_result}.py'):
+                        if os.path.isfile(f'{flags.base_folder}/plugins/{RD.Quest_result}.py'):
                             TaskHandler.SecondaryTask(RD.Quest_result)
                             plugin_exist = True
                         else:
