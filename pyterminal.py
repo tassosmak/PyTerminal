@@ -23,7 +23,7 @@ try:
 
         elif str(argv[1]) == 'ClearHistory':
             SystemCalls.clear_history()
-        # TODO: Fix SetFlags
+
         elif str(argv[1]) == "SetFlags":
             loader(False)
             if flags.EnableIntSoft:
