@@ -2,7 +2,7 @@ from Kernel import credentials as cred, flags, InputManagerKit
 from Kernel.CryptographyKit import EncryptPassword
 from Kernel.RendererKit import Renderer as RD
 from Kernel.FTU import FTU_init as FTU
-
+from Kernel import utils
 import os
 
 
@@ -30,6 +30,7 @@ class LoginHandlerUserStore:
         if os.path.exists(f'{flags.base_folder}/users/'):
             correct_credentials = False
             while not correct_credentials:
+                utils.clear_screen()
                 username = self.ask_username()
                 path = f'{flags.base_folder}/users/{username}.json'
                 if username != "":
@@ -44,6 +45,7 @@ class LoginHandlerUserStore:
                                     correct_credentials = True
                 else:
                     flags.MODE = "3"
+                    flags.USERNAME = "Native-Mode"
                     correct_credentials = True
         else:
             os.makedirs(f'{flags.base_folder}/users')

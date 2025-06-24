@@ -39,10 +39,11 @@ def CommandList(Command=str, safe_md=False):
                 LCommand = Command
 
         if Command == "ls":
-            if flags.MODE == "9":
-                RD.CommandShow(SystemCalls.get_fl_content(flags.base_folder)).Show()
-            else:
-                RD.CommandShow("This Function isn't available within this mode").Show("WARNING")
+            if not safe_md:
+                if flags.MODE == "9":
+                    RD.CommandShow(SystemCalls.get_fl_content(flags.base_folder)).Show()
+                else:
+                    RD.CommandShow("This Function isn't available within this mode").Show("WARNING")
 
         if Command == "test":
             if flags.MODE == "9":
@@ -76,7 +77,7 @@ def CommandList(Command=str, safe_md=False):
         if Command == "del" or Command == "delete":
             if not safe_md:
                 if flags.MODE == "2" or flags.MODE == '9':
-                    RD.CommandShow(SystemCalls.get_fl_contents())
+                    RD.CommandShow(SystemCalls.get_fl_content())
                     try:
                         os.remove(RD.CommandShow(msg="what file you want to delete:").Input())
                         RD.CommandShow(msg="DONE").Show(color="OKGREEN")
