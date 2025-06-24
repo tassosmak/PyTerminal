@@ -17,9 +17,6 @@ class FTU_init:
     
     def pre_use(self):
         if self.edit_use:
-            # open(f'{flags.base_folder}/users/Default.json', 'w+').close()
-            # from Kernel.src import Recover_Json
-            # Recover_Json.gen_file('Default')
             self.username = 'default'
             edit_user_config(
                 username=self.username,
