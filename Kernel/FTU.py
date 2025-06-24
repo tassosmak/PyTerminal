@@ -239,4 +239,4 @@ class FTU_init:
         self.mode()
         self.apply_config()
         self.post_use()
-        # self.dependecies()
+        self.dependecies()
