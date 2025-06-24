@@ -135,6 +135,7 @@ _CML =[
 ACML = [
 "activity monitor",
 "chatbox install",
+"kernel reload",
 "fake_error",
 "show flags",
 "infostats",

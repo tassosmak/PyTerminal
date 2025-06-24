@@ -2,6 +2,7 @@
 The Commnand List
 '''
 from Kernel.NotificationsKit.PushSender import Notifications
+from Kernel.KernelReboot import KernelReloader
 from Kernel.RendererKit import Renderer as RD
 from Kernel.utils import clear_screen, Exit
 from Kernel.SystemCalls import SystemCalls
@@ -20,21 +21,18 @@ def CommandList(Command=str, safe_md=False):
             TaskHandler.SecondaryTask(Command)
             return
         else:
-            if not Command in flags._CML:
-                if not Command in flags.ACML:
-                    if not Command == '' :
-                        if flags.EnableIntSoft:
-                            RD.CommandShow(f"This Commmand Isn't registered with The PyTerminal CML").Show("FAIL")
-                            LCommand = '0'
-                            return
-                        else:
-                            RD.CommandShow(f'Command {Command} Does Not Exist').Show('WARNING')
-                            LCommand = '0'
-                            return
-                    else:
+            if not Command in flags._CML and not Command in flags.ACML:
+                if not Command == '' :
+                    if flags.EnableIntSoft:
+                        RD.CommandShow(f"This Commmand Isn't registered with The PyTerminal CML").Show("FAIL")
                         LCommand = '0'
+                        return
+                    else:
+                        RD.CommandShow(f'Command {Command} Does Not Exist').Show('WARNING')
+                        LCommand = '0'
+                        return
                 else:
-                    LCommand = Command
+                    LCommand = '0'
             else:
                 LCommand = Command
 
@@ -139,7 +137,7 @@ def CommandList(Command=str, safe_md=False):
             if not safe_md:
                 RD.CommandShow(msg=flags.MODE).Show()
             else:
-                RD.CommandShow("You Are in Native-Mode", color='WARNING').Show()
+                RD.CommandShow("You Are in Native-Mode").Show('WARNING')
 
 
 
@@ -223,12 +221,13 @@ def CommandList(Command=str, safe_md=False):
 
 
         if Command == "check site status":
-            if flags.MODE == "2" or flags.MODE == "9":
-                RD.CommandShow("Type The Adress Of The Site You Want To Check", 'Down Detecter').Input()
-                os.system(f"ping {RD.Quest_result}")
+            if not safe_md:
+                if flags.MODE == "2" or flags.MODE == "9":
+                    RD.CommandShow("Type The Adress Of The Site You Want To Check", 'Down Detecter').Input()
+                    os.system(f"ping {RD.Quest_result}")
 
-            else:
-                RD.CommandShow(msg="This Function isn't available within this mode").Show('WARNING')
+                else:
+                    RD.CommandShow(msg="This Function isn't available within this mode").Show('WARNING')
 
 
         if Command == "devices":
@@ -415,7 +414,15 @@ def CommandList(Command=str, safe_md=False):
                 else:
                     RD.CommandShow(msg='You Are in UserLess Mode').Show('WARNING')
                     
-                    
+        if Command == 'kernel reload':
+            if flags.EnableIntSoft:
+                reloader = KernelReloader()
+                if reloader.reload_all():
+                    RD.CommandShow(msg='Kernel Reloaded Successfully').Show('OKGREEN')
+                else:
+                    RD.CommandShow(msg='Kernel Reload Failed').Show('FAIL')
+            else:
+                RD.CommandShow(msg='This Function is not available in this mode').Show('WARNING')
 
 
     except: Exit.error_exit()

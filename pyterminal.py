@@ -27,7 +27,7 @@ try:
         elif str(argv[1]) == "SetFlags":
             loader(False)
             if flags.EnableIntSoft:
-                cred._get_propiatery(True)
+                cred._get_propiatery()
                 set_flags()
 
         elif str(argv[1]) == "GUI":
