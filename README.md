@@ -3,7 +3,7 @@
 <a href="https://codeclimate.com/github/tassosmak/PyTerminal/maintainability"><img src="https://api.codeclimate.com/v1/badges/4f19e9b7dfb9e130a77f/maintainability" /></a>
 
 ## To Get The Stable Version Check The <a href="https://github.com/tassosmak/PyTerminal/tree/master" target="_blank">Master Branch</a>
-## To Get The Latest Version Check The <a href="https://github.com/tassosmak/PyTerminal/tree/dev" target="_blank">Master Branch</a>
+## To Get The Latest Version Check The <a href="https://github.com/tassosmak/PyTerminal/tree/Dev?tab=readme-ov-file" target="_blank">Development Branch</a>
 
 PyTerminal is a CLI Interface that is based on the terminal of your Pc or your Mac
 
