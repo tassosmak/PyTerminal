@@ -13,5 +13,4 @@ def add_depend(path):
     utils.pl_finder()
     utils.clear_screen()
     cred.get_credentials(False, f'{path}/users/Default.json')
-    cred._get_propiatery(False)
     
