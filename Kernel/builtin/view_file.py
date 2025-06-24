@@ -1,12 +1,16 @@
 from textual.widgets import DirectoryTree, Footer, Header, Static
 from textual.containers import Container, Vertical
 from textual.app import App, ComposeResult
+from textual.reactive import var
+from textual import events
+
+from src import utils
+utils.add_depend(str(utils.sys.argv[1]))
 from Kernel.RendererKit.HighlightKit.traceback import Traceback
 from Kernel.RendererKit.HighlightKit.syntax import Syntax
+
 import sys
 
-from textual import events
-from textual.reactive import var
 
 
 class CodeBrowser(App):

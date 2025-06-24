@@ -5,10 +5,14 @@ import sys
 import time
 from dataclasses import dataclass
 
-from Kernel.RendererKit.HighlightKit import box
+from src import utils
+utils.add_depend(str(utils.sys.argv[1]))
 from Kernel.RendererKit.HighlightKit.console import Console
-from Kernel.RendererKit.HighlightKit.live import Live
 from Kernel.RendererKit.HighlightKit.table import Table
+from Kernel.RendererKit.HighlightKit.live import Live
+from Kernel.RendererKit.HighlightKit import box
+from Kernel import flags
+
 
 if sys.version_info >= (3, 8):
     from typing import Literal
@@ -76,10 +80,10 @@ def create_process_table(height: int) -> Table:
 
     return table
 
+if flags.EnableIntSoft:
+    console = Console()
 
-console = Console()
-
-with Live(console=console, screen=True, auto_refresh=False) as live:
-    while True:
-        live.update(create_process_table(console.size.height - 4), refresh=True)
-        time.sleep(1)
+    with Live(console=console, screen=True, auto_refresh=False) as live:
+        while True:
+            live.update(create_process_table(console.size.height - 4), refresh=True)
+            time.sleep(1)

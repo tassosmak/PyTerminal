@@ -107,14 +107,13 @@ def get_credentials(print_credentials=False, path=None):
 
     Internal_Software = data['Internal-Software']['Enable']
     try:
-        from Kernel.credentials import _get_propiatery
         _get_propiatery(True)
         if Internal_Software == "1":
             flags.EnableIntSoft = True
         else: 
             flags.EnableIntSoft = False
     except FileNotFoundError:
-        flags.EnableIntSoft == False
+        flags.EnableIntSoft = False
     if print_credentials:
         if flags.EnableIntSoft:
             RD.CommandShow(msg=('Flags-Var', flags.EnableIntSoft)).Show()

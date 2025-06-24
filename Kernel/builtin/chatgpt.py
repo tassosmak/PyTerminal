@@ -17,6 +17,9 @@ else:
     import readline
 
 from playwright.sync_api import sync_playwright
+
+from src import utils
+utils.add_depend(str(utils.sys.argv[1]))
 from Kernel.RendererKit.HighlightKit.console import Console
 from Kernel.RendererKit.HighlightKit.markdown import Markdown
 
