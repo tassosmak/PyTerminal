@@ -58,6 +58,6 @@ if __name__ == '__main__':
     flags.Runtype='gui'
     UserHandler.loader(False)
     flags.MODE = '9'
-    # flags.EnableIntSoft = False
+    flags.EnableIntSoft = True
     app(main)
     

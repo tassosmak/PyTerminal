@@ -21,6 +21,7 @@ def CommandList(Command=str, safe_md=False):
             return
         else:
             if not Command in flags._CML:
+                if not Command in flags.ACML:
                     if not Command == '' :
                         if flags.EnableIntSoft:
                             RD.CommandShow(f"This Commmand Isn't registered with The PyTerminal CML").Show("FAIL")
@@ -32,6 +33,8 @@ def CommandList(Command=str, safe_md=False):
                             return
                     else:
                         LCommand = '0'
+                else:
+                    LCommand = Command
             else:
                 LCommand = Command
 
@@ -271,15 +274,15 @@ def CommandList(Command=str, safe_md=False):
                 else:
                     from Kernel.credentials import get_credentials
                     MODE = flags.MODE
-                    get_credentials(True)
+                    get_credentials(True, f'{flags.base_folder}/users/{flags.USERNAME}.json')
                     flags.MODE = MODE
 
         if Command == "show cmd" or Command == 'show apps' or Command == 'help':
+            RD.CommandShow(msg='Available Commands').Show('OKGREEN')
+            RD.CommandShow(msg=flags._CML).Show('BLUE')
             if flags.EnableIntSoft:
-                RD.CommandShow(flags._CML).Show('BLUE')
-            else:
-                RD.CommandShow('Available Commands').Show('OKGREEN')
-                RD.CommandShow(msg=SystemCalls.get_fl_content('builtin')).Show('BLUE')
+                RD.CommandShow(msg='Available Advanced Commands').Show('OKGREEN')
+                RD.CommandShow(msg=flags.ACML).Show('BLUE')
 
         if Command == "registry":
             if flags.MODE == '9':

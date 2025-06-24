@@ -47,27 +47,29 @@ def askpass(prompt="Enter Password: ", mask="*"):
     cross_getch = CrossGetch()
 
     print(prompt, end="", flush=True)
-
-    while True:
-        char = cross_getch.getch()
-        if char == b"\x03":
-            # Ctrl-C Character
-            raise KeyboardInterrupt
-        elif char == b"\x1b":
-            # Escape character
-            password_input = b""
-            break
-        elif char == b"\r":
-            break
-        elif char in [b"\x08", b"\x7f"]:
-            if count != 0:
-                print("\b \b"*len(mask), end="", flush=True)
-                count -= 1
-            password_input = password_input[:-1]
-        else:
-            print(mask, end="", flush=True)
-            if mask != "":
-                count += 1
-            password_input += char
-    print(flush=True)
-    return password_input.decode()
+    try:
+        while True:
+            char = cross_getch.getch()
+            if char == b"\x03":
+                # Ctrl-C Character
+                raise KeyboardInterrupt
+            elif char == b"\x1b":
+                # Escape character
+                password_input = b""
+                break
+            elif char == b"\r":
+                break
+            elif char in [b"\x08", b"\x7f"]:
+                if count != 0:
+                    print("\b \b"*len(mask), end="", flush=True)
+                    count -= 1
+                password_input = password_input[:-1]
+            else:
+                print(mask, end="", flush=True)
+                if mask != "":
+                    count += 1
+                password_input += char
+        print(flush=True)
+        return password_input.decode()
+    except KeyboardInterrupt:
+        return ""

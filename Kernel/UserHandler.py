@@ -25,13 +25,13 @@ def loader(run=True):
                 LoginHandler.run()
                 init()
             else:
-                cred.get_credentials(False, 'default')
+                cred.get_credentials(False, f'{flags.base_folder}/users/default.json')
     else:
         if run:
             LoginHandler.run()
             init()
         else:
-            cred.get_credentials(False, 'default')
+            cred.get_credentials(False, f'{flags.base_folder}/users/default.json')
         
 def init():
     try:
@@ -47,9 +47,7 @@ def init():
 def advanced_init():
     if flags.pl == '1':
         flags.EnableGUI = True
-    if flags.GO_TO_FTU:
-        FTU = FTU_init(False)
-        FTU.run()
+    flags.EnableIntSoft = True
     flags.USERNAME = "Lets Keep It Private"
     flags.MODE = '9'
     flags.FTU = '1'
