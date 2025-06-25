@@ -2,8 +2,8 @@
 The Command List
 '''
 from Makro.Drivers.NotificationsKit.PushSender import Notifications
-from Makro.MakroCore.KernelReboot import KernelReboot
 from Makro.MakroCore.RendererKit import Renderer as RD
+from Makro.MakroCore.KernelReboot import KernelReboot
 from Makro.MakroCore.utils import clear_screen, Exit
 from Makro.MakroCore.SystemCalls import SystemCalls
 from Makro.MakroCore import TaskHandler, flags
@@ -52,7 +52,7 @@ def CommandList(Command=str, safe_md=False):
                 RD.CommandShow(msg="tested").Show()
                 RD.CommandShow(msg="tested").Show("WARNING")
                 RD.CommandShow(msg="tested").Show('FAIL')
-                RD.CommandShow(msg="tested").Show('OKBLUE')
+                RD.CommandShow(msg="tested").Show('BLUE')
                 RD.CommandShow(msg="tested").Show('PURPLE')
                 RD.CommandShow(msg="tested").Show('BLUE')
                 RD.CommandShow(msg=f'Tested {SystemCalls.get_time()}').Info()
@@ -61,7 +61,7 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg='Positive msg').Show(color='WARNING')
                 else:
                     RD.CommandShow(msg='Negative msg').Show('WARNING')
-                Audio.play('MakroCore/AudioKit/src/Boot.mp3')
+                Audio.play('Makro/MakroCore/AudioKit/src/Boot.mp3')
             else:
                 RD.CommandShow("tested").Show()
 
