@@ -32,9 +32,9 @@ def CommandList(Command=str, safe_md=False):
                         LCommand = '0'
                         return
                 else:
-                    LCommand = '0'
+                    flags.LCommand = '0'
             else:
-                LCommand = Command
+                flags.LCommand = Command
 
         if Command == "ls":
             if not safe_md:

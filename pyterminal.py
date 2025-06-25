@@ -7,6 +7,9 @@ from Makro.UserHandler import loader
 from Boot import launcher
 from Makro import flags
 
+import commands as cmd
+flags.Module = cmd.CommandList
+
 from sys import argv
 
 def MainTask():
