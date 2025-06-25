@@ -12,7 +12,7 @@ from time import sleep
 # use pyreadline3 instead of readline on windows
 is_windows = platform.system() == "Windows"
 if is_windows:
-    import pyreadline3  # noqa: F401
+    import pyreadline3  # type: ignore # noqa: F401
 else:
     import readline
 
@@ -20,8 +20,8 @@ from playwright.sync_api import sync_playwright
 
 from src import utils
 utils.add_depend(str(utils.sys.argv[1]))
-from Kernel.RendererKit.HighlightKit.console import Console
-from Kernel.RendererKit.HighlightKit.markdown import Markdown
+from Makro.RendererKit.HighlightKit.console import Console
+from Makro.RendererKit.HighlightKit.markdown import Markdown
 
 console = Console()
 

@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-from Kernel.ErrorLoggingKit import Logger as logger
-from Kernel.utils import args_help, set_flags
-from Kernel.SystemCalls import SystemCalls
-from Kernel import credentials as cred
-from Kernel.UserHandler import loader
+from Makro.ErrorLoggingKit import Logger as logger
+from Makro.utils import args_help, set_flags
+from Makro.SystemCalls import SystemCalls
+from Makro import credentials as cred
+from Makro.UserHandler import loader
 from Boot import launcher
-from Kernel import flags
+from Makro import flags
 
 from sys import argv
 flags.Runtype='local'
@@ -32,7 +32,7 @@ try:
 
 
         elif str(argv[1]) == 'FakeLogin':
-            from Kernel.LoginKit.login_handler import LoginHandler
+            from Makro.LoginKit.login_handler import LoginHandler
             loader(False)
             LoginHandler.run()
 

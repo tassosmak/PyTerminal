@@ -1,4 +1,4 @@
-from Kernel.RendererKit.toga.libs import (
+from Makro.RendererKit.toga.libs import (
     NSAffineTransform,
     NSBezierPath,
     NSColor,

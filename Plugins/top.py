@@ -7,11 +7,11 @@ from dataclasses import dataclass
 
 from src import utils
 utils.add_depend(str(utils.sys.argv[1]))
-from Kernel.RendererKit.HighlightKit.console import Console
-from Kernel.RendererKit.HighlightKit.table import Table
-from Kernel.RendererKit.HighlightKit.live import Live
-from Kernel.RendererKit.HighlightKit import box
-from Kernel import flags
+from Makro.RendererKit.HighlightKit.console import Console
+from Makro.RendererKit.HighlightKit.table import Table
+from Makro.RendererKit.HighlightKit.live import Live
+from Makro.RendererKit.HighlightKit import box
+from Makro import flags
 
 
 if sys.version_info >= (3, 8):

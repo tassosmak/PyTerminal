@@ -1,7 +1,7 @@
 from Drivers.NotificationsKit.ntfpy import NTFYServer, NTFYUser, NTFYClient, NTFYPushMessage, NTFYViewAction
-from Kernel.SystemCalls import break_after
-from Kernel import flags
-from Kernel.CryptographyKit import utils
+from Makro.SystemCalls import break_after
+from Makro import flags
+from Makro.CryptographyKit import utils
 
 
 

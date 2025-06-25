@@ -1,10 +1,10 @@
-from Kernel.utils import ModeHandling as MoDeH, Exit
-from Kernel import ModeHandling as MDH #MDH for MODE HANDLING
-from Kernel.RendererKit import Renderer as RD
-from Kernel.SystemCalls import SystemCalls
-from Kernel.FTU import FTU_init as FTU
-from Kernel.UserHandler import loader
-from Kernel import flags
+from Makro.utils import ModeHandling as MoDeH, Exit
+from Makro import ModeHandling as MDH #MDH for MODE HANDLING
+from Makro.RendererKit import Renderer as RD
+from Makro.SystemCalls import SystemCalls
+from Makro.FTU import FTU_init as FTU
+from Makro.UserHandler import loader
+from Makro import flags
 
 @SystemCalls.Grapher
 @SystemCalls.measure_time

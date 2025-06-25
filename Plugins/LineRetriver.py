@@ -1,8 +1,8 @@
 from src import utils
 utils.add_depend(str(utils.sys.argv[1]))
-from Kernel.RendererKit import Renderer as RD
-from Kernel.SystemCalls import SystemCalls
-from Kernel import utils
+from Makro.RendererKit import Renderer as RD
+from Makro.SystemCalls import SystemCalls
+from Makro import utils
 
 try:
     import clipboard

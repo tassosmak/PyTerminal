@@ -1,6 +1,6 @@
 import time
 from typing import Any, Optional, Sequence
-from Kernel import flags
+from Makro import flags
 
 __all__ = [
 	"NTFYMessage"

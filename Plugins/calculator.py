@@ -1,6 +1,6 @@
 from src.utils import add_depend, sys
 add_depend(sys.argv[1])
-from Kernel.RendererKit import Renderer as RD
+from Makro.RendererKit import Renderer as RD
 
 # Define a dictionary to store variables and their values
 variables = {}

@@ -2,14 +2,14 @@
 The Command List
 '''
 from Drivers.NotificationsKit.PushSender import Notifications
-from Kernel.KernelReboot import KernelReloader
-from Kernel.RendererKit import Renderer as RD
-from Kernel.utils import clear_screen, Exit
-from Kernel.SystemCalls import SystemCalls
-from Kernel import TaskHandler, flags
+from Makro.KernelReboot import KernelReboot
+from Makro.RendererKit import Renderer as RD
+from Makro.utils import clear_screen, Exit
+from Makro.SystemCalls import SystemCalls
+from Makro import TaskHandler, flags
 from Drivers.AudioKit import Audio
-from Kernel.src import registry
-from Kernel import utils
+from Makro.src import registry
+from Makro import utils
 
 import sys
 import os
@@ -61,7 +61,7 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg='Positive msg').Show(color='WARNING')
                 else:
                     RD.CommandShow(msg='Negative msg').Show('WARNING')
-                Audio.play('Kernel/AudioKit/src/Boot.mp3')
+                Audio.play('Makro/AudioKit/src/Boot.mp3')
             else:
                 RD.CommandShow("tested").Show()
 
@@ -261,7 +261,7 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(("Fully GUI", flags.Fully_GUI)).Show()
                     RD.CommandShow(("Inside_Thread", flags.Inside_Thread)).Show()
                 else:
-                    from Kernel.credentials import get_credentials
+                    from Makro.credentials import get_credentials
                     MODE = flags.MODE
                     get_credentials(True, f'{flags.base_folder}/users/{flags.USERNAME}.json')
                     flags.MODE = MODE
@@ -379,12 +379,12 @@ def CommandList(Command=str, safe_md=False):
         if Command == 'change password':
             if not safe_md:
                 if not flags.UserLess_Connection:
-                    from Kernel.LoginKit.LoginUI import LoginHandlerUserStore as lgh
+                    from Makro.LoginKit.LoginUI import LoginHandlerUserStore as lgh
                     enc_password = lgh().ask_password()
                     if enc_password == flags.PASSWORD:
                         RD.CommandShow('Type your new password').Input()
                         RD.CommandShow(f'Your new password is: {RD.Quest_result}').Info()
-                        from Kernel.CryptographyKit import EncryptPassword as encrypt
+                        from Makro.CryptographyKit import EncryptPassword as encrypt
                         utils.edit_user_config(
                             username=flags.USERNAME,
                             Loc1='user_credentials',
@@ -395,13 +395,13 @@ def CommandList(Command=str, safe_md=False):
                 else:
                     RD.CommandShow(msg='You Are in UserLess Mode').Show('WARNING')
                     
-        if Command == 'kernel reload':
+        if Command == 'Makro reload':
             if flags.EnableIntSoft:
-                reloader = KernelReloader()
+                reloader = KernelReboot()
                 if reloader.reload_all():
-                    RD.CommandShow(msg='Kernel Reloaded Successfully').Show('OKGREEN')
+                    RD.CommandShow(msg='Makro Reloaded Successfully').Show('OKGREEN')
                 else:
-                    RD.CommandShow(msg='Kernel Reload Failed').Show('FAIL')
+                    RD.CommandShow(msg='Makro Reload Failed').Show('FAIL')
 
 
     except: Exit.error_exit()

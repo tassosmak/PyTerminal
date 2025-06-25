@@ -6,8 +6,8 @@ from textual import events
 
 from src import utils
 utils.add_depend(str(utils.sys.argv[1]))
-from Kernel.RendererKit.HighlightKit.traceback import Traceback
-from Kernel.RendererKit.HighlightKit.syntax import Syntax
+from Makro.RendererKit.HighlightKit.traceback import Traceback
+from Makro.RendererKit.HighlightKit.syntax import Syntax
 
 import sys
 

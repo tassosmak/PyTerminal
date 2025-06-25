@@ -1,4 +1,4 @@
-from Kernel.RendererKit.toga.libs import NSObject, objc_method
+from Makro.RendererKit.toga.libs import NSObject, objc_method
 
 
 class TogaData(NSObject):

@@ -1,6 +1,6 @@
 from src.utils import add_depend, sys
 add_depend(str(sys.argv[1]))
-from Kernel.RendererKit import Renderer as RD
+from Makro.RendererKit import Renderer as RD
 
 import yfinance as yf
 Stock = RD.CommandShow(msg='Enter Your Stock', header='Stock Viewer').Input()
