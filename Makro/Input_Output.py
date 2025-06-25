@@ -5,9 +5,7 @@ def CommandAsk(Module=str, command=str):
     # Mode 2
     if flags.MODE == "2":
         prompt = f"{flags.MD2} | {RD.bcolors.OKBLUE}{flags.USERNAME.capitalize()}{RD.bcolors.WHITE} % "
-        if flags.Runtype == 'local':
-            return Module(Command=input(prompt).lower())
-        return Module(Command=command)
+        return Module(Command=input(prompt).lower())
 
     # Mode 9
     if flags.MODE == "9" and not flags.BuildReseted:
@@ -21,9 +19,7 @@ def CommandAsk(Module=str, command=str):
                 return Module(Command=RD.Quest_result.lower())
             except AttributeError:
                 return RD.CommandShow('\n').Show()
-        if flags.Runtype == 'local':
-            return Module(Command=input(prompt).lower())
-        return Module(Command=command)
+        return Module(Command=input(prompt).lower())
 
     # Safe Mode 3
     if flags.MODE == "3":

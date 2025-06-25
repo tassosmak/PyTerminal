@@ -7,9 +7,9 @@ def log_error(message="NO_MSG"):
     if not flags.FTU == '2':
         from Makro.ErrorLoggingKit.ErrorPreviewer import ErrorScreen
         from Makro.RendererKit.HighlightKit.console import Console
-        from Makro.NotificationsKit.PushSender import Notifications
+        from Drivers.NotificationsKit.PushSender import Notifications
         from Makro.SystemCalls import SystemCalls
-        from Makro.AudioKit import Audio
+        from Drivers.AudioKit import Audio
         from io import StringIO
         import logging
         import os

@@ -8,7 +8,7 @@ from Boot import launcher
 from Makro import flags
 
 from sys import argv
-flags.Runtype='local'
+
 def MainTask():
     loader()
     while True:
@@ -29,7 +29,6 @@ try:
             if flags.EnableIntSoft:
                 cred._get_propiatery()
                 set_flags()
-
 
         elif str(argv[1]) == 'FakeLogin':
             from Makro.LoginKit.login_handler import LoginHandler
