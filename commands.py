@@ -326,9 +326,9 @@ def CommandList(Command=str, safe_md=False):
             if not safe_md:
                 plugin_exist = False
                 while not plugin_exist:
-                    RD.CommandShow(SystemCalls.get_fl_content('plugins')).Show('BLUE')
+                    RD.CommandShow(SystemCalls.get_fl_content('/../Plugins')).Show('BLUE')
                     if not RD.CommandShow('What plugin you want to load?').Input() == 'exit':
-                        if os.path.isfile(f'{flags.base_folder}/plugins/{RD.Quest_result}.py'):
+                        if os.path.isfile(f'{flags.base_folder}/../Plugins/{RD.Quest_result}.py'):
                             TaskHandler.SecondaryTask(RD.Quest_result)
                             plugin_exist = True
                         else:
