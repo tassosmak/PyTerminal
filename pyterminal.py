@@ -4,8 +4,8 @@ from Kernel.utils import args_help, set_flags
 from Kernel.SystemCalls import SystemCalls
 from Kernel import credentials as cred
 from Kernel.UserHandler import loader
+from Boot import launcher
 from Kernel import flags
-import launcher
 
 from sys import argv
 flags.Runtype='local'
@@ -30,13 +30,6 @@ try:
                 cred._get_propiatery()
                 set_flags()
 
-        elif str(argv[1]) == "GUI":
-            loader(False)
-            if flags.EnableIntSoft:
-                flags.Runtype='gui'
-                import main
-                cred._get_propiatery(True)
-                main.open_window()
 
         elif str(argv[1]) == 'FakeLogin':
             from Kernel.LoginKit.login_handler import LoginHandler

@@ -1,13 +1,13 @@
 '''
 The Command List
 '''
-from Kernel.NotificationsKit.PushSender import Notifications
+from Drivers.NotificationsKit.PushSender import Notifications
 from Kernel.KernelReboot import KernelReloader
 from Kernel.RendererKit import Renderer as RD
 from Kernel.utils import clear_screen, Exit
 from Kernel.SystemCalls import SystemCalls
 from Kernel import TaskHandler, flags
-from Kernel.AudioKit import Audio
+from Drivers.AudioKit import Audio
 from Kernel.src import registry
 from Kernel import utils
 
@@ -144,7 +144,7 @@ def CommandList(Command=str, safe_md=False):
         if Command == "talk":
             if not safe_md:
                 if flags.net:
-                    from Kernel.plugins import Server, client
+                    from Plugins import Server, client
                     RD.CommandShow(msg='do you want to be host or reciever').Choice(Button1='Host', Button2='Talker')
                     #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
                     if RD.Quest_result == "Host":
@@ -230,17 +230,6 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg="This Function isn't available within this mode").Show('WARNING')
 
 
-        if Command == "devices":
-            if not safe_md:
-                if not flags.pl == "2":
-                    if flags.FTU == "2":
-                        import Kernel.NetworkingKit.server
-                    else:
-                        import Kernel.NetworkingKit.auth
-                        if Kernel.NetworkingKit.auth.DONE:
-                            TaskHandler.SecondaryTask(file_name="Handle-External-Devices")
-                else:
-                    RD.CommandShow("NetworkingKit Isn't Supported On Windows").Show()
 
         if Command == "logout":
             clear_screen()
@@ -332,14 +321,6 @@ def CommandList(Command=str, safe_md=False):
                 import webbrowser
                 Notifications().Sender('Mannn You Got Somee taste in music🤝')
                 webbrowser.open_new('https://www.youtube.com/watch?v=iz-xxDJNCA4')
-
-        if Command == "gui":
-            if flags.Runtype == 'local':
-                if flags.EnableIntSoft:
-                    flags.Runtype = 'gui'
-                    import main
-                    main.open_window()
-
 
         if Command == 'plugins':
             if not safe_md:

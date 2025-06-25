@@ -1,4 +1,4 @@
-from Kernel.NotificationsKit.utils import run_applescript
+from Drivers.NotificationsKit.utils import run_applescript
 from typing import List, Union
 
 

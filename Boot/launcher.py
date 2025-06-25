@@ -1,5 +1,5 @@
 from Kernel.utils import ModeHandling as MoDeH, Exit
-from Kernel import ModeHandling as MDH  # MDH for MODE HANDLING
+from Kernel import ModeHandling as MDH #MDH for MODE HANDLING
 from Kernel.RendererKit import Renderer as RD
 from Kernel.SystemCalls import SystemCalls
 from Kernel.FTU import FTU_init as FTU

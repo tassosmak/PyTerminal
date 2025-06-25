@@ -2,7 +2,7 @@
 PyTerminal Rendering Library
 """
 
-from Kernel.NotificationsKit import Alert, Buttons, Dialog, Icon
+from Drivers.NotificationsKit import Alert, Buttons, Dialog, Icon
 
 from Kernel import flags, utils
 try: 

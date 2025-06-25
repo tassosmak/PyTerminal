@@ -1,4 +1,4 @@
-from Kernel.NotificationsKit.ntfpy import NTFYServer, NTFYUser, NTFYClient, NTFYPushMessage, NTFYViewAction
+from Drivers.NotificationsKit.ntfpy import NTFYServer, NTFYUser, NTFYClient, NTFYPushMessage, NTFYViewAction
 from Kernel.SystemCalls import break_after
 from Kernel import flags
 from Kernel.CryptographyKit import utils

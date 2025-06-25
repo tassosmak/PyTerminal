@@ -1,7 +1,7 @@
 from Kernel.ErrorLoggingKit import Logger as logger
 from Kernel.RendererKit.ProgressBarKit import tqdm
 from Kernel.RendererKit import Renderer as RD
-from Kernel.AudioKit import Audio
+from Drivers.AudioKit import Audio
 from Kernel import flags
 import subprocess
 import platform

@@ -1,4 +1,5 @@
-from Kernel import credentials as cred, flags, InputManagerKit
+from Kernel import credentials as cred, flags
+from Drivers import InputManagerKit
 from Kernel.CryptographyKit.decrypt import Decryptor
 from Kernel.CryptographyKit import EncryptPassword
 from Kernel.RendererKit import Renderer as RD

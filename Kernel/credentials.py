@@ -1,4 +1,4 @@
-from Kernel.NotificationsKit.PushSender import Notifications
+from Drivers.NotificationsKit.PushSender import Notifications
 from Kernel.RendererKit import Renderer as RD
 from Kernel.SystemCalls import SystemCalls
 from Kernel import flags, SNC
