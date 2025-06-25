@@ -12,7 +12,7 @@ class KernelReboot:
 
     def __init__(self):
         self.package = 'MakroCore'
-        self.MakroCore_path = flags.base_folder
+        self.MakroCore_path = f'{flags.base_folder}/{self.package}'
         self.exclude = {'MakroCoreReloader', '__init__'}
         self.modules = self._find_modules()
 
