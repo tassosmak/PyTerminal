@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-from Makro.ErrorLoggingKit import Logger as logger
-from Makro.utils import args_help, set_flags
-from Makro.SystemCalls import SystemCalls
-from Makro import credentials as cred
-from Makro.UserHandler import loader
-from Boot import launcher
-from Makro import flags
+from Makro.MakroCore.ErrorLoggingKit import Logger as logger
+from Makro.MakroCore.utils import args_help, set_flags
+from Makro.MakroCore.SystemCalls import SystemCalls
+from Makro.MakroCore import credentials as cred
+from Makro.MakroCore.UserHandler import loader
+from Makro.Boot import launcher
+from Makro.MakroCore import flags
 
 import commands as cmd
 flags.Module = cmd.CommandList
@@ -34,7 +34,7 @@ try:
                 set_flags()
 
         elif str(argv[1]) == 'FakeLogin':
-            from Makro.LoginKit.login_handler import LoginHandler
+            from Makro.MakroCore.LoginKit.login_handler import LoginHandler
             loader(False)
             LoginHandler.run()
 

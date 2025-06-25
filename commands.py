@@ -1,15 +1,15 @@
 '''
 The Command List
 '''
-from Drivers.NotificationsKit.PushSender import Notifications
-from Makro.KernelReboot import KernelReboot
-from Makro.RendererKit import Renderer as RD
-from Makro.utils import clear_screen, Exit
-from Makro.SystemCalls import SystemCalls
-from Makro import TaskHandler, flags
-from Drivers.AudioKit import Audio
-from Makro.src import registry
-from Makro import utils
+from Makro.Drivers.NotificationsKit.PushSender import Notifications
+from Makro.MakroCore.KernelReboot import KernelReboot
+from Makro.MakroCore.RendererKit import Renderer as RD
+from Makro.MakroCore.utils import clear_screen, Exit
+from Makro.MakroCore.SystemCalls import SystemCalls
+from Makro.MakroCore import TaskHandler, flags
+from Makro.Drivers.AudioKit import Audio
+from Makro.MakroCore.src import registry
+from Makro.MakroCore import utils
 
 import sys
 import os
@@ -61,7 +61,7 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg='Positive msg').Show(color='WARNING')
                 else:
                     RD.CommandShow(msg='Negative msg').Show('WARNING')
-                Audio.play('Makro/AudioKit/src/Boot.mp3')
+                Audio.play('MakroCore/AudioKit/src/Boot.mp3')
             else:
                 RD.CommandShow("tested").Show()
 
@@ -144,7 +144,7 @@ def CommandList(Command=str, safe_md=False):
         if Command == "talk":
             if not safe_md:
                 if flags.net:
-                    from Plugins import Server, client
+                    from Makro.Plugins import Server, client
                     RD.CommandShow(msg='do you want to be host or reciever').Choice(Button1='Host', Button2='Talker')
                     #ask_type = input("do you want to be host or reciever\nif you want to be host press 1 otherwise prees 2")
                     if RD.Quest_result == "Host":
@@ -261,7 +261,7 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(("Fully GUI", flags.Fully_GUI)).Show()
                     RD.CommandShow(("Inside_Thread", flags.Inside_Thread)).Show()
                 else:
-                    from Makro.credentials import get_credentials
+                    from Makro.MakroCore.credentials import get_credentials
                     MODE = flags.MODE
                     get_credentials(True, f'{flags.base_folder}/users/{flags.USERNAME}.json')
                     flags.MODE = MODE
@@ -379,12 +379,12 @@ def CommandList(Command=str, safe_md=False):
         if Command == 'change password':
             if not safe_md:
                 if not flags.UserLess_Connection:
-                    from Makro.LoginKit.LoginUI import LoginHandlerUserStore as lgh
+                    from Makro.MakroCore.LoginKit.LoginUI import LoginHandlerUserStore as lgh
                     enc_password = lgh().ask_password()
                     if enc_password == flags.PASSWORD:
                         RD.CommandShow('Type your new password').Input()
                         RD.CommandShow(f'Your new password is: {RD.Quest_result}').Info()
-                        from Makro.CryptographyKit import EncryptPassword as encrypt
+                        from Makro.MakroCore.CryptographyKit import EncryptPassword as encrypt
                         utils.edit_user_config(
                             username=flags.USERNAME,
                             Loc1='user_credentials',
