@@ -52,7 +52,7 @@ def CommandList(Command=str, safe_md=False):
                 RD.CommandShow(msg="tested").Show()
                 RD.CommandShow(msg="tested").Show("WARNING")
                 RD.CommandShow(msg="tested").Show('FAIL')
-                RD.CommandShow(msg="tested").Show('BLUE')
+                RD.CommandShow(msg="tested").Show('OKGREEN')
                 RD.CommandShow(msg="tested").Show('PURPLE')
                 RD.CommandShow(msg="tested").Show('BLUE')
                 RD.CommandShow(msg=f'Tested {SystemCalls.get_time()}').Info()
