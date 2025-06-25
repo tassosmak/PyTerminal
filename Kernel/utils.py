@@ -115,16 +115,19 @@ def clear_gui():
         RD.CommandShow('You have to run pl_finder to clear the gui').Show('WARNING')
         
 class ModeHandling:
-    #Deprecated
+
     def recover_mode():
-        flags.EnableIntSoft = False
         while not RD.Quest_result in flags.ModeList:
             RD.CommandShow(msg="It Seems That The Registered Mode Is Corrupted\nWhat Mode Did You Used\n\n1) The Basic Mode\n2) The Advanced Mode", header=f'Mode Recovery').Input()
         if RD.Quest_result == '9':
             RD.Quest_result = '2'
         flags.MODE = RD.Quest_result
-        edit_json(loc1='user_credentials', loc2='Mode', content=flags.MODE)
-        edit_json(loc1='Internal-Software', loc2='Enable', content='0')
+        edit_user_config(
+            username=flags.USERNAME,
+            Loc1='user_credentials',
+            Loc2='Mode',
+            Content=flags.MODE
+        )
         
     def jump_mode():
         ask_core = str

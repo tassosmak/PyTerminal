@@ -1,8 +1,8 @@
+from Kernel import flags
 import importlib
 import pkgutil
 import sys
-from pathlib import Path
-from Kernel import flags
+# from pathlib import Path
 
 class KernelReloader:
     """

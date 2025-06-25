@@ -421,8 +421,6 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg='Kernel Reloaded Successfully').Show('OKGREEN')
                 else:
                     RD.CommandShow(msg='Kernel Reload Failed').Show('FAIL')
-            else:
-                RD.CommandShow(msg='This Function is not available in this mode').Show('WARNING')
 
 
     except: Exit.error_exit()
