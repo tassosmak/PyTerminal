@@ -1,5 +1,5 @@
 '''
-The Commnand List
+The Command List
 '''
 from Kernel.NotificationsKit.PushSender import Notifications
 from Kernel.KernelReboot import KernelReloader
