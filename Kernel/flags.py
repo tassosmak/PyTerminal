@@ -146,7 +146,7 @@ ACML = [
 "gui",
 ]
 
-MD2 = "!Advanched Mode! PyTerminal Beta"
+MD2 = "!Advanced Mode! PyTerminal Beta"
 MD3 = "PyTerminal | Native-Mode $ "
 MD9 = "PyTerminal"
 Default_text = 'Makro PyTerminal'
