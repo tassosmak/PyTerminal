@@ -1,4 +1,5 @@
 from Kernel import credentials as cred, flags, InputManagerKit
+from Kernel.CryptographyKit.decrypt import Decryptor
 from Kernel.CryptographyKit import EncryptPassword
 from Kernel.RendererKit import Renderer as RD
 from Kernel.FTU import FTU_init as FTU
@@ -23,7 +24,7 @@ class LoginHandlerUserStore:
         else:
             ask_Password = EncryptPassword.encrypt_password(InputManagerKit.askpass("\nType Password: "), save=False)
         if print_ask and flags.EnableIntSoft == True:
-            RD.CommandShow(f'Typed Password: {EncryptPassword.decrypt_password(ask_Password)}').Show('WARNING')
+            RD.CommandShow(f'Typed Password: {Decryptor.decrypt_password(ask_Password)}').Show('WARNING')
         return ask_Password
 
     def Verify_User_Exists(self):
