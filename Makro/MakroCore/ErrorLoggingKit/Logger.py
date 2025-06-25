@@ -40,6 +40,6 @@ def log_error(message="NO_MSG"):
         if flags.EnableIntSoft:
             console.print_exception(show_locals=True)
         else:
-            Audio.play('MakroCore/AudioKit/src/Error.mp3')
+            Audio.play('Drivers/AudioKit/src/Error.mp3')
     else:
         print('Error')
