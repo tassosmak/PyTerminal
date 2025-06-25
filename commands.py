@@ -66,7 +66,6 @@ def CommandList(Command=str, safe_md=False):
                 RD.CommandShow("tested").Show()
 
         if Command == "about" or Command == "version":
-            Audio.play('Boot.mp3')
             RD.CommandShow(flags.Version).Push()
 
 
