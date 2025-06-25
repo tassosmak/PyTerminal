@@ -395,7 +395,7 @@ def CommandList(Command=str, safe_md=False):
                 else:
                     RD.CommandShow(msg='You Are in UserLess Mode').Show('WARNING')
                     
-        if Command == 'Makro reload':
+        if Command == 'makro reload':
             if flags.EnableIntSoft:
                 reloader = KernelReboot()
                 if reloader.reload_all():

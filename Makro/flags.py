@@ -137,7 +137,7 @@ _CML =[
 ACML = [
 "activity monitor",
 "chatbox install",
-"Makro reload",
+"makro reload",
 "fake_error",
 "show flags",
 "infostats",

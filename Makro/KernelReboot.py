@@ -47,6 +47,8 @@ class KernelReboot:
                 'pl': flags.pl,
                 'sys_detect': flags.sys_detect,
                 'base_folder': flags.base_folder,
+                'Module': flags.Module,
+                'LCommand': flags.LCommand,
                 
                 # Add other variables you want to preserve here
             }
