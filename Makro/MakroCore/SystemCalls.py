@@ -6,8 +6,8 @@ PyTerminal System Calls
 
 from Makro.MakroCore.utils import pl_finder, clear_gui, args_help
 from Makro.MakroCore.RendererKit import Renderer as RD
-from pathlib import Path
 from Makro.MakroCore import flags
+from pathlib import Path
 import datetime
 import signal
 import time
@@ -57,7 +57,7 @@ class SystemCalls:
 
     """A Call Tree Graph Generator"""
     def Grapher(func):
-        output_png="MakroCore/src/CallGraph.png"
+        output_png="Makro/MakroCore/src/CallGraph.png"
         custom_include=None
         def wrapper():
             if flags.Create_Graph and '1' in flags.FTU:

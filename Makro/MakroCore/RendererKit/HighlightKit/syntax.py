@@ -37,8 +37,8 @@ from pygments.token import (
 )
 from pygments.util import ClassNotFound
 
-from MakroCore.RendererKit.HighlightKit.containers import Lines
-from MakroCore.RendererKit.HighlightKit.padding import Padding, PaddingDimensions
+from Makro.MakroCore.RendererKit.HighlightKit.containers import Lines
+from Makro.MakroCore.RendererKit.HighlightKit.padding import Padding, PaddingDimensions
 
 from ._loop import loop_first
 from .cells import cell_len

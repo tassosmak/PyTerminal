@@ -41,31 +41,31 @@ def set_flags():
         
         if ask_which == '1':
             flags.UserLess_Connection = not flags.UserLess_Connection
-            edit_json(file_name='MakroCorePropiatery.json', loc1='user_login', loc2='UserLess Connection', content=flags.UserLess_Connection)
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content=flags.UserLess_Connection)
 
         elif ask_which == '2':
             flags.GO_TO_FTU = not flags.GO_TO_FTU
-            edit_json(file_name='MakroCorePropiatery.json', loc1='user_login', loc2='GO TO FTU', content=flags.GO_TO_FTU)
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content=flags.GO_TO_FTU)
                 
         elif ask_which == '3':
             flags.Fully_GUI = not flags.Fully_GUI
-            edit_json(file_name='MakroCorePropiatery.json', loc1='user_login', loc2='Fully GUI', content=flags.Fully_GUI)
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Fully GUI', content=flags.Fully_GUI)
         
         elif ask_which == '4':
             flags.Inside_Thread = not flags.Inside_Thread
-            edit_json(file_name='MakroCorePropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content=flags.Inside_Thread)
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content=flags.Inside_Thread)
   
         elif ask_which == '5':
             flags.Run_Straight_Builtin = not flags.Run_Straight_Builtin
-            edit_json(file_name='MakroCorePropiatery.json', loc1='user_login', loc2='Run-Straight-Builtin', content=flags.Run_Straight_Builtin)
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Straight-Builtin', content=flags.Run_Straight_Builtin)
 
         elif ask_which == '6':
             flags.Create_Graph = not flags.Create_Graph
-            edit_json(file_name='MakroCorePropiatery.json', loc1='user_login', loc2='Create_Graph', content=flags.Create_Graph)
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Create_Graph', content=flags.Create_Graph)
                 
         elif ask_which == '7':
             flags.Runtime_Tracer = not flags.Runtime_Tracer
-            edit_json(file_name='MakroCorePropiatery.json', loc1='user_login', loc2='Runtime_Tracer', content=flags.Runtime_Tracer)
+            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Runtime_Tracer', content=flags.Runtime_Tracer)
 
 def args_help():
     # RD.CommandSay(msg=(flags.Default_text + '\nThose Are The Available Commands:'), color='BLUE')

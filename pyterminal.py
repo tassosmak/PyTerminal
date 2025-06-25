@@ -4,8 +4,8 @@ from Makro.MakroCore.utils import args_help, set_flags
 from Makro.MakroCore.SystemCalls import SystemCalls
 from Makro.MakroCore import credentials as cred
 from Makro.MakroCore.UserHandler import loader
-from Makro.Boot import launcher
 from Makro.MakroCore import flags
+from Makro.Boot import launcher
 
 import commands as cmd
 flags.Module = cmd.CommandList

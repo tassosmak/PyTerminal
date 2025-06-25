@@ -9,7 +9,7 @@ import json
 def _get_propiatery(print_credentials=False):
     global UserLess_Connection, GO_TO_FTU, Fully_GUI
     try:
-        f = open('MakroCorePropiatery.json')
+        f = open('MakroPropiatery.json')
     except FileNotFoundError:
         return False
     data = json.load(f)

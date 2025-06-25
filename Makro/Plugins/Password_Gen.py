@@ -3,8 +3,8 @@ import string
 
 from src.utils import add_depend, sys
 add_depend(str(sys.argv[1]))
-from MakroCore.RendererKit import Renderer as RD
-from MakroCore import flags
+from Makro.MakroCore.RendererKit import Renderer as RD
+from Makro.MakroCore import flags
 
 characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")
 RD.CommandShow(msg="How long do you want your password to be").Input()

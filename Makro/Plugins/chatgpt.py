@@ -20,8 +20,8 @@ from playwright.sync_api import sync_playwright
 
 from src import utils
 utils.add_depend(str(utils.sys.argv[1]))
-from MakroCore.RendererKit.HighlightKit.console import Console
-from MakroCore.RendererKit.HighlightKit.markdown import Markdown
+from Makro.MakroCore.RendererKit.HighlightKit.console import Console
+from Makro.MakroCore.RendererKit.HighlightKit.markdown import Markdown
 
 console = Console()
 

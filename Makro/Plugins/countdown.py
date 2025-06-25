@@ -1,6 +1,6 @@
 from src import utils
 utils.add_depend(str(utils.sys.argv[1]))
-from MakroCore.RendererKit import Renderer as RD
+from Makro.MakroCore.RendererKit import Renderer as RD
 import time
 
 RD.CommandShow("Enter the time in seconds").Input()

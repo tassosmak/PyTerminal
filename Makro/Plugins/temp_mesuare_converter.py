@@ -1,6 +1,6 @@
 from src import utils
 utils.add_depend(str(utils.sys.argv[1]))
-from MakroCore.RendererKit import Renderer as RD
+from Makro.MakroCore.RendererKit import Renderer as RD
 
 def temp_convert():
   RD.CommandShow(msg="Input The Temperature You Like To Convert (e.g., 70F, 20C etc.)").Input()

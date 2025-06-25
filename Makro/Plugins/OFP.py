@@ -1,6 +1,6 @@
 from src import utils
 utils.add_depend(str(utils.sys.argv[1]))
-from MakroCore import flags
+from Makro.MakroCore import flags
 
 # OFP --> Out Of PyTerminal
 import os
