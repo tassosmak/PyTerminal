@@ -1,6 +1,8 @@
 from Makro.MakroCore import credentials as cred, flags
 from Makro.Drivers import InputManagerKit
-from Makro.MakroCore.CryptographyKit.decrypt import Decryptor
+try:
+    from Makro.MakroCore.CryptographyKit.decrypt import Decryptor
+except ModuleNotFoundError:pass
 from Makro.MakroCore.CryptographyKit import EncryptPassword
 from Makro.MakroCore.RendererKit import Renderer as RD
 from Makro.MakroCore.FTU import FTU_init as FTU
