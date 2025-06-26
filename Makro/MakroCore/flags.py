@@ -145,7 +145,6 @@ ACML = [
 "devices",
 "chatbox",
 "ofp",
-"gui",
 ]
 
 MD2 = "!Advanced Mode! PyTerminal Beta"
