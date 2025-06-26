@@ -25,7 +25,10 @@ class LoginHandlerUserStore:
         else:
             ask_Password = EncryptPassword.encrypt_password(InputManagerKit.askpass("\nType Password: "), save=False)
         if print_ask and flags.EnableIntSoft == True:
-            RD.CommandShow(f'Typed Password: {Decryptor.decrypt_password(ask_Password)}').Show('WARNING')
+            try:
+                RD.CommandShow(f'Typed Password: {Decryptor.decrypt_password(ask_Password)}').Show('WARNING')
+            except ModuleNotFoundError:
+                pass
         return ask_Password
 
     def Verify_User_Exists(self):
