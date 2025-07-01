@@ -142,7 +142,6 @@ ACML = [
 "show flags",
 "infostats",
 "registry",
-"devices",
 "chatbox",
 "ofp",
 ]
