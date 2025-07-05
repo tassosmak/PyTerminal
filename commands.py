@@ -271,7 +271,7 @@ def CommandList(Command=str, safe_md=False):
             RD.CommandShow(msg=flags._CML).Show('BLUE')
             if flags.EnableIntSoft:
                 RD.CommandShow(msg='Available Advanced Commands').Show('OKGREEN')
-                RD.CommandShow(msg=flags.ACML).Show('BLUE')
+                RD.CommandShow(msg=flags._ACML).Show('BLUE')
 
         if Command == "registry":
             if flags.MODE == '9':

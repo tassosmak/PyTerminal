@@ -64,7 +64,7 @@ class PasswordManager:
 
                                                                                                                                                                                          
     def add_password(self):
-        self.filename = RD.CommandShow('Give a name to the file where you want to save your passwords').Input()
+        self.filename = RD.CommandShow('Give a name for the username/passwords').Input()
         self.username = RD.CommandShow("Type the Username Of the Passwords You Want to Add").Input()
         
         self.password = RD.CommandShow("Type the Passwords You Want to Add").Input()
@@ -93,7 +93,7 @@ class PasswordManager:
 
 
     def greet(self):
-        RD.CommandShow("Welcome to the Makro Password Manager!\nWhat would you like to do?").Choice(Button1='Add Password', Button2='View Passwords')
+        RD.CommandShow("Welcome to the Makro Password Manager\nWhat would you like to do?").Choice(Button1='Add Password', Button2='View Passwords')
         RD.Quest_result = RD.Quest_result.lower().strip(' ')
         if RD.Quest_result.lower().strip(' ') == 'add password':
             self.add_password()
