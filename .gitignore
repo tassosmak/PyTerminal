@@ -12,10 +12,10 @@ __pycache__/MakroCore.cpython-310.pyc
 __pycache__/MakroCore.cpython-310.pyc
 __pycache__/client.cpython-39.pyc
 __pycache__/Server.cpython-39.pyc
-Makro/MakroCore/CryptographyKit/decrypt.py
 Makro/MakroCore/ErrorLoggingKit/errors.log
 Makro/MakroCore/src/CallGraph.png
 Makro/MakroCore/src/history.log
+Makro/Plugins/src/pwdfile.json
 MakroPropiatery.json
 Password.txt
 .DS_Store

@@ -61,11 +61,14 @@ class CommandShow:
             CommandShow(f'Notification: {self.msg}').Show('OKGREEN')
 
     
-    def Choice(self, Button1='No', Button2='Yes'):
+    def Choice(self, Button1='No', Button2='Yes', Button3=None):
         global Quest_result
         if flags.EnableGUI:
                 if flags.pl == '1':
-                    al = Alert(self.msg).with_buttons(Buttons([Button1, Button2,])).show()
+                    if not Button3 == None:
+                        al = Alert(self.msg).with_buttons(Buttons([Button1, Button2, Button3])).show()
+                    else:
+                        al = Alert(self.msg).with_buttons(Buttons([Button1, Button2])).show()
 
                     Quest_result = al.button_returned
         else:

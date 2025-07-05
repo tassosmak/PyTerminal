@@ -403,5 +403,8 @@ def CommandList(Command=str, safe_md=False):
                 else:
                     RD.CommandShow(msg='Makro Reload Failed').Show('FAIL')
 
+        if Command == 'password manager':
+            if not safe_md:
+                TaskHandler.SecondaryTask('Password_Manager')
 
     except: Exit.error_exit()
