@@ -132,6 +132,7 @@ _CML =[
 'remove user',
 'change account type',
 'change password',
+'password manager',
 ]
 
 ACML = [
