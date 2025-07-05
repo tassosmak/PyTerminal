@@ -135,7 +135,7 @@ _CML =[
 'password manager',
 ]
 
-ACML = [
+_ACML = [
 "activity monitor",
 "chatbox install",
 "makro reload",

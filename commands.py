@@ -21,7 +21,7 @@ def CommandList(Command=str, safe_md=False):
             TaskHandler.SecondaryTask(Command)
             return
         else:
-            if not Command in flags._CML and not Command in flags.ACML:
+            if not Command in flags._CML and not Command in flags._ACML:
                 if not Command == '' :
                     if flags.EnableIntSoft:
                         RD.CommandShow(f"This Commmand Isn't registered with The PyTerminal CML").Show("FAIL")
