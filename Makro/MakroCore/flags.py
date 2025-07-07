@@ -73,11 +73,12 @@ ForbidenUsername = [
 
 
 file_list = [
-    'MakroCore/CryptographyKit/DecryptPassword.py',
     'MakroCore/CryptographyKit/EncryptPassword.py',
     'MakroCore/LoginKit/two_step_verification.py',
     'MakroCore/RendererKit/WindowRenderer.py',
+    'MakroCore/CryptographyKit/decryp.py',
     'MakroCore/LoginKit/login_handler.py',
+    'Makro/MakroCore/users/default.json',
     'MakroCore/NetworkingKit/server.py',
     'MakroCore/RendererKit/Renderer.py',
     'MakroCore/LoginKit/user_store.py',
@@ -85,15 +86,11 @@ file_list = [
     'MakroCore/UserHandler.py',
     'MakroCore/credentials.py',
     'MakroCore/registry.py',
-    'MakroCorePropiatery.py',
+    'MakroPropiatery.py',
     'MakroCore/utils.py',
     'MakroCore/FTU.py',
     'pyterminal.py',
     'commands.py',
-    'launcer.py',
-    'MakroCore.py',
-    'Info.json',
-    'pyrad.log',
 ]
 
 #CML for CommandList
