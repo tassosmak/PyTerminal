@@ -109,7 +109,7 @@ class SystemCalls:
         """This Idiot Forgot His Password"""
         if flags.EnableIntSoft:
             try: 
-                from MakroCore.CryptographyKit.decrypt import Decryptor as DC
+                from Makro.MakroCore.CryptographyKit.decrypt import Decryptor as DC
                 RD.CommandShow(DC(flags.PASSWORD).decrypt_password()).Info()
             except ImportError: args_help()
             
