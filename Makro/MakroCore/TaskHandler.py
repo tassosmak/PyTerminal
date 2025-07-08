@@ -13,6 +13,7 @@ def SecondaryTask(file_name="0", stay_end=False):
                 else:
                     os.system(f"start cmd /c py  {flags.base_folder}/../plugins/{file_name}.py {str(flags.base_folder)}")
             else:
-                os.system(f"python3 {flags.base_folder}/../plugins/{file_name}.py {str(flags.base_folder)}")
+                # os.system(f"python3 {flags.base_folder}/../plugins/{file_name}.py {str(flags.base_folder)}")
+                subprocess.run(f"python3 {flags.base_folder}/../plugins/{file_name}.py {str(flags.base_folder)}", shell=True, capture_output=True, check=True, encoding="utf-8")
         else:
             os.system(f"python3 {flags.base_folder}/../plugins/{file_name}.py {str(flags.base_folder)}")
