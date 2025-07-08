@@ -37,7 +37,7 @@ class PasswordManager:
 
                                                                                                                                                                                          
     def add_password(self):
-        self.filename = RD.CommandShow('Give a name for the username/passwords').Input()
+        self.filename = RD.CommandShow('Give a name for the login').Input()
         self.username = RD.CommandShow("Type the Username Of the Passwords You Want to Add").Input()
         
         self.password = RD.CommandShow("Type the Passwords You Want to Add").Input()

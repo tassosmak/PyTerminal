@@ -12,6 +12,6 @@ def add_depend(path):
     from Makro.MakroCore import credentials as cred, utils, SystemCalls
     utils.pl_finder()
     SystemCalls.SystemCalls.get_folder()
-    cred.get_credentials(False, f'{path}/users/Default.json')
+    cred.get_credentials(False, f'{path}/users/default.json')
     utils.clear_screen()
     
