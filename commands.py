@@ -16,7 +16,7 @@ import os
 
 def CommandList(Command=str, safe_md=False):
     try:
-        global ask_recv, LCommand
+        global ask_recv
         if flags.EnableIntSoft and flags.Run_Straight_Builtin and flags.MODE == '9':
             TaskHandler.SecondaryTask(Command)
             return
@@ -24,12 +24,12 @@ def CommandList(Command=str, safe_md=False):
             if not Command in flags._CML and not Command in flags._ACML:
                 if not Command == '' :
                     if flags.EnableIntSoft:
-                        RD.CommandShow(f"This Commmand Isn't registered with The PyTerminal CML").Show("FAIL")
-                        LCommand = '0'
+                        RD.CommandShow(f"This Commmand Isn't registered with The PyTerminal CML or ACML").Show("FAIL")
+                        flags.LCommand = '0'
                         return
                     else:
                         RD.CommandShow(f'Command {Command} Does Not Exist').Show('WARNING')
-                        LCommand = '0'
+                        flags.LCommand = '0'
                         return
                 else:
                     flags.LCommand = '0'

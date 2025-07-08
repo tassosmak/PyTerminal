@@ -6,6 +6,7 @@ add_depend(str(sys.argv[1]))
 from Makro.MakroCore.CryptographyKit import EncryptPassword as EP
 from Makro.MakroCore.CryptographyKit.decrypt import Decryptor
 from Makro.MakroCore.RendererKit import Renderer as RD
+from Makro.MakroCore.JSONhander import JSONhandle
 from Makro.MakroCore import flags
 
 class PasswordManager:
@@ -34,34 +35,6 @@ class PasswordManager:
         with open(self.file_path, 'w') as recover:
             json.dump(data, recover, indent=4)
 
-
-    def read_file(self, pwd_name, print_credentials=False):
-        if os.path.exists(self.file_path):
-            with open(self.file_path, 'r') as recover:
-                try:
-                    data = json.load(recover)
-                    if flags.EnableIntSoft:
-                        RD.CommandShow(msg=f"Reading file contents: {data}").Show('BLUE')
-                except json.JSONDecodeError:
-                    RD.CommandShow("Error reading password file").Info()
-        else:
-            RD.CommandShow("No password file found.").Info()
-            return self.add_password()
-
-        _username = data[pwd_name]['Name']
-        _password = data[pwd_name]['Password']
-        
-        if flags.EnableIntSoft:
-            if print_credentials:
-                RD.CommandShow(msg=("Username:", _username)).Show('BLUE')
-            
-            if print_credentials:
-                RD.CommandShow(msg=("Password:", _password)).Show('BLUE')
-                
-        return _username, _password
-
-
-
                                                                                                                                                                                          
     def add_password(self):
         self.filename = RD.CommandShow('Give a name for the username/passwords').Input()
@@ -84,21 +57,38 @@ class PasswordManager:
         while correct_name == False:
             self.filename = RD.CommandShow("Enter the name of the Usesname/Password Combo you want to view").Input()
             try:
-                self.username, self.password = self.read_file(self.filename)
+                self.username = JSONhandle(self.file_path).read_file(self.filename, 'Name')
+                self.password = JSONhandle(self.file_path).read_file(self.filename, 'Password')
                 correct_name = True
                 RD.CommandShow(f"Your Username is: {self.username} and Password is: {Decryptor(self.password).decrypt_password()}").Info()
             except FileNotFoundError:
                 RD.CommandShow("Password file not found.").Info()
-    
-
+            except:
+                correct_name = False
+                
+    def del_login(self):
+        correct_name = False
+        while not correct_name:
+            array = RD.CommandShow("Enter the name of the login you want to delete").Input()
+            if not RD.Quest_result.lower() == 'exit':
+                try:
+                    JSONhandle(self.file_path).del_contents(array=array)
+                    correct_name = True
+                except KeyError: RD.CommandShow("Login not found. Please try again.").Info()
+            else:
+                correct_name = True
+                
 
     def greet(self):
-        RD.CommandShow("Welcome to the Makro Password Manager\nWhat would you like to do?").Choice(Button1='Add Password', Button2='View Passwords')
+        RD.CommandShow("Welcome to the Makro Password Manager\nWhat would you like to do?").Choice(Button1='Delete Login', Button2='View Login', Button3='New Login')
         RD.Quest_result = RD.Quest_result.lower().strip(' ')
-        if RD.Quest_result.lower().strip(' ') == 'add password':
+        if RD.Quest_result.lower().strip(' ') == 'new login':
             self.add_password()
-        elif RD.Quest_result.lower().strip(' ') == 'view passwords':
+        elif RD.Quest_result.lower().strip(' ') == 'view login':
             self.view_passwords()
+        elif RD.Quest_result.lower().strip(' ') == 'delete login':
+            self.del_login()
+            
 
         
 if __name__ == "__main__":

@@ -72,7 +72,10 @@ class CommandShow:
 
                     Quest_result = al.button_returned
         else:
-            Quest_result = input(f'{self.msg}, Type "{Button1}" or "{Button2}":')
+            if not Button3 == None:
+                Quest_result = input(f'{self.msg}, Type "{Button1}" or "{Button2}" or "{Button3}":')
+            else:
+                Quest_result = input(f'{self.msg}, Type "{Button1}" or "{Button2}":')
         return Quest_result
             
     def Info(self):

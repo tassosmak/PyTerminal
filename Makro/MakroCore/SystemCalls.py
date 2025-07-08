@@ -114,7 +114,7 @@ class SystemCalls:
             except ImportError: args_help()
             
     def most_used_commands():
-        with open("MakroCore/src/history.log", "r") as file:
+        with open(f"{flags.base_folder}/src/history.log", "r") as file:
             data = file.read()
             for i in flags._CML:
                 occurrences = data.count(i)

@@ -1,27 +1,15 @@
 from Makro.MakroCore.ErrorLoggingKit import Logger as logger
 from Makro.MakroCore.RendererKit.ProgressBarKit import tqdm
 from Makro.MakroCore.RendererKit import Renderer as RD
+from Makro.MakroCore.JSONhander import JSONhandle
 from Makro.Drivers.AudioKit import Audio
 from Makro.MakroCore import flags
 import subprocess
 import platform
-import json
 import os
 
-def edit_json(file_name=f'Info.json', loc1="", loc2="", content=""):
-    with open(file_name, 'r+') as f:
-        data = json.load(f)
-        if not loc2 == "":
-            data[loc1][loc2] = content
-        else:
-            data[loc1] = content
-        f.seek(0)
-        json.dump(data, f, indent=4)
-        f.truncate()
-        
 def edit_user_config(username=str, Loc1=str, Loc2=str, Content=str):
     """Edit User Config File"""
-    
     try: 
         f = open(f'{flags.base_folder}/users/{username}.json', 'r')
         f.close()
@@ -29,8 +17,7 @@ def edit_user_config(username=str, Loc1=str, Loc2=str, Content=str):
         open(f'{flags.base_folder}/users/{username}.json', 'w+').close()
         from Makro.MakroCore.src import Recover_Json
         Recover_Json.gen_file(username)
-    edit_json(
-        file_name=f'{flags.base_folder}/users/{username}.json',
+    JSONhandle(f'{flags.base_folder}/users/{username}.json').edit_json(
         loc1=Loc1,
         loc2=Loc2,
         content=Content 
@@ -41,31 +28,31 @@ def set_flags():
         
         if ask_which == '1':
             flags.UserLess_Connection = not flags.UserLess_Connection
-            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='UserLess Connection', content=flags.UserLess_Connection)
+            JSONhandle('MakroPropiatery.json').edit_json(loc1='user_login', loc2='UserLess Connection', content=flags.UserLess_Connection)
 
         elif ask_which == '2':
             flags.GO_TO_FTU = not flags.GO_TO_FTU
-            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='GO TO FTU', content=flags.GO_TO_FTU)
+            JSONhandle('MakroPropiatery.json').edit_json(loc1='user_login', loc2='GO TO FTU', content=flags.GO_TO_FTU)
                 
         elif ask_which == '3':
             flags.Fully_GUI = not flags.Fully_GUI
-            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Fully GUI', content=flags.Fully_GUI)
+            JSONhandle('MakroPropiatery.json').edit_json(loc1='user_login', loc2='Fully GUI', content=flags.Fully_GUI)
         
         elif ask_which == '4':
             flags.Inside_Thread = not flags.Inside_Thread
-            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Threads Inside', content=flags.Inside_Thread)
+            JSONhandle('MakroPropiatery.json').edit_json(loc1='user_login', loc2='Run-Threads Inside', content=flags.Inside_Thread)
   
         elif ask_which == '5':
             flags.Run_Straight_Builtin = not flags.Run_Straight_Builtin
-            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Run-Straight-Builtin', content=flags.Run_Straight_Builtin)
+            JSONhandle('MakroPropiatery.json').edit_json(loc1='user_login', loc2='Run-Straight-Builtin', content=flags.Run_Straight_Builtin)
 
         elif ask_which == '6':
             flags.Create_Graph = not flags.Create_Graph
-            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Create_Graph', content=flags.Create_Graph)
+            JSONhandle('MakroPropiatery.json').edit_json(loc1='user_login', loc2='Create_Graph', content=flags.Create_Graph)
                 
         elif ask_which == '7':
             flags.Runtime_Tracer = not flags.Runtime_Tracer
-            edit_json(file_name='MakroPropiatery.json', loc1='user_login', loc2='Runtime_Tracer', content=flags.Runtime_Tracer)
+            JSONhandle('MakroPropiatery.json').edit_json(loc1='user_login', loc2='Runtime_Tracer', content=flags.Runtime_Tracer)
 
 def args_help():
     # RD.CommandSay(msg=(flags.Default_text + '\nThose Are The Available Commands:'), color='BLUE')

@@ -1,30 +1,26 @@
 from Makro.Drivers.NotificationsKit.PushSender import Notifications
 from Makro.MakroCore.RendererKit import Renderer as RD
 from Makro.MakroCore.SystemCalls import SystemCalls
+from Makro.MakroCore.JSONhander import JSONhandle
 from Makro.MakroCore import flags, SNC
-import json
-
 
 
 def _get_propiatery(print_credentials=False):
     global UserLess_Connection, GO_TO_FTU, Fully_GUI
+    
     try:
-        f = open('MakroPropiatery.json')
-    except FileNotFoundError:
-        return False
-    data = json.load(f)
-    try:
-        UserLess_Connection = data['user_login']['UserLess Connection']
+        path = f'{flags.base_folder}/../../MakroPropiatery.json'
+        UserLess_Connection = JSONhandle(path).read_file('user_login', 'UserLess Connection')
         flags.UserLess_Connection = UserLess_Connection
         if print_credentials:
             RD.CommandShow(msg=("UserLess Connection:", UserLess_Connection)).Show()
 
-        GO_TO_FTU = data['user_login']['GO TO FTU']
+        GO_TO_FTU = JSONhandle(path).read_file('user_login', 'GO TO FTU')
         flags.GO_TO_FTU = GO_TO_FTU
         if print_credentials:
             RD.CommandShow(msg=("GO_TO_FTU:", GO_TO_FTU)).Show()
 
-        Fully_GUI = data['user_login']['Fully GUI']
+        Fully_GUI = JSONhandle(path).read_file('user_login', 'Fully GUI')
         if flags.EnableGUI and flags.pl == '1':
             flags.Fully_GUI = Fully_GUI
         else:
@@ -32,80 +28,68 @@ def _get_propiatery(print_credentials=False):
         if print_credentials:
             RD.CommandShow(msg=("Fully_GUI:", Fully_GUI)).Show()
         
-        Inside_Thread = data['user_login']['Run-Threads Inside']
+        Inside_Thread = JSONhandle(path).read_file('user_login', 'Run-Threads Inside')
         flags.Inside_Thread = Inside_Thread
         if print_credentials:
             RD.CommandShow(msg=("Run-Threads Inside:", Inside_Thread)).Show()
         
-        Run_Straight_Builtin = data['user_login']['Run-Straight-Builtin']
+        Run_Straight_Builtin = JSONhandle(path).read_file('user_login', 'Run-Straight-Builtin')
         flags.Run_Straight_Builtin = Run_Straight_Builtin
         if print_credentials:
             RD.CommandShow(msg=("Run_Straight_Builtin:", Run_Straight_Builtin)).Show()
         
-        Create_Graph = data['user_login']['Create_Graph']
+        Create_Graph = JSONhandle(path).read_file('user_login', 'Create_Graph')
         flags.Create_Graph = Create_Graph
         if print_credentials:
             RD.CommandShow(msg=("Create_Graph:", Create_Graph)).Show()
             
-        Runtime_Tracer = data['user_login']['Runtime_Tracer']
+        Runtime_Tracer = JSONhandle(path).read_file('user_login', 'Runtime_Tracer')
         flags.Runtime_Tracer = Runtime_Tracer
         if print_credentials:
             RD.CommandShow(msg=("Runtime_Tracer:", Runtime_Tracer)).Show()
-            
 
-        f.close()
         return True
     except KeyError:
         raise FileNotFoundError
 
 
     
-
-Name = 0
-Password = 0
-Mode = 0
-FTU = 0
-GUI = 0
-SerialNum = 0
 def get_credentials(print_credentials=False, path=None):
     SystemCalls.get_folder()
     global Name, Password, Mode, FTU, GUI, SerialNum
     
-    f = open(path)
-    data = json.load(f)
 
-
-    FTU = data['FTU']['Use']
+    FTU = JSONhandle(path).read_file('FTU', 'Use')
     flags.FTU = FTU
     if print_credentials:
         RD.CommandShow(msg=("FTU:", FTU)).Show()
     
-    GUI = data['UI']['Enable-AquaUI']
+    GUI = JSONhandle(path).read_file('UI', 'Enable-AquaUI')
     if GUI == "1" and flags.pl == '1':
         flags.EnableGUI = True
     if print_credentials:
         RD.CommandShow(msg=("UI:", GUI)).Show()
     
-    Audio = data['UI']['Enable-Audio']
+    Audio = JSONhandle(path).read_file('UI', 'Enable-Audio')
     if Audio == "1":
         flags.EnableAudio = True
     if print_credentials:
         RD.CommandShow(msg=("Audio:", GUI)).Show()
 
-    Name = data['user_credentials']['Name']
+    Name = JSONhandle(path).read_file('user_credentials', 'Name')
     flags.USERNAME = Name
     if print_credentials:
         RD.CommandShow(msg=("Name:", Name)).Show()
 
 
-    Password = data['user_credentials']['Password']
+    Password = JSONhandle(path).read_file('user_credentials', 'Password')
     flags.PASSWORD = Password
     if print_credentials:
         if flags.EnableIntSoft:
             RD.CommandShow(msg=("Password:", Password)).Show()
 
 
-    Internal_Software = data['Internal-Software']['Enable']
+    Internal_Software = JSONhandle(path).read_file('Internal-Software', 'Enable')
     try:
         _get_propiatery(True)
         if Internal_Software == "1":
@@ -119,7 +103,7 @@ def get_credentials(print_credentials=False, path=None):
             RD.CommandShow(msg=('Flags-Var', flags.EnableIntSoft)).Show()
             RD.CommandShow(msg=("Intenal-Software", Internal_Software)).Show()
         
-    Mode = data['user_credentials']['Mode']
+    Mode = JSONhandle(path).read_file('user_credentials', 'Mode')
     if flags.EnableIntSoft == False and Mode == '9':
         flags.MODE = '2'
     else:
@@ -127,7 +111,7 @@ def get_credentials(print_credentials=False, path=None):
     if print_credentials:
         RD.CommandShow(msg=("Mode:", Mode)).Show()
         
-    SerialNum = data['user_credentials']['Serial']
+    SerialNum = JSONhandle(path).read_file('user_credentials', 'Serial')
     try:
         snc = SNC.snc()
         snc.guid(Name)
@@ -143,6 +127,3 @@ def get_credentials(print_credentials=False, path=None):
         flags.BuildReseted = True
     if print_credentials:
         RD.CommandShow(msg=("Serial:", SerialNum)).Show()
-    
-        
-    f.close()
