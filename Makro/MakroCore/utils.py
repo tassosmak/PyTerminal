@@ -6,7 +6,7 @@ from Makro.Drivers.AudioKit import Audio
 from Makro.MakroCore import flags
 import subprocess
 import platform
-import os
+import os, sys
 
 def edit_user_config(username=str, Loc1=str, Loc2=str, Content=str):
     """Edit User Config File"""
@@ -133,6 +133,14 @@ class ModeHandling:
         flags.MODE = ask_core
         flags.jump = False
         RD.CommandShow("this is only for the current sension\nthe next time it will be restored\nto the previous state").Show('WARNING')
+
+def is_gui():
+    gui_vars = ['DISPLAY', 'WAYLAND_DISPLAY', 'MIR_SOCKET']
+    if any(var in os.environ for var in gui_vars):
+        return True
+    if not sys.stdout.isatty():
+        return False
+    return False
 
 def pl_finder():
     pl = platform.platform()

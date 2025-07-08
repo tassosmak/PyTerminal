@@ -2,8 +2,8 @@ from Makro.Drivers.NotificationsKit.PushSender import Notifications
 from Makro.MakroCore.RendererKit import Renderer as RD
 from Makro.MakroCore.SystemCalls import SystemCalls
 from Makro.MakroCore.JSONhander import JSONhandle
+from Makro.MakroCore.utils import is_gui
 from Makro.MakroCore import flags, SNC
-
 
 def _get_propiatery(print_credentials=False):
     global UserLess_Connection, GO_TO_FTU, Fully_GUI
@@ -21,10 +21,14 @@ def _get_propiatery(print_credentials=False):
             RD.CommandShow(msg=("GO_TO_FTU:", GO_TO_FTU)).Show()
 
         Fully_GUI = JSONhandle(path).read_file('user_login', 'Fully GUI')
-        if flags.EnableGUI and flags.pl == '1':
-            flags.Fully_GUI = Fully_GUI
+        if is_gui():
+            if flags.EnableGUI and flags.pl == '1':
+                flags.Fully_GUI = Fully_GUI
+            else:
+                flags.Fully_GUI = False
         else:
             flags.Fully_GUI = False
+            flags.Inside_Thread = True
         if print_credentials:
             RD.CommandShow(msg=("Fully_GUI:", Fully_GUI)).Show()
         
