@@ -24,14 +24,15 @@ class JSONhandle:
                     self._data = json.load(recover)
                     # if flags.EnableIntSoft:
                         # RD.CommandShow(msg=f"Reading file contents: {self._data}").Show('BLUE')
+                    _object_content = self._data[array][object]
+                
+                    return _object_content
                 except json.JSONDecodeError:
                     RD.CommandShow("Error reading file").Info()
         else:
             RD.CommandShow("No file found.").Info()
 
-        _object_content = self._data[array][object]
-                
-        return _object_content
+
 
     def del_contents(self, array):
         with open(self.file_path, 'r') as f:
