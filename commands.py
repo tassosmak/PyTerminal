@@ -45,8 +45,7 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == "test":
             if flags.MODE == "9":
-                if not flags.pl == "3":
-                    TaskHandler.SecondaryTask(file_name="test", stay_end=True)
+                TaskHandler.SecondaryTask(file_name="test", stay_end=True)
                 Notifications().Sender('Testing')
                 RD.CommandShow('tested','tested').Push()
                 RD.CommandShow(msg="tested").Show()
@@ -342,10 +341,10 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == 'remove user':
             if not safe_md:
-                if not flags.MODE == '1' :
+                if not flags.MODE == '1':
                     RD.CommandShow('Type the username you want to remove').Input()
                     if os.path.isfile(f'{flags.base_folder}/users/{RD.Quest_result}.json'):
-                        if not RD.Quest_result == flags.USERNAME:
+                        if not RD.Quest_result == flags.USERNAME or RD.Quest_result == 'default':
                             os.remove(f'{flags.base_folder}/users/{RD.Quest_result}.json')
                             RD.CommandShow(msg=f'User {RD.Quest_result} Removed Successfully').Show('OKGREEN')
                         else:
