@@ -121,8 +121,8 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == "exit":
             if flags.MODE == "1":
-                ask_exit = input("Are you sure. if yes press 'Y' and hit return")
-                if ask_exit == "Y" or ask_exit == "y":
+                RD.CommandShow(msg="Are you sure you want to exit?").Choice('Yes', 'No')
+                if RD.Quest_result.lower() == 'yes':
                     Exit.exit()
             else:
                 Exit.exit()
@@ -292,7 +292,7 @@ def CommandList(Command=str, safe_md=False):
 
         if Command == 'show flags':
             if not safe_md:
-                if flags.MODE == '9':
+                if flags.EnableIntSoft:
                     clear_screen()
                     Notifications().Sender(SystemCalls.show_flags())
 
