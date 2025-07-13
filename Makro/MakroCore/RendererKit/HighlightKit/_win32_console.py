@@ -16,8 +16,8 @@ import time
 from ctypes import Structure, byref, wintypes
 from typing import IO, NamedTuple, Type, cast
 
-from MakroCore.RendererKit.HighlightKit.color import ColorSystem
-from MakroCore.RendererKit.HighlightKit.style import Style
+from Makro.MakroCore.RendererKit.HighlightKit.color import ColorSystem
+from Makro.MakroCore.RendererKit.HighlightKit.style import Style
 
 STDOUT = -11
 ENABLE_VIRTUAL_TERMINAL_PROCESSING = 4
