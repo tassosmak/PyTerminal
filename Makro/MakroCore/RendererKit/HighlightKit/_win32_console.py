@@ -67,7 +67,7 @@ class CONSOLE_CURSOR_INFO(ctypes.Structure):
     _fields_ = [("dwSize", wintypes.DWORD), ("bVisible", wintypes.BOOL)]
 
 
-_GetStdHandle = windll.kernel.GetStdHandle
+_GetStdHandle = windll.kernel32.GetStdHandle
 _GetStdHandle.argtypes = [
     wintypes.DWORD,
 ]
