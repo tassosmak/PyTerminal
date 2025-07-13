@@ -90,9 +90,10 @@ class SystemCalls:
 
     def append_to_history(Command):
         if not Command == '0':
-            if not Command == 'jump':
-                with open(f'{flags.base_folder}/src/history.log', 'a') as f:
-                    f.write(str(f'{SystemCalls.get_time()} | {Command}\n'))
+            if not Command in flags._ACML:
+                if not Command == 'jump':
+                    with open(f'{flags.base_folder}/src/history.log', 'a') as f:
+                        f.write(str(f'{SystemCalls.get_time()} | {Command}\n'))
 
     def show_flags(print=True):
         result = []
