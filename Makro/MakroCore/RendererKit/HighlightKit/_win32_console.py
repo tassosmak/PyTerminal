@@ -16,8 +16,8 @@ import time
 from ctypes import Structure, byref, wintypes
 from typing import IO, NamedTuple, Type, cast
 
-from Makro.MakroCore.RendererKit.HighlightKit.color import ColorSystem
-from Makro.MakroCore.RendererKit.HighlightKit.style import Style
+from Makro.kernel32.RendererKit.HighlightKit.color import ColorSystem
+from Makro.kernel32.RendererKit.HighlightKit.style import Style
 
 STDOUT = -11
 ENABLE_VIRTUAL_TERMINAL_PROCESSING = 4
@@ -86,7 +86,7 @@ def GetStdHandle(handle: int = STDOUT) -> wintypes.HANDLE:
     return cast(wintypes.HANDLE, _GetStdHandle(handle))
 
 
-_GetConsoleMode = windll.MakroCore32.GetConsoleMode
+_GetConsoleMode = windll.kernel32.GetConsoleMode
 _GetConsoleMode.argtypes = [wintypes.HANDLE, wintypes.LPDWORD]
 _GetConsoleMode.restype = wintypes.BOOL
 
@@ -113,7 +113,7 @@ def GetConsoleMode(std_handle: wintypes.HANDLE) -> int:
     return console_mode.value
 
 
-_FillConsoleOutputCharacterW = windll.MakroCore32.FillConsoleOutputCharacterW
+_FillConsoleOutputCharacterW = windll.kernel32.FillConsoleOutputCharacterW
 _FillConsoleOutputCharacterW.argtypes = [
     wintypes.HANDLE,
     ctypes.c_char,
@@ -154,7 +154,7 @@ def FillConsoleOutputCharacter(
     return num_written.value
 
 
-_FillConsoleOutputAttribute = windll.MakroCore32.FillConsoleOutputAttribute
+_FillConsoleOutputAttribute = windll.kernel32.FillConsoleOutputAttribute
 _FillConsoleOutputAttribute.argtypes = [
     wintypes.HANDLE,
     wintypes.WORD,
@@ -192,7 +192,7 @@ def FillConsoleOutputAttribute(
     return num_written.value
 
 
-_SetConsoleTextAttribute = windll.MakroCore32.SetConsoleTextAttribute
+_SetConsoleTextAttribute = windll.kernel32.SetConsoleTextAttribute
 _SetConsoleTextAttribute.argtypes = [
     wintypes.HANDLE,
     wintypes.WORD,
@@ -216,7 +216,7 @@ def SetConsoleTextAttribute(
     return bool(_SetConsoleTextAttribute(std_handle, attributes))
 
 
-_GetConsoleScreenBufferInfo = windll.MakroCore32.GetConsoleScreenBufferInfo
+_GetConsoleScreenBufferInfo = windll.kernel32.GetConsoleScreenBufferInfo
 _GetConsoleScreenBufferInfo.argtypes = [
     wintypes.HANDLE,
     ctypes.POINTER(CONSOLE_SCREEN_BUFFER_INFO),
@@ -240,7 +240,7 @@ def GetConsoleScreenBufferInfo(
     return console_screen_buffer_info
 
 
-_SetConsoleCursorPosition = windll.MakroCore32.SetConsoleCursorPosition
+_SetConsoleCursorPosition = windll.kernel32.SetConsoleCursorPosition
 _SetConsoleCursorPosition.argtypes = [
     wintypes.HANDLE,
     cast(Type[COORD], WindowsCoordinates),
@@ -263,7 +263,7 @@ def SetConsoleCursorPosition(
     return bool(_SetConsoleCursorPosition(std_handle, coords))
 
 
-_GetConsoleCursorInfo = windll.MakroCore32.GetConsoleCursorInfo
+_GetConsoleCursorInfo = windll.kernel32.GetConsoleCursorInfo
 _GetConsoleCursorInfo.argtypes = [
     wintypes.HANDLE,
     ctypes.POINTER(CONSOLE_CURSOR_INFO),
@@ -287,7 +287,7 @@ def GetConsoleCursorInfo(
     return bool(_GetConsoleCursorInfo(std_handle, byref(cursor_info)))
 
 
-_SetConsoleCursorInfo = windll.MakroCore32.SetConsoleCursorInfo
+_SetConsoleCursorInfo = windll.kernel32.SetConsoleCursorInfo
 _SetConsoleCursorInfo.argtypes = [
     wintypes.HANDLE,
     ctypes.POINTER(CONSOLE_CURSOR_INFO),
@@ -310,7 +310,7 @@ def SetConsoleCursorInfo(
     return bool(_SetConsoleCursorInfo(std_handle, byref(cursor_info)))
 
 
-_SetConsoleTitle = windll.MakroCore32.SetConsoleTitleW
+_SetConsoleTitle = windll.kernel32.SetConsoleTitleW
 _SetConsoleTitle.argtypes = [wintypes.LPCWSTR]
 _SetConsoleTitle.restype = wintypes.BOOL
 
@@ -576,7 +576,7 @@ class LegacyWindowsTerm:
 if __name__ == "__main__":
     handle = GetStdHandle()
 
-    from MakroCore.RendererKit.HighlightKit.console import Console
+    from kernel32.RendererKit.HighlightKit.console import Console
 
     console = Console()
 
