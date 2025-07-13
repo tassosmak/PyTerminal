@@ -2013,8 +2013,8 @@ class Console:
                                 )
 
                         if use_legacy_windows_render:
-                            from MakroCore.RendererKit.HighlightKit._win32_console import LegacyWindowsTerm
-                            from MakroCore.RendererKit.HighlightKit._windows_renderer import legacy_windows_render
+                            from Makro.MakroCore.RendererKit.HighlightKit._win32_console import LegacyWindowsTerm
+                            from Makro.MakroCore.RendererKit.HighlightKit._windows_renderer import legacy_windows_render
 
                             buffer = self._buffer[:]
                             if self.no_color and self._color_system:
