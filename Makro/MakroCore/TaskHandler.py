@@ -1,10 +1,11 @@
+from Makro.MakroCore.utils import is_gui
 from Makro.MakroCore import flags
 import subprocess
 
 def SecondaryTask(file_name="0", stay_end=False):
     if not file_name=='0':
         import os
-        if not flags.Inside_Thread:
+        if not flags.Inside_Thread and is_gui():
             if flags.pl == "1":
                 subprocess.run(f"""osascript -e 'tell application "Terminal" to do script "python3 {str(flags.base_folder)}/../Plugins/{file_name}.py {str(flags.base_folder)}"'""", shell=True, capture_output=True, check=True, encoding="utf-8")
             elif flags.pl == "2":
