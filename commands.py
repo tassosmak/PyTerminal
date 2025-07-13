@@ -381,14 +381,14 @@ def CommandList(Command=str, safe_md=False):
                     from Makro.MakroCore.LoginKit.LoginUI import LoginHandlerUserStore as lgh
                     enc_password = lgh().ask_password()
                     if enc_password == flags.PASSWORD:
-                        RD.CommandShow('Type your new password').Input()
+                        new_pswd = RD.CommandShow('Type your new password').Input()
                         RD.CommandShow(f'Your new password is: {RD.Quest_result}').Info()
                         from Makro.MakroCore.CryptographyKit import EncryptPassword as encrypt
                         utils.edit_user_config(
                             username=flags.USERNAME,
                             Loc1='user_credentials',
                             Loc2='Password',
-                            Content=encrypt.encrypt_password(password=RD.Quest_result, save=False)
+                            Content=encrypt.encrypt_password(password=new_pswd, save=False)
                         )
                         RD.CommandShow(msg='Password Changed Successfully').Show('OKGREEN')
                 else:
