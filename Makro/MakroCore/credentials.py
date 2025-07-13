@@ -95,7 +95,7 @@ def get_credentials(print_credentials=False, path=None):
 
     Internal_Software = JSONhandle(path).read_file('Internal-Software', 'Enable')
     try:
-        _get_propiatery(True)
+        _get_propiatery()
         if Internal_Software == "1":
             flags.EnableIntSoft = True
         else: 
