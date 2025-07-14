@@ -109,13 +109,17 @@ class ModeHandling:
         if RD.Quest_result == '9':
             RD.Quest_result = '2'
         flags.MODE = RD.Quest_result
-        edit_user_config(
-            username=flags.USERNAME,
-            Loc1='user_credentials',
-            Loc2='Mode',
-            Content=flags.MODE
-        )
-        
+        try:
+            edit_user_config(
+                username=flags.USERNAME,
+                Loc1='user_credentials',
+                Loc2='Mode',
+                Content=flags.MODE
+            )
+        except FileNotFoundError: 
+            RD.CommandShow("MakroCore Isn't Loaded").Show('FAIL')
+            Exit.exit()
+            
     def jump_mode():
         ask_core = str
         if flags.Fully_GUI and flags.MODE == '9':
