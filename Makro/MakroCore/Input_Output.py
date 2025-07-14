@@ -1,5 +1,15 @@
 from Makro.MakroCore.RendererKit import Renderer as RD
 from Makro.MakroCore import flags
+import readline
+import atexit
+import os
+
+# Arrow Up functionality
+HISTORY_FILE = os.path.expanduser("~/.my_python_history")
+if os.path.exists(HISTORY_FILE):
+    readline.read_history_file(HISTORY_FILE)
+atexit.register(readline.write_history_file, HISTORY_FILE)
+
 
 def CommandAsk(Module=str):
     if not flags.Module == bool:
