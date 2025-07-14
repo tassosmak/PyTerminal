@@ -41,7 +41,7 @@ class snc:
         elif flags.pl == '2':
             if self.write:
                 self.cmd = 'wmic csproduct get uuid'
-                edit_user_config(username=USERNAME, loc1='user_credentials',loc2='Serial', content=self.run())
+                edit_user_config(username=USERNAME, Loc1='user_credentials',Loc2='Serial', content=self.run())
             else:
                 self.cmd = 'wmic csproduct get uuid'
                 self.run()
