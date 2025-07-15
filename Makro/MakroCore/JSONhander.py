@@ -1,5 +1,5 @@
 from Makro.MakroCore.RendererKit import Renderer as RD
-from Makro.MakroCore.ErrorLoggingKit import Logger
+from Makro.MakroCore.utils import Exit
 from Makro.MakroCore import flags
 import json, os
 
@@ -48,5 +48,4 @@ try:
 
             with open(self.file_path, 'w') as recover:
                 json.dump(data, recover, indent=4)
-except:
-    Logger.log_error('JSONhandle')
+except: Exit.error_exit()
