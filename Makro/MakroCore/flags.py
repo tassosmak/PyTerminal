@@ -95,7 +95,6 @@ file_list = [
 
 #CML for CommandList
 _CML =[
-"test",
 "about",
 "time",
 "exit",
@@ -141,6 +140,7 @@ _ACML = [
 "infostats",
 "registry",
 "chatbox",
+"test",
 "ofp",
 ]
 

@@ -61,8 +61,6 @@ def CommandList(Command=str, safe_md=False):
                 else:
                     RD.CommandShow(msg='Negative msg').Show('WARNING')
                 Audio.play('Makro/MakroCore/AudioKit/src/Boot.mp3')
-            else:
-                RD.CommandShow("tested").Show()
 
         if Command == "about" or Command == "version":
             RD.CommandShow(flags.Version).Push()
