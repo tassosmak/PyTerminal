@@ -31,7 +31,9 @@ def log_error(message="NO_MSG"):
         
         
         if flags.EnableIntSoft:
-            Notifications().Sender(log_stream.getvalue())
+            try:
+                Notifications().Sender(log_stream.getvalue())
+            except: print('Error Sending Error_Notification')
         
         
         ErrorScreen()

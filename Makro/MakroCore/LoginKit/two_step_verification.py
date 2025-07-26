@@ -7,7 +7,12 @@ class TwoStepVerification:
     def two_step_verification(self):
         verified = False
         if not flags.pl == '2':
-            code = Notifications().Code_Sender()
+            try:
+                code = Notifications().Code_Sender()
+            except:
+                RD.CommandShow(msg='Makro Servers are down currently').Show('FAIL')
+                from Makro.MakroCore.utils import Exit
+                Exit.exit()
             while not verified:
                 if flags.Fully_GUI and flags.MODE == '9':
                     ask_code = RD.CommandShow('We Have Send A code to your Phone').Input()
