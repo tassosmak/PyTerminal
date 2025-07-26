@@ -5,14 +5,14 @@ add_depend(str(sys.argv[1]))
 
 from Makro.MakroCore.CryptographyKit import EncryptPassword as EP
 from Makro.MakroCore.CryptographyKit.decrypt import Decryptor
+from Makro.MakroCore.FlagsCaller import CallHandler as CH
 from Makro.MakroCore.RendererKit import Renderer as RD
 from Makro.MakroCore.JSONhander import JSONhandle
-from Makro.MakroCore import flags
 
 class PasswordManager:
     
     def __init__(self):
-        self.file_path = f'{flags.base_folder}/../Plugins/src/pwdfile.json'
+        self.file_path = f'{CH.get_base_folder()}/../Plugins/src/pwdfile.json'
         self.username = str
         self.password = str
         self.filename = str

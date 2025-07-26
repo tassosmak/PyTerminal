@@ -3,8 +3,8 @@ import string
 
 from src.utils import add_depend, sys
 add_depend(str(sys.argv[1]))
+from Makro.MakroCore.FlagsCaller import CallHandler as CH
 from Makro.MakroCore.RendererKit import Renderer as RD
-from Makro.MakroCore import flags
 
 characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")
 RD.CommandShow(msg="How long do you want your password to be").Input()
@@ -19,9 +19,9 @@ password = ''.join(password)
 RD.CommandShow(f'Your Password Is: {password}').Push()
 RD.CommandShow(msg="Would You like to export the password to a text file").Choice()
 if 'yes' in RD.Quest_result.lower():
-    with open(f"{flags.base_folder}/../password.txt", "w") as f:
+    with open(f"{CH.get_base_folder()}/../password.txt", "w") as f:
         f.write(password_str)
     RD.CommandShow('The File Is Saved', 'Password Generator').Push()
     from subprocess import call 
-    file_to_show = f"{flags.base_folder}/../Password.txt"
+    file_to_show = f"{CH.get_base_folder()}/../Password.txt"
     call(["open", "-R", file_to_show])

@@ -1,6 +1,6 @@
 from src import utils
 utils.add_depend(str(utils.sys.argv[1]))
-from Makro.MakroCore import flags
+from Makro.MakroCore.FlagsCaller import CallHandler as CH
 
 # OFP --> Out Of PyTerminal
 import os
@@ -12,7 +12,8 @@ def run():
     else:
         from os import _exit
         _exit(1)
-if flags.EnableIntSoft:
+
+if CH.IntSoft():
     while True:
         try:run()
         except: print('\n')
