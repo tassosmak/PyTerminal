@@ -14,7 +14,7 @@ from Makro.MakroCore import utils
 import sys
 import os
 
-def CommandList(Command=str, safe_md=False):
+def CommandList(Command=str):
     try:
         global ask_recv
         if flags.EnableIntSoft and flags.Run_Straight_Builtin and flags.MODE == '9':
@@ -37,7 +37,7 @@ def CommandList(Command=str, safe_md=False):
                 flags.LCommand = Command
 
         if Command == "ls":
-            if not safe_md:
+            if not flags.safe_md:
                 if flags.MODE == "9":
                     RD.CommandShow(SystemCalls.get_fl_content(flags.base_folder)).Show()
                 else:
@@ -70,7 +70,7 @@ def CommandList(Command=str, safe_md=False):
             RD.CommandShow(f'The time is: {SystemCalls.get_time(date=False)}').Push()
 
         if Command == "del" or Command == "delete":
-            if not safe_md:
+            if not flags.safe_md:
                 if flags.MODE == "2" or flags.MODE == '9':
                     RD.CommandShow(SystemCalls.get_fl_content())
                     try:
@@ -82,7 +82,7 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg="This Function isn't available within this mode").Info()
 
         if Command == "create":
-            if not safe_md:
+            if not flags.safe_md:
                 if not flags.MODE == '1':
                         RD.CommandShow(msg="What the name of the file you want to create?").Input()
                         ask_name = RD.Quest_result
@@ -107,13 +107,11 @@ def CommandList(Command=str, safe_md=False):
                         RD.CommandShow(msg="There was a Problem try again").Info()
 
         if Command == "latest":
-            if not safe_md:
-                TaskHandler.SecondaryTask(file_name="LineRetriver")
+            TaskHandler.SecondaryTask(file_name="LineRetriver")
 
 
         if Command == "gen password":
-            if not safe_md:
-                TaskHandler.SecondaryTask(file_name="Password_Gen")
+            TaskHandler.SecondaryTask(file_name="Password_Gen")
 
 
         if Command == "exit":
@@ -126,12 +124,12 @@ def CommandList(Command=str, safe_md=False):
 
 
         if Command == "jump":
-            if not safe_md:
+            if not flags.safe_md:
                 flags.jump = True
 
 
         if Command == "print md":
-            if not safe_md:
+            if not flags.safe_md:
                 RD.CommandShow(msg=flags.MODE).Show()
             else:
                 RD.CommandShow("You Are in Native-Mode").Show('WARNING')
@@ -139,7 +137,7 @@ def CommandList(Command=str, safe_md=False):
 
 
         if Command == "talk":
-            if not safe_md:
+            if not flags.safe_md:
                 if flags.net:
                     from Makro.Plugins import Server, client
                     RD.CommandShow(msg='do you want to be host or reciever').Choice(Button1='Host', Button2='Talker')
@@ -178,7 +176,7 @@ def CommandList(Command=str, safe_md=False):
                         os.system(f"notepad {RD.Quest_result}")
 
         if Command == "edit file":
-            if not safe_md:
+            if not flags.safe_md:
                 if flags.MODE == "2" or flags.MODE == '9':
                     if flags.pl == "1" or flags.pl == "3":
                         RD.CommandShow(msg='Type the name of the file you want to edit').Input()
@@ -196,7 +194,7 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg="This Function isn't available within this mode").Show(color="FAIL")
 
         if Command == "weather forecast":
-            if not safe_md:
+            if not flags.safe_md:
                 if flags.net:
                     os.system("curl wttr.in/")
                     RD.CommandShow(msg="This is a fork from @igor_chubin").Show(color="UNDERLINE")
@@ -204,7 +202,7 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg="You Are in Safe Mode so you can't connect to the internet right now").Show()
 
         if Command == "activity monitor":
-            if not safe_md:
+            if not flags.safe_md:
                 if flags.MODE == "2" or flags.MODE == "9":
                     if flags.pl == "1" or flags.pl == "3":
                         TaskHandler.SecondaryTask('top')
@@ -212,13 +210,12 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg="This Function isn't available within this mode").Show(color="FAIL")
 
         if Command == "countdown":
-            if not safe_md:
-                TaskHandler.SecondaryTask(file_name="countdown")
+            TaskHandler.SecondaryTask(file_name="countdown")
 
 
 
         if Command == "check site status":
-            if not safe_md:
+            if not flags.safe_md:
                 if flags.MODE == "2" or flags.MODE == "9":
                     RD.CommandShow("Type The Adress Of The Site You Want To Check", 'Down Detecter').Input()
                     os.system(f"ping {RD.Quest_result}")
@@ -233,17 +230,16 @@ def CommandList(Command=str, safe_md=False):
             flags.logout = True
 
         if Command == 'chatbox':
-            if not safe_md:
-                if flags.net:
-                    TaskHandler.SecondaryTask('chatgpt')
+            if flags.net:
+                TaskHandler.SecondaryTask('chatgpt')
         if Command == 'chatbox install':
-            if not safe_md:
+            if not flags.safe_md:
                 if flags.net:
                     os.system('python3 src/chatgpt.py install')
                     clear_screen()
 
         if Command == 'infostats':
-            if not safe_md:
+            if not flags.safe_md:
                 if flags.EnableIntSoft:
                     clear_screen()
                     RD.CommandShow(msg=flags.Default_text).Show('PURPLE')
@@ -275,38 +271,33 @@ def CommandList(Command=str, safe_md=False):
                 registry.regedit()
 
         if Command == 'browser':
-            if not safe_md:
-                if flags.pl == '1':
-                    TaskHandler.SecondaryTask('Browser')
-                else:
-                    RD.CommandShow(msg='Not Supported').Show('WARNING')
+            if flags.pl == '1':
+                TaskHandler.SecondaryTask('Browser')
+            else:
+                RD.CommandShow(msg='Not Supported').Show('WARNING')
 
         if Command == 'ofp':
-            if not safe_md:
-                if flags.EnableIntSoft and flags.MODE == '9':
-                    RD.CommandShow('Check The Launced Window').Show()
-                    TaskHandler.SecondaryTask('OFP')
+            if flags.EnableIntSoft and flags.MODE == '9':
+                RD.CommandShow('Check The Launced Window').Show()
+                TaskHandler.SecondaryTask('OFP')
 
         if Command == 'show flags':
-            if not safe_md:
+            if not flags.safe_md:
                 if flags.EnableIntSoft:
                     clear_screen()
                     Notifications().Sender(SystemCalls.show_flags())
 
         if Command == 'converter':
-            if not safe_md:
-                TaskHandler.SecondaryTask('temp_mesuare_converter', stay_end=True)
+            TaskHandler.SecondaryTask('temp_mesuare_converter', stay_end=True)
 
         if Command == 'calculator':
-            if not safe_md:
-                TaskHandler.SecondaryTask('calculator')
+            TaskHandler.SecondaryTask('calculator')
 
         if Command == 'stocks':
-            if not safe_md:
-                TaskHandler.SecondaryTask('stock_viewer')
+            TaskHandler.SecondaryTask('stock_viewer')
 
         if Command == 'most used commands':
-            if not safe_md:
+            if not flags.safe_md:
                 SystemCalls.most_used_commands()
 
         if Command == 'fake_error':
@@ -320,7 +311,7 @@ def CommandList(Command=str, safe_md=False):
                 webbrowser.open_new('https://www.youtube.com/watch?v=iz-xxDJNCA4')
 
         if Command == 'plugins':
-            if not safe_md:
+            if not flags.safe_md:
                 plugin_exist = False
                 while not plugin_exist:
                     RD.CommandShow(SystemCalls.get_fl_content('/../Plugins')).Show('BLUE')
@@ -334,11 +325,11 @@ def CommandList(Command=str, safe_md=False):
                     else:plugin_exist = True
         
         if Command == 'create user':
-            if not safe_md:
+            if not flags.safe_md:
                 flags.newuser = True
 
         if Command == 'remove user':
-            if not safe_md:
+            if not flags.safe_md:
                 if not flags.MODE == '1':
                     RD.CommandShow('Type the username you want to remove').Input()
                     if os.path.isfile(f'{flags.base_folder}/users/{RD.Quest_result}.json'):
@@ -353,7 +344,7 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg='This Function is not available in this mode').Show('WARNING')
         
         if Command == 'change account type':
-            if not safe_md:
+            if not flags.safe_md:
                 RD.CommandShow(msg='there are 2 Modes on this terminal').Choice(Button1='The Advanced Mode', Button2='The Basic Mode')
                 if RD.Quest_result == 'The Advanced Mode' or RD.Quest_result == '2':
                     ask_Mode = '2'
@@ -374,7 +365,7 @@ def CommandList(Command=str, safe_md=False):
 
 
         if Command == 'change password':
-            if not safe_md:
+            if not flags.safe_md:
                 if not flags.UserLess_Connection:
                     from Makro.MakroCore.LoginKit.LoginUI import LoginHandlerUserStore as lgh
                     enc_password = lgh().ask_password()
@@ -401,7 +392,6 @@ def CommandList(Command=str, safe_md=False):
                     RD.CommandShow(msg='Makro Reload Failed').Show('FAIL')
 
         if Command == 'password manager':
-            if not safe_md:
-                TaskHandler.SecondaryTask('Password_Manager')
+            TaskHandler.SecondaryTask('Password_Manager')
 
     except: Exit.error_exit()

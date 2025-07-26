@@ -15,6 +15,7 @@ GO_TO_FTU = False
 EnableGUI = False
 base_folder = str
 sys_detect = str
+safe_md = False
 newuser = False
 logout = False
 USERNAME = str
@@ -26,7 +27,6 @@ net = True
 MODE = str
 FTU = str
 pl = str
-
 '''
 Flags End
 '''

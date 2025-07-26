@@ -36,7 +36,8 @@ def CommandAsk(Module=str):
         # Safe Mode 3
         if flags.MODE == "3":
             prompt = f'{RD.bcolors.WARNING}{flags.MD3}{RD.bcolors.WHITE}'
-            return Module(Command=input(prompt).lower(), safe_md=True)
+            flags.safe_md = True
+            return Module(Command=input(prompt).lower())
 
         # Default Mode 1
         prompt = f"{flags.Default_text} | {RD.bcolors.OKCYAN}{flags.USERNAME.capitalize()}{RD.bcolors.WHITE} $ "
