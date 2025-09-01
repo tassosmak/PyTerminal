@@ -384,14 +384,20 @@ def CommandList(Command=str):
                     RD.CommandShow(msg='You Are in UserLess Mode').Show('WARNING')
                     
         if Command == 'makro reload':
-            if flags.EnableIntSoft:
-                reloader = KernelReboot()
-                if reloader.reload_all():
-                    RD.CommandShow(msg='Makro Reloaded Successfully').Show('OKGREEN')
-                else:
-                    RD.CommandShow(msg='Makro Reload Failed').Show('FAIL')
+            if not flags.safe_md:
+                if flags.EnableIntSoft:
+                    reloader = KernelReboot()
+                    if reloader.reload_all():
+                        RD.CommandShow(msg='Makro Reloaded Successfully').Show('OKGREEN')
+                    else:
+                        RD.CommandShow(msg='Makro Reload Failed').Show('FAIL')
 
         if Command == 'password manager':
             TaskHandler.SecondaryTask('Password_Manager')
+            
+        if Command == 'clear gui':
+            if not flags.safe_md:
+                if flags.EnableIntSoft:
+                    utils.clear_gui()
 
     except: Exit.error_exit()

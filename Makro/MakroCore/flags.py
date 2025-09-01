@@ -138,6 +138,7 @@ _ACML = [
 "fake_error",
 "show flags",
 "infostats",
+'clear gui',
 "registry",
 "chatbox",
 "test",
