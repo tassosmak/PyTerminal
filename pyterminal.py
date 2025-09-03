@@ -7,44 +7,50 @@ from Makro.MakroCore.UserHandler import loader
 from Makro.MakroCore import flags
 from Makro.Boot import launcher
 
-import commands as cmd
-flags.Module = cmd.CommandList
+if __name__ == '__main__':
+    import commands as cmd
+    flags.Module = cmd.CommandList
 
 from sys import argv
+
+def set_custom_module(module):
+    flags.Module = module    
 
 def MainTask():
     loader()
     while True:
         launcher.boot()
 
-try:
+
+if __name__ == '__main__':
     try:
-        if str(argv[1]) == 'Run':
-            MainTask()
-        elif str(argv[1]) == 'ClearErrors':
-            SystemCalls.clear_error()
+        try:
+            if str(argv[1]) == 'Run':
+                MainTask()
+            elif str(argv[1]) == 'ClearErrors':
+                SystemCalls.clear_error()
 
-        elif str(argv[1]) == 'ClearHistory':
-            SystemCalls.clear_history()
+            elif str(argv[1]) == 'ClearHistory':
+                SystemCalls.clear_history()
 
-        elif str(argv[1]) == "SetFlags":
-            loader(False)
-            if flags.EnableIntSoft:
-                cred._get_propiatery()
-                set_flags()
+            elif str(argv[1]) == "SetFlags":
+                loader(False)
+                if flags.EnableIntSoft:
+                    cred._get_propiatery()
+                    set_flags()
 
-        elif str(argv[1]) == 'FakeLogin':
-            from Makro.MakroCore.LoginKit.login_handler import LoginHandler
-            loader(False)
-            LoginHandler.run()
+            elif str(argv[1]) == 'FakeLogin':
+                from Makro.MakroCore.LoginKit.login_handler import LoginHandler
+                loader(False)
+                LoginHandler.run()
 
-        elif str(argv[1]) == 'ForgotPassword':
-            loader(False)
-            SystemCalls.show_pswd()
+            elif str(argv[1]) == 'ForgotPassword':
+                loader(False)
+                SystemCalls.show_pswd()
 
-        else:
+            else:
+                args_help()
+        except IndexError: #An IndexError will happen if the user doesn't give any prompt and run's the file by it self
             args_help()
-    except IndexError: #An IndexError will happen if the user doesn't give any prompt and run's the file by it self
-        args_help()
-except:
-    logger.log_error("BootHandler")
+    except:
+        logger.log_error("BootHandler")
