@@ -146,6 +146,41 @@ def is_gui():
         return False
     return False
 
+def lock_start():
+    import os
+    import sys
+    import atexit
+    import signal
+    import fcntl
+
+    LOCKFILE = "/tmp/my_script.lock"
+    lockfile = open(LOCKFILE, "w")
+
+    # cleanup function
+    def cleanup():
+        try:
+            fcntl.flock(lockfile, fcntl.LOCK_UN)  # unlock
+            lockfile.close()
+            if os.path.exists(LOCKFILE):
+                os.remove(LOCKFILE)
+        except Exception:
+            pass
+
+    atexit.register(cleanup)
+
+    def handle_signal(signum, frame):
+        sys.exit(0)
+
+    # handle Ctrl+C and normal kill
+    signal.signal(signal.SIGINT, handle_signal)
+    signal.signal(signal.SIGTERM, handle_signal)
+
+    try:
+        fcntl.flock(lockfile, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        RD.CommandShow("Another instance is already running.").Show('FAIL')
+        Exit.exit()
+
 def pl_finder():
     pl = platform.platform()
     if pl.startswith("macOS"):

@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+from Makro.MakroCore import utils
+utils.lock_start()
 from Makro.MakroCore.ErrorLoggingKit import Logger as logger
 from Makro.MakroCore.utils import args_help, set_flags
 from Makro.MakroCore.SystemCalls import SystemCalls
