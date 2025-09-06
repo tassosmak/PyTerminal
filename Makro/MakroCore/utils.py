@@ -146,40 +146,38 @@ def is_gui():
         return False
     return False
 
-def lock_start():
-    import os
-    import sys
-    import atexit
-    import signal
-    import fcntl
+def lock_start(file):
+    pl_finder()
+    if not flags.pl == '2':
+        import psutil
+        func_name = os.path.splitext(os.path.basename(file))[0]
 
-    LOCKFILE = "/tmp/my_script.lock"
-    lockfile = open(LOCKFILE, "w")
+        def _guard():
+            current_pid = os.getpid()
+            script_name = os.path.basename(file)
 
-    # cleanup function
-    def cleanup():
-        try:
-            fcntl.flock(lockfile, fcntl.LOCK_UN)  # unlock
-            lockfile.close()
-            if os.path.exists(LOCKFILE):
-                os.remove(LOCKFILE)
-        except Exception:
-            pass
+            for proc in psutil.process_iter(attrs=["pid", "cmdline", "status"]):
+                try:
+                    if proc.info["pid"] == current_pid:
+                        continue
+                    cmdline = proc.info["cmdline"]
+                    if not cmdline:
+                        continue
+                    if script_name in " ".join(cmdline):
+                        # if process is suspended (Ctrl+Z), ignore it
+                        if proc.info.get("status") == psutil.STATUS_STOPPED:
+                            continue
+                        return True
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    continue
+            return False
 
-    atexit.register(cleanup)
+        # register guard dynamically as filename-based function
+        globals()[func_name] = _guard
 
-    def handle_signal(signum, frame):
-        sys.exit(0)
-
-    # handle Ctrl+C and normal kill
-    signal.signal(signal.SIGINT, handle_signal)
-    signal.signal(signal.SIGTERM, handle_signal)
-
-    try:
-        fcntl.flock(lockfile, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except BlockingIOError:
-        RD.CommandShow("Another instance is already running.").Show('FAIL')
-        Exit.exit()
+        if globals()[func_name]():
+            RD.CommandShow(f'{func_name}(): Another instance is already running.').Show('FAIL')
+            Exit.exit()
 
 def pl_finder():
     pl = platform.platform()
