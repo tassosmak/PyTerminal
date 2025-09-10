@@ -43,6 +43,6 @@ def CommandAsk(Module=str):
         prompt = f"{flags.Default_text} | {RD.bcolors.OKCYAN}{flags.USERNAME.capitalize()}{RD.bcolors.WHITE} $ "
         return Module(Command=input(prompt).lower())
     else:
-        RD.CommandShow("You havent registered a module").Show('FAIL')
+        RD.CommandShow("You haven't registered a module").Show('FAIL')
         from Makro.MakroCore.utils import Exit
         Exit.exit()
