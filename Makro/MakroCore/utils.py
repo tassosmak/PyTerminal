@@ -176,7 +176,7 @@ def lock_start(file):
         globals()[func_name] = _guard
 
         if globals()[func_name]():
-            RD.CommandShow(f'{func_name}(): Another instance is already running.').Show('FAIL')
+            RD.CommandShow('Another instance is already running.').Show('FAIL')
             Exit.exit()
 
 def pl_finder():
