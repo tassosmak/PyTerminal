@@ -10,7 +10,7 @@ from Makro.MakroCore import flags
 from Makro.Boot import launcher
 
 if __name__ == '__main__':
-    import commands as cmd
+    import Makro.MakroCore.commands as cmd
     flags.Module = cmd.CommandList
 
 from sys import argv
