@@ -22,7 +22,7 @@ def _get_propiatery(print_credentials=False):
 
         Fully_GUI = JSONhandle(path).read_file('user_login', 'Fully GUI')
         if is_gui():
-            if flags.EnableGUI and flags.pl == '1':
+            if flags.pl == '1':
                 flags.Fully_GUI = Fully_GUI
             else:
                 flags.Fully_GUI = False
