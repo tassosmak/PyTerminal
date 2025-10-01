@@ -16,7 +16,7 @@ if __name__ == '__main__':
 from sys import argv
 
 def set_custom_module(module):
-    flags.Module = module    
+    flags.Module = module
 
 def MainTask():
     loader()

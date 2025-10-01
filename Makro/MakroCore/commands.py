@@ -197,7 +197,7 @@ def CommandList(Command=str):
             if not flags.safe_md:
                 if flags.net:
                     os.system("curl wttr.in/")
-                    RD.CommandShow(msg="This is a fork from @igor_chubin").Show(color="UNDERLINE")
+                    RD.CommandShow(msg="This is a fork from @igor_chubin").Show(color="OKGREEN")
                 else:
                     RD.CommandShow(msg="You Are in Safe Mode so you can't connect to the internet right now").Show()
 

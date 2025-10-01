@@ -13,7 +13,10 @@ if flags.FTU == '1':
 
 
 def CommandAsk(Module=str):
-    if not flags.Module == bool:
+    if flags.Module == bool:
+        import Makro.MakroCore.commands as cmd
+        flags.Module = cmd.CommandList
+    else:
         # Mode 2
         if flags.MODE == "2":
             prompt = f"{flags.MD2} | {RD.bcolors.OKBLUE}{flags.USERNAME.capitalize()}{RD.bcolors.WHITE} % "
@@ -42,7 +45,3 @@ def CommandAsk(Module=str):
         # Default Mode 1
         prompt = f"{flags.Default_text} | {RD.bcolors.OKCYAN}{flags.USERNAME.capitalize()}{RD.bcolors.WHITE} $ "
         return Module(Command=input(prompt).lower())
-    else:
-        RD.CommandShow("You haven't registered a module").Show('FAIL')
-        from Makro.MakroCore.utils import Exit
-        Exit.exit()
