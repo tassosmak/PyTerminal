@@ -24,7 +24,7 @@ def CommandAsk(Module=str):
 
         # Mode 9
         if flags.MODE == "9" and not flags.BuildReseted:
-            prompt = f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} % "
+            prompt = f"{flags.MD9} {flags.sys_detect.system} | {flags.sys_detect.machine} | Module Name: {RD.bcolors.OKGREEN}{flags.Module.__name__}{RD.bcolors.WHITE} % "
             if flags.Run_Straight_Builtin:
                 msg = f"{RD.bcolors.WARNING}Run-Straight-Builtin Enabled{RD.bcolors.WHITE} | {prompt}"
                 return Module(Command=input(msg).lower())
