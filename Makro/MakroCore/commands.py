@@ -84,8 +84,7 @@ def CommandList(Command=str):
         if Command == "create":
             if not flags.safe_md:
                 if not flags.MODE == '1':
-                        RD.CommandShow(msg="What the name of the file you want to create?").Input()
-                        ask_name = RD.Quest_result
+                        ask_name = RD.CommandShow(msg="What the name of the file you want to create?").Input()
                         try:
                             open(ask_name, "x")
                             RD.CommandShow(msg="DONE").Info()
