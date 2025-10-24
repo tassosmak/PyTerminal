@@ -2,8 +2,10 @@
 """
 Simple example usage of the module maskpass
 """
-
-import maskpass # type: ignore
+try:
+    import maskpass # type: ignore
+except ImportError:
+    pass
 
 
 print("Password input using getch (limited features).")
