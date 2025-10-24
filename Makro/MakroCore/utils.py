@@ -149,7 +149,10 @@ def is_gui():
 def lock_start(file):
     pl_finder()
     if not flags.pl == '2':
-        import psutil
+        try: import psutil
+        except ImportError: 
+            os.system('pip install psutil')
+            import psutil
         func_name = os.path.splitext(os.path.basename(file))[0]
 
         def _guard():
