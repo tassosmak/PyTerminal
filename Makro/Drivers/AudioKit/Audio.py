@@ -10,6 +10,7 @@ def play(file):
             subprocess.run(f'mpg123 {flags.base_folder}/../{file}', shell=True, capture_output=True , check=True, encoding="utf-8")
     except:
         RD.CommandShow("AudioKit failed").Show('FAIL')
-        from Makro.MakroCore.utils import edit_json
-        edit_json(loc1='UI', loc2='Enable-Audio', content='0')
+        from Makro.MakroCore.JSONhander import JSONhandle
+        json = JSONhandle(f'{flags.base_folder}/users/default.json')
+        json.edit_json(loc1='UI', loc2='Enable-Audio', content='0')
         flags.EnableAudio = False

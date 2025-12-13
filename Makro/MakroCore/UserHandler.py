@@ -13,7 +13,7 @@ def loader(run=True):
     clear_gui()
     SystemCalls.get_folder()
     if not flags.EnableIntSoft:
-        Audio.play('MakroCore/AudioKit/src/Boot.mp3')
+        Audio.play('Drivers/AudioKit/src/Boot.mp3')
     if cred._get_propiatery():
         if flags.UserLess_Connection and run:
             advanced_init()
