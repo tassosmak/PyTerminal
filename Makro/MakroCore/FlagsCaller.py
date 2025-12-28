@@ -15,9 +15,9 @@ class CallHandler:
         return flags.FTU
     
     def get_base_folder():
-        if flags.EnableIntSoft:
-            return flags.base_folder
-        else: RD.CommandShow(msg='Call Not Allowed').Show('WARNING')
+        # if flags.EnableIntSoft:
+        return flags.base_folder
+        # else: RD.CommandShow(msg='Call Not Allowed').Show('WARNING')
     
     def get_module():
         if flags.EnableIntSoft:
