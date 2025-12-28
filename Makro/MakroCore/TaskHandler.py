@@ -19,6 +19,9 @@ def SecondaryTask(file_name="0", stay_end=False):
                     # os.system(f"python3 {flags.base_folder}/../plugins/{file_name}.py {str(flags.base_folder)}")
                     subprocess.run(f"python3 {flags.base_folder}/../Plugins/{file_name}.py {str(flags.base_folder)}", shell=True, capture_output=True, check=True, encoding="utf-8")
             else:
-                os.system(f"python3 {flags.base_folder}/../Plugins/{file_name}.py {str(flags.base_folder)}")
+                if not flags.pl == "2":
+                    os.system(f"python3 {flags.base_folder}/../Plugins/{file_name}.py {str(flags.base_folder)}")
+                else:
+                    os.system(f"py {flags.base_folder}/../Plugins/{file_name}.py {str(flags.base_folder)}")
     else:
         RD.CommandShow(msg="Safe Mode is enabled, cannot run secondary tasks.").Show("WARNING")
