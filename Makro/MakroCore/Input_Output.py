@@ -1,6 +1,9 @@
 from Makro.MakroCore.RendererKit import Renderer as RD
 from Makro.MakroCore import flags
-import readline
+if not flags.pl == "2":
+    import readline
+else:
+    import pyreadline3 as readline
 import atexit
 import os
 
