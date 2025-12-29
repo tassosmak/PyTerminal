@@ -48,7 +48,7 @@ def advanced_init():
     if flags.pl == '1':
         flags.EnableGUI = True
     flags.EnableIntSoft = True
-    flags.USERNAME = "Lets Keep It Private"
+    flags.USERNAME = "default"
     flags.MODE = '9'
     flags.FTU = '1'
     RD.CommandShow(sys.version).Show('GREEN')
