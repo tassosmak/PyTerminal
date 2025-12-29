@@ -1,18 +1,22 @@
 from Makro.MakroCore.RendererKit import Renderer as RD
 from Makro.MakroCore import flags
+import os, atexit
+
 if not flags.pl == "2":
     import readline
 else:
     import pyreadline3 as readline
-import atexit
-import os
+ 
+
 
 # Arrow Up functionality
-if flags.FTU == '1':
-    HISTORY_FILE = os.path.expanduser("~/.my_python_history")
-    if os.path.exists(HISTORY_FILE):
-        readline.read_history_file(HISTORY_FILE)
-    atexit.register(readline.write_history_file, HISTORY_FILE)
+try:
+    if flags.FTU == '1':
+        HISTORY_FILE = os.path.expanduser("~/.my_python_history")
+        if os.path.exists(HISTORY_FILE):
+            readline.read_history_file(HISTORY_FILE)
+        atexit.register(readline.write_history_file, HISTORY_FILE)
+except: pass
 
 
 def CommandAsk(Module=str):

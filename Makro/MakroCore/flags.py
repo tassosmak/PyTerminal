@@ -32,6 +32,8 @@ Flags End
 '''
 
 Dependecies = [
+    'readline',
+    'pyreadline3'
     'ply',
     'ffmpeg',
     'rich',
