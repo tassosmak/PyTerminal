@@ -1,7 +1,7 @@
 import json, os
 
-from src.utils import add_depend, sys
-add_depend(str(sys.argv[1]))
+from src.utils import add_makro
+add_makro()
 
 from Makro.MakroCore.CryptographyKit import EncryptPassword as EP
 from Makro.MakroCore.CryptographyKit.decrypt import Decryptor

@@ -6,7 +6,7 @@ import time
 from dataclasses import dataclass
 
 from src import utils
-utils.add_depend(str(utils.sys.argv[1]))
+utils.add_makro()
 from Makro.MakroCore.RendererKit.HighlightKit.console import Console
 from Makro.MakroCore.RendererKit.HighlightKit.table import Table
 from Makro.MakroCore.RendererKit.HighlightKit.live import Live

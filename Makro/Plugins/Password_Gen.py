@@ -1,8 +1,8 @@
 from random import shuffle, choice
 import string
 
-from src.utils import add_depend, sys
-add_depend(str(sys.argv[1]))
+from src.utils import add_makro, sys
+add_makro()
 from Makro.MakroCore.FlagsCaller import CallHandler as CH
 from Makro.MakroCore.RendererKit import Renderer as RD
 

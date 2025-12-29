@@ -1,5 +1,5 @@
 from src import utils
-utils.add_depend(str(utils.sys.argv[1]))
+utils.add_makro()
 from Makro.MakroCore.RendererKit import Renderer as RD
 from Makro.MakroCore.SystemCalls import SystemCalls
 from Makro.MakroCore import utils

@@ -1,5 +1,5 @@
-from src.utils import add_depend, sys
-add_depend(sys.argv[1])
+from src.utils import add_makro, sys
+add_makro()
 from Makro.MakroCore.RendererKit import Renderer as RD
 
 # Define a dictionary to store variables and their values

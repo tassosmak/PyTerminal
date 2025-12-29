@@ -1,5 +1,5 @@
-from src.utils import add_depend, sys
-add_depend(str(sys.argv[1]))
+from src.utils import add_makro, sys
+add_makro()
 from Makro.MakroCore.RendererKit import Renderer as RD
 
 import requests

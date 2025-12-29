@@ -5,7 +5,7 @@ from textual.reactive import var
 from textual import events
 
 from src import utils
-utils.add_depend(str(utils.sys.argv[1]))
+utils.add_makro()
 from Makro.MakroCore.RendererKit.HighlightKit.traceback import Traceback
 from Makro.MakroCore.RendererKit.HighlightKit.syntax import Syntax
 
