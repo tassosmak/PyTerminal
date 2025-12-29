@@ -225,7 +225,6 @@ def CommandList(Command=str):
 
 
         if Command == "logout":
-            clear_screen()
             flags.logout = True
 
         if Command == 'chatbox':

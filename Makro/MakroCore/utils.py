@@ -121,6 +121,7 @@ class ModeHandling:
             Exit.exit()
             
     def jump_mode():
+        clear_screen()
         ask_core = str
         if flags.Fully_GUI and flags.MODE == '9':
             ask_core = RD.CommandShow(msg="there are 2 Modes on this terminal:\n1) The Basic Mode,     2) The Advanced Mode").Choice(Button1='1', Button2='2')
