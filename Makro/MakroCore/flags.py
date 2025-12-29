@@ -124,7 +124,6 @@ _CML =[
 'calculator',
 'stocks',
 'most used commands',
-'toquel',
 'plugins',
 'create user',
 'remove user',
@@ -145,6 +144,7 @@ _ACML = [
 "chatbox",
 "test",
 "ofp",
+'toquel',
 ]
 
 MD2 = "!Advanced Mode! PyTerminal Beta"
