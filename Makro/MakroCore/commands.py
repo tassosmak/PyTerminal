@@ -217,7 +217,7 @@ def CommandList(Command=str):
             if not flags.safe_md:
                 if flags.MODE == "2" or flags.MODE == "9":
                     RD.CommandShow("Type The Adress Of The Site You Want To Check", 'Down Detecter').Input()
-                    os.system(f"ping {RD.Quest_result}")
+                    os.system(f"ping {RD.Quest_result} -c 4")
 
                 else:
                     RD.CommandShow(msg="This Function isn't available within this mode").Show('WARNING')
