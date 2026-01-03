@@ -5,7 +5,7 @@ from Makro.MakroCore.JSONhander import JSONhandle
 from Makro.MakroCore.utils import is_gui
 from Makro.MakroCore import flags, SNC
 
-def _get_propiatery(print_credentials=False):
+def _get_propiatery(print_credentials=False, _run_from_cred=False):
     global UserLess_Connection, GO_TO_FTU, Fully_GUI
     
     try:
@@ -54,7 +54,10 @@ def _get_propiatery(print_credentials=False):
 
         return True
     except KeyError:
-        raise FileNotFoundError
+        if _run_from_cred:
+            raise FileNotFoundError
+        else:
+            flags.EnableIntSoft = False
 
 
     
@@ -95,7 +98,7 @@ def get_credentials(print_credentials=False, path=None):
 
     Internal_Software = JSONhandle(path).read_file('Internal-Software', 'Enable')
     try:
-        _get_propiatery()
+        _get_propiatery(_run_from_cred=True)
         if Internal_Software == "1":
             flags.EnableIntSoft = True
             RD.CommandShow('Internal Software Enabled').Show('OKGREEN')
