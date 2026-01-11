@@ -81,7 +81,7 @@ def get_credentials(print_credentials=False, path=None):
     if Audio == "1":
         flags.EnableAudio = True
     if print_credentials:
-        RD.CommandShow(msg=("Audio:", GUI)).Show()
+        RD.CommandShow(msg=("Audio:", Audio)).Show()
 
     Name = JSONhandle(path).read_file('user_credentials', 'Name')
     flags.USERNAME = Name
