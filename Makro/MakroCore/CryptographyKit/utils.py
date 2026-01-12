@@ -1,4 +1,6 @@
 from random import shuffle, choice
+from Makro.MakroCore import flags
+from Makro.MakroCore.JSONhander import JSONhandle
 import string
 import json
 
@@ -27,6 +29,23 @@ def _d_encrypt(type=0, input_text='', save=True):
         Dresult = _reverse_key(final_text)
     return Dresult
 #End - Legacy Scraped
+
+
+def edit_user_config(username=str, Loc1=str, Loc2=str, Content=str):
+    """Edit User Config File"""
+    try: 
+        f = open(f'{flags.base_folder}/users/{username}.json', 'r')
+        f.close()
+    except FileNotFoundError:
+        open(f'{flags.base_folder}/users/{username}.json', 'w+').close()
+        from Makro.MakroCore.src import Recover_Json
+        Recover_Json.gen_file(username)
+    JSONhandle(f'{flags.base_folder}/users/{username}.json').edit_json(
+        loc1=Loc1,
+        loc2=Loc2,
+        content=Content 
+        )
+
 
 
 def edit_json(file_name='Info.json', loc1="", loc2="", content=""):
@@ -69,4 +88,10 @@ def toBinary(text, encoding='utf-8', errors='surrogatepass'):
 def binarystring(bits, encoding='utf-8', errors='surrogatepass'):
     n = int(bits, 2)
     return n.to_bytes((n.bit_length() + 7) // 8, 'big').decode(encoding, errors) or '\0'
+
+
+def _encode(string):
+  encoded = toBinary(string)
+  encoded = encoded.replace('00','erydta').replace("01","uicnajdja").replace("10","afsuid").replace("11","iajcjdhcnaberyr")
+  return encoded
 #NT --> New Technology | End
