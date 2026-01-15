@@ -9,10 +9,6 @@ from Makro.MakroCore.UserHandler import loader
 from Makro.MakroCore import flags
 from Makro.Boot import launcher
 
-if __name__ == '__main__':
-    import Makro.MakroCore.commands as cmd
-    flags.Module = cmd.CommandList
-
 from sys import argv
 
 def set_custom_module(module):
