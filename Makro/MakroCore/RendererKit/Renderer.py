@@ -96,13 +96,17 @@ class CommandShow:
         global Quest_result
         if flags.EnableGUI:
             if flags.pl == '1':
-                buttons = Buttons(["Ok"])
-                the_dialog = Dialog(self.msg).with_title(self.header)
+                buttons = Buttons(['Exit', 'Ok'])
+                the_dialog = Dialog(self.msg)
+                the_dialog.with_title(self.header)
                 the_dialog.with_buttons(buttons)
                 the_dialog.with_icon(Icon.NOTE)
-                the_dialog.with_input("Type Here:")
+                the_dialog.with_input()
+
 
                 result = the_dialog.show()
+                if result.button_returned == "Exit":
+                    utils.Exit.exit()
                 
                 if flags.Fully_GUI == False:
                     if result.text_returned == 'exit':
