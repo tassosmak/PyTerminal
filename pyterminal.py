@@ -1,14 +1,18 @@
 #!/usr/bin/python3
-from Makro.MakroCore.utils import lock_start
-lock_start(__file__)
-from Makro.MakroCore.ErrorLoggingKit import Logger as logger
-from Makro.MakroCore.utils import args_help, set_flags
-from Makro.MakroCore.SystemCalls import SystemCalls
-from Makro.MakroCore import credentials as cred
-from Makro.MakroCore.UserHandler import loader
-from Makro.MakroCore import flags
-from Makro.Boot import launcher
-
+try:
+    from Makro.MakroCore.utils import lock_start
+    lock_start(__file__)
+    from Makro.MakroCore.ErrorLoggingKit import Logger as logger
+    from Makro.MakroCore.utils import args_help, set_flags
+    from Makro.MakroCore.SystemCalls import SystemCalls
+    from Makro.MakroCore import credentials as cred
+    from Makro.MakroCore.UserHandler import loader
+    from Makro.MakroCore import flags
+    from Makro.Boot import launcher
+except ImportError:
+    print("Makro Is Missing | Or Corrupted")
+    from sys import exit
+    exit(1)
 from sys import argv
 
 def set_custom_module(module):
