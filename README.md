@@ -1,56 +1,79 @@
 # PyTerminal
-<a href="https://www.codefactor.io/repository/github/tassosmak/pyterminal"><img src="https://www.codefactor.io/repository/github/tassosmak/pyterminal/badge" alt="CodeFactor" /></a>
-<a href="https://codeclimate.com/github/tassosmak/PyTerminal/maintainability"><img src="https://api.codeclimate.com/v1/badges/4f19e9b7dfb9e130a77f/maintainability" /></a>
 
-## To Get The Stable Version Check The <a href="https://github.com/tassosmak/PyTerminal/tree/master" target="_blank">Master Branch</a>
+PyTerminal is a command-line shell written in Python. It runs on top of **Makro**, a small modular kernel that handles users, modes, commands, plugins and rendering. This repository is the PyTerminal application; Makro is included as a git submodule.
 
-PyTerminal is a CLI Interface that is based on the terminal of your Pc or your Mac
+> **Status:** personal project, work in progress. The `master` branch is the stable one; day-to-day work happens on `Dev`.
 
-It has 2 Modes:
+## Features
 
-### The Basic Mode 
-it limits the function to the absoloute basic 
+- **Modes**: Basic, Advanced and Safe. Basic keeps things simple, Advanced adds file editing and system tools, and Safe disables anything that touches the network or the file system.
+- **Users**: per-user profiles with a stored mode and UI settings.
+- **Built-in commands**:
+  - Files: `ls`, `create`, `del`, `view file`, `edit file`
+  - System: `time`, `clear`, `activity monitor`, `check site status`, `weather forecast`
+  - Account: `create user`, `remove user`, `change password`, `change account type`
+  - Utilities: `calculator`, `converter`, `countdown`, `stocks`, `gen password`, `password manager`, `browser`, `talk`
+  - Type `help` for the list available in your mode.
+- **Plugins**: separate scripts launched in their own window, with a permission file per plugin (filesystem, notifications, personal data).
+- **Rendering**: coloured output and native macOS dialogs, with a plain-terminal fallback.
+- **Error logging**: failures are recorded to a log file instead of crashing silently.
 
-### The Advanced Mode 
-it offers a bit more features than the basic 
+## Requirements
 
+- Python 3.9 or newer (developed and tested on macOS with 3.9.15)
+- macOS is the primary platform. Linux works for most commands; Windows support is partial.
+- Optional packages used by individual features: `psutil`, `yfinance`, `playwright`, `customtkinter`, `toga`.
 
-## How it Works:
-essentially its just an input that then calls a function that procces the input and deliever an 
-output based on the mode you are and the parameters that have been set
+## Getting started
 
-## Full Details on Commit No.85:
-1) every time you launch the program history.log adds the date and hour of the current sension it runs
-2) added platform identifier to optimixe the sys commands to improve reliability(for the time it only support the already only supported platforms although it should work to every linux distro to NOT SURE YET)
-3) changed from mode 999 to mode 9 to avoid bugs
-4) deleted class WorkSpaceHandler to minimize bugs
-5) deleted some comments
-6) improved the check of multiple instanches at the same time from now it will just not respond to commands that require internet
+```bash
+git clone --recurse-submodules https://github.com/tassosmak/PyTerminal.git
+cd PyTerminal
+python pyterminal.py Run
+```
 
-## Full Details on Commit No.88:
-1) added view and edit functions((1)you can only edit files on macOS and possibly to all the other linux distros, (2)when you are editing a .py file it will vim if it installed)
-2) added Weather commands that views the 7-Day forecast 
-3) added activity monitor(only available to macOS)
-4) on the debug we added a menu so you can deal only with the problems you have
-5) Bug Fixes
+If you cloned without `--recurse-submodules`, run `git submodule update --init`.
 
-## Full Details On Commit No.105:
- Error_Manager Folder added What it Contains
-      logger.py
-      errors.log
- logger.py:
-  when an error occurs logger.py get's called to record the error and export it to errors.log
-  the text that will be added will include the error itself the time of the error and a message if included by the developer 
-  
-  
-  
-  Example:
-  <img src="GitHub_screenshots/Snap.png" align="center" width="50%" height="40%">
- 
+### Command-line arguments
 
-## Full Details From Commit No.119 to Commit No.123:
- 1)now every command that requires waiting will be handled as a external thead so it will be launched into an another Window
-  So To give a bit more info
-  Now The ClI is seperated to two proceses The Main process Which Will only be the Input Handler
-  and the SecondProcess Will be loaded with all the other stuff creating files and all other commands that require user input
-2)so all the processes will be moved from the commands.py to the src folder to a standalone file for every process
+| Argument | What it does |
+|---|---|
+| `Run` | Start the shell |
+| `ClearErrors` | Empty the error log |
+| `ClearHistory` | Empty the command history |
+| `FakeLogin` | Open the login screen without starting the shell |
+
+Running `python pyterminal.py` with no argument prints this list.
+
+## Project layout
+
+```text
+PyTerminal/
+├── pyterminal.py          # Entry point and argument handling
+├── Makro/                 # Kernel (git submodule)
+│   ├── Boot/              # Launcher loop
+│   ├── MakroCore/         # Kernel: commands, users, login, logging, renderer
+│   ├── Drivers/           # Input, notifications and audio drivers
+│   └── Plugins/           # Plugins and the permission layer
+└── GitHub_screenshots/
+```
+
+## How it works
+
+1. `pyterminal.py Run` checks that no other instance is running, then loads the user profile.
+2. The launcher loops: read a line, pass it to the command handler, run the matching command.
+3. Commands that need their own window are started as plugins.
+4. Errors go to `Makro/MakroCore/ErrorLoggingKit/errors.log`.
+
+## Known limitations
+
+- Only one instance can run at a time.
+- Some commands pass typed input to the system shell. Only use it with input you trust.
+
+## Contributing
+
+Issues and pull requests are welcome. Please open an issue first for larger changes.
+
+## License
+
+No license file is included yet. Add one before sharing the project more widely.
